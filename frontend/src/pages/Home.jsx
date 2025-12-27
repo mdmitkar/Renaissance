@@ -1,11 +1,30 @@
 import React, { useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Shield, BookOpen, BrainCircuit, Star, Quote, ChevronRight, Calculator, Users, Trophy, Smile, Heart, Palette, Music, Sun, Cloud, PenTool, ArrowRight } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import AdmissionModal from '../components/AdmissionModal';
+
+const HERO_SLIDES = [
+    "/assets/hero-slide-1.png",
+    "/assets/hero-slide-2.png",
+    "/assets/hero-slide-3.png",
+    "/assets/hero-slide-4.png",
+    "/assets/hero-slide-5.png",
+    "/assets/hero-slide-6.png"
+];
 
 const Home = () => {
     const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // Auto-advance slides
+    React.useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+        }, 3000); // Faster slideshow (3 seconds)
+        return () => clearInterval(timer);
+    }, []);
+
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: targetRef,
@@ -21,14 +40,23 @@ const Home = () => {
             {/* HERO SECTION - Redesigned for High Contrast & Playfulness */}
             <section className="relative w-full h-[110vh] min-h-[700px] flex items-center justify-center overflow-hidden">
                 {/* Parallax Background */}
+                {/* Parallax Background - Video Hero */}
+                {/* Parallax Background - Slideshow Hero */}
                 <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
-                    <img
-                        src="/assets/hero-main.png"
-                        alt="Happy Children Learning"
-                        className="w-full h-full object-cover filter brightness-[0.85]" // Darkened slightly for contrast
-                    />
+                    <AnimatePresence mode="popLayout">
+                        <motion.img
+                            key={currentSlide}
+                            src={HERO_SLIDES[currentSlide]}
+                            alt="Hero Slide"
+                            initial={{ opacity: 0, scale: 1.1 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1.5 }}
+                            className="absolute inset-0 w-full h-full object-cover filter brightness-[0.6]"
+                        />
+                    </AnimatePresence>
                     {/* Modern Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-gulf-lebanese/90"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-gulf-lebanese/90"></div>
                 </motion.div>
 
                 {/* Animated Floating Blobs */}
@@ -55,45 +83,53 @@ const Home = () => {
                 <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-24">
                     <motion.div
                         style={{ y: textY }}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, scale: 0.9, y: 50 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-[3rem] shadow-2xl max-w-3xl"
+                        className="relative z-20 bg-white/10 backdrop-blur-xl border-4 border-white/30 p-6 md:p-8 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,0,0,0.3)] max-w-2xl text-center"
                     >
                         <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.3 }}
-                            className="inline-block bg-gentle-yellow text-gulf-lebanese px-4 py-1 rounded-full font-bold text-sm mb-6 shadow-md transform -rotate-2"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+                            className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-5 py-1.5 rounded-full font-bold text-base mb-6 shadow-lg transform -rotate-2 border-2 border-white"
                         >
                             ★ Est. 2025
                         </motion.div>
 
-                        <h1 className="text-5xl md:text-7xl font-heading font-extrabold text-white leading-tight drop-shadow-lg mb-6">
+                        <h1 className="text-5xl md:text-6xl font-heading font-extrabold text-white leading-tight drop-shadow-2xl mb-3 tracking-tight">
                             RENAISSANCE
-                            <span className="block text-3xl md:text-5xl font-light text-gulf-icy mt-2 font-handwriting">
-                                Learning Through Love & Laughter
-                            </span>
                         </h1>
 
-                        <p className="text-lg md:text-xl text-gray-100 mb-8 font-medium leading-relaxed max-w-xl shadow-black drop-shadow-md">
-                            A world where every child is a masterpiece. Located at Kuwari Compound, Bubere Hall Road, Bhiwandi.
+                        <h2 className="text-2xl md:text-4xl font-handwriting font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-pink-400 to-yellow-300 drop-shadow-md mb-8 block leading-relaxed">
+                            Learning Through <br /> Love & Laughter
+                        </h2>
+
+                        <p className="text-lg md:text-xl text-gray-100 mb-8 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+                            A world where every child is a masterpiece. <br />
+                            <span className="flex items-center justify-center gap-2 mt-3 text-base bg-black/30 inline-flex px-5 py-1.5 rounded-full backdrop-blur-sm border border-white/20">
+                                📍 Kuwari Compound, Bubere Hall Road, Bhiwandi
+                            </span>
                         </p>
 
-                        <div className="flex flex-wrap gap-4">
+                        <div className="flex flex-col md:flex-row flex-wrap gap-4 justify-center items-center">
                             <motion.button
-                                whileHover={{ scale: 1.05, rotate: -2 }}
+                                whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setIsAdmissionOpen(true)}
-                                className="bg-primary-carmine text-white font-bold px-10 py-4 rounded-full text-xl shadow-lg shadow-primary-carmine/40 flex items-center gap-2"
+                                className="bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold px-8 py-3 rounded-full text-xl shadow-[0_5px_20px_rgba(225,29,72,0.5)] border-4 border-white/20 flex items-center gap-2 relative overflow-hidden group w-full md:w-auto justify-center"
                             >
-                                Enroll Now <ArrowRight size={24} />
+                                <span className="relative z-10">Enroll Now</span>
+                                <ArrowRight className="relative z-10" size={24} />
+                                {/* Shine effect */}
+                                <div className="absolute top-0 left-0 w-full h-full bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-full"></div>
                             </motion.button>
-                            <NavLink to="/gallery">
+
+                            <NavLink to="/gallery" className="w-full md:w-auto">
                                 <motion.button
-                                    whileHover={{ scale: 1.05, rotate: 2 }}
+                                    whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="bg-white text-gulf-lebanese font-bold px-10 py-4 rounded-full text-xl shadow-lg flex items-center gap-2"
+                                    className="bg-white/90 text-gulf-blue font-bold px-8 py-3 rounded-full text-xl shadow-[0_5px_20px_rgba(255,255,255,0.3)] border-4 border-white/50 flex items-center gap-2 hover:bg-white transition-colors justify-center w-full"
                                 >
                                     View Gallery
                                 </motion.button>
