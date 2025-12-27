@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -17,7 +26,10 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="sticky top-0 z-50 bg-white dark:bg-black shadow-lg dark:shadow-gray-900 transition-colors duration-300 h-[90px] flex items-center">
+        <nav className={`fixed top-0 z-50 w-full transition-all duration-300 h-[90px] flex items-center ${scrolled
+                ? 'bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-lg support-backdrop-blur:bg-white/60'
+                : 'bg-transparent shadow-none'
+            }`}>
             {/* Main Container - Full Width */}
             <div className="w-full px-6 md:px-12 flex justify-between items-center h-full">
 

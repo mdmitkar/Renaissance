@@ -20,7 +20,7 @@ const Contact = () => {
                     <ContactCard
                         icon={<MapPin size={32} />}
                         title="Our Campus"
-                        content="102, Kuwari Compound, Bubere Hall Road, Beside Food In Restaurant, Nizampur, Bhiwandi, Maharashtra 421302"
+                        content="KUWARI COMPOUND, BUBERE HALL ROAD, BESIDE FOOD IN RESTAURANT, NIZAMPUR BHIWANDI"
                         action="Get Directions"
                         link="https://maps.google.com" // Update with real map link if available specifically
                     />
