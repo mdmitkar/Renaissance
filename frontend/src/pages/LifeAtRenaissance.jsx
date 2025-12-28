@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Slider from "react-slick";
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Calendar, MapPin, Clock, ArrowRight, Star, Heart, Trophy, Music, Shield, Sprout, GraduationCap, Palette } from 'lucide-react';
@@ -279,8 +279,17 @@ const LifeAtRenaissance = () => {
         restDelta: 0.001
     });
 
+    // Lock body scroll to prevent double scrollbars
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = 'unset';
+            document.body.style.overflowX = 'hidden'; // Restore default
+        };
+    }, []);
+
     return (
-        <div className="bg-[#F3F0E8] dark:bg-[#111] h-screen overflow-y-scroll snap-y snap-mandatory font-body transition-colors duration-300 scroll-smooth">
+        <div className="bg-[#F3F0E8] dark:bg-[#111] h-screen overflow-y-scroll snap-y snap-mandatory font-body transition-colors duration-300 scroll-smooth no-scrollbar">
 
             {/* PROGRESS BAR */}
             <motion.div
