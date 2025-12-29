@@ -147,88 +147,97 @@ const Home = () => {
             </section>
 
             {/* CURRICULUM FLOWER SECTION - "Seven Petals" FLIP CARDS */}
-            <section className="py-24 bg-white dark:bg-[#1a1a1a] relative overflow-hidden">
-                <div className="max-w-[1400px] mx-auto px-6 text-center relative z-10">
+            <section className="py-24 bg-gradient-to-b from-white to-bg-cream dark:from-[#1a1a1a] dark:to-[#111] relative overflow-hidden">
+                {/* Background Decor */}
+                <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-30">
+                    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-gulf-blue/10 rounded-full blur-3xl animate-pulse"></div>
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary-carmine/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+                </div>
+
+                <div className="max-w-[1400px] mx-auto px-6 relative z-10">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        transition={{ type: "spring", bounce: 0.4 }}
-                        className="mb-16"
+                        transition={{ duration: 0.8 }}
+                        className="text-center mb-20"
                     >
-                        <div className="relative inline-block">
-                            {/* Rotating Flower Decor - Moved to Header */}
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-                                className="absolute -top-12 -left-16 w-32 h-32 border-[3px] border-dashed border-gulf-blue/20 rounded-full opacity-50 hidden md:block"
-                            />
-                            <h2 className="text-4xl md:text-6xl font-heading font-extrabold text-gulf-lebanese relative z-10">
-                                The <span className="text-primary-carmine relative inline-block">
-                                    Science
-                                    <svg className="absolute -bottom-2 left-0 w-full h-3 text-gentle-yellow" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                        <path d="M0,5 Q50,10 100,5" stroke="currentColor" strokeWidth="4" fill="none" />
-                                    </svg>
-                                </span> of Learning
-                            </h2>
-                        </div>
-                        <p className="text-xl text-gray-500 max-w-2xl mx-auto mt-6 font-body">
-                            Our proprietary <strong>"Seven Petals"</strong> curriculum ensures holistic growth. <br />
-                            <span className="text-sm text-gulf-blue font-semibold uppercase tracking-wider">(Hover over the cards to explore)</span>
+                        <h2 className="text-sm font-bold tracking-[0.2em] text-gulf-blue uppercase mb-3">Our Methodology</h2>
+                        <h2 className="text-4xl md:text-6xl font-heading font-extrabold text-gulf-lebanese mb-6">
+                            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-carmine to-rose-500">Seven Petals</span> Of Caring
+                        </h2>
+                        <p className="text-xl text-gray-500 max-w-2xl mx-auto font-body leading-relaxed">
+                            A science-backed curriculum designed to nurture every aspect of your child's growth.
+                            <br />
+                            <span className="text-sm text-gulf-blue/70 italic mt-2 block">(Hover over the cards to reveal the magic)</span>
                         </p>
                     </motion.div>
 
-                    {/* The Grid Layout with FLIP CARDS - 6 In A Line Layout */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 align-top">
+                    {/* Staggered Flex Layout for Perfect Centering of 7 Items */}
+                    <motion.div
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: "-50px" }}
+                        variants={{
+                            hidden: {},
+                            show: {
+                                transition: {
+                                    staggerChildren: 0.15
+                                }
+                            }
+                        }}
+                        className="flex flex-wrap justify-center gap-8"
+                    >
                         <FlipCard
-                            icon={<BrainCircuit size={40} />}
-                            title="Cognitive Skills"
-                            desc="Developing memory, logic, and critical thinking."
-                            frontColor="bg-gulf-icy"
-                            backColor="bg-gulf-dark text-white"
-                            index={0}
+                            icon={<Shield size={36} />}
+                            title="Fine Motor Mastery"
+                            desc="Developing dexterity, grip, and physical coordination through hands-on activities."
+                            accentColor="bg-charming-green"
+                            img="/Activities/motor.jpeg"
                         />
                         <FlipCard
-                            icon={<Heart size={40} />}
-                            title="Socio-Emotional"
-                            desc="Building empathy, bonding, and emotional intelligence."
-                            frontColor="bg-luxury-pink"
-                            backColor="bg-primary-carmine text-white"
-                            index={1}
+                            icon={<Sun size={36} />}
+                            title="Cultural Roots"
+                            desc="Instilling values, traditions, and respect for diversity in a connected world."
+                            accentColor="bg-gulf-blue"
+                            img="/IndependenceDay/IndependenceDay_1.jpeg"
                         />
                         <FlipCard
-                            icon={<BookOpen size={40} />}
-                            title="Linguistic"
-                            desc="Vocabulary, phonics, and communication mastery."
-                            frontColor="bg-gulf-blue"
-                            backColor="bg-gulf-lebanese text-white"
-                            index={2}
+                            icon={<Palette size={36} />}
+                            title="Creative Arts"
+                            desc="Expression through color, painting, and imagination to unlock inner creativity."
+                            accentColor="bg-luxury-pink"
+                            img="/otherimp/ChildrensDay_2.jpeg"
                         />
                         <FlipCard
-                            icon={<Shield size={40} />}
-                            title="Fine Motor"
-                            desc="Dexterity, grip, and physical coordination."
-                            frontColor="bg-charming-green"
-                            backColor="bg-charming-como text-white"
-                            index={3}
+                            icon={<Trophy size={36} />}
+                            title="Active Play"
+                            desc="Building strong bodies, teamwork, and sportsmanship on the playground."
+                            accentColor="bg-gentle-yellow"
+                            img="/SchoolPremises/playground1.jpeg"
                         />
                         <FlipCard
-                            icon={<Palette size={40} />}
-                            title="Creativity"
-                            desc="Art, craft, imagination, and expression."
-                            frontColor="bg-gentle-yellow"
-                            backColor="bg-amber-600 text-white"
-                            index={4}
+                            icon={<Star size={36} />}
+                            title="Student Success"
+                            desc="Celebrating every small win to build confidence and self-esteem."
+                            accentColor="bg-purple-500"
+                            img="/Activities/Activities_1.jpeg"
                         />
                         <FlipCard
-                            icon={<Sun size={40} />}
-                            title="Personal Awareness"
-                            desc="Self-care, hygiene, and independence."
-                            frontColor="bg-desert-coral"
-                            backColor="bg-orange-700 text-white"
-                            index={5}
+                            icon={<Users size={36} />}
+                            title="Joyful Memories"
+                            desc="Creating happy moments and lasting friendships that children cherish forever."
+                            accentColor="bg-orange-500"
+                            img="/ChildrensDay/ChildrensDay_1.jpeg"
                         />
-                    </div>
+                        <FlipCard
+                            icon={<BrainCircuit size={36} />}
+                            title="Cognitive Growth"
+                            desc="Sharpening minds through puzzles, patterns, and logic games."
+                            accentColor="bg-cyan-600"
+                            img="/otherimp/Activities_3.jpeg"
+                        />
+                    </motion.div>
                 </div>
             </section>
 
@@ -262,10 +271,10 @@ const Home = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {/* Program Card Data to save space */}
-                        <ProgramCard title="Playgroup" age="1.5 - 2.5 Years" bg="bg-gulf-icy" img="https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&q=80&w=400" />
-                        <ProgramCard title="Nursery" age="2.5 - 3.5 Years" bg="bg-gentle-sweet" img="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=400" />
-                        <ProgramCard title="Junior KG" age="3.5 - 4.5 Years" bg="bg-desert-coral" img="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&q=80&w=400" />
-                        <ProgramCard title="Senior KG" age="4.5 - 5.5 Years" bg="bg-charming-green" img="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=400" />
+                        <ProgramCard title="Playgroup" age="1.5 - 2.5 Years" bg="bg-gulf-icy" img="/Activities/Activities_5.jpeg" />
+                        <ProgramCard title="Nursery" age="2.5 - 3.5 Years" bg="bg-gentle-sweet" img="/Activities/Activities_2.jpeg" />
+                        <ProgramCard title="Junior KG" age="3.5 - 4.5 Years" bg="bg-desert-coral" img="/Activities/Activities_3.jpeg" />
+                        <ProgramCard title="Senior KG" age="4.5 - 5.5 Years" bg="bg-charming-green" img="/Activities/Activities_4.jpeg" />
                     </div>
                 </div>
             </section>
@@ -305,27 +314,58 @@ const Home = () => {
     );
 };
 
-// --- FLIP CARD COMPONENT ---
-const FlipCard = ({ icon, title, desc, frontColor, backColor, index }) => (
-    <div className="group h-64 perspective-[1000px] cursor-pointer">
-        <div className="relative w-full h-full text-center transition-all duration-700 transform-style-3d group-hover:rotate-y-180 rounded-[2.5rem] shadow-xl">
-            {/* Front Face */}
-            <div className={`absolute inset-0 w-full h-full flex flex-col items-center justify-center backface-hidden rounded-[2.5rem] ${frontColor} p-6 shadow-md`}>
-                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 shadow-inner text-gulf-lebanese">
-                    {icon}
-                </div>
-                <h3 className="text-2xl font-bold text-gulf-lebanese font-heading text-center">{title}</h3>
-                <div className="absolute bottom-6 text-gulf-lebanese/50 text-sm font-semibold">Hover to see more</div>
-            </div>
+// --- REDESIGNED FLIP CARD COMPONENT ---
+const FlipCard = ({ icon, title, desc, accentColor, img, className }) => {
+    return (
+        <motion.div
+            variants={{
+                hidden: { opacity: 0, y: 50 },
+                show: { opacity: 1, y: 0 }
+            }}
+            whileHover={{ y: -10 }}
+            className={`group w-full sm:w-[340px] h-80 perspective-1000 ${className}`}
+        >
+            <div className="relative w-full h-full text-center transition-all duration-700 transform-style-3d group-hover:rotate-y-180 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.25)] border border-white/20">
 
-            {/* Back Face */}
-            <div className={`absolute inset-0 w-full h-full flex flex-col items-center justify-center backface-hidden rotate-y-180 rounded-[2.5rem] ${backColor} p-8 shadow-md`}>
-                <h3 className="text-2xl font-bold mb-4 font-heading">{title}</h3>
-                <p className="text-lg font-medium leading-relaxed">{desc}</p>
+                {/* Front Face */}
+                <div className="absolute inset-0 w-full h-full backface-hidden rounded-3xl overflow-hidden bg-white">
+                    <img src={img} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+                    <div className="absolute bottom-0 left-0 w-full p-6 text-left">
+                        <div className={`w-12 h-1 bg-white mb-3 rounded-full shadow-sm`}></div>
+                        <h3 className="text-2xl font-bold text-white font-heading tracking-wide leading-tight drop-shadow-lg transform translate-y-0 transition-transform duration-500 group-hover:-translate-y-2">{title}</h3>
+                    </div>
+
+                    {/* Accent Badge */}
+                    <div className={`absolute top-4 right-4 ${accentColor} w-3 h-3 rounded-full shadow-lg ring-2 ring-white/50 animate-pulse`}></div>
+                </div>
+
+                {/* Back Face */}
+                <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl overflow-hidden bg-white p-6 flex flex-col items-center justify-center text-center relative border-b-8`}
+                    style={{ borderBottomColor: `var(--color-accent)` }} // Dynamic border color workaround if needed, else precise class
+                >
+                    {/* Background tint based on accent */}
+                    <div className={`absolute inset-0 ${accentColor} opacity-10`}></div>
+
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className={`w-16 h-16 ${accentColor} rounded-2xl rotate-3 flex items-center justify-center text-white mb-6 shadow-lg`}
+                    >
+                        {icon}
+                    </motion.div>
+
+                    <h3 className="text-xl font-heading font-bold text-gulf-lebanese mb-3 relative z-10">{title}</h3>
+                    <p className="text-sm font-medium text-gray-600 leading-relaxed mb-6 relative z-10">{desc}</p>
+
+                    <div className={`w-8 h-1 ${accentColor} rounded-full`}></div>
+                </div>
             </div>
-        </div>
-    </div>
-);
+        </motion.div>
+    );
+};
 
 const StatBubble = ({ number, label, delay }) => (
     <motion.div
