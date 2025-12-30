@@ -1,8 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Shield, BookOpen, BrainCircuit, Star, Quote, ChevronRight, Calculator, Users, Trophy, Smile, Heart, Palette, Music, Sun, Cloud, PenTool, ArrowRight } from 'lucide-react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { Shield, BrainCircuit, Star, Users, Trophy, Palette, Sun, ArrowRight, Heart, Sparkles, Cloud, Quote, Rocket } from 'lucide-react';
+import { motion, useScroll, useTransform, AnimatePresence, useSpring } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import AdmissionModal from '../components/AdmissionModal';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
     "/assets/hero-slide-1.png",
@@ -16,32 +21,119 @@ const HERO_SLIDES = [
 const Home = () => {
     const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const containerRef = useRef(null);
+    const petalsRef = useRef(null);
 
-    // Auto-advance slides
-    React.useEffect(() => {
+    // Auto-advance hero slides
+    useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-        }, 3000); // Faster slideshow (3 seconds)
+        }, 3000);
         return () => clearInterval(timer);
     }, []);
 
-    const targetRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-        offset: ["start start", "end start"]
-    });
-
+    const { scrollYProgress } = useScroll();
     const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
     const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
-    return (
-        <div ref={targetRef} className="flex flex-col w-full relative overflow-x-hidden font-body bg-cream-velvet text-gulf-lebanese selection:bg-gulf-blue selection:text-white">
+    useGSAP(() => {
+        // 1. Reveal Animations for Text
+        const textElements = gsap.utils.toArray('.reveal-text');
+        textElements.forEach((el) => {
+            gsap.fromTo(el,
+                { y: 100, opacity: 0, scale: 0.95 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.2,
+                    ease: "power4.out",
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
 
-            {/* HERO SECTION - Redesigned for High Contrast & Playfulness */}
+        // 2. Seven Petals - Pin & Rotate Logic
+        const cards = gsap.utils.toArray('.petal-card');
+
+        let tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".petals-section",
+                pin: true,
+                start: "top top",
+                end: "+=4000",
+                scrub: 1,
+                snap: 1 / (cards.length - 1)
+            }
+        });
+
+        cards.forEach((card, i) => {
+            tl.to(card, {
+                opacity: 1,
+                scale: 1,
+                x: 0,
+                rotate: 0,
+                zIndex: 10,
+                duration: 1,
+                ease: "none"
+            }, i * 0.5);
+
+            if (i < cards.length - 1) {
+                // fade out previous
+                tl.to(card, {
+                    scale: 0.8,
+                    opacity: 0,
+                    x: -100,
+                    duration: 0.5
+                }, (i + 0.8) * 0.5);
+            }
+        });
+
+        // 3. Stacking Programs - pure visual effect, positioning handled by CSS sticky
+        const programs = gsap.utils.toArray('.program-card');
+        programs.forEach((card, i) => {
+            // Fly-up visual entry
+            gsap.fromTo(card,
+                { y: 100, opacity: 0, scale: 0.9 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 100%", // Start as soon as it enters
+                        end: "top 70%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+
+            // Brightness/Scale filter for the 'stacking' depth effect
+            gsap.to(card, {
+                scale: 1 - (programs.length - i - 1) * 0.05,
+                filter: "brightness(1)",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+
+    }, { scope: containerRef });
+
+    return (
+        <div ref={containerRef} className="bg-cream-velvet font-body min-h-screen selection:bg-luxury-pink selection:text-white overflow-x-hidden">
+
+            {/* --- HERO SECTION START (PRESERVED) --- */}
             <section className="relative w-full h-[110vh] min-h-[700px] flex items-center justify-center overflow-hidden">
-                {/* Parallax Background */}
-                {/* Parallax Background - Video Hero */}
-                {/* Parallax Background - Slideshow Hero */}
                 <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
                     <AnimatePresence mode="popLayout">
                         <motion.img
@@ -52,361 +144,337 @@ const Home = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 1.5 }}
-                            className="absolute inset-0 w-full h-full object-cover filter brightness-[0.6]"
+                            className="absolute inset-0 w-full h-full object-cover filter brightness-[0.7]"
                         />
                     </AnimatePresence>
-                    {/* Modern Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-gulf-lebanese/90"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-gulf-lebanese/80"></div>
                 </motion.div>
 
-                {/* Animated Floating Blobs */}
+                {/* Floating Clouds Animation */}
                 <motion.div
-                    animate={{
-                        y: [0, -20, 0],
-                        rotate: [0, 5, 0],
-                        scale: [1, 1.05, 1]
-                    }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-20 left-10 w-32 h-32 bg-charming-green/30 rounded-full blur-2xl z-0"
-                />
+                    animate={{ x: [0, 50, 0] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-20 left-10 text-white/20"
+                >
+                    <Cloud size={100} fill="currentColor" />
+                </motion.div>
                 <motion.div
-                    animate={{
-                        y: [0, 30, 0],
-                        x: [0, 20, 0],
-                        scale: [1, 1.1, 1]
-                    }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-40 right-10 w-48 h-48 bg-gulf-blue/30 rounded-full blur-3xl z-0"
-                />
+                    animate={{ x: [0, -40, 0] }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                    className="absolute bottom-40 right-10 text-white/20"
+                >
+                    <Cloud size={120} fill="currentColor" />
+                </motion.div>
 
-                {/* Content Container - Glassmorph Card for extreme contrast */}
-                <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-24">
+                <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-24 text-center">
                     <motion.div
                         style={{ y: textY }}
-                        initial={{ opacity: 0, scale: 0.9, y: 50 }}
+                        initial={{ opacity: 0, scale: 0.8, y: 50 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="relative z-20 bg-white/10 backdrop-blur-xl border-4 border-white/30 p-6 md:p-8 rounded-[2.5rem] shadow-[0_0_40px_rgba(0,0,0,0.3)] max-w-2xl text-center"
+                        transition={{ duration: 1, type: "spring", bounce: 0.4 }}
                     >
                         <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-                            className="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-5 py-1.5 rounded-full font-bold text-base mb-6 shadow-lg transform -rotate-2 border-2 border-white"
+                            whileHover={{ rotate: [0, -10, 10, 0] }}
+                            className="inline-block bg-white text-gulf-lebanese px-6 py-2 rounded-full font-bold text-lg mb-8 shadow-xl transform -rotate-3 border-4 border-luxury-pink"
                         >
-                            ★ Est. 2025
+                            ✨ Est. 2025
                         </motion.div>
 
-                        <h1 className="text-5xl md:text-6xl font-heading font-extrabold text-white leading-tight drop-shadow-2xl mb-3 tracking-tight">
+                        <h1 className="text-6xl md:text-8xl font-heading font-black text-white leading-tight drop-shadow-2xl mb-4 tracking-tight">
                             RENAISSANCE
                         </h1>
 
-                        <h2 className="text-2xl md:text-4xl font-handwriting font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-pink-400 to-yellow-300 drop-shadow-md mb-8 block leading-relaxed">
-                            Learning Through <br /> Love & Laughter
+                        <h2 className="text-3xl md:text-5xl font-handwriting font-bold text-yellow-300 drop-shadow-lg mb-8">
+                            Where Magic Happens Daily
                         </h2>
 
-                        <p className="text-lg md:text-xl text-gray-100 mb-8 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-md">
-                            A world where every child is a masterpiece. <br />
-                            <span className="flex items-center justify-center gap-2 mt-3 text-base bg-black/30 inline-flex px-5 py-1.5 rounded-full backdrop-blur-sm border border-white/20">
-                                📍 Kuwari Compound, Bubere Hall Road, Bhiwandi
-                            </span>
-                        </p>
-
-                        <div className="flex flex-col md:flex-row flex-wrap gap-4 justify-center items-center">
+                        <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-8">
                             <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                                whileHover={{ scale: 1.1, rotate: -2 }}
+                                whileTap={{ scale: 0.9 }}
                                 onClick={() => setIsAdmissionOpen(true)}
-                                className="bg-gradient-to-r from-pink-500 to-rose-600 text-white font-bold px-8 py-3 rounded-full text-xl shadow-[0_5px_20px_rgba(225,29,72,0.5)] border-4 border-white/20 flex items-center gap-2 relative overflow-hidden group w-full md:w-auto justify-center"
+                                className="bg-luxury-pink text-white font-bold px-10 py-5 rounded-full text-xl shadow-[0_10px_30px_rgba(236,72,153,0.5)] border-4 border-white flex items-center gap-2"
                             >
-                                <span className="relative z-10">Enroll Now</span>
-                                <ArrowRight className="relative z-10" size={24} />
-                                {/* Shine effect */}
-                                <div className="absolute top-0 left-0 w-full h-full bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-full"></div>
+                                <Sparkles /> Enroll Your Child
                             </motion.button>
-
-                            <NavLink to="/gallery" className="w-full md:w-auto">
+                            <NavLink to="/gallery">
                                 <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="bg-white/90 text-gulf-blue font-bold px-8 py-3 rounded-full text-xl shadow-[0_5px_20px_rgba(255,255,255,0.3)] border-4 border-white/50 flex items-center gap-2 hover:bg-white transition-colors justify-center w-full"
+                                    whileHover={{ scale: 1.1, rotate: 2 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className="bg-white text-gulf-blue font-bold px-10 py-5 rounded-full text-xl shadow-xl flex items-center gap-2"
                                 >
-                                    View Gallery
+                                    Visit Gallery <ArrowRight />
                                 </motion.button>
                             </NavLink>
                         </div>
                     </motion.div>
                 </div>
+            </section>
+            {/* --- HERO SECTION END --- */}
 
-                {/* Wave Divider at Bottom */}
-                <div className="absolute bottom-0 left-0 w-full leading-none z-20">
-                    <svg className="block w-full h-16 md:h-32" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                        <path fill="#ffffff" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-                    </svg>
+            {/* --- SECTION 2: PHILOSOPHY / INTRO (Typography & Clean) --- */}
+            <section className="relative py-32 px-6 bg-[#F9F7F2]">
+                <div className="max-w-7xl mx-auto">
+                    <div className="reveal-text text-xl md:text-2xl font-bold text-gulf-blue/60 mb-6 uppercase tracking-widest">
+                        Welcome to the Future
+                    </div>
+                    <h2 className="reveal-text text-5xl md:text-8xl font-heading font-black text-gulf-lebanese leading-[0.9] mb-16">
+                        WE BUILD <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-500">
+                            BRIGHT MINDS
+                        </span> <br />
+                        FOR TOMORROW.
+                    </h2>
+
+                    <div className="grid md:grid-cols-2 gap-16">
+                        <div className="reveal-text">
+                            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-medium">
+                                Imagine a place where every corner sparks curiosity.
+                                At Renaissance, we don't just teach; we inspire.
+                                A modern sanctuary for little explorers to dream big.
+                            </p>
+                        </div>
+                        <div className="reveal-text grid grid-cols-2 gap-4">
+                            <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 transform rotate-2 hover:rotate-0 transition-transform">
+                                <span className="text-4xl">🌱</span>
+                                <h3 className="text-lg font-bold mt-2">Holistic Growth</h3>
+                            </div>
+                            <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 transform -rotate-2 hover:rotate-0 transition-transform mt-8">
+                                <span className="text-4xl">🛡️</span>
+                                <h3 className="text-lg font-bold mt-2">Safety First</h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            {/* CURRICULUM FLOWER SECTION - "Seven Petals" FLIP CARDS */}
-            <section className="py-24 bg-gradient-to-b from-white to-bg-cream dark:from-[#1a1a1a] dark:to-[#111] relative overflow-hidden">
-                {/* Background Decor */}
-                <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-30">
-                    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-gulf-blue/10 rounded-full blur-3xl animate-pulse"></div>
-                    <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary-carmine/10 rounded-full blur-3xl animate-pulse delay-700"></div>
-                </div>
+            {/* --- SECTION 3: THE SEVEN PETALS (Pinned Interaction) --- */}
+            <section className="petals-section h-screen w-full bg-[#F3F0E8] text-gulf-lebanese flex items-start justify-center overflow-hidden relative pt-0">
+                {/* Subtle Light Gradient */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_var(--tw-gradient-stops))] from-white/40 via-transparent to-transparent"></div>
 
-                <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.8 }}
-                        className="text-center mb-20"
-                    >
-                        <h2 className="text-sm font-bold tracking-[0.2em] text-gulf-blue uppercase mb-3">Our Methodology</h2>
-                        <h2 className="text-4xl md:text-6xl font-heading font-extrabold text-gulf-lebanese mb-6">
-                            The <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-carmine to-rose-500">Seven Petals</span> Of Caring
+                <div className="relative z-10 w-full max-w-[95%] px-6 h-full">
+
+                    {/* Header */}
+                    <div className="text-center mb-0 relative z-20 pb-0">
+                        <h2 className="text-6xl md:text-8xl font-heading font-black mb-0 text-gulf-lebanese">
+                            The Seven <span className="text-luxury-pink">Petals</span>
                         </h2>
-                        <p className="text-xl text-gray-500 max-w-2xl mx-auto font-body leading-relaxed">
-                            A science-backed curriculum designed to nurture every aspect of your child's growth.
-                            <br />
-                            <span className="text-sm text-gulf-blue/70 italic mt-2 block">(Hover over the cards to reveal the magic)</span>
+                        <p className="text-2xl text-gray-500 max-w-2xl mx-auto">
+                            Scroll to explore our core philosophy.
                         </p>
-                    </motion.div>
+                    </div>
 
-                    {/* Staggered Flex Layout for Perfect Centering of 7 Items */}
+                    <div className="relative w-full h-[60vh] flex items-start justify-center perspective-1000 -mt-32">
+                        {/* Card Container */}
+                        {PETAL_DATA.map((petal, index) => (
+                            <div
+                                key={index}
+                                className={`petal-card absolute w-[90vw] md:w-[400px] h-[60vh] md:h-[600px] ${petal.bg} text-gulf-lebanese p-8 md:p-10 rounded-[2.5rem] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] origin-center border-[1px] border-white/40 flex flex-col justify-center gap-6`}
+                                style={{
+                                    transform: 'translateY(150px) scale(0.9)',
+                                    opacity: 0,
+                                    zIndex: index
+                                }}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white flex items-center justify-center text-4xl md:text-5xl shadow-sm shrink-0">
+                                        {petal.emoji}
+                                    </div>
+                                    <span className={`text-8xl font-black ${petal.color} opacity-10 absolute right-6 top-6 -z-10 select-none`}>0{index + 1}</span>
+                                </div>
+
+                                <div>
+                                    <h3 className={`text-4xl md:text-5xl font-black mb-4 leading-none ${petal.color}`}>{petal.title}</h3>
+                                    <p className="text-lg md:text-xl text-gulf-lebanese/80 font-medium leading-relaxed">
+                                        {petal.desc}
+                                    </p>
+                                </div>
+                                <div className="w-full h-48 md:h-64 rounded-[1.5rem] overflow-hidden mt-2 shadow-sm border border-white/30">
+                                    <img src={petal.img} alt={petal.title} className="w-full h-full object-cover" />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* --- SECTION 4: PROGRAMS (Sticky Stacking Cards) --- */}
+            <section className="py-32 bg-cream-velvet px-4 relative">
+                <div className="max-w-7xl mx-auto mb-20">
+                    <h2 className="reveal-text text-6xl md:text-9xl font-heading font-black text-center text-gulf-lebanese tracking-tight">
+                        LEARNING <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400">JOURNEYS</span>
+                    </h2>
+                </div>
+
+                <div className="flex flex-col items-center gap-[40vh] pb-64">
+                    {PROGRAMS.map((prog, i) => (
+                        <div
+                            key={i}
+                            className="program-card sticky top-[20vh] w-full max-w-5xl h-[60vh] rounded-[2.5rem] shadow-2xl overflow-hidden border-[6px] border-white flex flex-col md:flex-row"
+                            style={{ backgroundColor: prog.bg }}
+                        >
+                            <div className="md:w-1/2 p-12 md:p-20 flex flex-col justify-center h-full relative z-10">
+                                <span className="bg-white/90 backdrop-blur text-gulf-lebanese px-8 py-3 rounded-full font-bold text-xl inline-block w-max mb-8 shadow-sm">
+                                    {prog.age}
+                                </span>
+                                <h3 className="text-6xl md:text-8xl font-black text-gulf-lebanese mb-8 leading-none">
+                                    {prog.title}
+                                </h3>
+                                <p className="text-2xl md:text-3xl text-gulf-lebanese/80 font-medium leading-relaxed mb-10">
+                                    {prog.desc}
+                                </p>
+                                <ul className="space-y-4">
+                                    {prog.tags.map((tag, idx) => (
+                                        <li key={idx} className="flex items-center text-xl md:text-2xl font-bold text-gulf-lebanese">
+                                            <span className="mr-3 text-3xl">✨</span> {tag}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="md:w-1/2 h-full relative overflow-hidden">
+                                <img src={prog.img} alt={prog.title} className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700 ease-in-out" />
+                                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/5"></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* --- SECTION 5: LIVE STATS & TESTIMONIALS --- */}
+            <section className="py-24 bg-white overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
+                    <p className="text-luxury-pink font-bold text-xl uppercase tracking-widest mb-2">Community Love</p>
+                    <h2 className="text-5xl font-heading font-black text-gulf-lebanese">Trusted by Parents</h2>
+                </div>
+
+                {/* Marquee */}
+                <div className="relative flex whitespace-nowrap overflow-hidden py-10">
                     <motion.div
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, margin: "-50px" }}
-                        variants={{
-                            hidden: {},
-                            show: {
-                                transition: {
-                                    staggerChildren: 0.15
-                                }
-                            }
-                        }}
-                        className="flex flex-wrap justify-center gap-8"
+                        animate={{ x: [0, -1000] }}
+                        transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+                        className="flex gap-8 px-4"
                     >
-                        <FlipCard
-                            icon={<Shield size={36} />}
-                            title="Fine Motor Mastery"
-                            desc="Developing dexterity, grip, and physical coordination through hands-on activities."
-                            accentColor="bg-charming-green"
-                            img="/Activities/motor.jpeg"
-                        />
-                        <FlipCard
-                            icon={<Sun size={36} />}
-                            title="Cultural Roots"
-                            desc="Instilling values, traditions, and respect for diversity in a connected world."
-                            accentColor="bg-gulf-blue"
-                            img="/IndependenceDay/IndependenceDay_1.jpeg"
-                        />
-                        <FlipCard
-                            icon={<Palette size={36} />}
-                            title="Creative Arts"
-                            desc="Expression through color, painting, and imagination to unlock inner creativity."
-                            accentColor="bg-luxury-pink"
-                            img="/otherimp/ChildrensDay_2.jpeg"
-                        />
-                        <FlipCard
-                            icon={<Trophy size={36} />}
-                            title="Active Play"
-                            desc="Building strong bodies, teamwork, and sportsmanship on the playground."
-                            accentColor="bg-gentle-yellow"
-                            img="/SchoolPremises/playground1.jpeg"
-                        />
-                        <FlipCard
-                            icon={<Star size={36} />}
-                            title="Student Success"
-                            desc="Celebrating every small win to build confidence and self-esteem."
-                            accentColor="bg-purple-500"
-                            img="/Activities/Activities_1.jpeg"
-                        />
-                        <FlipCard
-                            icon={<Users size={36} />}
-                            title="Joyful Memories"
-                            desc="Creating happy moments and lasting friendships that children cherish forever."
-                            accentColor="bg-orange-500"
-                            img="/ChildrensDay/ChildrensDay_1.jpeg"
-                        />
-                        <FlipCard
-                            icon={<BrainCircuit size={36} />}
-                            title="Cognitive Growth"
-                            desc="Sharpening minds through puzzles, patterns, and logic games."
-                            accentColor="bg-cyan-600"
-                            img="/otherimp/Activities_3.jpeg"
-                        />
+                        {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+                            <div key={i} className="w-[450px] bg-[#F3F4F6] p-10 rounded-[2.5rem] flex-shrink-0 whitespace-normal hover:bg-gulf-blue hover:text-white transition-colors duration-300 group">
+                                <Quote className="text-4xl text-gray-300 group-hover:text-white/20 mb-4" />
+                                <p className="text-xl font-medium leading-relaxed mb-6 group-hover:text-white">
+                                    "{t.text}"
+                                </p>
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 bg-luxury-pink rounded-full flex items-center justify-center text-xl text-white font-bold">
+                                        {t.name[0]}
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-lg group-hover:text-white">{t.name}</h4>
+                                        <span className="text-sm text-gray-500 group-hover:text-pink-200">Parent</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </motion.div>
                 </div>
-            </section>
 
-            {/* STATS SECTION - Wavy & Modern */}
-            <section className="py-24 bg-gulf-dark relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10 pattern-dots"></div> {/* Requires pattern css or just use simple */}
-
-                <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center relative z-10">
-                    <StatBubble number="1500+" label="Happy Students" delay={0.1} />
-                    <StatBubble number="50+" label="Expert Teachers" delay={0.2} />
-                    <StatBubble number="20+" label="Years Legacy" delay={0.3} />
-                    <StatBubble number="100%" label="Parent Satisfaction" delay={0.4} />
+                {/* Big Numbers */}
+                <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center mt-20 border-t pt-20">
+                    {[
+                        { num: "1.5K+", label: "Happy Students" },
+                        { num: "50+", label: "Expert Teachers" },
+                        { num: "20+", label: "Years Impact" },
+                        { num: "100%", label: "Safety Record" },
+                    ].map((stat, i) => (
+                        <div key={i} className="reveal-text">
+                            <h3 className="text-5xl md:text-6xl font-black text-gulf-lebanese mb-2">{stat.num}</h3>
+                            <p className="text-gray-500 font-bold uppercase tracking-wider">{stat.label}</p>
+                        </div>
+                    ))}
                 </div>
             </section>
 
-            {/* OUR PROGRAMS - Cards with Hover Lift */}
-            <section className="py-24 bg-bg-cream text-gulf-lebanese relative">
-                {/* Top Wave */}
-                <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
-                    <svg className="block w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#0060AA"></path>
-                    </svg>
-                </div>
+            {/* --- SECTION 6: FOOTER CTA --- */}
+            <section className="relative py-32 bg-gulf-lebanese text-white text-center rounded-t-[4rem] -mt-12 overflow-hidden">
+                <div className="absolute inset-0 opacity-10 bg-[url('/assets/pattern.png')]"></div>
 
-                <div className="max-w-7xl mx-auto px-6 pt-12">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-heading font-extrabold">
-                            Our <span className="text-charming-green">Learning Programs</span>
-                        </h2>
-                    </div>
+                <div className="relative z-10 max-w-4xl mx-auto px-6">
+                    <Rocket size={64} className="mx-auto mb-8 text-yellow-400 animate-bounce" />
+                    <h2 className="text-6xl md:text-8xl font-heading font-black mb-8">
+                        Ready to <span className="text-luxury-pink">Launch?</span>
+                    </h2>
+                    <p className="text-2xl text-gray-300 mb-12 max-w-2xl mx-auto">
+                        Admissions are open for 2025. Secure your child's spot in the most innovative preschool today.
+                    </p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {/* Program Card Data to save space */}
-                        <ProgramCard title="Playgroup" age="1.5 - 2.5 Years" bg="bg-gulf-icy" img="/Activities/Activities_5.jpeg" />
-                        <ProgramCard title="Nursery" age="2.5 - 3.5 Years" bg="bg-gentle-sweet" img="/Activities/Activities_2.jpeg" />
-                        <ProgramCard title="Junior KG" age="3.5 - 4.5 Years" bg="bg-desert-coral" img="/Activities/Activities_3.jpeg" />
-                        <ProgramCard title="Senior KG" age="4.5 - 5.5 Years" bg="bg-charming-green" img="/Activities/Activities_4.jpeg" />
-                    </div>
-                </div>
-            </section>
+                    <button
+                        onClick={() => setIsAdmissionOpen(true)}
+                        className="group relative inline-flex items-center justify-center px-12 py-6 overflow-hidden font-bold text-gulf-lebanese transition-all duration-300 bg-white rounded-full hover:bg-white hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.3)]"
+                    >
+                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-luxury-pink rounded-full group-hover:w-80 group-hover:h-80 opacity-10"></span>
+                        <span className="relative text-2xl">Start Admission Process</span>
+                        <ArrowRight className="ml-2 relative transition-transform group-hover:translate-x-2" />
+                    </button>
 
-            {/* TESTIMONIALS */}
-            <section className="py-20 bg-white dark:bg-black">
-                <div className="max-w-6xl mx-auto px-6">
-                    <h2 className="text-4xl text-center font-heading font-bold mb-12 text-gulf-lebanese">Parent Love</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <TestimonialCard name="Sana Shaikh" text="It feels like a second home for my child. The colors, the teachers, everything is just perfect!" color="bg-cream-velvet border-b-4 border-primary-carmine" />
-                        <TestimonialCard name="Rajesh Verma" text="The 'Seven Petals' curriculum really works. I see holistic growth in my daughter." color="bg-cream-velvet border-b-4 border-gulf-blue" />
-                        <TestimonialCard name="Anita D'Souza" text="Best preschool in the city. Safe, modern, and very professional." color="bg-cream-velvet border-b-4 border-charming-green" />
+                    <div className="mt-12 text-gray-500 text-sm">
+                        * Limited seats available for the upcoming term.
                     </div>
                 </div>
             </section>
-
-            {/* CTA - Floating Card */}
-            <div className="py-20 px-6 relative overflow-hidden">
-                <div className="absolute top-1/2 left-0 w-32 h-32 bg-charming-green rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-                <div className="absolute top-1/2 right-0 w-32 h-32 bg-luxury-pink rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-
-                <div className="max-w-5xl mx-auto bg-gradient-to-r from-gulf-dark to-gulf-blue rounded-[3rem] p-12 text-center text-white shadow-2xl relative overflow-hidden z-10 transition-transform hover:scale-[1.01] duration-500">
-                    <div className="relative z-10">
-                        <h2 className="text-3xl md:text-5xl font-heading font-bold mb-6">Start Your Child's Journey Today</h2>
-                        <button onClick={() => setIsAdmissionOpen(true)} className="bg-gentle-yellow text-gulf-lebanese font-bold px-10 py-4 rounded-full text-xl hover:bg-white transition-all shadow-lg hover:scale-105">
-                            Enroll Now
-                        </button>
-                    </div>
-                    {/* Decor */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20"></div>
-                </div>
-            </div>
 
             <AdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
-
         </div>
     );
 };
 
-// --- REDESIGNED FLIP CARD COMPONENT ---
-const FlipCard = ({ icon, title, desc, accentColor, img, className }) => {
-    return (
-        <motion.div
-            variants={{
-                hidden: { opacity: 0, y: 50 },
-                show: { opacity: 1, y: 0 }
-            }}
-            whileHover={{ y: -10 }}
-            className={`group w-full sm:w-[340px] h-80 perspective-1000 ${className}`}
-        >
-            <div className="relative w-full h-full text-center transition-all duration-700 transform-style-3d group-hover:rotate-y-180 rounded-3xl shadow-[0_10px_30px_rgba(0,0,0,0.15)] group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.25)] border border-white/20">
+// --- DATA CONSTANTS ---
 
-                {/* Front Face */}
-                <div className="absolute inset-0 w-full h-full backface-hidden rounded-3xl overflow-hidden bg-white">
-                    <img src={img} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+const PETAL_DATA = [
+    { title: "Cognitive", emoji: "🧠", desc: "Building strong mental foundations through puzzles and logic.", img: "/SchoolPremises/classroom2.jpeg", color: "text-pink-600", bg: "bg-pink-100" },
+    { title: "Motor Skills", emoji: "🤸", desc: "Fine and gross motor development with active play.", img: "/Activities/motor.jpeg", color: "text-orange-600", bg: "bg-orange-100" },
+    { title: "Creativity", emoji: "🎨", desc: "Expressing imagination through art, music, and dance.", img: "/Activities/Activities_1.jpeg", color: "text-blue-600", bg: "bg-blue-100" },
+    { title: "Culture", emoji: "🌏", desc: "Understanding our world, traditions, and values.", img: "/otherimp/IndependenceDay_3.jpeg", color: "text-green-600", bg: "bg-green-100" },
+    { title: "Sports", emoji: "🏆", desc: "Teamwork, discipline, and physical health.", img: "/SportsDay/sportsday1.jpeg", color: "text-red-600", bg: "bg-red-100" },
+    { title: "Social", emoji: "🤝", desc: "Making friends, sharing, and emotional intelligence.", img: "/Activities/RedDay_3.jpeg", color: "text-teal-600", bg: "bg-teal-100" },
+];
 
-                    <div className="absolute bottom-0 left-0 w-full p-6 text-left">
-                        <div className={`w-12 h-1 bg-white mb-3 rounded-full shadow-sm`}></div>
-                        <h3 className="text-2xl font-bold text-white font-heading tracking-wide leading-tight drop-shadow-lg transform translate-y-0 transition-transform duration-500 group-hover:-translate-y-2">{title}</h3>
-                    </div>
+const PROGRAMS = [
+    {
+        title: "Playgroup",
+        age: "1.5 - 2.5 Years",
+        desc: "A sensory wonderland for our tiniest tots. Montessori-inspired aids meet messy play.",
+        bg: "#FFE5EC", // Light Pink
+        img: "/SchoolPremises/classplay.jpeg",
+        tags: ["Sensory Play", "Music & Movement", "Safe Environment"]
+    },
+    {
+        title: "Nursery",
+        age: "2.5 - 3.5 Years",
+        desc: "Stepping stones to literacy. Letters and numbers become friends through stories.",
+        bg: "#E0F7FA", // Light Cyan
+        img: "/Activities/Activities_1.jpeg",
+        tags: ["Phonics Intro", "Nature Walks", "Storytelling"]
+    },
+    {
+        title: "Junior KG",
+        age: "3.5 - 4.5 Years",
+        desc: "Curiosity takes flight. Science experiments, reading clubs, and logical reasoning.",
+        bg: "#FFF3E0", // Light Orange
+        img: "/otherimp/Activities_3.jpeg",
+        tags: ["Science Fun", "Reading Club", "Logic Puzzles"]
+    },
+    {
+        title: "Senior KG",
+        age: "4.5 - 5.5 Years",
+        desc: "Ready for the big world. Advanced concepts, leadership, and school readiness.",
+        bg: "#E8EAF6", // Light Indigo
+        img: "/Activities/Activities_4.jpeg",
+        tags: ["Creative Writing", "Leadership", "Public Speaking"]
+    }
+];
 
-                    {/* Accent Badge */}
-                    <div className={`absolute top-4 right-4 ${accentColor} w-3 h-3 rounded-full shadow-lg ring-2 ring-white/50 animate-pulse`}></div>
-                </div>
-
-                {/* Back Face */}
-                <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-3xl overflow-hidden bg-white p-6 flex flex-col items-center justify-center text-center relative border-b-8`}
-                    style={{ borderBottomColor: `var(--color-accent)` }} // Dynamic border color workaround if needed, else precise class
-                >
-                    {/* Background tint based on accent */}
-                    <div className={`absolute inset-0 ${accentColor} opacity-10`}></div>
-
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        whileInView={{ scale: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className={`w-16 h-16 ${accentColor} rounded-2xl rotate-3 flex items-center justify-center text-white mb-6 shadow-lg`}
-                    >
-                        {icon}
-                    </motion.div>
-
-                    <h3 className="text-xl font-heading font-bold text-gulf-lebanese mb-3 relative z-10">{title}</h3>
-                    <p className="text-sm font-medium text-gray-600 leading-relaxed mb-6 relative z-10">{desc}</p>
-
-                    <div className={`w-8 h-1 ${accentColor} rounded-full`}></div>
-                </div>
-            </div>
-        </motion.div>
-    );
-};
-
-const StatBubble = ({ number, label, delay }) => (
-    <motion.div
-        initial={{ scale: 0 }}
-        whileInView={{ scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ type: "spring", delay: delay }}
-        className="rounded-[2.5rem] bg-white/10 backdrop-blur-sm p-6 border border-white/20 hover:bg-white/20 transition-all cursor-default group"
-    >
-        <h3 className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform">{number}</h3>
-        <p className="text-gulf-icy font-medium">{label}</p>
-    </motion.div>
-);
-
-const ProgramCard = ({ title, age, bg, img }) => (
-    <motion.div
-        whileHover={{ y: -15 }}
-        className="group relative rounded-[2.5rem] overflow-hidden shadow-xl h-96 cursor-pointer"
-    >
-        <img src={img} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-2" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full p-8 text-white">
-            <div className={`${bg} text-gulf-lebanese text-xs font-bold px-3 py-1 rounded-full inline-block mb-2 group-hover:bg-white transition-colors`}>
-                {age}
-            </div>
-            <h3 className="text-3xl font-heading font-bold mb-1">{title}</h3>
-            <p className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm translate-y-4 group-hover:translate-y-0">Click to view curriculum details</p>
-        </div>
-    </motion.div>
-);
-
-const TestimonialCard = ({ name, text, color }) => (
-    <motion.div
-        whileHover={{ scale: 1.05 }}
-        className={`p-8 rounded-[2rem] shadow-lg ${color} relative`}
-    >
-        <Quote className="text-gray-300 mb-4" size={40} />
-        <p className="text-lg text-gray-700 italic mb-6">"{text}"</p>
-        <div className="font-bold text-gulf-lebanese relative z-10">- {name}</div>
-        <div className="absolute bottom-4 right-4 text-9xl text-black/5 font-heading opacity-50 select-none">”</div>
-    </motion.div>
-);
+const TESTIMONIALS = [
+    { name: "Sana Shaikh", text: "My child refuses to come home! That says everything about how much they love it here." },
+    { name: "Rajesh Verma", text: "The best decision we made. The facilities and teachers are world-class." },
+    { name: "Anita D'Souza", text: "Professional, clean, and full of love. Highly recommended for every parent." },
+    { name: "Michael R.", text: "A truly magical place where learning feels like playing." }
+];
 
 export default Home;
