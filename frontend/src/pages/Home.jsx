@@ -499,30 +499,42 @@ const Home = () => {
                         className="flex gap-8 px-4 group-hover:[animation-play-state:paused]"
                     >
                         {/* Repeat reviews to create seamless loop */}
-                        {[...googleReviews.filter(r => r.review.length > 5), ...googleReviews.filter(r => r.review.length > 5)].map((t, i) => (
-                            <div key={i} className="w-[400px] md:w-[500px] bg-bg-cream p-8 md:p-10 rounded-[2rem] flex-shrink-0 whitespace-normal hover:bg-gulf-lebanese hover:text-white transition-colors duration-500 cursor-default border border-gray-100 flex flex-col justify-between shadow-lg hover:shadow-2xl">
-                                <div>
-                                    <div className="flex gap-1 mb-6">
-                                        {[...Array(5)].map((_, idx) => (
-                                            <Star key={idx} size={20} className="fill-yellow-400 text-yellow-400" />
-                                        ))}
-                                    </div>
-                                    <p className="text-lg md:text-xl font-medium leading-relaxed mb-8 line-clamp-4">
-                                        "{t.review}"
-                                    </p>
-                                </div>
-                                <div className="flex items-center gap-4 mt-auto">
-                                    <div className="w-14 h-14 bg-gradient-to-br from-luxury-pink to-purple-500 rounded-full flex items-center justify-center text-2xl text-white font-bold shadow-md uppercase">
-                                        {t.name[0]}
-                                    </div>
+                        {[...googleReviews.filter(r => r.review.length > 5), ...googleReviews.filter(r => r.review.length > 5)].map((t, i) => {
+                            // "Dark Colourful Colours" from palette
+                            const cardColors = [
+                                "bg-[#0060AA]", // Little Dark Blue
+                                "bg-[#5C7E68]", // Como (Green)
+                                "bg-[#BA1054]", // Pictorial Carmine
+                                "bg-[#131720]", // Lebanese Blue
+                                "bg-[#7D5C7E]", // Added a purple variation for variety using mix
+                            ];
+                            const currColor = cardColors[i % cardColors.length];
+
+                            return (
+                                <div key={i} className={`w-[400px] md:w-[500px] ${currColor} p-8 md:p-10 rounded-[2rem] flex-shrink-0 whitespace-normal text-white transition-transform duration-500 cursor-default border border-white/10 flex flex-col justify-between shadow-xl`}>
                                     <div>
-                                        <h4 className="font-bold text-lg">{t.name}</h4>
-                                        <span className="text-xs opacity-60 uppercase tracking-widest font-bold">Verified Parent</span>
+                                        <div className="flex gap-1 mb-6">
+                                            {[...Array(5)].map((_, idx) => (
+                                                <Star key={idx} size={20} className="fill-yellow-400 text-yellow-400" />
+                                            ))}
+                                        </div>
+                                        <p className="text-lg md:text-xl font-medium leading-relaxed mb-8 line-clamp-4 text-white/90">
+                                            "{t.review}"
+                                        </p>
                                     </div>
-                                    <Quote className="ml-auto text-4xl opacity-20" />
+                                    <div className="flex items-center gap-4 mt-auto">
+                                        <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-2xl text-white font-bold shadow-md uppercase border border-white/20">
+                                            {t.name[0]}
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-lg text-white">{t.name}</h4>
+                                            <span className="text-xs text-white/60 uppercase tracking-widest font-bold">Verified Parent</span>
+                                        </div>
+                                        <Quote className="ml-auto text-4xl text-white opacity-20" />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </motion.div>
                 </div>
 
