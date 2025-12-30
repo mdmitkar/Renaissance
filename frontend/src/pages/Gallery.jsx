@@ -53,13 +53,11 @@ const communityAssets = [
     { id: 'com2', src: '/PTM/PTM_5.jpeg', title: 'Open House' },
     { id: 'spo1', src: '/SportsDay/sportdaymedal.jpeg', title: 'Medals' },
     { id: 'spo2', src: '/SportsDay/sportsday1.jpeg', title: 'Racing' },
-    { id: 'vid_test1', src: '/videos/Testimonial_1.mp4', title: 'Testimonial', type: 'video' },
-    { id: 'vid_test2', src: '/videos/Testimonial_2.mp4', title: 'Testimonial', type: 'video' },
 ];
 
 // --- Sub-Components ---
 
-const SectionHeader = ({ title, subtitle, color = "text-slate-900" }) => {
+const SectionHeader = ({ title, subtitle, color = "text-slate-900", className = "" }) => {
     const el = useRef();
 
     useLayoutEffect(() => {
@@ -82,7 +80,7 @@ const SectionHeader = ({ title, subtitle, color = "text-slate-900" }) => {
     }, []);
 
     return (
-        <div ref={el} className="mb-12 md:mb-20 px-6">
+        <div ref={el} className={`mb-12 md:mb-20 px-6 ${className}`}>
             <h3 className={`text-sm font-bold uppercase tracking-[0.2em] mb-3 ${color} opacity-60 split-text`}>{subtitle}</h3>
             <h2 className={`text-4xl md:text-6xl font-black ${color} split-text`}>{title}</h2>
         </div>
@@ -144,7 +142,10 @@ const Gallery = () => {
     const heroRef = useRef(null);
     const campusRef = useRef(null);
     const celebRef = useRef(null);
-    const activityRef = useRef(null);
+    const learningRef = useRef(null);
+    const trackRef = useRef(null);
+
+    const mergedLearningAssets = [...activityAssets, ...communityAssets];
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -197,6 +198,29 @@ const Gallery = () => {
                 }
             });
 
+            // Learning & Fun Horizontal Pin Scroll
+            if (trackRef.current) {
+                const scrollWidth = trackRef.current.scrollWidth;
+                const windowWidth = window.innerWidth;
+                const xTo = -1 * (scrollWidth - windowWidth);
+
+                // Only enable pinning on larger screens where horizontal scroll makes sense
+                if (windowWidth > 768) {
+                    gsap.to(trackRef.current, {
+                        x: xTo,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: learningRef.current,
+                            start: "center center",
+                            end: () => "+=" + scrollWidth,
+                            pin: true,
+                            scrub: 1,
+                            anticipatePin: 1,
+                        }
+                    });
+                }
+            }
+
         }, containerRef);
 
         return () => ctx.revert();
@@ -206,26 +230,31 @@ const Gallery = () => {
         <div ref={containerRef} className="bg-slate-50 min-h-screen text-slate-800 font-sans selection:bg-rose-500 selection:text-white pb-32">
 
             {/* 1. Hero Section */}
-            <div ref={heroRef} className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-                <div className="hero-bg absolute inset-0 bg-gradient-to-br from-rose-50 to-blue-50 z-0">
-                    {/* Abstract blobs */}
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-rose-300/20 rounded-full blur-[120px]" />
-                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-300/20 rounded-full blur-[120px]" />
+            {/* 1. Hero Section */}
+            <div ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+                <div className="hero-bg absolute inset-0 z-0">
+                    <img
+                        src="/assets/gallery_hero.png"
+                        alt="Indian Preschool Background"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
                 </div>
 
-                <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-                        <h1 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700 tracking-tighter mb-6">
+                        <h1 className="text-7xl md:text-9xl font-black text-white tracking-tighter mb-6 drop-shadow-2xl">
                             GALLERY
                         </h1>
-                        <p className="text-xl md:text-2xl font-light text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-xl md:text-3xl font-light text-slate-100 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
                             A curated collection of moments that define the Renaissance experience.
                         </p>
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => window.scrollTo({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
-                            className="bg-slate-900 text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 mx-auto hover:bg-rose-500 transition-colors"
+                            onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+                            className="bg-white/10 backdrop-blur-md text-white border border-white/40 px-8 py-3 rounded-full font-bold flex items-center gap-2 mx-auto hover:bg-white hover:text-slate-900 transition-all shadow-xl"
                         >
                             Explore <ArrowDown size={18} />
                         </motion.button>
@@ -233,8 +262,10 @@ const Gallery = () => {
                 </div>
             </div>
 
+
             {/* 2. Featured Reels (Stories) */}
-            <div className="reels-section max-w-[1920px] mx-auto mb-32 -mt-20 relative z-20 pl-6 md:pl-12">
+            {/* 2. Featured Reels (Stories) */}
+            <div className="reels-section max-w-[1920px] mx-auto mb-32 mt-10 relative z-20 pl-6 md:pl-12">
                 <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6">
                     {reelAssets.map((item, i) => (
                         <div key={item.id} className="reel-card snap-center shrink-0">
@@ -259,29 +290,29 @@ const Gallery = () => {
             {/* 3. Campus Life (Grid) */}
             <div ref={campusRef} className="max-w-7xl mx-auto px-6 mb-32">
                 <SectionHeader title="Campus Life" subtitle="Where we grow" />
-                <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[800px]">
+                <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[650px]">
                     {/* Custom Mosaic */}
-                    <MediaCard item={campusAssets[7]} className="campus-item md:col-span-2 md:row-span-2 min-h-[300px]" onClick={() => setSelectedItem(campusAssets[7])} />
-                    <MediaCard item={campusAssets[0]} className="campus-item min-h-[200px]" onClick={() => setSelectedItem(campusAssets[0])} />
-                    <MediaCard item={campusAssets[1]} className="campus-item min-h-[200px]" onClick={() => setSelectedItem(campusAssets[1])} />
-                    <MediaCard item={campusAssets[2]} className="campus-item md:col-span-2 min-h-[200px]" onClick={() => setSelectedItem(campusAssets[2])} />
+                    <MediaCard item={campusAssets[7]} className="campus-item md:col-span-2 md:row-span-2 min-h-[300px] border-4 border-black shadow-lg" onClick={() => setSelectedItem(campusAssets[7])} />
+                    <MediaCard item={campusAssets[0]} className="campus-item min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[0])} />
+                    <MediaCard item={campusAssets[1]} className="campus-item min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[1])} />
+                    <MediaCard item={campusAssets[2]} className="campus-item md:col-span-2 min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[2])} />
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                     {campusAssets.slice(3, 7).map((item) => (
-                        <MediaCard key={item.id} item={item} className="campus-item h-[200px] md:h-[250px]" onClick={() => setSelectedItem(item)} />
+                        <MediaCard key={item.id} item={item} className="campus-item h-[200px] md:h-[250px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(item)} />
                     ))}
                 </div>
             </div>
 
             {/* 4. Celebrations (Horizontal Focus) */}
-            <div ref={celebRef} className="bg-slate-900 py-32 text-slate-100 mb-32 relative overflow-hidden">
+            <div ref={celebRef} className="bg-slate-900 py-32 text-slate-100 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <SectionHeader title="Celebrations" subtitle="Moments of Joy" color="text-white" />
 
                     <div className="flex flex-wrap md:flex-nowrap gap-6 md:gap-8 justify-center md:overflow-x-visible">
                         {celebrationAssets.slice(0, 5).map((item, i) => (
                             <motion.div
-                                className="celeb-item w-full md:w-1/3 xl:w-1/5 aspect-[3/4] rounded-xl overflow-hidden relative cursor-pointer group shadow-2xl shadow-rose-900/20"
+                                className="celeb-item w-full md:w-1/3 xl:w-1/5 aspect-[3/4] rounded-xl overflow-hidden relative cursor-pointer group shadow-2xl shadow-rose-900/20 border-4 border-white"
                                 whileHover={{ y: -20, rotate: i % 2 === 0 ? 2 : -2 }}
                                 key={item.id}
                                 onClick={() => setSelectedItem(item)}
@@ -297,29 +328,22 @@ const Gallery = () => {
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-600/20 rounded-full blur-[150px] pointer-events-none" />
             </div>
 
-            {/* 5. Activities & Community */}
-            <div ref={activityRef} className="max-w-7xl mx-auto px-6 mb-32">
-                <SectionHeader title="Learning & Fun" subtitle="Everyday exploration" />
+            {/* 5. Learning & Fun (Side-Scroll Pin) */}
+            <div ref={learningRef} className="py-20 md:py-0 md:h-[100vh] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-white to-slate-100 relative mb-20 section-learning">
+                <div className="max-w-7xl mx-auto w-full px-6 absolute top-20 md:top-auto md:relative md:mb-12 z-10 pointer-events-none">
+                    <SectionHeader title="Learning & Fun" subtitle="Everyday Adventure" className="!mb-0" />
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {/* Column 1 */}
-                    <div className="space-y-8">
-                        {activityAssets.map(item => (
-                            <MediaCard key={item.id} item={item} className="w-full aspect-square" onClick={() => setSelectedItem(item)} />
-                        ))}
-                    </div>
-                    {/* Column 2 (Offset) */}
-                    <div className="space-y-8 md:pt-20">
-                        {communityAssets.slice(0, 3).map(item => (
-                            <MediaCard key={item.id} item={item} className="w-full aspect-[4/5]" onClick={() => setSelectedItem(item)} />
-                        ))}
-                    </div>
-                    {/* Column 3 */}
-                    <div className="space-y-8">
-                        {communityAssets.slice(3).map(item => (
-                            <MediaCard key={item.id} item={item} className="w-full aspect-video" onClick={() => setSelectedItem(item)} />
-                        ))}
-                    </div>
+                <div ref={trackRef} className="flex gap-8 md:gap-12 px-6 md:px-20 mt-12 md:mt-0 overflow-x-auto md:overflow-visible no-scrollbar w-full md:w-max">
+                    {mergedLearningAssets.map((item, index) => (
+                        <div
+                            key={item.id}
+                            className={`relative shrink-0 w-[80vw] md:w-[600px] aspect-video md:aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl cursor-pointer group border-4 border-black ${index % 2 === 0 ? 'md:rotate-1' : 'md:-rotate-1'}`}
+                            onClick={() => setSelectedItem(item)}
+                        >
+                            <MediaCard item={item} className="w-full h-full transition-transform duration-700 hover:scale-105" />
+                        </div>
+                    ))}
                 </div>
             </div>
 
@@ -352,7 +376,7 @@ const Gallery = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </div >
     );
 };
 
