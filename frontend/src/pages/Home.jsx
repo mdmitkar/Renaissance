@@ -126,26 +126,50 @@ const Home = () => {
             }
         });
 
-        // 3. Stacking Programs
-        const programs = gsap.utils.toArray('.program-card');
-        programs.forEach((card, i) => {
-            gsap.fromTo(card,
-                { y: 150, opacity: 0, scale: 0.95 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 110%",
-                        end: "top 70%",
-                        scrub: 1
-                    }
+
+
+        // 4. Learning Journeys Horizontal Scroll
+        const journeySection = document.querySelector('.journey-section');
+        const journeyContainer = document.querySelector('.journey-container');
+
+        if (journeySection && journeyContainer) {
+
+            // Horizontal Scroll Animation
+            const scrollTween = gsap.to(journeyContainer, {
+                x: () => -(journeyContainer.scrollWidth - window.innerWidth),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: journeySection,
+                    pin: true,
+                    scrub: 1,
+                    end: () => "+=" + journeyContainer.scrollWidth,
+                    invalidateOnRefresh: true,
                 }
-            );
-        });
+            });
+
+            // Parallax for images inside cards
+            const cards = gsap.utils.toArray('.journey-card');
+            cards.forEach((card, i) => {
+                const img = card.querySelector('.journey-img');
+                if (img) {
+                    gsap.fromTo(img,
+                        { scale: 1.2, x: -50 },
+                        {
+                            scale: 1,
+                            x: 50,
+                            ease: "none",
+                            scrollTrigger: {
+                                trigger: card,
+                                containerAnimation: scrollTween,
+                                start: "left right",
+                                end: "right left",
+                                scrub: true,
+                            }
+                        }
+                    );
+                }
+            });
+        }
 
     }, { scope: containerRef });
 
@@ -343,48 +367,98 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* --- SECTION 4: PROGRAMS --- */}
-            <section className="py-40 bg-cream-velvet px-4 relative">
-                <div className="max-w-7xl mx-auto mb-32 text-center">
-                    <h2 className="reveal-text text-6xl md:text-9xl font-heading font-black text-gulf-lebanese tracking-tighter">
-                        LEARNING <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400">JOURNEYS</span>
+            {/* --- SECTION 4: PROGRAMS (Horizontal Scroll) --- */}
+            <section className="journey-section h-screen bg-gulf-lebanese text-white overflow-hidden relative flex items-center">
+
+                {/* Background Text/Decor */}
+                <div className="absolute top-10 left-10 z-10">
+                    <h2 className="text-xl font-bold uppercase tracking-[0.3em] text-white/30">
+                        The Renaissance Journey
                     </h2>
                 </div>
 
-                <div className="flex flex-col items-center gap-24 pb-32">
+                {/* Horizontal Container */}
+                <div className="journey-container flex h-[80vh] items-center px-[10vw] gap-[20vw] w-max">
+
+                    {/* Intro Card */}
+                    <div className="journey-card min-w-[30vw] flex flex-col justify-center shrink-0">
+                        <h2 className="text-7xl md:text-9xl font-heading font-black leading-none mb-6">
+                            GROWING<br />
+                            <span className="text-luxury-pink">UP.</span>
+                        </h2>
+                        <p className="text-2xl text-white/60 max-w-lg mb-10">
+                            Every stage is a new adventure. Scroll to explore the path your child will take with us.
+                        </p>
+                        <div className="flex items-center gap-4 text-white/40">
+                            <ArrowRight size={32} className="animate-pulse" />
+                            <span className="uppercase tracking-widest text-sm">Scroll to Explore</span>
+                        </div>
+                    </div>
+
                     {PROGRAMS.map((prog, i) => (
                         <div
                             key={i}
-                            className="program-card sticky top-32 w-full max-w-6xl h-auto md:h-[600px] rounded-[3rem] shadow-2xl overflow-hidden border-[8px] border-white flex flex-col md:flex-row bg-white"
-                            style={{ backgroundColor: prog.bg }}
+                            className="journey-card relative w-[85vw] md:w-[70vw] h-full flex flex-col md:flex-row shrink-0 bg-white rounded-[4rem] overflow-hidden shadow-2xl"
                         >
-                            <div className="md:w-1/2 p-12 md:p-20 flex flex-col justify-center h-full relative z-10">
-                                <span className="bg-white/80 backdrop-blur-sm text-gulf-lebanese px-6 py-2 rounded-full font-bold text-lg w-max mb-6 shadow-sm border border-white/50">
-                                    {prog.age}
-                                </span>
-                                <h3 className="text-5xl md:text-7xl font-black text-gulf-lebanese mb-6 leading-[0.9]">
-                                    {prog.title}
-                                </h3>
-                                <p className="text-xl md:text-2xl text-gulf-lebanese/80 font-medium leading-relaxed mb-8">
-                                    {prog.desc}
-                                </p>
-                                <div className="flex flex-wrap gap-3">
-                                    {prog.tags.map((tag, idx) => (
-                                        <span key={idx} className="px-4 py-2 bg-white/50 rounded-lg font-bold text-sm md:text-base border border-white/20">
-                                            {tag}
+                            {/* Content Side */}
+                            <div className="md:w-5/12 p-12 md:p-16 flex flex-col justify-between relative z-10 bg-white text-gulf-lebanese">
+                                <div>
+                                    <div className="flex items-center gap-4 mb-8">
+                                        <span className="px-4 py-2 rounded-full border border-gulf-lebanese/20 text-sm font-bold uppercase tracking-wider">
+                                            {prog.age}
                                         </span>
-                                    ))}
+                                        <div className="h-[1px] flex-grow bg-gulf-lebanese/10"></div>
+                                    </div>
+
+                                    <h3 className="text-5xl md:text-7xl font-black mb-6 leading-[0.9]">
+                                        {prog.title}
+                                    </h3>
+                                    <p className="text-xl text-gray-500 font-medium leading-relaxed">
+                                        {prog.desc}
+                                    </p>
+                                </div>
+
+                                <div className="mt-8">
+                                    <h4 className="font-bold text-sm uppercase tracking-widest text-gray-400 mb-4">Highlights</h4>
+                                    <div className="flex flex-wrap gap-3">
+                                        {prog.tags.map((tag, idx) => (
+                                            <span key={idx} className="px-5 py-2 bg-bg-cream rounded-full font-bold text-sm border border-gulf-lebanese/10">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
-                            <div className="md:w-1/2 h-80 md:h-full relative overflow-hidden group">
+
+                            {/* Image Side */}
+                            <div className="md:w-7/12 h-64 md:h-full relative overflow-hidden bg-gray-100">
+                                <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-transparent z-10 w-32"></div>
                                 <img
                                     src={prog.img}
                                     alt={prog.title}
-                                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-1000 ease-in-out"
+                                    className="journey-img w-full h-full object-cover"
                                 />
+                                {/* Overlay Number */}
+                                <div className="absolute bottom-6 right-8 text-[12rem] font-black text-white/20 leading-none z-0 select-none">
+                                    0{i + 1}
+                                </div>
                             </div>
                         </div>
                     ))}
+
+                    {/* End Card */}
+                    <div className="journey-card min-w-[40vw] flex flex-col justify-center items-center text-center shrink-0 pr-20">
+                        <h3 className="text-6xl font-heading font-black mb-8">
+                            Ready to<br />Start?
+                        </h3>
+                        <button
+                            onClick={() => setIsAdmissionOpen(true)}
+                            className="bg-luxury-pink text-white px-12 py-6 rounded-full text-2xl font-bold hover:scale-110 transition-transform duration-300 shadow-xl"
+                        >
+                            Enroll Now
+                        </button>
+                    </div>
+
                 </div>
             </section>
 
