@@ -332,11 +332,11 @@ const Gallery = () => {
 
             {/* 5. Learning & Fun (Side-Scroll Pin) */}
             <div ref={learningRef} className="py-20 md:py-0 md:h-[100vh] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-white to-slate-100 relative mb-20 section-learning">
-                <div className="max-w-7xl mx-auto w-full px-6 absolute top-20 md:top-auto md:relative md:mb-12 z-10 pointer-events-none">
+                <div className="max-w-7xl mx-auto w-full px-6 relative mb-8 md:mb-12 z-10 pointer-events-none">
                     <SectionHeader title="Learning & Fun" subtitle="Everyday Adventure" className="!mb-0" />
                 </div>
 
-                <div ref={trackRef} className="flex gap-8 md:gap-12 px-6 md:px-20 mt-12 md:mt-0 overflow-x-auto md:overflow-visible no-scrollbar w-full md:w-max">
+                <div ref={trackRef} className="flex gap-8 md:gap-12 px-6 md:px-20 mt-12 md:mt-0 overflow-visible no-scrollbar w-max">
                     {mergedLearningAssets.map((item, index) => (
                         <div
                             key={item.id}
