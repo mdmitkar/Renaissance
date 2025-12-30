@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, User, Calendar, BookOpen, Star, Heart, Sun, Instagram, Facebook, Youtube } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, User, Calendar, BookOpen, Star, Heart, Sun, Instagram, Facebook, Youtube, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Contact = () => {
@@ -55,6 +55,28 @@ const Contact = () => {
                     {/* LEFT COLUMN: ADMISSION FORM (7 Cols) */}
                     <div className="lg:col-span-7">
                         <AdmissionForm />
+
+                        {/* SOCIAL & RATINGS - Moved from Right Side */}
+                        <motion.div
+                            whileHover={{ y: -5 }}
+                            className="bg-gradient-to-br from-[#222] to-black text-white rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden mt-8 w-[90%] mx-auto"
+                        >
+                            <div className="relative z-10 flex flex-col items-center text-center">
+                                <div className="flex items-center gap-1 mb-2">
+                                    {[1, 2, 3, 4, 5].map(i => <Star key={i} size={24} className="fill-gentle-yellow text-gentle-yellow animate-pulse" style={{ animationDelay: `${i * 100}ms` }} />)}
+                                </div>
+                                <h3 className="text-3xl font-heading font-bold mb-2">4.8/5 Rating</h3>
+                                <p className="opacity-70 text-sm mb-6">Loved by 500+ Parents on Google</p>
+
+                                <div className="flex gap-4">
+                                    <SocialButton icon={<Instagram size={24} />} color="hover:bg-pink-600" />
+                                    <SocialButton icon={<MessageCircle size={24} />} color="hover:bg-green-500" />
+                                </div>
+                            </div>
+
+                            {/* Glossy Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
+                        </motion.div>
                     </div>
 
                     {/* RIGHT COLUMN: CONTACT INFO (5 Cols) */}
@@ -104,28 +126,7 @@ const Contact = () => {
                             </div>
                         </motion.div>
 
-                        {/* SOCIAL & RATINGS - Replaced Hiring Section */}
-                        <motion.div
-                            whileHover={{ y: -5 }}
-                            className="bg-gradient-to-br from-[#222] to-black text-white rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden"
-                        >
-                            <div className="relative z-10 flex flex-col items-center text-center">
-                                <div className="flex items-center gap-1 mb-2">
-                                    {[1, 2, 3, 4, 5].map(i => <Star key={i} size={24} className="fill-gentle-yellow text-gentle-yellow animate-pulse" style={{ animationDelay: `${i * 100}ms` }} />)}
-                                </div>
-                                <h3 className="text-3xl font-heading font-bold mb-2">4.8/5 Rating</h3>
-                                <p className="opacity-70 text-sm mb-6">Loved by 500+ Parents on Google</p>
 
-                                <div className="flex gap-4">
-                                    <SocialButton icon={<Instagram size={24} />} color="hover:bg-pink-600" />
-                                    <SocialButton icon={<Facebook size={24} />} color="hover:bg-blue-600" />
-                                    <SocialButton icon={<Youtube size={24} />} color="hover:bg-red-600" />
-                                </div>
-                            </div>
-
-                            {/* Glossy Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
-                        </motion.div>
                     </div>
                 </div>
             </div>
