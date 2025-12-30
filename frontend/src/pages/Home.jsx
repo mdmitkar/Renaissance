@@ -91,13 +91,17 @@ const Home = () => {
             const cards = gsap.utils.toArray('.petal-card');
             const totalCards = cards.length;
 
+            // FIX: Robust Initial State - Hide all except first
+            gsap.set(cards, { autoAlpha: 0, scale: 0.9, y: 50 });
+            gsap.set(cards[0], { autoAlpha: 1, scale: 1, y: 0 });
+
             let tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: ".petals-section",
                     pin: true,
                     start: "top top",
-                    end: "+=3000",
-                    scrub: 1.5,
+                    end: "+=4000", // Increased scroll distance for smoother reading
+                    scrub: 1,
                     onUpdate: (self) => {
                         const progress = self.progress;
                         const index = Math.min(
@@ -112,15 +116,14 @@ const Home = () => {
                 }
             });
 
-            cards.forEach((card, i) => {
-                tl.to(card, {
-                    opacity: 1, scale: 1, y: 0, rotate: 0, zIndex: i + 1, duration: 1, ease: "none"
-                }, i * 1.5);
+            // Chain animations linearly: Fade Out Current -> Fade In Next
+            for (let i = 0; i < totalCards - 1; i++) {
+                const current = cards[i];
+                const next = cards[i + 1];
 
-                if (i < cards.length - 1) {
-                    tl.to(card, { scale: 0.95, opacity: 0, y: -50, duration: 0.5 }, (i + 1) * 1.5);
-                }
-            });
+                tl.to(current, { autoAlpha: 0, scale: 0.95, y: -20, duration: 1 })
+                    .to(next, { autoAlpha: 1, scale: 1, y: 0, duration: 1 }, "<"); // Start at same time
+            }
 
             // Journey Horizontal Scroll
             const journeySection = document.querySelector('.journey-section');
