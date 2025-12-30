@@ -1,121 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
-import { X, PlayCircle, Play } from 'lucide-react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, PlayCircle, Play, ArrowDown } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// Comprehensive asset list
-// ... (rest of imports basically)
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
-// ... (skipping down to ReelCard)
-
-const ReelCard = ({ item, onClick }) => {
-    const videoRef = useRef(null);
-    const [isHovered, setIsHovered] = useState(false);
-
-    return (
-        <motion.div
-            whileHover={{ scale: 1.05, rotate: -1 }}
-            className="flex-shrink-0 w-48 md:w-56 h-80 md:h-96 rounded-3xl overflow-hidden relative cursor-pointer shadow-xl border-[6px] border-white snap-center group"
-            onClick={onClick}
-            onMouseEnter={() => {
-                setIsHovered(true);
-                videoRef.current?.play();
-            }}
-            onMouseLeave={() => {
-                setIsHovered(false);
-                if (videoRef.current) {
-                    videoRef.current.pause();
-                    videoRef.current.currentTime = 0;
-                }
-            }}
-        >
-            {/* Video Layer */}
-            <video
-                ref={videoRef}
-                src={item.src}
-                className="w-full h-full object-cover transform scale-105"
-                muted
-                loop
-                playsInline
-            />
-
-            {/* Overlay Gradient for nicer text readability when video is playing */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-            {/* Solid Cover Layer with Animation */}
-            <motion.div
-                initial={{ y: 0 }}
-                animate={{ y: isHovered ? '-100%' : '0%' }}
-                transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }} // smooth cubic-bezier
-                className={`absolute inset-0 z-20 flex flex-col items-center justify-center p-6 text-center ${item.color}`}
-            >
-                <div className="bg-white/30 p-4 rounded-full backdrop-blur-md mb-4 shadow-sm ring-1 ring-white/50">
-                    <Play fill="currentColor" size={32} className="opacity-90" />
-                </div>
-                <h3 className="font-heading font-bold text-2xl leading-tight drop-shadow-sm">{item.title}</h3>
-                <span className="mt-2 text-xs font-bold uppercase tracking-widest opacity-80 border border-current px-2 py-1 rounded-full">Reel</span>
-            </motion.div>
-        </motion.div>
-    );
-};
-
-// Comprehensive asset list
-// Comprehensive asset list
-const allImages = [
-    // --- Videos ---
-    { id: 'v1', src: '/videos/schooltour.mp4', category: 'Campus', title: 'Virtual School Tour', type: 'video' },
-    { id: 'v2', src: '/SportsDay/SportsDay_1.mp4', category: 'Sports', title: 'Sports Day Excitement', type: 'video' },
-    { id: 'v3', src: '/SportsDay/SportsDay_2.mp4', category: 'Sports', title: 'Champions on Track', type: 'video' },
-    { id: 'v4', src: '/videos/Testimonial_1.mp4', category: 'Community', title: 'Parent Testimonial: Trust & Care', type: 'video' },
-    { id: 'v5', src: '/videos/Testimonial_2.mp4', category: 'Community', title: 'Parent Testimonial: Growth', type: 'video' },
-    { id: 'v6', src: '/videos/Testimonial_3.mp4', category: 'Community', title: 'Parent Testimonial: Community', type: 'video' },
-
-    // --- Campus (SchoolPremises) ---
-    { id: 'c1', src: '/SchoolPremises/SchoolPremises_1.jpeg', category: 'Campus', title: 'Welcoming Entrance', type: 'image' },
-    { id: 'c2', src: '/SchoolPremises/classplay.jpeg', category: 'Campus', title: 'Imaginative Play Area', type: 'image' },
-    { id: 'c3', src: '/SchoolPremises/classroom1.jpeg', category: 'Campus', title: 'Modern Learning Spaces', type: 'image' },
-    { id: 'c4', src: '/SchoolPremises/classroom2.jpeg', category: 'Campus', title: 'Collaborative Classrooms', type: 'image' },
-    { id: 'c5', src: '/SchoolPremises/classroom3.png', category: 'Campus', title: 'Interactive Learning', type: 'image' },
-    { id: 'c6', src: '/SchoolPremises/playground1.jpeg', category: 'Campus', title: 'Adventure Playground', type: 'image' },
-    { id: 'c7', src: '/SchoolPremises/playground2.jpeg', category: 'Campus', title: 'Outdoor Fun Zone', type: 'image' },
-    { id: 'c8', src: '/SchoolPremises/playground3.png', category: 'Campus', title: 'Safe & Active Play', type: 'image' },
-    { id: 'c9', src: '/SchoolPremises/schoolbuilding.avif', category: 'Campus', title: 'Our Iconic Building', type: 'image' },
-
-    // --- Activities ---
-    { id: 'a1', src: '/Activities/0.1.jpeg', category: 'Activities', title: 'Creative Arts & Crafts', type: 'image' },
-    { id: 'a2', src: '/Activities/Activities_1.jpeg', category: 'Activities', title: 'Hands-on Science', type: 'image' },
-    { id: 'a3', src: '/Activities/Activities_4.jpeg', category: 'Activities', title: 'Team Building Games', type: 'image' },
-    { id: 'a4', src: '/Activities/motor.jpeg', category: 'Activities', title: 'Motor Skills Development', type: 'image' },
-    { id: 'a5', src: '/otherimp/Activities_3.jpeg', category: 'Activities', title: 'Experiential Learning', type: 'image' },
-
-    // --- Celebrations (ChildrensDay, IndependenceDay, RedDay) ---
-    { id: 'cel1', src: '/ChildrensDay/ChildrenDay_2.jpeg', category: 'Celebrations', title: 'Smiles on Children\'s Day', type: 'image' },
-    { id: 'cel2', src: '/ChildrensDay/ChildrensDay_1.jpeg', category: 'Celebrations', title: 'Joy of Childhood', type: 'image' },
-    { id: 'cel3', src: '/otherimp/ChildrensDay_2.jpeg', category: 'Celebrations', title: 'Pure Happiness', type: 'image' },
-    { id: 'cel4', src: '/IndependenceDay/IndependenceDay_1.jpeg', category: 'Celebrations', title: 'Independence Day Parade', type: 'image' },
-    { id: 'cel5', src: '/IndependenceDay/IndependenceDay_2.jpeg', category: 'Celebrations', title: 'Flag Hoisting Ceremony', type: 'image' },
-    { id: 'cel6', src: '/IndependenceDay/IndependenceDay_4.jpeg', category: 'Celebrations', title: 'Salute to the Nation', type: 'image' },
-    { id: 'cel7', src: '/otherimp/IndependenceDay_3.jpeg', category: 'Celebrations', title: 'Little Patriots', type: 'image' },
-    { id: 'cel8', src: '/RedDay/REDDAY6.png', category: 'Celebrations', title: 'Red Day Festivities', type: 'image' },
-    { id: 'cel9', src: '/RedDay/RedDay_1.jpeg', category: 'Celebrations', title: 'Learning the Color Red', type: 'image' },
-    { id: 'cel10', src: '/RedDay/redday5.jpeg', category: 'Celebrations', title: 'Red Day Art', type: 'image' },
-    { id: 'cel11', src: '/Activities/RedDay_3.jpeg', category: 'Celebrations', title: 'Red Balloons & Fun', type: 'image' },
-
-    // --- Sports ---
-    { id: 's1', src: '/SportsDay/sportdaymedal.jpeg', category: 'Sports', title: 'Medal of Honor', type: 'image' },
-    { id: 's2', src: '/SportsDay/sportsday1.jpeg', category: 'Sports', title: 'Ready, Set, Go!', type: 'image' },
-
-    // --- Community (PTM, Awards, etc) ---
-
-    { id: 'com2', src: '/Activities/PTM_1.jpeg', category: 'Community', title: 'Parent-Teacher Dialogue', type: 'image' },
-    { id: 'com3', src: '/Activities/PTM_4.jpeg', category: 'Community', title: 'Sharing Progress', type: 'image' },
-    { id: 'com4', src: '/PTM/PTM_3.jpeg', category: 'Community', title: 'Building Partnerships', type: 'image' },
-    { id: 'com5', src: '/PTM/PTM_5.jpeg', category: 'Community', title: 'Community Gathering', type: 'image' },
-    { id: 'com6', src: '/PTM/ptm6.jpeg', category: 'Community', title: 'Engaged Together', type: 'image' },
-    { id: 'com7', src: '/otherimp/Awards_2.jpeg', category: 'Community', title: 'Excellence Awards', type: 'image' },
-    { id: 'com8', src: '/otherimp/a.jpeg', category: 'Community', title: 'Cherished Moments', type: 'image' },
-];
-
-const reelImages = [
+// --- Data ---
+const reelAssets = [
     { id: 'r1', src: '/videos/Independence Day reel.mp4', title: 'Independence Day Bash', color: 'bg-primary-carmine' },
     { id: 'r2', src: '/videos/psycomotorskullreels.mp4', title: 'Building Motor Skills', color: 'bg-gulf-blue' },
     { id: 'r3', src: '/videos/reddayreel.mp4', title: 'Red Day Celebration', color: 'bg-primary-carmine' },
@@ -125,268 +18,340 @@ const reelImages = [
     { id: 'r7', src: '/videos/testimonial_4.mp4', title: 'Parent Love & Trust', color: 'bg-charming-green' },
 ];
 
-const categories = ['All', 'Campus', 'Activities', 'Celebrations', 'Sports', 'Community'];
+const campusAssets = [
+    { id: 'cam1', src: '/SchoolPremises/SchoolPremises_1.jpeg', title: 'Entrance' },
+    { id: 'cam2', src: '/SchoolPremises/classplay.jpeg', title: 'Play Area' },
+    { id: 'cam3', src: '/SchoolPremises/classroom1.jpeg', title: 'Classroom' },
+    { id: 'cam4', src: '/SchoolPremises/classroom2.jpeg', title: 'Learning Space' },
+    { id: 'cam5', src: '/SchoolPremises/classroom3.png', title: 'Interactive' },
+    { id: 'cam6', src: '/SchoolPremises/playground1.jpeg', title: 'Playground' },
+    { id: 'cam9', src: '/SchoolPremises/schoolbuilding.avif', title: 'School Building' },
+    { id: 'vid_tour', src: '/videos/SchoolTour.mp4', title: 'Full Tour', type: 'video' }
+];
 
-const getCategoryColor = (category) => {
-    switch (category) {
-        case 'Campus': return 'bg-gulf-blue text-white';
-        case 'Activities': return 'bg-charming-green text-white';
-        case 'Celebrations': return 'bg-primary-carmine text-white';
-        case 'Sports': return 'bg-desert-coral text-white';
-        case 'Community': return 'bg-gentle-yellow text-gulf-lebanese';
-        default: return 'bg-gulf-icy text-white';
-    }
-};
+const celebrationAssets = [
+    { id: 'cel1', src: '/ChildrensDay/ChildrenDay_2.jpeg', title: 'Smiles' },
+    { id: 'cel2', src: '/ChildrensDay/ChildrensDay_1.jpeg', title: 'Joy' },
+    { id: 'cel3', src: '/IndependenceDay/IndependenceDay_1.jpeg', title: 'March Past' },
+    { id: 'cel4', src: '/IndependenceDay/IndependenceDay_2.jpeg', title: 'Flag Hoisting' },
+    { id: 'cel6', src: '/RedDay/REDDAY6.png', title: 'Red Day' },
+    { id: 'cel7', src: '/RedDay/RedDay_1.jpeg', title: 'Red Learning' },
+    { id: 'vid_indep', src: '/videos/indepencedneday activity.mp4', title: 'Independence Act', type: 'video' }
+];
 
-// 3D Tilt Card Component
-const TiltCard = ({ item, onClick }) => {
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-    const rotateX = useTransform(y, [-100, 100], [5, -5]); // Reduced tilt for subtle premium feel
-    const rotateY = useTransform(x, [-100, 100], [-5, 5]);
-    const videoRef = useRef(null);
+const activityAssets = [
+    { id: 'act1', src: '/Activities/0.1.jpeg', title: 'Arts' },
+    { id: 'act2', src: '/Activities/Activities_1.jpeg', title: 'Science' },
+    { id: 'act4', src: '/Activities/motor.jpeg', title: 'Motor Skills' },
+    { id: 'vid_shapes', src: '/videos/Shapes exercise Activity.mp4', title: 'Shapes', type: 'video' },
+    { id: 'vid_group', src: '/videos/groupequiliactivity.mp4', title: 'Group Balance', type: 'video' },
+    { id: 'vid_alpha', src: '/videos/Find the alphabets activity.mp4', title: 'Alphabets', type: 'video' }
+];
 
-    // Handle mouse move to update x and y values
-    const handleMouseMove = (event) => {
-        const rect = event.currentTarget.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        x.set(event.clientX - centerX);
-        y.set(event.clientY - centerY);
-    };
+const communityAssets = [
+    { id: 'com1', src: '/PTM/PTM_3.jpeg', title: 'Parents' },
+    { id: 'com2', src: '/PTM/PTM_5.jpeg', title: 'Open House' },
+    { id: 'spo1', src: '/SportsDay/sportdaymedal.jpeg', title: 'Medals' },
+    { id: 'spo2', src: '/SportsDay/sportsday1.jpeg', title: 'Racing' },
+    { id: 'vid_test1', src: '/videos/Testimonial_1.mp4', title: 'Testimonial', type: 'video' },
+    { id: 'vid_test2', src: '/videos/Testimonial_2.mp4', title: 'Testimonial', type: 'video' },
+];
 
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
-        if (videoRef.current) {
-            videoRef.current.pause();
-            videoRef.current.currentTime = 0;
-        }
-    };
+// --- Sub-Components ---
 
-    const handleMouseEnter = () => {
-        if (videoRef.current) {
-            videoRef.current.play();
-        }
-    };
+const SectionHeader = ({ title, subtitle, color = "text-slate-900" }) => {
+    const el = useRef();
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.fromTo(".split-text",
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    stagger: 0.1,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: el.current,
+                        start: "top 80%",
+                    }
+                }
+            );
+        }, el);
+        return () => ctx.revert();
+    }, []);
 
     return (
-        <motion.div
-            layout
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.3 }}
-            className="perspective-[1000px]"
-        >
-            <motion.div
-                style={{ rotateX, rotateY, z: 100 }}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                onMouseEnter={handleMouseEnter}
-                onClick={onClick}
-                className="relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg h-80 bg-white p-2 transform-style-3d hover:shadow-2xl transition-all duration-300 border border-white/50"
-            >
-                <div className="w-full h-full rounded-xl overflow-hidden relative bg-gray-100">
-                    {item.type === 'video' ? (
-                        <>
-                            <video
-                                ref={videoRef}
-                                src={item.src}
-                                className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
-                                muted
-                                loop
-                                playsInline
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full group-hover:scale-110 transition-transform duration-300 border border-white/30">
-                                    <PlayCircle size={32} className="text-white drop-shadow-lg" fill="currentColor" />
-                                </div>
-                            </div>
-                        </>
-                    ) : (
-                        <img
-                            src={item.src}
-                            alt={item.title}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            loading="lazy"
-                        />
-                    )}
-
-                    {/* Gradient Overlay & Content */}
-                    <div className="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-100 transition-opacity duration-300 flex items-end p-5">
-                        <div className="w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                            <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded mb-2 inline-block ${getCategoryColor(item.category)}`}>
-                                {item.category}
-                            </span>
-                            <span className="text-white font-heading font-bold text-lg block drop-shadow-md leading-tight">{item.title}</span>
-                        </div>
-                    </div>
-                </div>
-            </motion.div>
-        </motion.div>
+        <div ref={el} className="mb-12 md:mb-20 px-6">
+            <h3 className={`text-sm font-bold uppercase tracking-[0.2em] mb-3 ${color} opacity-60 split-text`}>{subtitle}</h3>
+            <h2 className={`text-4xl md:text-6xl font-black ${color} split-text`}>{title}</h2>
+        </div>
     );
 };
 
-
-
-const Gallery = () => {
-    const [selectedCategory, setSelectedCategory] = useState('All');
-    const [selectedItem, setSelectedItem] = useState(null);
-
-    const filteredItems = selectedCategory === 'All'
-        ? allImages
-        : allImages.filter(item => item.category === selectedCategory);
+const MediaCard = ({ item, onClick, className }) => {
+    const videoRef = useRef(null);
+    const [hover, setHover] = useState(false);
 
     return (
-        <div className="min-h-screen bg-cream-velvet text-text-dark font-body relative">
-
-            {/* Background Blob Decor */}
-            <motion.div
-                animate={{ scale: [1, 1.1, 1], rotate: [0, 45, 0] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-carmine/5 rounded-full blur-[100px] -ml-40 -mt-40 z-0 pointer-events-none"
-            />
-            <motion.div
-                animate={{ scale: [1, 1.2, 1], rotate: [0, -45, 0] }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gulf-blue/5 rounded-full blur-[100px] -mr-40 -mb-40 z-0 pointer-events-none"
-            />
-
-            {/* Header */}
-            <div className="bg-gradient-to-br from-gentle-yellow to-desert-coral text-gulf-dark py-24 text-center relative z-10 shadow-xl rounded-b-[3rem] mb-12 overflow-hidden">
-                <div className="absolute inset-0 bg-white opacity-5 pointer-events-none"></div>
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="relative px-4"
-                >
-                    <h1 className="text-5xl md:text-7xl font-heading font-bold mb-6 text-gulf-dark tracking-tight drop-shadow-sm">
-                        Our Gallery
-                    </h1>
-                    <p className="text-lg md:text-2xl text-secondary-charcoal max-w-2xl mx-auto font-light leading-relaxed">
-                        A visual journey through the moments that define <span className="font-bold text-gulf-dark">Renaissance</span>.
-                    </p>
-                </motion.div>
-            </div>
-
-            <div className="max-w-[1600px] mx-auto px-4 md:px-8 pb-20 relative z-10">
-
-                {/* Highlights / Reels Section */}
-                <div className="mb-16">
-                    <div className="flex items-center gap-3 mb-6 px-2">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary-carmine to-primary-gold flex items-center justify-center text-white shadow-lg">
-                            <PlayCircle size={20} fill="currentColor" />
+        <div
+            className={`relative overflow-hidden rounded-xl bg-gray-100 cursor-pointer group ${className}`}
+            onClick={onClick}
+            onMouseEnter={() => {
+                setHover(true);
+                videoRef.current?.play().catch(() => { });
+            }}
+            onMouseLeave={() => {
+                setHover(false);
+                videoRef.current?.pause();
+            }}
+        >
+            {item.type === 'video' ? (
+                <>
+                    <video
+                        ref={videoRef}
+                        src={item.src}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        muted loop playsInline
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-80 group-hover:opacity-0 transition-opacity">
+                        <div className="bg-white/20 backdrop-blur-md p-3 rounded-full border border-white/40">
+                            <PlayCircle className="text-white w-8 h-8" />
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-heading font-bold text-gulf-dark">Highlights</h2>
                     </div>
+                </>
+            ) : (
+                <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                />
+            )}
 
-                    <div className="flex overflow-x-auto pb-8 gap-6 no-scrollbar snap-x px-4 -mx-4 md:mx-0">
-                        {reelImages.map((reel) => (
-                            <ReelCard
-                                key={reel.id}
-                                item={reel}
-                                onClick={() => setSelectedItem({ ...reel, type: 'video', category: 'Highlights' })} // Adapt for modal
-                            />
-                        ))}
-                    </div>
+            <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <p className="text-white font-bold">{item.title}</p>
+            </div>
+        </div>
+    );
+};
+
+// --- Gallery Page ---
+
+const Gallery = () => {
+    const [selectedItem, setSelectedItem] = useState(null);
+    const containerRef = useRef(null);
+    const heroRef = useRef(null);
+    const campusRef = useRef(null);
+    const celebRef = useRef(null);
+    const activityRef = useRef(null);
+
+    useLayoutEffect(() => {
+        let ctx = gsap.context(() => {
+            // Hero Parallax
+            gsap.to(".hero-bg", {
+                yPercent: 30,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: heroRef.current,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
+            // Horizontal Scroll for Reels
+            // (Standard CSS scroll snap used for reels, but we can animate entrance)
+            gsap.from(".reel-card", {
+                y: 100,
+                opacity: 0,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: ".reels-section",
+                    start: "top 80%",
+                }
+            });
+
+            // Campus Grid Reveal
+            gsap.from(".campus-item", {
+                y: 50,
+                opacity: 0,
+                stagger: 0.1,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: campusRef.current,
+                    start: "top 70%",
+                }
+            });
+
+            // Celebration Horizontal Scroll Effect (Simulated)
+            const sections = gsap.utils.toArray(".celeb-item");
+            gsap.from(sections, {
+                x: 100,
+                opacity: 0,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: celebRef.current,
+                    start: "top 75%",
+                }
+            });
+
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <div ref={containerRef} className="bg-slate-50 min-h-screen text-slate-800 font-sans selection:bg-rose-500 selection:text-white pb-32">
+
+            {/* 1. Hero Section */}
+            <div ref={heroRef} className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+                <div className="hero-bg absolute inset-0 bg-gradient-to-br from-rose-50 to-blue-50 z-0">
+                    {/* Abstract blobs */}
+                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-rose-300/20 rounded-full blur-[120px]" />
+                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-300/20 rounded-full blur-[120px]" />
                 </div>
 
-                {/* Filters */}
-                <div className="flex justify-center flex-wrap gap-3 mb-12">
-                    {categories.map(cat => (
-                        <button
-                            key={cat}
-                            onClick={() => setSelectedCategory(cat)}
-                            className={`px-6 py-2 rounded-full font-medium transition-all duration-300 border ${selectedCategory === cat
-                                ? 'bg-gulf-blue border-gulf-blue text-white shadow-lg scale-105'
-                                : 'bg-white/80 border-transparent text-gray-600 hover:text-gulf-blue hover:bg-white hover:shadow-md backdrop-blur-sm'
-                                }`}
+                <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                    <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
+                        <h1 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700 tracking-tighter mb-6">
+                            GALLERY
+                        </h1>
+                        <p className="text-xl md:text-2xl font-light text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+                            A curated collection of moments that define the Renaissance experience.
+                        </p>
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => window.scrollTo({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
+                            className="bg-slate-900 text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 mx-auto hover:bg-rose-500 transition-colors"
                         >
-                            {cat}
-                        </button>
+                            Explore <ArrowDown size={18} />
+                        </motion.button>
+                    </motion.div>
+                </div>
+            </div>
+
+            {/* 2. Featured Reels (Stories) */}
+            <div className="reels-section max-w-[1920px] mx-auto mb-32 -mt-20 relative z-20 pl-6 md:pl-12">
+                <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6">
+                    {reelAssets.map((item, i) => (
+                        <div key={item.id} className="reel-card snap-center shrink-0">
+                            <div
+                                className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px] rounded-2xl overflow-hidden relative cursor-pointer group shadow-xl border-4 border-white transition-transform hover:-translate-y-2"
+                                onClick={() => setSelectedItem({ ...item, type: 'video' })}
+                            >
+                                <video src={item.src} className="w-full h-full object-cover" muted loop />
+                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full">
+                                    <Play size={16} className="text-white" fill="white" />
+                                </div>
+                                <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                                    <p className="text-white font-bold text-sm leading-tight">{item.title}</p>
+                                </div>
+                            </div>
+                        </div>
                     ))}
                 </div>
-
-                {/* Grid */}
-                <motion.div
-                    layout
-                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6 md:gap-8"
-                >
-                    <AnimatePresence mode='popLayout'>
-                        {filteredItems.map((item) => (
-                            <TiltCard
-                                key={item.id}
-                                item={item}
-                                onClick={() => setSelectedItem(item)}
-                            />
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
-
-                {filteredItems.length === 0 && (
-                    <motion.div
-                        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                        className="text-center py-20 text-gray-500 italic"
-                    >
-                        No items found in this category.
-                    </motion.div>
-                )}
             </div>
 
-            {/* Lightbox Modal */}
+            {/* 3. Campus Life (Grid) */}
+            <div ref={campusRef} className="max-w-7xl mx-auto px-6 mb-32">
+                <SectionHeader title="Campus Life" subtitle="Where we grow" />
+                <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[800px]">
+                    {/* Custom Mosaic */}
+                    <MediaCard item={campusAssets[7]} className="campus-item md:col-span-2 md:row-span-2 min-h-[300px]" onClick={() => setSelectedItem(campusAssets[7])} />
+                    <MediaCard item={campusAssets[0]} className="campus-item min-h-[200px]" onClick={() => setSelectedItem(campusAssets[0])} />
+                    <MediaCard item={campusAssets[1]} className="campus-item min-h-[200px]" onClick={() => setSelectedItem(campusAssets[1])} />
+                    <MediaCard item={campusAssets[2]} className="campus-item md:col-span-2 min-h-[200px]" onClick={() => setSelectedItem(campusAssets[2])} />
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                    {campusAssets.slice(3, 7).map((item) => (
+                        <MediaCard key={item.id} item={item} className="campus-item h-[200px] md:h-[250px]" onClick={() => setSelectedItem(item)} />
+                    ))}
+                </div>
+            </div>
+
+            {/* 4. Celebrations (Horizontal Focus) */}
+            <div ref={celebRef} className="bg-slate-900 py-32 text-slate-100 mb-32 relative overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                    <SectionHeader title="Celebrations" subtitle="Moments of Joy" color="text-white" />
+
+                    <div className="flex flex-wrap md:flex-nowrap gap-6 md:gap-8 justify-center md:overflow-x-visible">
+                        {celebrationAssets.slice(0, 5).map((item, i) => (
+                            <motion.div
+                                className="celeb-item w-full md:w-1/3 xl:w-1/5 aspect-[3/4] rounded-xl overflow-hidden relative cursor-pointer group shadow-2xl shadow-rose-900/20"
+                                whileHover={{ y: -20, rotate: i % 2 === 0 ? 2 : -2 }}
+                                key={item.id}
+                                onClick={() => setSelectedItem(item)}
+                            >
+                                <img src={item.src} className="w-full h-full object-cover" alt={item.title} />
+                                <div className="absolute inset-0 bg-gradient-to-t from-rose-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                                    <h4 className="font-bold text-xl">{item.title}</h4>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-600/20 rounded-full blur-[150px] pointer-events-none" />
+            </div>
+
+            {/* 5. Activities & Community */}
+            <div ref={activityRef} className="max-w-7xl mx-auto px-6 mb-32">
+                <SectionHeader title="Learning & Fun" subtitle="Everyday exploration" />
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {/* Column 1 */}
+                    <div className="space-y-8">
+                        {activityAssets.map(item => (
+                            <MediaCard key={item.id} item={item} className="w-full aspect-square" onClick={() => setSelectedItem(item)} />
+                        ))}
+                    </div>
+                    {/* Column 2 (Offset) */}
+                    <div className="space-y-8 md:pt-20">
+                        {communityAssets.slice(0, 3).map(item => (
+                            <MediaCard key={item.id} item={item} className="w-full aspect-[4/5]" onClick={() => setSelectedItem(item)} />
+                        ))}
+                    </div>
+                    {/* Column 3 */}
+                    <div className="space-y-8">
+                        {communityAssets.slice(3).map(item => (
+                            <MediaCard key={item.id} item={item} className="w-full aspect-video" onClick={() => setSelectedItem(item)} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Lightbox */}
             <AnimatePresence>
                 {selectedItem && (
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 md:p-8 backdrop-blur-md"
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
                         onClick={() => setSelectedItem(null)}
                     >
-                        <button
-                            className="absolute top-6 right-6 text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all z-50 hover:rotate-90 duration-300"
-                            onClick={() => setSelectedItem(null)}
-                        >
-                            <X size={36} />
+                        <button className="absolute top-6 right-6 text-white bg-white/10 p-2 rounded-full hover:bg-white/20">
+                            <X size={32} />
                         </button>
-
                         <div
-                            className="relative w-full max-w-6xl max-h-[90vh] flex flex-col items-center justify-center outline-none"
+                            className="w-full max-w-6xl max-h-[90vh] flex flex-col items-center"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {selectedItem.type === 'video' ? (
-                                <video
-                                    src={selectedItem.src}
-                                    controls
-                                    autoPlay
-                                    className="max-w-full max-h-[80vh] rounded-lg shadow-2xl bg-black"
-                                />
+                                <video src={selectedItem.src} controls autoPlay className="max-w-full max-h-[80vh] rounded-lg shadow-2xl" />
                             ) : (
                                 <motion.img
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    exit={{ scale: 0.9, opacity: 0 }}
-                                    transition={{ type: "spring", bounce: 0.2 }}
+                                    initial={{ scale: 0.9 }} animate={{ scale: 1 }}
                                     src={selectedItem.src}
-                                    alt={selectedItem.title}
-                                    className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
+                                    className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
                                 />
                             )}
-
-                            <div className="mt-6 text-center">
-                                <h3 className="text-white font-heading font-bold text-3xl mb-2">{selectedItem.title}</h3>
-                                <span className={`text-xs uppercase tracking-widest font-bold px-4 py-1.5 rounded-full ${getCategoryColor(selectedItem.category)}`}>
-                                    {selectedItem.category}
-                                </span>
-                            </div>
+                            <h3 className="text-white text-2xl font-bold mt-6">{selectedItem.title}</h3>
                         </div>
-
                     </motion.div>
                 )}
             </AnimatePresence>
-
         </div>
     );
 };
