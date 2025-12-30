@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ArrowRight, Sparkles, Cloud, Quote, Rocket } from 'lucide-react';
+import { ArrowRight, Sparkles, Cloud, Quote, Rocket, Flower2 } from 'lucide-react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -23,6 +23,8 @@ const Home = () => {
     const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [activePetal, setActivePetal] = useState(0);
+    const activePetalRef = useRef(0);
+    const timerRef = useRef(null);
     const containerRef = useRef(null);
 
     // --- LENIS SMOOTH SCROLL SETUP ---
@@ -81,95 +83,94 @@ const Home = () => {
         });
 
         // 2. Seven Petals - Pin & Rotate Logic
-        const cards = gsap.utils.toArray('.petal-card');
-        const totalCards = cards.length;
+        const mm = gsap.matchMedia();
 
-        let tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".petals-section",
-                pin: true,
-                start: "top top",
-                end: "+=3000",
-                scrub: 1.5, // Softer scrub
-                onUpdate: (self) => {
-                    // Calculate active index based on progress
-                    const progress = self.progress;
-                    const index = Math.min(
-                        Math.round(progress * (totalCards - 1)),
-                        totalCards - 1
-                    );
-                    setActivePetal(index);
-                }
-            }
-        });
+        // --- DESKTOP ANIMATIONS (Pinning & Horizontal Scroll) ---
+        mm.add("(min-width: 768px)", () => {
+            // 2. Seven Petals - Pin & Rotate Logic
+            const cards = gsap.utils.toArray('.petal-card');
+            const totalCards = cards.length;
 
-        cards.forEach((card, i) => {
-            // Intro animation
-            tl.to(card, {
-                opacity: 1,
-                scale: 1,
-                y: 0,
-                rotate: 0,
-                zIndex: i + 1, // Ensure distinct stacking
-                duration: 1,
-                ease: "none"
-            }, i * 1.5); // Spaced out timing
-
-            // Exit animation (for all except last)
-            if (i < cards.length - 1) {
-                tl.to(card, {
-                    scale: 0.95,
-                    opacity: 0,
-                    y: -50,
-                    duration: 0.5
-                }, (i + 1) * 1.5); // Overlap slightly
-            }
-        });
-
-
-
-        // 4. Learning Journeys Horizontal Scroll
-        const journeySection = document.querySelector('.journey-section');
-        const journeyContainer = document.querySelector('.journey-container');
-
-        if (journeySection && journeyContainer) {
-
-            // Horizontal Scroll Animation
-            const scrollTween = gsap.to(journeyContainer, {
-                x: () => -(journeyContainer.scrollWidth - window.innerWidth),
-                ease: "none",
+            let tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: journeySection,
+                    trigger: ".petals-section",
                     pin: true,
-                    scrub: 1,
-                    end: () => "+=" + journeyContainer.scrollWidth,
-                    invalidateOnRefresh: true,
+                    start: "top top",
+                    end: "+=3000",
+                    scrub: 1.5,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const index = Math.min(
+                            Math.round(progress * (totalCards - 1)),
+                            totalCards - 1
+                        );
+                        if (index !== activePetalRef.current) {
+                            setActivePetal(index);
+                            activePetalRef.current = index;
+                        }
+                    }
                 }
             });
 
-            // Parallax for images inside cards
-            const cards = gsap.utils.toArray('.journey-card');
             cards.forEach((card, i) => {
-                const img = card.querySelector('.journey-img');
-                if (img) {
-                    gsap.fromTo(img,
-                        { scale: 1.2, x: -50 },
-                        {
-                            scale: 1,
-                            x: 50,
-                            ease: "none",
-                            scrollTrigger: {
-                                trigger: card,
-                                containerAnimation: scrollTween,
-                                start: "left right",
-                                end: "right left",
-                                scrub: true,
-                            }
-                        }
-                    );
+                tl.to(card, {
+                    opacity: 1, scale: 1, y: 0, rotate: 0, zIndex: i + 1, duration: 1, ease: "none"
+                }, i * 1.5);
+
+                if (i < cards.length - 1) {
+                    tl.to(card, { scale: 0.95, opacity: 0, y: -50, duration: 0.5 }, (i + 1) * 1.5);
                 }
             });
-        }
+
+            // Journey Horizontal Scroll
+            const journeySection = document.querySelector('.journey-section');
+            const journeyContainer = document.querySelector('.journey-container');
+
+            if (journeySection && journeyContainer) {
+                const scrollTween = gsap.to(journeyContainer, {
+                    x: () => -(journeyContainer.scrollWidth - window.innerWidth),
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: journeySection,
+                        pin: true,
+                        scrub: 1,
+                        end: () => "+=" + journeyContainer.scrollWidth,
+                        invalidateOnRefresh: true,
+                    }
+                });
+
+                const cards = gsap.utils.toArray('.journey-card');
+                cards.forEach((card, i) => {
+                    const img = card.querySelector('.journey-img');
+                    if (img) {
+                        gsap.fromTo(img,
+                            { scale: 1.2, x: -50 },
+                            {
+                                scale: 1, x: 50, ease: "none",
+                                scrollTrigger: {
+                                    trigger: card,
+                                    containerAnimation: scrollTween,
+                                    start: "left right",
+                                    end: "right left",
+                                    scrub: true,
+                                }
+                            }
+                        );
+                    }
+                });
+            }
+        });
+
+        // --- MOBILE ANIMATIONS (Simple Vertical Stacking) ---
+        mm.add("(max-width: 767px)", () => {
+            const elements = gsap.utils.toArray('.reveal-on-mobile');
+            elements.forEach(el => {
+                gsap.fromTo(el, { y: 50, opacity: 0 }, {
+                    y: 0, opacity: 1, duration: 0.8,
+                    scrollTrigger: { trigger: el, start: "top 85%" }
+                });
+            });
+        });
 
     }, { scope: containerRef });
 
@@ -180,7 +181,7 @@ const Home = () => {
             <div className="bg-grain fixed inset-0 z-[9999] pointer-events-none opacity-[0.03]"></div>
 
             {/* --- HERO SECTION START --- */}
-            <section className="relative w-full h-[110vh] min-h-[700px] flex items-center justify-center overflow-hidden">
+            <section className="relative w-full h-screen md:h-[110vh] min-h-[600px] md:min-h-[700px] flex items-center justify-center overflow-hidden">
                 <motion.div style={{ y: heroY }} className="absolute inset-0 z-0">
                     <AnimatePresence mode="popLayout">
                         <motion.img
@@ -220,7 +221,7 @@ const Home = () => {
                             ✨ Est. 2025 • The Future of Learning
                         </motion.div>
 
-                        <h1 className="text-7xl md:text-[9rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-6 tracking-tighter">
+                        <h1 className="text-5xl sm:text-7xl md:text-[9rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-6 tracking-tighter w-full max-w-[100vw]">
                             RENAISSANCE
                         </h1>
 
@@ -309,7 +310,22 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 3: THE SEVEN PETALS (Enhanced Interaction) --- */}
-            <section className="petals-section h-screen w-full bg-[#F3F0E8] text-gulf-lebanese flex items-center justify-center overflow-hidden relative">
+            <section className="petals-section min-h-screen h-auto md:h-screen w-full bg-[#FAF9F6] text-gulf-lebanese flex items-center justify-center overflow-hidden relative py-20 md:py-0">
+
+                {/* Nice Styling: Animated Background Elements */}
+                <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-luxury-pink/5 rounded-full blur-[100px] mix-blend-multiply animate-pulse"></div>
+                    <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-purple-200/10 rounded-full blur-[80px] mix-blend-multiply"></div>
+
+                    {/* Rotating Flower Watermark */}
+                    <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gulf-lebanese/5 hidden md:block"
+                    >
+                        <Flower2 size={800} strokeWidth={0.5} />
+                    </motion.div>
+                </div>
 
                 {/* Side Navigation for Petals */}
                 <div className="hidden md:flex flex-col gap-6 absolute left-12 top-1/2 -translate-y-1/2 z-20">
@@ -324,12 +340,15 @@ const Home = () => {
                 </div>
 
                 <div className="relative w-full max-w-7xl px-6 h-full flex flex-col justify-center">
-                    <div className="text-center mb-12 relative z-20">
-                        <h2 className="text-6xl md:text-9xl font-heading font-black text-gulf-lebanese/10 absolute top-[-50%] left-1/2 -translate-x-1/2 select-none pointer-events-none whitespace-nowrap">
-                            PHILOSOPHY
-                        </h2>
-                        <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese relative">
-                            The Seven <span className="text-luxury-pink">Petals</span>
+                    {/* Logical Title Separation */}
+                    <div className="text-center mb-16 relative z-20 flex flex-col items-center gap-3">
+                        <div className="flex items-center gap-4 mb-2 opacity-60">
+                            <div className="h-[1px] w-12 bg-gulf-lebanese"></div>
+                            <h3 className="text-sm md:text-base font-bold tracking-[0.4em] uppercase text-gulf-lebanese">Our Philosophy</h3>
+                            <div className="h-[1px] w-12 bg-gulf-lebanese"></div>
+                        </div>
+                        <h2 className="text-5xl md:text-8xl font-heading font-black text-gulf-lebanese relative z-10 drop-shadow-sm">
+                            The Seven <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-500 italic">Petals</span>
                         </h2>
                     </div>
 
@@ -337,10 +356,9 @@ const Home = () => {
                         {PETAL_DATA.map((petal, index) => (
                             <div
                                 key={index}
-                                className={`petal-card absolute w-[90vw] md:w-[800px] h-[50vh] md:h-[500px] ${petal.bg} p-8 md:p-12 rounded-[3rem] shadow-2xl border border-white/50 flex flex-col md:flex-row gap-10 items-center justify-between overflow-hidden`}
+                                className={`reveal-on-mobile petal-card relative md:absolute w-full md:w-[800px] h-auto md:h-[500px] ${petal.bg} p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl md:shadow-2xl border border-white/50 flex flex-col md:flex-row gap-10 items-center justify-between overflow-hidden mb-10 md:mb-0`}
                                 style={{
-                                    transform: 'scale(0.8) translateY(100px)',
-                                    opacity: 0,
+                                    // Inline styles removed for mobile to allow CSS flow, logic handled by GSAP matchMedia on desktop
                                 }}
                             >
                                 {/* Text Content */}
@@ -368,7 +386,7 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 4: PROGRAMS (Horizontal Scroll) --- */}
-            <section className="journey-section h-screen bg-gulf-lebanese text-white overflow-hidden relative flex items-center">
+            <section className="journey-section min-h-screen h-auto md:h-screen bg-gulf-lebanese text-white overflow-hidden relative flex flex-col md:flex-row items-center py-20 md:py-0">
 
                 {/* Background Text/Decor */}
                 <div className="absolute top-10 left-10 z-10">
@@ -378,10 +396,10 @@ const Home = () => {
                 </div>
 
                 {/* Horizontal Container */}
-                <div className="journey-container flex h-[80vh] items-center px-[10vw] gap-[20vw] w-max">
+                <div className="journey-container flex flex-col md:flex-row h-auto md:h-[80vh] items-center px-6 md:px-[10vw] gap-12 md:gap-[20vw] w-full md:w-max">
 
                     {/* Intro Card */}
-                    <div className="journey-card min-w-[30vw] flex flex-col justify-center shrink-0">
+                    <div className="reveal-on-mobile journey-card min-w-[85vw] md:min-w-[30vw] flex flex-col justify-center shrink-0 text-center md:text-left">
                         <h2 className="text-7xl md:text-9xl font-heading font-black leading-none mb-6">
                             GROWING<br />
                             <span className="text-luxury-pink">UP.</span>
@@ -398,7 +416,7 @@ const Home = () => {
                     {PROGRAMS.map((prog, i) => (
                         <div
                             key={i}
-                            className="journey-card relative w-[85vw] md:w-[70vw] h-full flex flex-col md:flex-row shrink-0 bg-white rounded-[4rem] overflow-hidden shadow-2xl"
+                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[70vw] h-auto md:h-full flex flex-col md:flex-row shrink-0 bg-white rounded-[2rem] md:rounded-[4rem] overflow-hidden shadow-2xl"
                         >
                             {/* Content Side */}
                             <div className="md:w-5/12 p-12 md:p-16 flex flex-col justify-between relative z-10 bg-white text-gulf-lebanese">
@@ -447,7 +465,7 @@ const Home = () => {
                     ))}
 
                     {/* End Card */}
-                    <div className="journey-card min-w-[40vw] flex flex-col justify-center items-center text-center shrink-0 pr-20">
+                    <div className="reveal-on-mobile journey-card min-w-[85vw] md:min-w-[40vw] flex flex-col justify-center items-center text-center shrink-0 pr-0 md:pr-20 pb-20 md:pb-0">
                         <h3 className="text-6xl font-heading font-black mb-8">
                             Ready to<br />Start?
                         </h3>
