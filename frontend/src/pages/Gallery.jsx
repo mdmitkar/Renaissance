@@ -1,62 +1,128 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
-import { X, PlayCircle } from 'lucide-react';
+import { X, PlayCircle, Play } from 'lucide-react';
+
+// Comprehensive asset list
+// ... (rest of imports basically)
+
+// ... (skipping down to ReelCard)
+
+const ReelCard = ({ item, onClick }) => {
+    const videoRef = useRef(null);
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <motion.div
+            whileHover={{ scale: 1.05, rotate: -1 }}
+            className="flex-shrink-0 w-48 md:w-56 h-80 md:h-96 rounded-3xl overflow-hidden relative cursor-pointer shadow-xl border-[6px] border-white snap-center group"
+            onClick={onClick}
+            onMouseEnter={() => {
+                setIsHovered(true);
+                videoRef.current?.play();
+            }}
+            onMouseLeave={() => {
+                setIsHovered(false);
+                if (videoRef.current) {
+                    videoRef.current.pause();
+                    videoRef.current.currentTime = 0;
+                }
+            }}
+        >
+            {/* Video Layer */}
+            <video
+                ref={videoRef}
+                src={item.src}
+                className="w-full h-full object-cover transform scale-105"
+                muted
+                loop
+                playsInline
+            />
+
+            {/* Overlay Gradient for nicer text readability when video is playing */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+            {/* Solid Cover Layer with Animation */}
+            <motion.div
+                initial={{ y: 0 }}
+                animate={{ y: isHovered ? '-100%' : '0%' }}
+                transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }} // smooth cubic-bezier
+                className={`absolute inset-0 z-20 flex flex-col items-center justify-center p-6 text-center ${item.color}`}
+            >
+                <div className="bg-white/30 p-4 rounded-full backdrop-blur-md mb-4 shadow-sm ring-1 ring-white/50">
+                    <Play fill="currentColor" size={32} className="opacity-90" />
+                </div>
+                <h3 className="font-heading font-bold text-2xl leading-tight drop-shadow-sm">{item.title}</h3>
+                <span className="mt-2 text-xs font-bold uppercase tracking-widest opacity-80 border border-current px-2 py-1 rounded-full">Reel</span>
+            </motion.div>
+        </motion.div>
+    );
+};
 
 // Comprehensive asset list
 // Comprehensive asset list
 const allImages = [
     // --- Videos ---
     { id: 'v1', src: '/videos/schooltour.mp4', category: 'Campus', title: 'Virtual School Tour', type: 'video' },
-    { id: 'v2', src: '/SportsDay/SportsDay_1.mp4', category: 'Sports', title: 'Sports Day Highlights', type: 'video' },
-    { id: 'v3', src: '/SportsDay/SportsDay_2.mp4', category: 'Sports', title: 'Winning Moments', type: 'video' },
-    { id: 'v4', src: '/videos/Testimonial_1.mp4', category: 'Community', title: 'Parent Experience', type: 'video' },
-    { id: 'v5', src: '/videos/Testimonial_2.mp4', category: 'Community', title: 'Happy Parents', type: 'video' },
-    { id: 'v6', src: '/videos/Testimonial_3.mp4', category: 'Community', title: 'Community Love', type: 'video' },
+    { id: 'v2', src: '/SportsDay/SportsDay_1.mp4', category: 'Sports', title: 'Sports Day Excitement', type: 'video' },
+    { id: 'v3', src: '/SportsDay/SportsDay_2.mp4', category: 'Sports', title: 'Champions on Track', type: 'video' },
+    { id: 'v4', src: '/videos/Testimonial_1.mp4', category: 'Community', title: 'Parent Testimonial: Trust & Care', type: 'video' },
+    { id: 'v5', src: '/videos/Testimonial_2.mp4', category: 'Community', title: 'Parent Testimonial: Growth', type: 'video' },
+    { id: 'v6', src: '/videos/Testimonial_3.mp4', category: 'Community', title: 'Parent Testimonial: Community', type: 'video' },
 
     // --- Campus (SchoolPremises) ---
-    { id: 'c1', src: '/SchoolPremises/SchoolPremises_1.jpeg', category: 'Campus', title: 'Our Beautiful Campus', type: 'image' },
-    { id: 'c2', src: '/SchoolPremises/classplay.jpeg', category: 'Campus', title: 'Role Play Area', type: 'image' },
-    { id: 'c3', src: '/SchoolPremises/classroom1.jpeg', category: 'Campus', title: 'Modern Classroom', type: 'image' },
-    { id: 'c4', src: '/SchoolPremises/classroom2.jpeg', category: 'Campus', title: 'Learning Environment', type: 'image' },
-    { id: 'c5', src: '/SchoolPremises/classroom3.png', category: 'Campus', title: 'Interactive Space', type: 'image' },
-    { id: 'c6', src: '/SchoolPremises/playground1.jpeg', category: 'Campus', title: 'Playground Fun', type: 'image' },
-    { id: 'c7', src: '/SchoolPremises/playground2.jpeg', category: 'Campus', title: 'Outdoor Activities', type: 'image' },
-    { id: 'c8', src: '/SchoolPremises/playground3.png', category: 'Campus', title: 'Safe Play Area', type: 'image' },
-    { id: 'c9', src: '/SchoolPremises/schoolbuilding.avif', category: 'Campus', title: 'School Building', type: 'image' },
+    { id: 'c1', src: '/SchoolPremises/SchoolPremises_1.jpeg', category: 'Campus', title: 'Welcoming Entrance', type: 'image' },
+    { id: 'c2', src: '/SchoolPremises/classplay.jpeg', category: 'Campus', title: 'Imaginative Play Area', type: 'image' },
+    { id: 'c3', src: '/SchoolPremises/classroom1.jpeg', category: 'Campus', title: 'Modern Learning Spaces', type: 'image' },
+    { id: 'c4', src: '/SchoolPremises/classroom2.jpeg', category: 'Campus', title: 'Collaborative Classrooms', type: 'image' },
+    { id: 'c5', src: '/SchoolPremises/classroom3.png', category: 'Campus', title: 'Interactive Learning', type: 'image' },
+    { id: 'c6', src: '/SchoolPremises/playground1.jpeg', category: 'Campus', title: 'Adventure Playground', type: 'image' },
+    { id: 'c7', src: '/SchoolPremises/playground2.jpeg', category: 'Campus', title: 'Outdoor Fun Zone', type: 'image' },
+    { id: 'c8', src: '/SchoolPremises/playground3.png', category: 'Campus', title: 'Safe & Active Play', type: 'image' },
+    { id: 'c9', src: '/SchoolPremises/schoolbuilding.avif', category: 'Campus', title: 'Our Iconic Building', type: 'image' },
 
     // --- Activities ---
-    { id: 'a1', src: '/Activities/0.1.jpeg', category: 'Activities', title: 'Creative Arts', type: 'image' },
-    { id: 'a2', src: '/Activities/Activities_1.jpeg', category: 'Activities', title: 'Engaging Lessons', type: 'image' },
-    { id: 'a3', src: '/Activities/Activities_4.jpeg', category: 'Activities', title: 'Group Collaboration', type: 'image' },
-    { id: 'a4', src: '/Activities/motor.jpeg', category: 'Activities', title: 'Motor Skills', type: 'image' },
-    { id: 'a5', src: '/otherimp/Activities_3.jpeg', category: 'Activities', title: 'Hands-on Learning', type: 'image' },
+    { id: 'a1', src: '/Activities/0.1.jpeg', category: 'Activities', title: 'Creative Arts & Crafts', type: 'image' },
+    { id: 'a2', src: '/Activities/Activities_1.jpeg', category: 'Activities', title: 'Hands-on Science', type: 'image' },
+    { id: 'a3', src: '/Activities/Activities_4.jpeg', category: 'Activities', title: 'Team Building Games', type: 'image' },
+    { id: 'a4', src: '/Activities/motor.jpeg', category: 'Activities', title: 'Motor Skills Development', type: 'image' },
+    { id: 'a5', src: '/otherimp/Activities_3.jpeg', category: 'Activities', title: 'Experiential Learning', type: 'image' },
 
     // --- Celebrations (ChildrensDay, IndependenceDay, RedDay) ---
-    { id: 'cel1', src: '/ChildrensDay/ChildrenDay_2.jpeg', category: 'Celebrations', title: 'Children\'s Day Joy', type: 'image' },
-    { id: 'cel2', src: '/ChildrensDay/ChildrensDay_1.jpeg', category: 'Celebrations', title: 'Celebrating Childhood', type: 'image' },
-    { id: 'cel3', src: '/otherimp/ChildrensDay_2.jpeg', category: 'Celebrations', title: 'Smiles & Laughter', type: 'image' },
-    { id: 'cel4', src: '/IndependenceDay/IndependenceDay_1.jpeg', category: 'Celebrations', title: 'Independence Day', type: 'image' },
-    { id: 'cel5', src: '/IndependenceDay/IndependenceDay_2.jpeg', category: 'Celebrations', title: 'Flag Hoisting', type: 'image' },
-    { id: 'cel6', src: '/IndependenceDay/IndependenceDay_4.jpeg', category: 'Celebrations', title: 'Patriotic Spirit', type: 'image' },
-    { id: 'cel7', src: '/otherimp/IndependenceDay_3.jpeg', category: 'Celebrations', title: 'Proud Moments', type: 'image' },
-    { id: 'cel8', src: '/RedDay/REDDAY6.png', category: 'Celebrations', title: 'Red Day Celebration', type: 'image' },
-    { id: 'cel9', src: '/RedDay/RedDay_1.jpeg', category: 'Celebrations', title: 'Shades of Red', type: 'image' },
-    { id: 'cel10', src: '/RedDay/redday5.jpeg', category: 'Celebrations', title: 'Colorful Memories', type: 'image' },
-    { id: 'cel11', src: '/Activities/RedDay_3.jpeg', category: 'Celebrations', title: 'Red Day Fun', type: 'image' },
+    { id: 'cel1', src: '/ChildrensDay/ChildrenDay_2.jpeg', category: 'Celebrations', title: 'Smiles on Children\'s Day', type: 'image' },
+    { id: 'cel2', src: '/ChildrensDay/ChildrensDay_1.jpeg', category: 'Celebrations', title: 'Joy of Childhood', type: 'image' },
+    { id: 'cel3', src: '/otherimp/ChildrensDay_2.jpeg', category: 'Celebrations', title: 'Pure Happiness', type: 'image' },
+    { id: 'cel4', src: '/IndependenceDay/IndependenceDay_1.jpeg', category: 'Celebrations', title: 'Independence Day Parade', type: 'image' },
+    { id: 'cel5', src: '/IndependenceDay/IndependenceDay_2.jpeg', category: 'Celebrations', title: 'Flag Hoisting Ceremony', type: 'image' },
+    { id: 'cel6', src: '/IndependenceDay/IndependenceDay_4.jpeg', category: 'Celebrations', title: 'Salute to the Nation', type: 'image' },
+    { id: 'cel7', src: '/otherimp/IndependenceDay_3.jpeg', category: 'Celebrations', title: 'Little Patriots', type: 'image' },
+    { id: 'cel8', src: '/RedDay/REDDAY6.png', category: 'Celebrations', title: 'Red Day Festivities', type: 'image' },
+    { id: 'cel9', src: '/RedDay/RedDay_1.jpeg', category: 'Celebrations', title: 'Learning the Color Red', type: 'image' },
+    { id: 'cel10', src: '/RedDay/redday5.jpeg', category: 'Celebrations', title: 'Red Day Art', type: 'image' },
+    { id: 'cel11', src: '/Activities/RedDay_3.jpeg', category: 'Celebrations', title: 'Red Balloons & Fun', type: 'image' },
 
     // --- Sports ---
-    { id: 's1', src: '/SportsDay/sportdaymedal.jpeg', category: 'Sports', title: 'Medal Ceremony', type: 'image' },
-    { id: 's2', src: '/SportsDay/sportsday1.jpeg', category: 'Sports', title: 'Little Athletes', type: 'image' },
+    { id: 's1', src: '/SportsDay/sportdaymedal.jpeg', category: 'Sports', title: 'Medal of Honor', type: 'image' },
+    { id: 's2', src: '/SportsDay/sportsday1.jpeg', category: 'Sports', title: 'Ready, Set, Go!', type: 'image' },
 
     // --- Community (PTM, Awards, etc) ---
 
-    { id: 'com2', src: '/Activities/PTM_1.jpeg', category: 'Community', title: 'Parent Interaction', type: 'image' },
-    { id: 'com3', src: '/Activities/PTM_4.jpeg', category: 'Community', title: 'Updates & Discussions', type: 'image' },
-    { id: 'com4', src: '/PTM/PTM_3.jpeg', category: 'Community', title: 'Building Connections', type: 'image' },
-    { id: 'com5', src: '/PTM/PTM_5.jpeg', category: 'Community', title: 'Community Support', type: 'image' },
-    { id: 'com6', src: '/PTM/ptm6.jpeg', category: 'Community', title: 'Engaged Parents', type: 'image' },
-    { id: 'com7', src: '/otherimp/Awards_2.jpeg', category: 'Community', title: 'Awards & Recognition', type: 'image' },
-    { id: 'com8', src: '/otherimp/a.jpeg', category: 'Community', title: 'Special Moments', type: 'image' },
+    { id: 'com2', src: '/Activities/PTM_1.jpeg', category: 'Community', title: 'Parent-Teacher Dialogue', type: 'image' },
+    { id: 'com3', src: '/Activities/PTM_4.jpeg', category: 'Community', title: 'Sharing Progress', type: 'image' },
+    { id: 'com4', src: '/PTM/PTM_3.jpeg', category: 'Community', title: 'Building Partnerships', type: 'image' },
+    { id: 'com5', src: '/PTM/PTM_5.jpeg', category: 'Community', title: 'Community Gathering', type: 'image' },
+    { id: 'com6', src: '/PTM/ptm6.jpeg', category: 'Community', title: 'Engaged Together', type: 'image' },
+    { id: 'com7', src: '/otherimp/Awards_2.jpeg', category: 'Community', title: 'Excellence Awards', type: 'image' },
+    { id: 'com8', src: '/otherimp/a.jpeg', category: 'Community', title: 'Cherished Moments', type: 'image' },
+];
+
+const reelImages = [
+    { id: 'r1', src: '/videos/Independence Day reel.mp4', title: 'Independence Day Bash', color: 'bg-primary-carmine' },
+    { id: 'r2', src: '/videos/psycomotorskullreels.mp4', title: 'Building Motor Skills', color: 'bg-gulf-blue' },
+    { id: 'r3', src: '/videos/reddayreel.mp4', title: 'Red Day Celebration', color: 'bg-primary-carmine' },
+    { id: 'r4', src: '/videos/renaisanecefiestareel.mp4', title: 'The Renaissance Fiesta', color: 'bg-gentle-yellow text-gulf-lebanese' },
+    { id: 'r5', src: '/videos/schooltourreel.mp4', title: 'Mini Campus Tour', color: 'bg-gulf-blue' },
+    { id: 'r6', src: '/videos/sportsdayreel.mp4', title: 'Sports Day Action', color: 'bg-desert-coral' },
+    { id: 'r7', src: '/videos/testimonial_4.mp4', title: 'Parent Love & Trust', color: 'bg-charming-green' },
 ];
 
 const categories = ['All', 'Campus', 'Activities', 'Celebrations', 'Sports', 'Community'];
@@ -162,6 +228,8 @@ const TiltCard = ({ item, onClick }) => {
     );
 };
 
+
+
 const Gallery = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [selectedItem, setSelectedItem] = useState(null);
@@ -204,6 +272,26 @@ const Gallery = () => {
             </div>
 
             <div className="max-w-[1600px] mx-auto px-4 md:px-8 pb-20 relative z-10">
+
+                {/* Highlights / Reels Section */}
+                <div className="mb-16">
+                    <div className="flex items-center gap-3 mb-6 px-2">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-primary-carmine to-primary-gold flex items-center justify-center text-white shadow-lg">
+                            <PlayCircle size={20} fill="currentColor" />
+                        </div>
+                        <h2 className="text-3xl md:text-4xl font-heading font-bold text-gulf-dark">Highlights</h2>
+                    </div>
+
+                    <div className="flex overflow-x-auto pb-8 gap-6 no-scrollbar snap-x px-4 -mx-4 md:mx-0">
+                        {reelImages.map((reel) => (
+                            <ReelCard
+                                key={reel.id}
+                                item={reel}
+                                onClick={() => setSelectedItem({ ...reel, type: 'video', category: 'Highlights' })} // Adapt for modal
+                            />
+                        ))}
+                    </div>
+                </div>
 
                 {/* Filters */}
                 <div className="flex justify-center flex-wrap gap-3 mb-12">
