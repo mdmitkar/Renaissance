@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ArrowRight, Sparkles, Cloud, Quote, Rocket, Flower2 } from 'lucide-react';
+import { ArrowRight, Sparkles, Cloud, Quote, Rocket, Flower2, Star } from 'lucide-react';
+import { googleReviews } from '../data/reviews';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -419,22 +420,22 @@ const Home = () => {
                     {PROGRAMS.map((prog, i) => (
                         <div
                             key={i}
-                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[70vw] h-auto md:h-full flex flex-col md:flex-row shrink-0 bg-white rounded-[2rem] md:rounded-[4rem] overflow-hidden shadow-2xl"
+                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[60vw] h-auto md:h-[70vh] flex flex-col md:flex-row shrink-0 bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl"
                         >
                             {/* Content Side */}
-                            <div className="md:w-5/12 p-12 md:p-16 flex flex-col justify-between relative z-10 bg-white text-gulf-lebanese">
+                            <div className="md:w-5/12 p-8 md:p-10 flex flex-col justify-between relative z-10 bg-white text-gulf-lebanese">
                                 <div>
-                                    <div className="flex items-center gap-4 mb-8">
-                                        <span className="px-4 py-2 rounded-full border border-gulf-lebanese/20 text-sm font-bold uppercase tracking-wider">
+                                    <div className="flex items-center gap-4 mb-6">
+                                        <span className="px-3 py-1 rounded-full border border-gulf-lebanese/20 text-xs font-bold uppercase tracking-wider">
                                             {prog.age}
                                         </span>
                                         <div className="h-[1px] flex-grow bg-gulf-lebanese/10"></div>
                                     </div>
 
-                                    <h3 className="text-5xl md:text-7xl font-black mb-6 leading-[0.9]">
+                                    <h3 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
                                         {prog.title}
                                     </h3>
-                                    <p className="text-xl text-gray-500 font-medium leading-relaxed">
+                                    <p className="text-base text-gray-500 font-medium leading-relaxed">
                                         {prog.desc}
                                     </p>
                                 </div>
@@ -493,24 +494,32 @@ const Home = () => {
                 {/* Marquee */}
                 <div className="relative flex whitespace-nowrap overflow-hidden py-10 group">
                     <motion.div
-                        animate={{ x: [0, -1000] }}
-                        transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+                        animate={{ x: [0, -2000] }}
+                        transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
                         className="flex gap-8 px-4 group-hover:[animation-play-state:paused]"
                     >
-                        {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-                            <div key={i} className="w-[450px] bg-bg-cream p-10 rounded-[2rem] flex-shrink-0 whitespace-normal hover:bg-gulf-lebanese hover:text-white transition-colors duration-500 cursor-default border border-gray-100">
-                                <Quote className="text-5xl text-gray-300 opacity-50 mb-6" />
-                                <p className="text-xl font-medium leading-relaxed mb-8">
-                                    "{t.text}"
-                                </p>
-                                <div className="flex items-center gap-4">
-                                    <div className="w-14 h-14 bg-gradient-to-br from-luxury-pink to-purple-500 rounded-full flex items-center justify-center text-xl text-white font-bold shadow-lg">
+                        {/* Repeat reviews to create seamless loop */}
+                        {[...googleReviews.filter(r => r.review.length > 5), ...googleReviews.filter(r => r.review.length > 5)].map((t, i) => (
+                            <div key={i} className="w-[400px] md:w-[500px] bg-bg-cream p-8 md:p-10 rounded-[2rem] flex-shrink-0 whitespace-normal hover:bg-gulf-lebanese hover:text-white transition-colors duration-500 cursor-default border border-gray-100 flex flex-col justify-between shadow-lg hover:shadow-2xl">
+                                <div>
+                                    <div className="flex gap-1 mb-6">
+                                        {[...Array(5)].map((_, idx) => (
+                                            <Star key={idx} size={20} className="fill-yellow-400 text-yellow-400" />
+                                        ))}
+                                    </div>
+                                    <p className="text-lg md:text-xl font-medium leading-relaxed mb-8 line-clamp-4">
+                                        "{t.review}"
+                                    </p>
+                                </div>
+                                <div className="flex items-center gap-4 mt-auto">
+                                    <div className="w-14 h-14 bg-gradient-to-br from-luxury-pink to-purple-500 rounded-full flex items-center justify-center text-2xl text-white font-bold shadow-md uppercase">
                                         {t.name[0]}
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-lg">{t.name}</h4>
-                                        <span className="text-sm opacity-60">Renaissance Parent</span>
+                                        <span className="text-xs opacity-60 uppercase tracking-widest font-bold">Verified Parent</span>
                                     </div>
+                                    <Quote className="ml-auto text-4xl opacity-20" />
                                 </div>
                             </div>
                         ))}
@@ -625,11 +634,6 @@ const PROGRAMS = [
     }
 ];
 
-const TESTIMONIALS = [
-    { name: "Sana Shaikh", text: "My child refuses to come home! That says everything about how much they love it here." },
-    { name: "Rajesh Verma", text: "The best decision we made. The facilities and teachers are world-class." },
-    { name: "Anita D'Souza", text: "Professional, clean, and full of love. Highly recommended for every parent." },
-    { name: "Michael R.", text: "A truly magical place where learning feels like playing." }
-];
+
 
 export default Home;
