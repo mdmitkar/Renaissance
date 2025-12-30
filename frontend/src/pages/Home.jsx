@@ -419,22 +419,22 @@ const Home = () => {
                     {PROGRAMS.map((prog, i) => (
                         <div
                             key={i}
-                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[70vw] h-auto md:h-full flex flex-col md:flex-row shrink-0 bg-white rounded-[2rem] md:rounded-[4rem] overflow-hidden shadow-2xl"
+                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[60vw] h-auto md:h-[70vh] flex flex-col md:flex-row shrink-0 bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl"
                         >
                             {/* Content Side */}
-                            <div className="md:w-5/12 p-12 md:p-16 flex flex-col justify-between relative z-10 bg-white text-gulf-lebanese">
+                            <div className="md:w-5/12 p-8 md:p-10 flex flex-col justify-between relative z-10 bg-white text-gulf-lebanese">
                                 <div>
-                                    <div className="flex items-center gap-4 mb-8">
-                                        <span className="px-4 py-2 rounded-full border border-gulf-lebanese/20 text-sm font-bold uppercase tracking-wider">
+                                    <div className="flex items-center gap-4 mb-6">
+                                        <span className="px-3 py-1 rounded-full border border-gulf-lebanese/20 text-xs font-bold uppercase tracking-wider">
                                             {prog.age}
                                         </span>
                                         <div className="h-[1px] flex-grow bg-gulf-lebanese/10"></div>
                                     </div>
 
-                                    <h3 className="text-5xl md:text-7xl font-black mb-6 leading-[0.9]">
+                                    <h3 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
                                         {prog.title}
                                     </h3>
-                                    <p className="text-xl text-gray-500 font-medium leading-relaxed">
+                                    <p className="text-base text-gray-500 font-medium leading-relaxed">
                                         {prog.desc}
                                     </p>
                                 </div>
