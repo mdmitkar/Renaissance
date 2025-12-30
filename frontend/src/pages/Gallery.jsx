@@ -204,21 +204,20 @@ const Gallery = () => {
                 const windowWidth = window.innerWidth;
                 const xTo = -1 * (scrollWidth - windowWidth);
 
-                // Only enable pinning on larger screens where horizontal scroll makes sense
-                if (windowWidth > 768) {
-                    gsap.to(trackRef.current, {
-                        x: xTo,
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: learningRef.current,
-                            start: "center center",
-                            end: () => "+=" + scrollWidth,
-                            pin: true,
-                            scrub: 1,
-                            anticipatePin: 1,
-                        }
-                    });
-                }
+                // Enable pinning on all devices including mobile
+                gsap.to(trackRef.current, {
+                    x: xTo,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: learningRef.current,
+                        start: "center center",
+                        end: () => "+=" + (scrollWidth - windowWidth), // Use exact travel distance
+                        pin: true,
+                        scrub: 1,
+                        anticipatePin: 1,
+                        invalidateOnRefresh: true, // Handle resize better
+                    }
+                });
             }
 
         }, containerRef);
@@ -266,11 +265,14 @@ const Gallery = () => {
             {/* 2. Featured Reels (Stories) */}
             {/* 2. Featured Reels (Stories) */}
             <div className="reels-section max-w-[1920px] mx-auto mb-32 mt-10 relative z-20 pl-6 md:pl-12">
-                <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6">
+                <div className="max-w-7xl mb-1 pr-6">
+                    <SectionHeader title="Highlights" subtitle="Stories in Motion" />
+                </div>
+                <div className="pt-3 flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6">
                     {reelAssets.map((item, i) => (
                         <div key={item.id} className="reel-card snap-center shrink-0">
                             <div
-                                className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px] rounded-2xl overflow-hidden relative cursor-pointer group shadow-xl border-4 border-white transition-transform hover:-translate-y-2"
+                                className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px] rounded-2xl overflow-hidden relative cursor-pointer group shadow-xl border-4 border-black transition-transform hover:-translate-y-2"
                                 onClick={() => setSelectedItem({ ...item, type: 'video' })}
                             >
                                 <video src={item.src} className="w-full h-full object-cover" muted loop />
@@ -330,11 +332,11 @@ const Gallery = () => {
 
             {/* 5. Learning & Fun (Side-Scroll Pin) */}
             <div ref={learningRef} className="py-20 md:py-0 md:h-[100vh] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-white to-slate-100 relative mb-20 section-learning">
-                <div className="max-w-7xl mx-auto w-full px-6 absolute top-20 md:top-auto md:relative md:mb-12 z-10 pointer-events-none">
+                <div className="max-w-7xl mx-auto w-full px-6 relative mb-8 md:mb-12 z-10 pointer-events-none">
                     <SectionHeader title="Learning & Fun" subtitle="Everyday Adventure" className="!mb-0" />
                 </div>
 
-                <div ref={trackRef} className="flex gap-8 md:gap-12 px-6 md:px-20 mt-12 md:mt-0 overflow-x-auto md:overflow-visible no-scrollbar w-full md:w-max">
+                <div ref={trackRef} className="flex gap-8 md:gap-12 px-6 md:px-20 mt-12 md:mt-0 overflow-visible no-scrollbar w-max">
                     {mergedLearningAssets.map((item, index) => (
                         <div
                             key={item.id}
