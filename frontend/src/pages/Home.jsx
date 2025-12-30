@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ArrowRight, Sparkles, Cloud, Quote, Rocket, Flower2 } from 'lucide-react';
+import { ArrowRight, Sparkles, Cloud, Quote, Rocket, Flower2, Star } from 'lucide-react';
+import { googleReviews } from '../data/reviews';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -493,24 +494,32 @@ const Home = () => {
                 {/* Marquee */}
                 <div className="relative flex whitespace-nowrap overflow-hidden py-10 group">
                     <motion.div
-                        animate={{ x: [0, -1000] }}
-                        transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+                        animate={{ x: [0, -2000] }}
+                        transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
                         className="flex gap-8 px-4 group-hover:[animation-play-state:paused]"
                     >
-                        {[...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
-                            <div key={i} className="w-[450px] bg-bg-cream p-10 rounded-[2rem] flex-shrink-0 whitespace-normal hover:bg-gulf-lebanese hover:text-white transition-colors duration-500 cursor-default border border-gray-100">
-                                <Quote className="text-5xl text-gray-300 opacity-50 mb-6" />
-                                <p className="text-xl font-medium leading-relaxed mb-8">
-                                    "{t.text}"
-                                </p>
-                                <div className="flex items-center gap-4">
-                                    <div className="w-14 h-14 bg-gradient-to-br from-luxury-pink to-purple-500 rounded-full flex items-center justify-center text-xl text-white font-bold shadow-lg">
+                        {/* Repeat reviews to create seamless loop */}
+                        {[...googleReviews.filter(r => r.review.length > 5), ...googleReviews.filter(r => r.review.length > 5)].map((t, i) => (
+                            <div key={i} className="w-[400px] md:w-[500px] bg-bg-cream p-8 md:p-10 rounded-[2rem] flex-shrink-0 whitespace-normal hover:bg-gulf-lebanese hover:text-white transition-colors duration-500 cursor-default border border-gray-100 flex flex-col justify-between shadow-lg hover:shadow-2xl">
+                                <div>
+                                    <div className="flex gap-1 mb-6">
+                                        {[...Array(5)].map((_, idx) => (
+                                            <Star key={idx} size={20} className="fill-yellow-400 text-yellow-400" />
+                                        ))}
+                                    </div>
+                                    <p className="text-lg md:text-xl font-medium leading-relaxed mb-8 line-clamp-4">
+                                        "{t.review}"
+                                    </p>
+                                </div>
+                                <div className="flex items-center gap-4 mt-auto">
+                                    <div className="w-14 h-14 bg-gradient-to-br from-luxury-pink to-purple-500 rounded-full flex items-center justify-center text-2xl text-white font-bold shadow-md uppercase">
                                         {t.name[0]}
                                     </div>
                                     <div>
                                         <h4 className="font-bold text-lg">{t.name}</h4>
-                                        <span className="text-sm opacity-60">Renaissance Parent</span>
+                                        <span className="text-xs opacity-60 uppercase tracking-widest font-bold">Verified Parent</span>
                                     </div>
+                                    <Quote className="ml-auto text-4xl opacity-20" />
                                 </div>
                             </div>
                         ))}
@@ -625,11 +634,6 @@ const PROGRAMS = [
     }
 ];
 
-const TESTIMONIALS = [
-    { name: "Sana Shaikh", text: "My child refuses to come home! That says everything about how much they love it here." },
-    { name: "Rajesh Verma", text: "The best decision we made. The facilities and teachers are world-class." },
-    { name: "Anita D'Souza", text: "Professional, clean, and full of love. Highly recommended for every parent." },
-    { name: "Michael R.", text: "A truly magical place where learning feels like playing." }
-];
+
 
 export default Home;
