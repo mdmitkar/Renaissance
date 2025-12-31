@@ -54,7 +54,7 @@ const Home = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-        }, 4000); // Slower for more impact
+        }, 6000); // 6s for better readability
         return () => clearInterval(timer);
     }, []);
 
@@ -72,8 +72,8 @@ const Home = () => {
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 1.5,
-                    ease: "power3.out",
+                    duration: 1.2,
+                    ease: "power2.out",
                     scrollTrigger: {
                         trigger: el,
                         start: "top 90%",
@@ -231,7 +231,7 @@ const Home = () => {
                             ✨ Est. 2025 • The Future of Learning
                         </motion.div>
 
-                        <h1 className="text-5xl sm:text-7xl md:text-[9rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-6 tracking-tighter w-full max-w-[100vw]">
+                        <h1 className="text-6xl sm:text-8xl md:text-[8rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-8 tracking-tighter w-full max-w-[100vw]">
                             RENAISSANCE
                         </h1>
 
@@ -279,39 +279,77 @@ const Home = () => {
 
 
             {/* --- SECTION 2: PHILOSOPHY --- */}
-            <section className="relative py-40 px-6 bg-[#F9F7F2]">
+            <section className="relative py-24 md:py-32 px-6 bg-[#F9F7F2]">
                 <div className="max-w-7xl mx-auto">
-                    <div className="reveal-text text-xl font-bold text-gulf-blue mb-8 uppercase tracking-[0.2em]">
-                        Welcome to the Future
+                    {/* Header + Image Row */}
+                    <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+                        {/* Left: Text */}
+                        <div>
+                            <div className="reveal-text text-xl font-bold text-gulf-blue mb-8 uppercase tracking-[0.2em]">
+                                Welcome to the Future
+                            </div>
+                            <h2 className="reveal-text text-4xl md:text-6xl font-heading font-black text-gulf-lebanese leading-tight">
+                                WE BUILD <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink via-purple-400 to-indigo-500 animate-gradient-x">
+                                    BRIGHT MINDS
+                                </span> <br />
+                                FOR TOMORROW.
+                            </h2>
+                        </div>
+
+                        {/* Right: Image */}
+                        <div className="reveal-text relative hidden md:block">
+                            <div className="absolute inset-0 bg-luxury-pink/10 rounded-[2.5rem] rotate-3 transform scale-105 z-0"></div>
+                            <img
+                                src="/SchoolPremises/classroom1.jpeg"
+                                alt="Modern Classroom"
+                                className="relative z-10 w-full h-[400px] object-cover rounded-[2.5rem] shadow-2xl rotate-[-2deg] hover:rotate-0 transition-transform duration-500"
+                            />
+                        </div>
                     </div>
-                    <h2 className="reveal-text text-4xl md:text-7xl font-heading font-black text-gulf-lebanese leading-[0.9] mb-20">
-                        WE BUILD <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink via-purple-400 to-indigo-500 animate-gradient-x">
-                            BRIGHT MINDS
-                        </span> <br />
-                        FOR TOMORROW.
-                    </h2>
 
                     <div className="grid md:grid-cols-2 gap-20 items-center">
                         <div className="reveal-text">
-                            <p className="text-2xl text-gray-600 leading-relaxed font-medium">
+                            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium">
                                 Imagine a place where every corner sparks <span className="text-luxury-pink font-semibold">curiosity</span>.
                                 At Renaissance, we don't just teach foundations; we inspire lifelong dreamers.
                                 A modern sanctuary for little explorers.
                             </p>
                         </div>
-                        <div className="reveal-text grid grid-cols-2 gap-6">
-                            {/* Feature Cards */}
+                        <div className="reveal-text grid grid-cols-2 gap-6 w-full">
+                            {/* Feature Cards with Hover Animation */}
                             {[
-                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit" },
-                                { icon: "🛡️", title: "Safety First", desc: "Top-tier Security" },
-                                { icon: "🎨", title: "Creative Arts", desc: "Express Freely" },
-                                { icon: "🤝", title: "Community", desc: "Stronger Together" }
+                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit", img: "/assets/cards/holistic_growth.png" },
+                                { icon: "🛡️", title: "Safety First", desc: "Top-tier Security", img: "/assets/cards/safety_first.png" },
+                                { icon: "🎨", title: "Creative Arts", desc: "Express Freely", img: "/assets/cards/creative_arts.png" },
+                                { icon: "🤝", title: "Community", desc: "Stronger Together", img: "/assets/cards/community.png" }
                             ].map((item, idx) => (
-                                <div key={idx} className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                                    <span className="text-4xl block mb-4">{item.icon}</span>
-                                    <h3 className="text-lg font-bold text-gulf-lebanese">{item.title}</h3>
-                                    <p className="text-sm text-gray-400 mt-1">{item.desc}</p>
+                                <div key={idx} className="group relative overflow-hidden rounded-[2rem] h-[350px] shadow-sm hover:shadow-xl cursor-default border border-gray-100 transition-shadow duration-300">
+                                    {/* 1. Background Image */}
+                                    <img
+                                        src={item.img}
+                                        alt={item.title}
+                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+
+                                    {/* 2. Slide-up Content Overlay */}
+                                    {/* Initial: Translated DOWN (off-screen or minimal visibility). Hover: Slides UP to cover. */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-8 translate-y-[60%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+
+                                        {/* Visible Part (Icon + Title) */}
+                                        <div className="mb-2">
+                                            <span className="text-4xl mb-3 block filter drop-shadow-md">{item.icon}</span>
+                                            <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-md leading-tight">{item.title}</h3>
+                                        </div>
+
+                                        {/* Hidden Part (Description + Decor) */}
+                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                            <div className="w-12 h-1 bg-luxury-pink mb-4 rounded-full"></div>
+                                            <p className="text-white/90 font-medium text-lg leading-relaxed">
+                                                {item.desc}
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -366,7 +404,7 @@ const Home = () => {
                         {PETAL_DATA.map((petal, index) => (
                             <div
                                 key={index}
-                                className={`reveal-on-mobile petal-card relative md:absolute w-full md:w-[800px] h-auto md:h-[500px] ${petal.bg} p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl md:shadow-2xl border border-white/50 flex flex-col md:flex-row gap-10 items-center justify-between overflow-hidden mb-10 md:mb-0`}
+                                className={`reveal-on-mobile petal-card relative md:absolute w-full md:max-w-5xl h-auto md:h-[450px] ${petal.bg} p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl md:shadow-2xl border border-white/50 flex flex-col md:flex-row gap-10 items-center justify-between overflow-hidden mb-10 md:mb-0`}
                                 style={{
                                     // Inline styles removed for mobile to allow CSS flow, logic handled by GSAP matchMedia on desktop
                                 }}
@@ -426,7 +464,7 @@ const Home = () => {
                     {PROGRAMS.map((prog, i) => (
                         <div
                             key={i}
-                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[60vw] h-auto md:h-[70vh] flex flex-col md:flex-row shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
+                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[600px] h-auto md:h-[500px] flex flex-col md:flex-row shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
                             style={{ backgroundColor: prog.bg }}
                         >
                             {/* Content Side */}
