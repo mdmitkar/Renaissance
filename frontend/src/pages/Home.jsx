@@ -101,8 +101,14 @@ const Home = () => {
                     trigger: ".petals-section",
                     pin: true,
                     start: "top top",
-                    end: "+=4000", // Increased scroll distance for smoother reading
+                    end: "+=1800",
                     scrub: 1,
+                    snap: {
+                        snapTo: 1 / (totalCards - 1),
+                        duration: { min: 0.2, max: 0.5 },
+                        delay: 0,
+                        ease: "power1.inOut"
+                    },
                     onUpdate: (self) => {
                         const progress = self.progress;
                         const index = Math.min(
@@ -371,10 +377,10 @@ const Home = () => {
                                         <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center text-3xl shadow-sm">
                                             {petal.emoji}
                                         </div>
-                                        <span className="text-6xl font-black opacity-10 font-heading">0{index + 1}</span>
+                                        <span className="text-6xl font-black text-white/20 font-heading">0{index + 1}</span>
                                     </div>
                                     <h3 className={`text-4xl md:text-5xl font-black mb-6 ${petal.color}`}>{petal.title}</h3>
-                                    <p className="text-xl text-gulf-lebanese/80 font-medium leading-relaxed">
+                                    <p className="text-xl text-white/90 font-medium leading-relaxed">
                                         {petal.desc}
                                     </p>
                                 </div>
@@ -420,31 +426,32 @@ const Home = () => {
                     {PROGRAMS.map((prog, i) => (
                         <div
                             key={i}
-                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[60vw] h-auto md:h-[70vh] flex flex-col md:flex-row shrink-0 bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl"
+                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[60vw] h-auto md:h-[70vh] flex flex-col md:flex-row shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
+                            style={{ backgroundColor: prog.bg }}
                         >
                             {/* Content Side */}
-                            <div className="md:w-5/12 p-8 md:p-10 flex flex-col justify-between relative z-10 bg-white text-gulf-lebanese">
+                            <div className="md:w-5/12 p-8 md:p-10 flex flex-col justify-between relative z-10 text-white">
                                 <div>
                                     <div className="flex items-center gap-4 mb-6">
-                                        <span className="px-3 py-1 rounded-full border border-gulf-lebanese/20 text-xs font-bold uppercase tracking-wider">
+                                        <span className="px-3 py-1 rounded-full border border-white/30 text-xs font-bold uppercase tracking-wider text-white">
                                             {prog.age}
                                         </span>
-                                        <div className="h-[1px] flex-grow bg-gulf-lebanese/10"></div>
+                                        <div className="h-[1px] flex-grow bg-white/20"></div>
                                     </div>
 
-                                    <h3 className="text-3xl md:text-5xl font-black mb-4 leading-tight">
+                                    <h3 className="text-3xl md:text-5xl font-black mb-4 leading-tight text-white">
                                         {prog.title}
                                     </h3>
-                                    <p className="text-base text-gray-500 font-medium leading-relaxed">
+                                    <p className="text-base text-white/90 font-medium leading-relaxed">
                                         {prog.desc}
                                     </p>
                                 </div>
 
                                 <div className="mt-8">
-                                    <h4 className="font-bold text-sm uppercase tracking-widest text-gray-400 mb-4">Highlights</h4>
+                                    <h4 className="font-bold text-sm uppercase tracking-widest text-white/60 mb-4">Highlights</h4>
                                     <div className="flex flex-wrap gap-3">
                                         {prog.tags.map((tag, idx) => (
-                                            <span key={idx} className="px-5 py-2 bg-bg-cream rounded-full font-bold text-sm border border-gulf-lebanese/10">
+                                            <span key={idx} className="px-5 py-2 bg-white/10 backdrop-blur-md rounded-full font-bold text-sm border border-white/20 text-white">
                                                 {tag}
                                             </span>
                                         ))}
@@ -453,15 +460,15 @@ const Home = () => {
                             </div>
 
                             {/* Image Side */}
-                            <div className="md:w-7/12 h-64 md:h-full relative overflow-hidden bg-gray-100">
-                                <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-transparent z-10 w-32"></div>
+                            <div className="md:w-7/12 h-64 md:h-full relative overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent z-10 w-32"></div>
                                 <img
                                     src={prog.img}
                                     alt={prog.title}
                                     className="journey-img w-full h-full object-cover"
                                 />
                                 {/* Overlay Number */}
-                                <div className="absolute bottom-6 right-8 text-[12rem] font-black text-white/20 leading-none z-0 select-none">
+                                <div className="absolute bottom-6 right-8 text-[12rem] font-black text-white/10 leading-none z-0 select-none">
                                     0{i + 1}
                                 </div>
                             </div>
@@ -601,14 +608,13 @@ const Home = () => {
 // --- DATA CONSTANTS ---
 
 const PETAL_DATA = [
-    // Updated with gradients or nicer colors if needed, keeping original logic for now
-    { title: "Cognitive", emoji: "🧠", desc: "Building strong mental foundations through puzzles and logic.", img: "/SchoolPremises/classroom2.jpeg", color: "text-rose-500", bg: "bg-rose-50" },
-    { title: "Motor Skills", emoji: "🤸", desc: "Fine and gross motor development with active play.", img: "/Activities/motor.jpeg", color: "text-orange-500", bg: "bg-orange-50" },
-    { title: "Creativity", emoji: "🎨", desc: "Expressing imagination through art, music, and dance.", img: "/Activities/Activities_1.jpeg", color: "text-sky-500", bg: "bg-sky-50" },
-    { title: "Culture", emoji: "🌏", desc: "Understanding our world, traditions, and values.", img: "/otherimp/IndependenceDay_3.jpeg", color: "text-emerald-600", bg: "bg-emerald-50" },
-    { title: "Sports", emoji: "🏆", desc: "Teamwork, discipline, and physical health.", img: "/SportsDay/sportsday1.jpeg", color: "text-red-500", bg: "bg-red-50" },
-    { title: "Social", emoji: "🤝", desc: "Making friends, sharing, and emotional intelligence.", img: "/Activities/RedDay_3.jpeg", color: "text-purple-600", bg: "bg-purple-50" },
-    { title: "Life Skills", emoji: "🌱", desc: "Practical skills for independent living and hygiene.", img: "/Activities/Activities_2.jpeg", color: "text-teal-600", bg: "bg-teal-50" },
+    { title: "Cognitive", emoji: "🧠", desc: "Building strong mental foundations through puzzles and logic.", img: "/SchoolPremises/classroom2.jpeg", color: "text-white", bg: "bg-[#1E3A8A]" }, // Dark Blue
+    { title: "Motor Skills", emoji: "🤸", desc: "Fine and gross motor development with active play.", img: "/Activities/motor.jpeg", color: "text-white", bg: "bg-[#831843]" }, // Dark Pink
+    { title: "Creativity", emoji: "🎨", desc: "Expressing imagination through art, music, and dance.", img: "/Activities/Activities_1.jpeg", color: "text-white", bg: "bg-[#065F46]" }, // Dark Emerald
+    { title: "Culture", emoji: "🌏", desc: "Understanding our world, traditions, and values.", img: "/otherimp/IndependenceDay_3.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
+    { title: "Sports", emoji: "🏆", desc: "Teamwork, discipline, and physical health.", img: "/SportsDay/sportsday1.jpeg", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
+    { title: "Social", emoji: "🤝", desc: "Making friends, sharing, and emotional intelligence.", img: "/Activities/RedDay_3.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
+    { title: "Life Skills", emoji: "🌱", desc: "Practical skills for independent living and hygiene.", img: "/Activities/Activities_2.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
 ];
 
 const PROGRAMS = [
@@ -616,7 +622,7 @@ const PROGRAMS = [
         title: "Playgroup",
         age: "1.5 - 2.5 Years",
         desc: "A sensory wonderland for our tiniest tots. Montessori-inspired aids meet messy play.",
-        bg: "#FFE5EC", // Light Pink
+        bg: "#BE185D", // Pink 700 - Vibrant
         img: "/SchoolPremises/classplay.jpeg",
         tags: ["Sensory Play", "Music", "Safety"]
     },
@@ -624,7 +630,7 @@ const PROGRAMS = [
         title: "Nursery",
         age: "2.5 - 3.5 Years",
         desc: "Stepping stones to literacy. Letters and numbers become friends through stories.",
-        bg: "#E0F7FA", // Light Cyan
+        bg: "#059669", // Emerald 600 - Vibrant Green
         img: "/Activities/Activities_1.jpeg",
         tags: ["Phonics", "Nature", "Reading"]
     },
@@ -632,7 +638,7 @@ const PROGRAMS = [
         title: "Junior KG",
         age: "3.5 - 4.5 Years",
         desc: "Curiosity takes flight. Science experiments, reading clubs, and logical reasoning.",
-        bg: "#FFF3E0", // Light Orange
+        bg: "#D97706", // Amber 600 - Rich Orange/Gold
         img: "/otherimp/Activities_3.jpeg",
         tags: ["Science", "Logic", "Math"]
     },
@@ -640,7 +646,7 @@ const PROGRAMS = [
         title: "Senior KG",
         age: "4.5 - 5.5 Years",
         desc: "Ready for the big world. Advanced concepts, leadership, and school readiness.",
-        bg: "#E8EAF6", // Light Indigo
+        bg: "#4F46E5", // Indigo 600 - Vibrant Blue/Purple
         img: "/Activities/Activities_4.jpeg",
         tags: ["Writing", "Leadership", "Speaking"]
     }
