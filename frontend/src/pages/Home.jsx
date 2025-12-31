@@ -309,13 +309,6 @@ const Home = () => {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-20 items-center">
-                        <div className="reveal-text">
-                            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium">
-                                Imagine a place where every corner sparks <span className="text-luxury-pink font-semibold">curiosity</span>.
-                                At Renaissance, we don't just teach foundations; we inspire lifelong dreamers.
-                                A modern sanctuary for little explorers.
-                            </p>
-                        </div>
                         <div className="reveal-text grid grid-cols-2 gap-6 w-full">
                             {/* Feature Cards with Hover Animation */}
                             {[
@@ -352,6 +345,19 @@ const Home = () => {
                                     </div>
                                 </div>
                             ))}
+                        </div>
+                        <div className="reveal-text px-4 md:px-0">
+                            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium text-justify">
+                                Imagine a place where every corner sparks <span className="text-luxury-pink font-semibold">curiosity</span>.
+                                At Renaissance, we don't just teach foundations; we inspire lifelong dreamers.
+                                A modern sanctuary for little explorers.
+                                <br /><br />
+                                Our carefully curated environment encourages independent discovery, while our dedicated mentors ensure every child feels seen and heard. From the first steps of playgroup to the confident strides of Senior KG, we nurture the unique potential within each young mind.
+                                <br /><br />
+                                We believe that education is not just about filling a bucket, but lighting a fire. Our holistic approach integrates academics with arts, sports, and emotional well-being, creating a balanced ecosystem where children flourish. Every element of our campus, from the sunlit classrooms to the vibrant play areas, is designed to stimulate imagination and foster a deep, lasting love for learning.
+                                <br /><br />
+                                Parents are our partners in this journey. We maintain open channels of communication, ensuring that you are always part of your child's milestones. Together, we build a strong foundation of values, resilience, and joy, preparing your little ones not just for school, but for life itself. Join us in shaping a future where kindness and knowledge go hand in hand.
+                            </p>
                         </div>
                     </div>
                 </div>
