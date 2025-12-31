@@ -101,11 +101,11 @@ const Home = () => {
                     trigger: ".petals-section",
                     pin: true,
                     start: "top top",
-                    end: "+=1800",
+                    end: "+=2200",
                     scrub: 1,
                     snap: {
                         snapTo: 1 / (totalCards - 1),
-                        duration: { min: 0.2, max: 0.5 },
+                        duration: { min: 0.1, max: 0.5 },
                         delay: 0,
                         ease: "power1.inOut"
                     },
@@ -284,7 +284,7 @@ const Home = () => {
                     <div className="reveal-text text-xl font-bold text-gulf-blue mb-8 uppercase tracking-[0.2em]">
                         Welcome to the Future
                     </div>
-                    <h2 className="reveal-text text-5xl md:text-8xl font-heading font-black text-gulf-lebanese leading-[0.9] mb-20">
+                    <h2 className="reveal-text text-4xl md:text-7xl font-heading font-black text-gulf-lebanese leading-[0.9] mb-20">
                         WE BUILD <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink via-purple-400 to-indigo-500 animate-gradient-x">
                             BRIGHT MINDS
