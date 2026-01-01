@@ -259,12 +259,12 @@ const Home = () => {
                             initial={{ scale: 0, rotate: 0 }}
                             animate={{ scale: 1, rotate: 0 }}
                             transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-                            className="inline-block bg-white/10 backdrop-blur-md text-white px-8 py-3 rounded-full font-bold text-lg mb-10 border border-white/20 shadow-2xl"
+                            className="inline-block bg-white/10 backdrop-blur-md text-white px-5 py-2 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-lg mb-6 md:mb-10 border border-white/20 shadow-2xl whitespace-nowrap"
                         >
                             ✨ Est. 2025 • The Future of Learning
                         </motion.div>
 
-                        <h1 className="text-6xl sm:text-8xl md:text-[8rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-8 tracking-tighter w-full max-w-[100vw]">
+                        <h1 className="text-[13vw] md:text-[8rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-8 tracking-tighter w-full break-words">
                             RENAISSANCE
                         </h1>
 
@@ -434,8 +434,8 @@ const Home = () => {
                             <h3 className="text-sm md:text-base font-bold tracking-[0.4em] uppercase text-gulf-lebanese">Our Philosophy</h3>
                             <div className="h-[1px] w-12 bg-gulf-lebanese"></div>
                         </div>
-                        <h2 className="text-5xl md:text-8xl font-heading font-black text-gulf-lebanese relative z-10 drop-shadow-sm">
-                            The Seven <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-500 italic">Petals</span>
+                        <h2 className="text-4xl md:text-8xl font-heading font-black text-gulf-lebanese relative z-10 drop-shadow-sm px-4">
+                            The Seven <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-500 italic block md:inline">Petals</span>
                         </h2>
                     </div>
 
@@ -443,7 +443,7 @@ const Home = () => {
                         {PETAL_DATA.map((petal, index) => (
                             <div
                                 key={index}
-                                className={`reveal-on-mobile petal-card relative md:absolute w-full md:max-w-5xl h-auto md:h-[450px] ${petal.bg} p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl md:shadow-2xl border border-white/50 flex flex-col md:flex-row gap-10 items-center justify-between overflow-hidden mb-10 md:mb-0`}
+                                className={`reveal-on-mobile petal-card relative md:absolute w-full md:max-w-5xl h-auto md:h-[450px] ${petal.bg} p-6 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl md:shadow-2xl border border-white/50 flex flex-col md:flex-row gap-8 md:gap-10 items-center justify-between overflow-hidden mb-8 md:mb-0`}
                                 style={{
                                     // Inline styles removed for mobile to allow CSS flow, logic handled by GSAP matchMedia on desktop
                                 }}
