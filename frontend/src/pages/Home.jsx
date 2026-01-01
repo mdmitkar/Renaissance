@@ -547,7 +547,7 @@ const Home = () => {
                                         <div className="h-[1px] flex-grow bg-white/20"></div>
                                     </div>
 
-                                    <h3 className="text-3xl md:text-5xl font-black mb-4 leading-tight text-white">
+                                    <h3 className="text-2xl md:text-[2rem] font-black mb-4 leading-tight text-white">
                                         {prog.title}
                                     </h3>
                                     <p className="text-base text-white/90 font-medium leading-relaxed">
@@ -811,7 +811,7 @@ const PROGRAMS = [
     {
         title: "Nursery",
         age: "2.5 - 3.5 Years",
-        desc: "Stepping stones to literacy. Letters and numbers become friends through stories.",
+        desc: "Stepping stones to early literacy. Letters and numbers become friends through stories.",
         bg: "#059669", // Emerald 600 - Vibrant Green
         img: "/Activities/Activities_1.jpeg",
         tags: ["Phonics", "Nature", "Reading"]
