@@ -464,7 +464,7 @@ const Home = () => {
 
                                 {/* Image Content */}
                                 <div className="md:w-1/2 h-64 md:h-full w-full relative rounded-[2rem] overflow-hidden shadow-inner rotate-3">
-                                    <img src={petal.img} alt={petal.title} className="w-full h-full object-cover transform scale-110" />
+                                    <img src={petal.img} alt={petal.title} className={`w-full h-full object-cover transform scale-110 ${petal.imgPos || 'object-center'}`} />
                                 </div>
                             </div>
                         ))}
@@ -751,13 +751,13 @@ const Home = () => {
 // --- DATA CONSTANTS ---
 
 const PETAL_DATA = [
-    { title: "Cognitive", emoji: "🧠", desc: "Building strong mental foundations through puzzles and logic.", img: "/SchoolPremises/classroom2.jpeg", color: "text-white", bg: "bg-[#1E3A8A]" }, // Dark Blue
-    { title: "Motor Skills", emoji: "🤸", desc: "Fine and gross motor development with active play.", img: "/Activities/motor.jpeg", color: "text-white", bg: "bg-[#831843]" }, // Dark Pink
-    { title: "Creativity", emoji: "🎨", desc: "Expressing imagination through art, music, and dance.", img: "/Activities/Activities_1.jpeg", color: "text-white", bg: "bg-[#065F46]" }, // Dark Emerald
-    { title: "Culture", emoji: "🌏", desc: "Understanding our world, traditions, and values.", img: "/otherimp/IndependenceDay_3.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
-    { title: "Sports", emoji: "🏆", desc: "Teamwork, discipline, and physical health.", img: "/SportsDay/sportsday1.jpeg", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
-    { title: "Social", emoji: "🤝", desc: "Making friends, sharing, and emotional intelligence.", img: "/Activities/RedDay_3.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
-    { title: "Life Skills", emoji: "🌱", desc: "Practical skills for independent living and hygiene.", img: "/Activities/Activities_2.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
+    { title: "Faith & Values", emoji: "🤲", desc: "Rooted in Islamic teachings, learning duas, akhlaq, gratitude, and moral discipline.", img: "/otherimp/IndependenceDay_3.jpeg", color: "text-white", bg: "bg-[#1E3A8A]" }, // Dark Blue
+    { title: "Play-Based", emoji: "🧸", desc: "Learning through exploration and curiosity to naturally develop skills while having fun.", img: "/SchoolPremises/classplay.jpeg", color: "text-white", bg: "bg-[#831843]" }, // Dark Pink
+    { title: "Creativity", emoji: "🎨", desc: "Encouraging art, craft, storytelling, and imagination for confident self-expression.", img: "/otherimp/ChildrensDay_2_copy.jpeg", color: "text-white", bg: "bg-[#065F46]" }, // Dark Emerald
+    { title: "Social Growth", emoji: "❤️", desc: "Building teamwork, empathy, and communication to help children feel valued.", img: "/Activities/RedDay_3.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
+    { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/SchoolPremises/classroom2.jpeg", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
+    { title: "Physical", emoji: "🏃", desc: "Focus on movement, coordination, and healthy habits through active play.", img: "/SportsDay/sportsday1.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
+    { title: "Care & Safety", emoji: "🛡️", desc: "A nurturing, secure environment with qualified mentors and strong parent connection.", img: "/Activities/Activities_2.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
 ];
 
 const PROGRAMS = [
