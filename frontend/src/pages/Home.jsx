@@ -53,6 +53,37 @@ const FAQItem = ({ question, answer }) => {
     );
 };
 
+const HoverVideo = ({ src }) => {
+    const videoRef = React.useRef(null);
+
+    return (
+        <div
+            className="w-24 h-24 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-[0_10px_30px_rgba(0,0,0,0.2)] relative transform hover:scale-110 transition-transform duration-300 bg-black cursor-pointer block" // Visible on all devices
+            onMouseEnter={() => videoRef.current?.play()}
+            onMouseLeave={() => {
+                if (videoRef.current) {
+                    videoRef.current.pause();
+                    videoRef.current.currentTime = 0;
+                }
+            }}
+        >
+            <video
+                ref={videoRef}
+                src={src}
+                className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
+                loop
+                playsInline
+            />
+            {/* Play Icon Overlay (Optional) */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const Home = () => {
     const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -570,9 +601,17 @@ const Home = () => {
 
             {/* --- SECTION 5: LIVE STATS & TESTIMONIALS --- */}
             <section className="py-32 bg-white overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)]">
-                <div className="max-w-7xl mx-auto px-6 mb-20 text-center">
-                    <p className="text-luxury-pink font-bold text-xl uppercase tracking-[0.3em] mb-4">The Voice of Parents</p>
-                    <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese">Community Love</h2>
+                <div className="max-w-7xl mx-auto px-6 mb-20 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
+                    {/* Left Video */}
+                    <HoverVideo src="/videos/Testimonial_1.mp4" />
+
+                    <div className="text-center">
+                        <p className="text-luxury-pink font-bold text-xl uppercase tracking-[0.3em] mb-4">The Voice of Parents</p>
+                        <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese">Community Love</h2>
+                    </div>
+
+                    {/* Right Video */}
+                    <HoverVideo src="/videos/Testimonial_2.mp4" />
                 </div>
 
                 {/* Marquee */}
