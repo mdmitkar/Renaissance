@@ -534,11 +534,11 @@ const Home = () => {
                     {PROGRAMS.map((prog, i) => (
                         <div
                             key={i}
-                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[600px] h-auto md:h-[500px] flex flex-col md:flex-row shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
+                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[650px] h-[600px] md:h-[550px] flex flex-col md:flex-row shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
                             style={{ backgroundColor: prog.bg }}
                         >
                             {/* Content Side */}
-                            <div className="md:w-5/12 p-8 md:p-10 flex flex-col justify-between relative z-10 text-white">
+                            <div className="md:w-1/2 p-5 md:p-8 flex flex-col justify-between relative z-10 text-white h-full">
                                 <div>
                                     <div className="flex items-center gap-4 mb-6">
                                         <span className="px-3 py-1 rounded-full border border-white/30 text-xs font-bold uppercase tracking-wider text-white">
@@ -547,19 +547,19 @@ const Home = () => {
                                         <div className="h-[1px] flex-grow bg-white/20"></div>
                                     </div>
 
-                                    <h3 className="text-2xl md:text-[2rem] font-black mb-4 leading-tight text-white">
+                                    <h3 className="text-2xl md:text-[2rem] font-black mb-2 md:mb-4 leading-tight text-white">
                                         {prog.title}
                                     </h3>
-                                    <p className="text-base text-white/90 font-medium leading-relaxed">
+                                    <p className="text-sm md:text-base text-white/90 font-medium leading-relaxed">
                                         {prog.desc}
                                     </p>
                                 </div>
 
-                                <div className="mt-8">
-                                    <h4 className="font-bold text-sm uppercase tracking-widest text-white/60 mb-4">Highlights</h4>
-                                    <div className="flex flex-wrap gap-3">
+                                <div className="mt-2 md:mt-4">
+                                    <h4 className="font-bold text-xs md:text-sm uppercase tracking-widest text-white/60 mb-2 md:mb-4">Highlights</h4>
+                                    <div className="flex flex-wrap gap-2 md:gap-3">
                                         {prog.tags.map((tag, idx) => (
-                                            <span key={idx} className="px-5 py-2 bg-white/10 backdrop-blur-md rounded-full font-bold text-sm border border-white/20 text-white">
+                                            <span key={idx} className="px-3 py-1 md:px-5 md:py-2 bg-white/10 backdrop-blur-md rounded-full font-bold text-xs md:text-sm border border-white/20 text-white">
                                                 {tag}
                                             </span>
                                         ))}
@@ -568,7 +568,7 @@ const Home = () => {
                             </div>
 
                             {/* Image Side */}
-                            <div className="md:w-7/12 h-64 md:h-full relative overflow-hidden">
+                            <div className="md:w-1/2 h-64 md:h-full relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent z-10 w-32"></div>
                                 <img
                                     src={prog.img}
@@ -576,7 +576,7 @@ const Home = () => {
                                     className="journey-img w-full h-full object-cover"
                                 />
                                 {/* Overlay Number */}
-                                <div className="absolute bottom-6 right-8 text-[12rem] font-black text-white/10 leading-none z-0 select-none">
+                                <div className="absolute bottom-6 right-8 text-[8rem] md:text-[10rem] font-black text-white/10 leading-none z-0 select-none">
                                     0{i + 1}
                                 </div>
                             </div>
