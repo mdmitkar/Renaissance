@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ArrowRight, Sparkles, Cloud, Quote, Rocket, Flower2, Star } from 'lucide-react';
+import { ArrowRight, Sparkles, Cloud, Quote, Rocket, Flower2, Star, Plus, Minus } from 'lucide-react';
 import { googleReviews } from '../data/reviews';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
@@ -19,6 +19,39 @@ const HERO_SLIDES = [
     "/assets/hero-slide-5.png",
     "/assets/hero-slide-6.png"
 ];
+
+const FAQItem = ({ question, answer }) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    return (
+        <div className="border border-gulf-lebanese/10 rounded-2xl bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full flex items-center justify-between p-6 text-left"
+            >
+                <span className="text-lg font-bold text-gulf-lebanese">{question}</span>
+                <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-luxury-pink text-white' : 'bg-gray-100 text-gulf-lebanese'}`}>
+                    {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                </div>
+            </button>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                    >
+                        <div className="p-6 pt-0 text-gray-600 leading-relaxed">
+                            {answer}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
 
 const Home = () => {
     const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
@@ -223,8 +256,8 @@ const Home = () => {
                         style={{ y: textY, opacity: textOpacity }}
                     >
                         <motion.div
-                            initial={{ scale: 0, rotate: -10 }}
-                            animate={{ scale: 1, rotate: -3 }}
+                            initial={{ scale: 0, rotate: 0 }}
+                            animate={{ scale: 1, rotate: 0 }}
                             transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
                             className="inline-block bg-white/10 backdrop-blur-md text-white px-8 py-3 rounded-full font-bold text-lg mb-10 border border-white/20 shadow-2xl"
                         >
@@ -593,9 +626,9 @@ const Home = () => {
                 <div className="max-w-7xl mx-auto px-6 mt-32">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-gray-100">
                         {[
-                            { num: "1.5K+", label: "Happy Students" },
-                            { num: "50+", label: "Expert Teachers" },
-                            { num: "20+", label: "Years Impact" },
+                            { num: "50+", label: "Happy Students" },
+                            { num: "5+", label: "Expert Mentors" }, // More premium term than teachers
+                            { num: "2025", label: "Established" },
                             { num: "100%", label: "Safety Record" },
                         ].map((stat, i) => (
                             <div key={i} className="reveal-text px-4">
@@ -609,37 +642,103 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* --- SECTION 6: FOOTER CTA --- */}
-            <section className="relative py-40 bg-gulf-lebanese text-white text-center overflow-hidden">
-                <div className="absolute inset-0 opacity-10 bg-[url('/assets/pattern.png')] mix-blend-overlay"></div>
-                <div className="absolute top-0 w-full h-32 bg-gradient-to-b from-white to-transparent opacity-10"></div>
+            {/* --- SECTION 6: FAQ --- */}
+            <section className="py-24 bg-[#F9F7F2] relative z-10 px-6">
+                <div className="max-w-4xl mx-auto">
+                    <div className="text-center mb-16">
+                        <span className="text-luxury-pink font-bold tracking-widest uppercase text-sm">Got Questions?</span>
+                        <h2 className="text-5xl font-heading font-black text-gulf-lebanese mt-4">We Have Answers</h2>
+                    </div>
 
-                <div className="relative z-10 max-w-5xl mx-auto px-6">
+                    <div className="space-y-4">
+                        {[
+                            { q: "What is the age criteria for admission?", a: "We welcome children from 1.5 years for Playgroup, 2.5 years for Nursery, 3.5 years for Junior KG, and 4.5 years for Senior KG." },
+                            { q: "What is the 'Seven Petals' philosophy?", a: "It is our proprietary holistic curriculum focusing on 7 key areas: Cognitive, Motor Skills, Creativity, Culture, Sports, Social, and Life Skills." },
+                            { q: "Is transport facility available?", a: "Yes, we offer safe and comfortable transport facilities covering all major nearby areas with GPS tracking for parents." },
+                            { q: "How do I schedule a campus visit?", a: "You can simply fill out the enquiry form by clicking the 'Enroll Now' button, or call our admissions office directly to book a slot." },
+                            { q: "What are the safety measures on campus?", a: "Safety is our priority. We have 24/7 CCTV surveillance, security personnel, soft-flooring in play areas, and background-verified staff." }
+                        ].map((faq, i) => (
+                            <FAQItem key={i} question={faq.q} answer={faq.a} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* --- SECTION 7: PREMIUM FOOTER CTA --- */}
+            <section className="relative py-32 px-6 overflow-hidden">
+                {/* Background with Gradient and Noise */}
+                <div className="absolute inset-0 bg-[#0F172A] z-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-gulf-lebanese via-[#0F172A] to-luxury-pink/20 opacity-80"></div>
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
+
+                    {/* Animated Blobs */}
                     <motion.div
-                        animate={{ y: [0, -20, 0] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                        <Rocket size={80} className="mx-auto mb-12 text-yellow-400 drop-shadow-[0_0_30px_rgba(250,204,21,0.6)]" />
-                    </motion.div>
+                        animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], opacity: [0.3, 0.5, 0.3] }}
+                        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-luxury-pink rounded-full mix-blend-screen filter blur-[100px]"
+                    ></motion.div>
+                    <motion.div
+                        animate={{ scale: [1, 1.1, 1], x: [0, -30, 0], opacity: [0.2, 0.4, 0.2] }}
+                        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-600 rounded-full mix-blend-screen filter blur-[120px]"
+                    ></motion.div>
+                </div>
 
-                    <h2 className="text-6xl md:text-9xl font-heading font-black mb-10 tracking-tight">
-                        Ready to <span className="text-luxury-pink italic">Launch?</span>
-                    </h2>
-                    <p className="text-2xl md:text-3xl text-gray-300 mb-16 max-w-3xl mx-auto font-light leading-relaxed">
-                        Admissions for 2025 are filling up fast. Join the family where your child's future shines brightest.
-                    </p>
+                <div className="max-w-6xl mx-auto relative z-10">
+                    <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-[3rem] p-10 md:p-20 overflow-hidden shadow-2xl ring-1 ring-white/20">
+                        {/* Decorative 2025 Watermark */}
+                        <div className="absolute -top-12 -right-12 text-[15rem] font-black text-white/5 leading-none select-none pointer-events-none rotate-12">
+                            2025
+                        </div>
 
-                    <button
-                        onClick={() => setIsAdmissionOpen(true)}
-                        className="group relative inline-flex items-center justify-center px-16 py-8 overflow-hidden font-bold text-gulf-lebanese transition-all duration-300 bg-white rounded-full hover:scale-105 shadow-[0_0_60px_rgba(255,255,255,0.2)]"
-                    >
-                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-luxury-pink rounded-full group-hover:w-[150%] group-hover:h-[150%] opacity-20"></span>
-                        <span className="relative text-2xl tracking-wide uppercase">Start Admission</span>
-                        <ArrowRight className="ml-3 relative transition-transform group-hover:translate-x-2" size={28} />
-                    </button>
+                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                            <div className="text-left">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-yellow-300 font-bold tracking-wider text-xs uppercase mb-8"
+                                >
+                                    <Sparkles size={14} /> Admissions Open
+                                </motion.div>
+                                <h2 className="text-5xl md:text-7xl font-heading font-black text-white leading-[1.1] mb-6 drop-shadow-lg">
+                                    Start Their <br />
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-indigo-400">
+                                        Legacy Today.
+                                    </span>
+                                </h2>
+                                <p className="text-xl text-blue-100/80 font-light leading-relaxed max-w-lg">
+                                    Don't just choose a school; choose a future. Limited seats available for the upcoming academic year.
+                                </p>
+                            </div>
 
-                    <div className="mt-16 text-white/30 text-sm font-semibold tracking-[0.2em] uppercase">
-                        * Limited Seats • Terms Apply
+                            <div className="flex flex-col items-center md:items-end justify-center gap-8">
+                                <motion.button
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={() => setIsAdmissionOpen(true)}
+                                    className="group relative w-full md:w-auto overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-4 focus:ring-yellow-300/50"
+                                >
+                                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2E8F0_0%,#500724_50%,#E2E8F0_100%)]" />
+                                    <span className="relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-r from-gulf-lebanese to-gray-900 px-12 py-6 text-xl font-bold text-white transition-all group-hover:bg-gray-900/90 gap-4">
+                                        Start Admission <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                                    </span>
+                                </motion.button>
+
+                                <div className="flex items-center gap-6">
+                                    <div className="flex -space-x-4">
+                                        {[1, 2, 3].map((_, i) => (
+                                            <div key={i} className="w-12 h-12 rounded-full border-2 border-slate-900 bg-gray-600 flex items-center justify-center overflow-hidden">
+                                                <img src={`https://i.pravatar.cc/100?img=${10 + i}`} alt="User" className="w-full h-full object-cover" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="text-left text-white/80 text-sm">
+                                        <div className="font-bold text-white text-lg">500+</div>
+                                        <div>Parents joined recently</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
