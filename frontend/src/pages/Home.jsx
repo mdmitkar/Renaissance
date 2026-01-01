@@ -13,9 +13,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
     "/SchoolPremises/schoolbuilding.avif",
-    "/IndependenceDay/IndependenceDay_2.jpeg",
+    "/ChildrensDay/ChildrensDay_2.jpeg",
     "/RedDay/RedDay_1.jpeg",
-    "/otherimp/a.jpeg",
+    "/IndependenceDay/IndependenceDay_2.jpeg",
     "/SchoolPremises/classroom2.jpeg",
     "/ChildrensDay/ChildrensDay_1.jpeg"
 ];
@@ -365,7 +365,7 @@ const Home = () => {
                         <div className="reveal-text relative hidden md:block">
                             <div className="absolute inset-0 bg-luxury-pink/10 rounded-[2.5rem] rotate-3 transform scale-105 z-0"></div>
                             <img
-                                src="/SchoolPremises/classroom1.jpeg"
+                                src="/otherimp/a.jpeg"
                                 alt="Modern Classroom"
                                 className="relative z-10 w-full h-[400px] object-cover rounded-[2.5rem] shadow-2xl rotate-[-2deg] hover:rotate-0 transition-transform duration-500"
                             />
