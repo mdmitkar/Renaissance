@@ -439,7 +439,7 @@ const Home = () => {
                         </h2>
                     </div>
 
-                    <div className="relative w-full h-[60vh] flex items-center justify-center">
+                    <div className="relative w-full h-auto flex flex-col md:h-[60vh] md:flex-row items-center justify-center">
                         {PETAL_DATA.map((petal, index) => (
                             <div
                                 key={index}
@@ -632,7 +632,7 @@ const Home = () => {
                             { num: "100%", label: "Safety Record" },
                         ].map((stat, i) => (
                             <div key={i} className="reveal-text px-4">
-                                <h3 className="text-6xl md:text-7xl font-black text-gulf-lebanese mb-4 bg-clip-text text-transparent bg-gradient-to-b from-gulf-lebanese to-gray-400">
+                                <h3 className="text-4xl md:text-7xl font-black text-gulf-lebanese mb-4 bg-clip-text text-transparent bg-gradient-to-b from-gulf-lebanese to-gray-400">
                                     {stat.num}
                                 </h3>
                                 <p className="text-gray-500 font-bold uppercase tracking-widest text-sm">{stat.label}</p>
