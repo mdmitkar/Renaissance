@@ -12,12 +12,12 @@ import AdmissionModal from '../components/AdmissionModal';
 gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
-    "/assets/hero-slide-1.png",
-    "/assets/hero-slide-2.png",
-    "/assets/hero-slide-3.png",
-    "/assets/hero-slide-4.png",
-    "/assets/hero-slide-5.png",
-    "/assets/hero-slide-6.png"
+    "/SchoolPremises/schoolbuilding.avif",
+    "/IndependenceDay/IndependenceDay_2.jpeg",
+    "/RedDay/RedDay_1.jpeg",
+    "/otherimp/a.jpeg",
+    "/SchoolPremises/classroom2.jpeg",
+    "/ChildrensDay/ChildrensDay_1.jpeg"
 ];
 
 const FAQItem = ({ question, answer }) => {
