@@ -15,7 +15,7 @@ const About = () => {
         <div ref={containerRef} className="min-h-screen bg-yellow-50/50 font-body text-slate-800 selection:bg-rose-500 selection:text-white">
 
             {/* --- HERO SECTION --- */}
-            <div className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+            <div className="relative h-screen flex items-center justify-center overflow-hidden">
                 <motion.div
                     style={{ y: heroY }}
                     className="absolute inset-0 z-0"
@@ -23,24 +23,38 @@ const About = () => {
                     <img
                         src="/assets/school_building_enhanced.png"
                         alt="Renaissance Building"
-                        className="w-full h-full object-cover filter brightness-[0.85]"
+                        className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/60"></div>
+                    {/* Sophisticated Overlay */}
+                    <div className="absolute inset-0 bg-black/50"></div>
                 </motion.div>
 
-                <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+                <div className="relative z-10 text-center px-6 max-w-5xl mx-auto mt-12 md:mt-0">
                     <motion.div
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
+                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }} // smooth ease-out-quart
+                        className="flex flex-col items-center"
                     >
-                        <span className="inline-block py-2 px-6 rounded-full bg-yellow-400/90 backdrop-blur-md border border-yellow-200 text-slate-900 font-bold tracking-widest text-sm mb-8 uppercase shadow-lg animate-bounce">
-                            ✨ Welcome to the Family ✨
-                        </span>
-                        <h1 className="text-7xl md:text-9xl font-heading font-black text-white mb-6 tracking-tight drop-shadow-2xl">
-                            ABOUT <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">US</span>
+                        {/* Glassmorphic Badge */}
+                        <div className="inline-block py-3 px-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl mb-10">
+                            <span className="text-yellow-50 font-medium tracking-[0.3em] text-xs md:text-sm uppercase font-body">
+                                Welcome to the Family
+                            </span>
+                        </div>
+
+                        {/* Grand Typography */}
+                        <h1 className="text-6xl md:text-8xl lg:text-9xl font-heading font-medium text-white mb-8 tracking-tight leading-[0.9]">
+                            About <span className="text-white relative inline-block">
+                                Us
+                                {/* Subtle gold underline accent */}
+                                <svg className="absolute w-full h-3 md:h-5 -bottom-1 md:-bottom-2 left-0 text-yellow-400/80 -z-10 opacity-80" viewBox="0 0 100 10" preserveAspectRatio="none">
+                                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
+                                </svg>
+                            </span>
                         </h1>
-                        <p className="text-xl md:text-3xl font-light text-slate-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg font-body">
+
+                        <p className="text-lg md:text-2xl font-light text-slate-100 max-w-2xl mx-auto leading-relaxed font-body tracking-wide drop-shadow-lg">
                             Where little dreams grow into big futures.
                         </p>
                     </motion.div>
@@ -48,7 +62,7 @@ const About = () => {
 
                 {/* Wave Separator */}
                 <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] z-20">
-                    <svg className="relative block w-full h-[60px] md:h-[150px]" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                    <svg className="relative block w-full h-[60px] md:h-[5px]" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
                         <path fill="#FFFBEB" fillOpacity="0.3" d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,144C672,149,768,203,864,213.3C960,224,1056,192,1152,170.7C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
                         <path fill="#FFFBEB" fillOpacity="0.7" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,197.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
                         <path fill="#FFFBEB" fillOpacity="1" d="M0,288L48,272C96,256,192,224,288,213.3C384,203,480,213,576,218.7C672,224,768,224,864,213.3C960,203,1056,181,1152,181.3C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
