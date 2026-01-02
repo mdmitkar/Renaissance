@@ -120,7 +120,6 @@ const EVENTS = [
         date: "Energy & Action",
         folder: "SportsDay",
         images: [
-            "sportsday1.jpeg",
             "sportdaymedal.jpeg",
             "sportday4.webp"
         ],

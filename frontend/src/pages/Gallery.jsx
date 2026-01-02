@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect, Component } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, PlayCircle, Play, ArrowDown } from 'lucide-react';
 import gsap from 'gsap';
@@ -6,6 +6,35 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
+
+// --- Error Boundary ---
+class GalleryErrorBoundary extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { hasError: false };
+    }
+
+    static getDerivedStateFromError(error) {
+        return { hasError: true };
+    }
+
+    componentDidCatch(error, errorInfo) {
+        console.error("Gallery Error Boundary Caught:", error, errorInfo);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return (
+                <div className="p-8 text-center bg-red-50 rounded-xl border border-red-200 my-8">
+                    <h3 className="text-red-800 font-bold mb-2">Something went wrong with this gallery section.</h3>
+                    <p className="text-red-600">Please try refreshing the page.</p>
+                </div>
+            );
+        }
+
+        return this.props.children;
+    }
+}
 
 // --- Data ---
 const reelAssets = [
@@ -19,7 +48,7 @@ const reelAssets = [
 ];
 
 const campusAssets = [
-
+    { id: 'cam1', src: '/SchoolPremises/SchoolPremises_1.jpeg', title: 'Entrance' }, // Re-added or ensured existence
     { id: 'cam2', src: '/SchoolPremises/classplay.jpeg', title: 'Play Area' },
     { id: 'cam3', src: '/SchoolPremises/classroom1.jpeg', title: 'Classroom' },
     { id: 'cam4', src: '/SchoolPremises/classroom2.jpeg', title: 'Learning Space' },
@@ -90,6 +119,8 @@ const SectionHeader = ({ title, subtitle, color = "text-slate-900", className = 
 const MediaCard = ({ item, onClick, className }) => {
     const videoRef = useRef(null);
     const [hover, setHover] = useState(false);
+
+    if (!item) return null; // Safeguard against undefined items
 
     return (
         <div
@@ -292,18 +323,20 @@ const Gallery = () => {
             {/* 3. Campus Life (Grid) */}
             <div ref={campusRef} className="max-w-7xl mx-auto px-6 mb-32">
                 <SectionHeader title="Campus Life" subtitle="Where we grow" />
-                <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[650px]">
-                    {/* Custom Mosaic */}
-                    <MediaCard item={campusAssets[7]} className="campus-item md:col-span-2 md:row-span-2 min-h-[300px] border-4 border-black shadow-lg" onClick={() => setSelectedItem(campusAssets[7])} />
-                    <MediaCard item={campusAssets[0]} className="campus-item min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[0])} />
-                    <MediaCard item={campusAssets[1]} className="campus-item min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[1])} />
-                    <MediaCard item={campusAssets[2]} className="campus-item md:col-span-2 min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[2])} />
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                    {campusAssets.slice(3, 7).map((item) => (
-                        <MediaCard key={item.id} item={item} className="campus-item h-[200px] md:h-[250px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(item)} />
-                    ))}
-                </div>
+                <GalleryErrorBoundary>
+                    <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[650px]">
+                        {/* Custom Mosaic - safely accessing items */}
+                        {campusAssets[7] && <MediaCard item={campusAssets[7]} className="campus-item md:col-span-2 md:row-span-2 min-h-[300px] border-4 border-black shadow-lg" onClick={() => setSelectedItem(campusAssets[7])} />}
+                        {campusAssets[0] && <MediaCard item={campusAssets[0]} className="campus-item min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[0])} />}
+                        {campusAssets[1] && <MediaCard item={campusAssets[1]} className="campus-item min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[1])} />}
+                        {campusAssets[2] && <MediaCard item={campusAssets[2]} className="campus-item md:col-span-2 min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[2])} />}
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                        {campusAssets.slice(3, 7).map((item) => (
+                            <MediaCard key={item.id} item={item} className="campus-item h-[200px] md:h-[250px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(item)} />
+                        ))}
+                    </div>
+                </GalleryErrorBoundary>
             </div>
 
             {/* 4. Celebrations (Horizontal Focus) */}
