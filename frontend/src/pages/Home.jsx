@@ -851,7 +851,7 @@ const PROGRAMS = [
         age: "2.5 - 3.5 Years",
         desc: "Stepping stones to early literacy. Letters and numbers become friends through stories.",
         bg: "#059669", // Emerald 600 - Vibrant Green
-        img: "/assets/generated/nursery.png",
+        img: "/otherimp/nursery.png",
         tags: ["Phonics", "Nature", "Reading"]
     },
     {
@@ -859,7 +859,7 @@ const PROGRAMS = [
         age: "3.5 - 4.5 Years",
         desc: "Curiosity takes flight. Science experiments, reading clubs, and logical reasoning.",
         bg: "#D97706", // Amber 600 - Rich Orange/Gold
-        img: "/assets/generated/junior_kg.png",
+        img: "/otherimp/jrkg.png",
         tags: ["Science", "Logic", "Math"]
     },
     {
@@ -867,7 +867,7 @@ const PROGRAMS = [
         age: "4.5 - 5.5 Years",
         desc: "Ready for the big world. Advanced concepts, leadership, and school readiness.",
         bg: "#4F46E5", // Indigo 600 - Vibrant Blue/Purple
-        img: "/assets/generated/senior_kg.png",
+        img: "/otherimp/srjkg.png",
         tags: ["Writing", "Leadership", "Speaking"]
     }
 ];
