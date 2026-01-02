@@ -207,6 +207,7 @@ const Home = () => {
                     scrollTrigger: {
                         trigger: journeySection,
                         pin: true,
+                        start: "center center",
                         scrub: 1,
                         end: () => "+=" + journeyContainer.scrollWidth,
                         invalidateOnRefresh: true,
@@ -295,13 +296,40 @@ const Home = () => {
                             ✨ Est. 2025 • The Future of Learning
                         </motion.div>
 
-                        <h1 className="text-[13vw] md:text-[8rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-8 tracking-tighter w-full break-words">
-                            RENAISSANCE
-                        </h1>
+                        <motion.h1
+                            variants={{
+                                hidden: { opacity: 1 },
+                                visible: {
+                                    opacity: 1,
+                                    transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+                                }
+                            }}
+                            initial="hidden"
+                            animate="visible"
+                            className="text-[13vw] md:text-[8rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-8 tracking-tighter w-full break-words text-center"
+                        >
+                            {"RENAISSANCE".split("").map((char, index) => (
+                                <motion.span
+                                    key={index}
+                                    className="inline-block"
+                                    variants={{
+                                        hidden: { opacity: 0, y: 50, filter: "blur(10px)" },
+                                        visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { type: "spring", damping: 12, stiffness: 200 } }
+                                    }}
+                                >
+                                    {char}
+                                </motion.span>
+                            ))}
+                        </motion.h1>
 
-                        <h2 className="text-2xl md:text-5xl font-handwriting font-bold text-gentle-yellow drop-shadow-lg mb-12">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.5, duration: 1 }}
+                            className="text-2xl md:text-5xl font-handwriting font-bold text-gentle-yellow drop-shadow-lg mb-12"
+                        >
                             Where Magic Happens Daily
-                        </h2>
+                        </motion.h2>
 
                         <div className="flex flex-col md:flex-row gap-8 justify-center items-center mt-8">
                             <motion.button
@@ -504,17 +532,17 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 4: PROGRAMS (Horizontal Scroll) --- */}
-            <section className="journey-section min-h-screen h-auto md:h-screen bg-gulf-lebanese text-white overflow-hidden relative flex flex-col md:flex-row items-center py-20 md:py-0">
+            <section className="journey-section h-auto bg-gulf-lebanese text-white overflow-hidden relative flex flex-col md:flex-row items-center py-20 md:py-24">
 
                 {/* Background Text/Decor */}
-                <div className="absolute top-10 left-10 z-10">
+                <div className="absolute top-[10%] left-10 z-10">
                     <h2 className="text-xl font-bold uppercase tracking-[0.3em] text-white/30">
                         The Renaissance Journey
                     </h2>
                 </div>
 
                 {/* Horizontal Container */}
-                <div className="journey-container flex flex-col md:flex-row h-auto md:h-[80vh] items-center px-6 md:px-[10vw] gap-12 md:gap-[20vw] w-full md:w-max">
+                <div className="journey-container flex flex-col md:flex-row h-auto items-center px-6 md:px-[10vw] gap-12 md:gap-[20vw] w-full md:w-max mt-[5%]">
 
                     {/* Intro Card */}
                     <div className="reveal-on-mobile journey-card min-w-[85vw] md:min-w-[30vw] flex flex-col justify-center shrink-0 text-center md:text-left">
@@ -538,24 +566,24 @@ const Home = () => {
                             style={{ backgroundColor: prog.bg }}
                         >
                             {/* Content Side */}
-                            <div className="md:w-1/2 p-5 md:p-8 flex flex-col justify-between relative z-10 text-white h-full">
+                            <div className="md:w-1/2 p-5 md:p-8 flex flex-col relative z-10 text-white h-full">
                                 <div>
                                     <div className="flex items-center gap-4 mb-6">
-                                        <span className="px-3 py-1 rounded-full border border-white/30 text-xs font-bold uppercase tracking-wider text-white">
+                                        <span className="px-3 py-1 rounded-full border border-white/30 text-xs font-bold uppercase tracking-wider text-white relative z-20">
                                             {prog.age}
                                         </span>
-                                        <div className="h-[1px] flex-grow bg-white/20"></div>
+                                        <div className="h-[1px] flex-grow bg-white/20 relative z-20"></div>
                                     </div>
 
-                                    <h3 className="text-2xl md:text-[2rem] font-black mb-2 md:mb-4 leading-tight text-white">
+                                    <h3 className="text-2xl md:text-[2rem] font-black mb-2 md:mb-4 leading-tight text-white relative z-20">
                                         {prog.title}
                                     </h3>
-                                    <p className="text-sm md:text-base text-white/90 font-medium leading-relaxed">
+                                    <p className="text-sm md:text-base text-white/90 font-medium leading-relaxed relative z-20">
                                         {prog.desc}
                                     </p>
                                 </div>
 
-                                <div className="mt-2 md:mt-4">
+                                <div className="mt-8 md:mt-12 relative z-20">
                                     <h4 className="font-bold text-xs md:text-sm uppercase tracking-widest text-white/60 mb-2 md:mb-4">Highlights</h4>
                                     <div className="flex flex-wrap gap-2 md:gap-3">
                                         {prog.tags.map((tag, idx) => (
@@ -564,6 +592,11 @@ const Home = () => {
                                             </span>
                                         ))}
                                     </div>
+                                </div>
+
+                                {/* Overlay Number */}
+                                <div className="absolute bottom-[-1rem] right-0 text-[10rem] md:text-[12rem] font-black text-white/5 leading-none z-0 select-none pointer-events-none">
+                                    0{i + 1}
                                 </div>
                             </div>
 
@@ -575,10 +608,7 @@ const Home = () => {
                                     alt={prog.title}
                                     className="journey-img w-full h-full object-cover"
                                 />
-                                {/* Overlay Number */}
-                                <div className="absolute bottom-6 right-8 text-[8rem] md:text-[10rem] font-black text-white/10 leading-none z-0 select-none">
-                                    0{i + 1}
-                                </div>
+                                {/* Overlay Number Removed */}
                             </div>
                         </div>
                     ))}
@@ -600,7 +630,7 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 5: LIVE STATS & TESTIMONIALS --- */}
-            <section className="py-32 bg-white overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)]">
+            <section className="py-10 bg-white overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)]">
                 <div className="max-w-7xl mx-auto px-6 mb-20 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
                     {/* Left Video */}
                     <HoverVideo src="/videos/Testimonial_1.mp4" />
@@ -796,7 +826,7 @@ const PETAL_DATA = [
     { title: "Social Growth", emoji: "❤️", desc: "Building teamwork, empathy, and communication to help children feel valued.", img: "/Activities/RedDay_3.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
     { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/SchoolPremises/classroom2.jpeg", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
     { title: "Physical", emoji: "🏃", desc: "Focus on movement, coordination, and healthy habits through active play.", img: "/SportsDay/sportsday1.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
-    { title: "Care & Safety", emoji: "🛡️", desc: "A nurturing, secure environment with qualified mentors and strong parent connection.", img: "/Activities/Activities_2.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
+    { title: "Care & Safety", emoji: "🛡️", desc: "A nurturing, secure environment with qualified mentors and strong parent connection.", img: "/assets/cards/care_safety_new.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
 ];
 
 const PROGRAMS = [
