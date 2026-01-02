@@ -534,12 +534,7 @@ const Home = () => {
             {/* --- SECTION 4: PROGRAMS (Horizontal Scroll) --- */}
             <section className="journey-section h-auto bg-gulf-lebanese text-white overflow-hidden relative flex flex-col md:flex-row items-center py-20 md:py-24">
 
-                {/* Background Text/Decor - Hidden on mobile to prevent cut-off */}
-                <div className="absolute top-[15%] left-10 z-10 hidden md:block">
-                    <h2 className="text-xl font-bold uppercase tracking-[0.3em] text-white/30">
-                        The Renaissance Journey
-                    </h2>
-                </div>
+
 
                 {/* Horizontal Container */}
                 <div className="journey-container flex flex-col md:flex-row h-auto items-center px-6 md:px-[10vw] gap-12 md:gap-[20vw] w-full md:w-max mt-[5%]">

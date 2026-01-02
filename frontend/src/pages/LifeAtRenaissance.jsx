@@ -280,17 +280,10 @@ const LifeAtRenaissance = () => {
         restDelta: 0.001
     });
 
-    // Lock body scroll to prevent double scrollbars
-    useEffect(() => {
-        document.body.style.overflow = 'hidden';
-        return () => {
-            document.body.style.overflow = 'unset';
-            document.body.style.overflowX = 'hidden'; // Restore default
-        };
-    }, []);
+
 
     return (
-        <div className="bg-[#F3F0E8] dark:bg-[#111] h-screen overflow-y-scroll snap-y snap-mandatory font-body transition-colors duration-300 scroll-smooth no-scrollbar">
+        <div className="bg-[#F3F0E8] dark:bg-[#111] min-h-screen font-body transition-colors duration-300">
 
             {/* PROGRESS BAR */}
             <motion.div
@@ -299,119 +292,45 @@ const LifeAtRenaissance = () => {
             />
 
             {/* HERO HEADER */}
-            <header className="min-h-screen snap-start flex flex-col justify-center items-center py-20 px-4 text-center relative overflow-hidden">
-
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-10"
-                    style={{
-                        backgroundImage: 'radial-gradient(circle at 2px 2px, #0060AA 1px, transparent 0)',
-                        backgroundSize: '40px 40px'
-                    }}
-                />
-
-                {/* Floating Icons Background */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <motion.div animate={{ y: [-20, 20, -20], rotate: [0, 10, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="absolute top-1/4 left-10 text-[#FF6B6B] opacity-20"><Star size={64} /></motion.div>
-                    <motion.div animate={{ y: [20, -20, 20], rotate: [0, -10, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }} className="absolute bottom-1/3 right-10 text-[#4ECDC4] opacity-20"><Music size={80} /></motion.div>
-                    <motion.div animate={{ x: [-20, 20, -20], rotate: [0, 15, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="absolute top-1/3 right-1/4 text-[#FFE66D] opacity-20"><Trophy size={56} /></motion.div>
-
-                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute -top-20 -right-20 w-96 h-96 border-4 border-dashed border-[#0060AA] rounded-full opacity-5" />
+            <header className="relative w-full h-[70vh] md:h-screen flex items-center justify-center overflow-hidden">
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src="/assets/generated/life_at_renaissance_hero.png"
+                        alt="Life at Renaissance"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/60"></div>
                 </div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: -50 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="relative z-10"
+                    className="relative z-10 text-center px-4 max-w-5xl mx-auto"
                 >
-                    <h1 className="text-6xl md:text-9xl font-heading font-extrabold text-[#131720] dark:text-white mb-8 tracking-tight drop-shadow-sm">
-                        Life @ <span className="text-[#BA1054] relative inline-block">
-                            Renaissance
-                            <svg className="absolute w-full h-4 -bottom-2 left-0 text-[#F3DD89]" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                <path d="M0 5 Q 50 15 100 5" stroke="currentColor" strokeWidth="4" fill="none" />
-                            </svg>
-                        </span>
+                    <h1 className="text-6xl md:text-9xl font-heading font-black text-white mb-6 tracking-tight drop-shadow-2xl">
+                        LIFE @ RENAISSANCE
                     </h1>
 
-                    <p className="text-2xl md:text-3xl text-[#5C7E68] font-medium max-w-3xl mx-auto mb-12 leading-relaxed">
+                    <p className="text-xl md:text-3xl text-white/90 font-medium max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
                         A dynamic journey of joy, learning, and unforgettable moments.
                     </p>
-
-                    {/* Feature Highlights - Creative Redesign */}
-                    {/* Feature Highlights - Pro UI/UX Organic Design */}
-                    <div className="relative max-w-7xl mx-auto mb-32 px-4">
-
-                        {/* Connecting Wave Line (Decor) */}
-                        <div className="absolute top-1/2 left-0 w-full h-24 -translate-y-1/2 hidden md:block opacity-30 pointer-events-none">
-                            <svg className="w-full h-full" viewBox="0 0 1200 100" preserveAspectRatio="none">
-                                <path
-                                    d="M0,50 C300,0 900,100 1200,50"
-                                    fill="none"
-                                    stroke="#0060AA"
-                                    strokeWidth="4"
-                                    strokeDasharray="10 10"
-                                    strokeLinecap="round"
-                                />
-                            </svg>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 relative z-10">
-                            {[
-                                { title: "Safety First", desc: "Secure & Caring Environment", icon: <Shield size={32} />, color: "#81BAD9", delay: 0, shape: "60% 40% 30% 70% / 60% 30% 70% 40%" },
-                                { title: "Holistic Growth", desc: "Nurturing Mind, Body & Soul", icon: <Sprout size={32} />, color: "#75DB9B", delay: 0.2, shape: "30% 70% 70% 30% / 30% 30% 70% 70%" },
-                                { title: "Creative Learning", desc: "Arts, Crafts & Innovation", icon: <Palette size={32} />, color: "#F3DD89", delay: 0.4, shape: "50% 50% 30% 70% / 50% 70% 30% 50%" },
-                                { title: "Expert Faculty", desc: "Qualified & Passionate Teachers", icon: <GraduationCap size={32} />, color: "#DCA9CA", delay: 0.6, shape: "70% 30% 30% 70% / 60% 40% 60% 40%" }
-                            ].map((feature, idx) => (
-                                <motion.div
-                                    key={idx}
-                                    initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                                    animate={{ opacity: 1, scale: 1, y: idx % 2 === 0 ? 0 : 40 }}
-                                    transition={{ duration: 0.8, delay: feature.delay + 0.5, type: "spring" }}
-                                    whileHover={{ scale: 1.1, rotate: idx % 2 === 0 ? 5 : -5, zIndex: 20 }}
-                                    className="flex flex-col items-center justify-center text-center relative group"
-                                >
-
-                                    {/* Blob Background */}
-                                    <div
-                                        className="absolute inset-0 w-full h-full opacity-20 group-hover:opacity-40 transition-opacity duration-300 shadow-xl"
-                                        style={{
-                                            borderRadius: feature.shape,
-                                            backgroundColor: feature.color,
-                                            filter: 'blur(10px)'
-                                        }}
-                                    />
-
-                                    {/* Glass Card Content */}
-                                    <div
-                                        className="relative p-8 bg-white/10 dark:bg-black/10 backdrop-blur-xl border-2 border-black rounded-[2rem] shadow-2xl flex flex-col items-center gap-4 transition-all duration-300 w-full aspect-square justify-center"
-                                        style={{
-                                            boxShadow: `0 20px 40px -10px ${feature.color}40`,
-                                        }}
-                                    >
-                                        <div
-                                            className="w-16 h-16 flex items-center justify-center rounded-full text-white shadow-lg mb-2 transform group-hover:scale-125 transition-transform duration-300"
-                                            style={{ backgroundColor: feature.color }}
-                                        >
-                                            {feature.icon}
-                                        </div>
-                                        <div className="relative z-10">
-                                            <h4 className="text-xl font-heading font-black text-[#131720] dark:text-white mb-2 leading-none">{feature.title}</h4>
-                                            <p className="text-sm font-bold text-[#5C7E68] opacity-90 leading-tight">{feature.desc}</p>
-                                        </div>
-                                    </div>
-
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-
-
                 </motion.div>
 
-                {/* Background Blobs */}
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#94C4DF] opacity-30 rounded-full blur-[100px] animate-pulse"></div>
-                <div className="absolute top-20 right-1/4 w-72 h-72 bg-[#DCA9CA] opacity-30 rounded-full blur-[100px] animate-pulse delay-700"></div>
+                {/* Decorative Scroll Down Indicator */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1, y: [0, 10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                    className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/70"
+                >
+                    <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent mx-auto mb-2"></div>
+                    <span className="text-xs uppercase tracking-[0.3em]">Explore</span>
+                </motion.div>
             </header>
+
+
 
             {/* EVENTS LOOP */}
             {EVENTS.map((event, index) => (
