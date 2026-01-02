@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
     "/SchoolPremises/schoolbuilding.avif",
-    "/ChildrensDay/ChildrensDay_2.jpeg",
+    "/ChildrensDay/ChildrenDay_2.jpeg",
     "/RedDay/RedDay_1.jpeg",
     "/IndependenceDay/IndependenceDay_2.jpeg",
     "/SchoolPremises/classroom2.jpeg",
