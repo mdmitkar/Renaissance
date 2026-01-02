@@ -12,10 +12,11 @@ import AdmissionModal from '../components/AdmissionModal';
 gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
-    "/SchoolPremises/schoolbuilding.avif",
+    
     "/ChildrensDay/ChildrenDay_2.jpeg",
     "/RedDay/RedDay_1.jpeg",
     "/IndependenceDay/IndependenceDay_2.jpeg",
+    "/SchoolPremises/schoolbuilding.avif",
     "/SchoolPremises/classroom2.jpeg",
     "/ChildrensDay/ChildrensDay_1.jpeg"
 ];
