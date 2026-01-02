@@ -534,8 +534,8 @@ const Home = () => {
             {/* --- SECTION 4: PROGRAMS (Horizontal Scroll) --- */}
             <section className="journey-section h-auto bg-gulf-lebanese text-white overflow-hidden relative flex flex-col md:flex-row items-center py-20 md:py-24">
 
-                {/* Background Text/Decor */}
-                <div className="absolute top-[15%] left-10 z-10">
+                {/* Background Text/Decor - Hidden on mobile to prevent cut-off */}
+                <div className="absolute top-[15%] left-10 z-10 hidden md:block">
                     <h2 className="text-xl font-bold uppercase tracking-[0.3em] text-white/30">
                         The Renaissance Journey
                     </h2>
