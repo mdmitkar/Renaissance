@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Target, Heart, Award, Users, Star, BrainCircuit, Sparkles } from 'lucide-react';
+import { Target, Heart, Award, Users, Star, BrainCircuit, Sparkles, ArrowRight } from 'lucide-react';
 
 const About = () => {
     const containerRef = useRef(null);
@@ -200,21 +200,31 @@ const About = () => {
                 </section>
 
                 {/* --- 5. ADMISSION CTA (New) --- */}
-                <section className="mt-32 text-center pb-20">
+                <section className="mt-20 text-center pb-20 px-6">
                     <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        className="bg-slate-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden mx-auto max-w-6xl text-white"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="bg-slate-900 rounded-[2rem] p-10 md:p-14 relative overflow-hidden mx-auto max-w-5xl text-white shadow-xl"
                     >
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400 rounded-full blur-[100px] opacity-20"></div>
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-rose-500 rounded-full blur-[100px] opacity-20"></div>
+                        {/* Subtle Professional Accent */}
+                        <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+                        <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
 
                         <div className="relative z-10">
-                            <h2 className="text-4xl md:text-6xl font-heading font-black mb-6">Start Your Child's Journey Today</h2>
-                            <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">Limited seats available for the upcoming academic year. Give your child the gift of Renaissance.</p>
-                            <button className="bg-yellow-400 text-slate-900 font-bold text-xl px-12 py-5 rounded-full hover:bg-yellow-300 hover:scale-105 transition-all shadow-xl shadow-yellow-400/20">
+                            <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Start Your Child's Journey</h2>
+                            <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                                Limited seats available for the upcoming academic year. Give your child the gift of Renaissance.
+                            </p>
+                            <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-bold text-lg px-8 py-4 rounded-full transition-colors flex items-center gap-2 mx-auto"
+                            >
                                 Apply for Admission
-                            </button>
+                                <ArrowRight className="w-5 h-5" />
+                            </motion.button>
                         </div>
                     </motion.div>
                 </section>
