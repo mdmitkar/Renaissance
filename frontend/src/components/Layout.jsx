@@ -28,8 +28,10 @@ const Layout = () => {
                 <FloatingWhatsApp />
             </div>
 
-            {/* Desktop Sticky Sidebar */}
-            <StickyRightSidebar onOpenAdmission={() => setIsAdmissionOpen(true)} />
+            {/* Desktop Sticky Sidebar - Hidden on About Page */}
+            {pathname !== '/about' && (
+                <StickyRightSidebar onOpenAdmission={() => setIsAdmissionOpen(true)} />
+            )}
 
             {/* Global Admission Modal */}
             <AdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />

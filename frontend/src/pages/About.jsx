@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Target, Heart, Award, Users, Star, BrainCircuit } from 'lucide-react';
-import gsap from 'gsap';
+import { Target, Heart, Award, Users, Star, BrainCircuit, Sparkles } from 'lucide-react';
 
 const About = () => {
     const containerRef = useRef(null);
@@ -13,9 +12,8 @@ const About = () => {
     const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
     return (
-        <div ref={containerRef} className="min-h-screen bg-cream-velvet font-body text-slate-800 overflow-x-hidden selection:bg-rose-500 selection:text-white">
+        <div ref={containerRef} className="min-h-screen bg-yellow-50/50 font-body text-slate-800 overflow-x-hidden selection:bg-rose-500 selection:text-white">
 
-            {/* --- HERO SECTION --- */}
             {/* --- HERO SECTION --- */}
             <div className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
                 <motion.div
@@ -36,14 +34,14 @@ const About = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                     >
-                        <span className="inline-block py-2 px-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold tracking-widest text-sm mb-8 uppercase shadow-lg">
-                            Welcome to Excellence
+                        <span className="inline-block py-2 px-6 rounded-full bg-yellow-400/90 backdrop-blur-md border border-yellow-200 text-slate-900 font-bold tracking-widest text-sm mb-8 uppercase shadow-lg animate-bounce">
+                            ✨ Welcome to the Family ✨
                         </span>
                         <h1 className="text-7xl md:text-9xl font-heading font-black text-white mb-6 tracking-tight drop-shadow-2xl">
-                            ABOUT <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500">US</span>
+                            ABOUT <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">US</span>
                         </h1>
                         <p className="text-xl md:text-3xl font-light text-slate-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg font-body">
-                            Knowing the heart behind Renaissance.
+                            Where little dreams grow into big futures.
                         </p>
                     </motion.div>
                 </div>
@@ -51,41 +49,50 @@ const About = () => {
                 {/* Wave Separator */}
                 <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
                     <svg className="relative block w-[calc(100%+1.3px)] h-[80px] md:h-[150px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#FDFBF7"></path>
+                        <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="#FFFBEB"></path>
                     </svg>
                 </div>
             </div>
 
             <div className="max-w-7xl mx-auto px-6 py-20 relative z-10">
 
+
+                {/* Floating Shapes Background */}
+                <div className="absolute top-20 left-10 w-32 h-32 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                <div className="absolute top-20 right-10 w-32 h-32 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                <div className="absolute -bottom-8 left-20 w-32 h-32 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+
+
                 {/* --- 1. LEGACY SECTION --- */}
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-32">
+                <section className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-32 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h3 className="text-rose-600 font-bold tracking-widest uppercase text-sm mb-4">Who We Are</h3>
-                        <h2 className="text-4xl md:text-6xl font-heading font-bold mb-8 text-gulf-blue leading-tight">
+                        <h3 className="text-orange-500 font-bold tracking-widest uppercase text-sm mb-4">Our Happy Place</h3>
+                        <h2 className="text-4xl md:text-6xl font-heading font-black mb-8 text-slate-800 leading-tight">
                             A Legacy of <br />
-                            <span className="relative inline-block">
-                                <span className="relative z-10">Love & Learning</span>
-                                <span className="absolute bottom-2 left-0 w-full h-3 bg-yellow-200/60 -z-0"></span>
+                            <span className="relative inline-block text-rose-500">
+                                Love & Learning
+                                <svg className="absolute w-full h-3 -bottom-1 left-0 text-yellow-300 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+                                </svg>
                             </span>
                         </h2>
                         <div className="space-y-6 text-lg text-slate-600 leading-relaxed font-medium">
                             <p>
-                                Established in <strong>2025</strong>, Renaissance Preschool was born from a simple yet powerful belief: that education should be an adventure, not a chore.
+                                Started with a smile in <strong>2025</strong>, Renaissance Preschool isn't just a school—it's a second home. We believe childhood is a magical journey, not a race.
                             </p>
                             <p>
-                                Our architecture, our curriculum, and our teachers all share a common purpose - to spark curiosity and nurture the unique potential within every child.
+                                From our colorful classrooms to our caring teachers, everything is designed to make your child feel <span className="text-purple-600 font-bold">safe, loved, and excited</span> to learn every single day.
                             </p>
                         </div>
                     </motion.div>
 
                     <div className="relative group perspective-1000">
-                        <div className="absolute inset-0 bg-gulf-blue rounded-[3rem] transform rotate-6 scale-95 opacity-20 group-hover:rotate-3 transition-all duration-500"></div>
+                        <div className="absolute inset-0 bg-yellow-400 rounded-[3rem] transform rotate-6 scale-95 opacity-40 group-hover:rotate-3 transition-all duration-500"></div>
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
@@ -99,7 +106,7 @@ const About = () => {
                                 className="w-full h-[500px] object-cover"
                             />
                             <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent text-white">
-                                <p className="font-bold text-xl">Modern Learning Spaces</p>
+                                <p className="font-bold text-xl flex items-center gap-2"><Sparkles className="text-yellow-400" /> Magic Happens Here</p>
                             </div>
                         </motion.div>
                     </div>
@@ -108,8 +115,8 @@ const About = () => {
                 {/* --- 2. TIMELINE SECTION --- */}
                 <section className="mb-32 relative">
                     <div className="text-center mb-20">
-                        <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-800 text-sm font-bold tracking-wider mb-4">HISTORY</span>
-                        <h2 className="text-5xl font-heading font-black text-gulf-blue">Our Journey</h2>
+                        <span className="inline-block py-1 px-4 rounded-full bg-purple-100 text-purple-600 text-sm font-bold tracking-wider mb-4 border border-purple-200">OUR STORY</span>
+                        <h2 className="text-5xl font-heading font-black text-slate-800">Growing Together</h2>
                     </div>
 
                     <div className="relative max-w-5xl mx-auto">
@@ -124,36 +131,36 @@ const About = () => {
 
                 {/* --- 3. MANAGEMENT DESK --- */}
                 <section className="relative mb-32">
-                    <div className="absolute inset-0 bg-gulf-blue rounded-[3rem] transform -rotate-1 opacity-10"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-100 to-rose-100 rounded-[3rem] transform -rotate-1"></div>
                     <motion.div
                         initial={{ y: 50, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
-                        className="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl relative overflow-hidden border border-slate-100"
+                        className="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl relative overflow-hidden border-4 border-white"
                     >
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
                             <div className="md:col-span-4 relative">
-                                <div className="absolute inset-0 bg-yellow-400 rounded-2xl transform translate-x-4 translate-y-4"></div>
+                                <div className="absolute inset-0 bg-yellow-300 rounded-2xl transform translate-x-4 translate-y-4"></div>
                                 <img
                                     src="/assets/management-profile.png"
                                     alt="Principal"
-                                    className="w-full h-auto rounded-2xl shadow-lg relative z-10 grayscale hover:grayscale-0 transition-all duration-500"
+                                    className="w-full h-auto rounded-2xl shadow-lg relative z-10"
                                 />
                             </div>
                             <div className="md:col-span-8 space-y-8">
                                 <div>
-                                    <h3 className="text-amber-600 font-bold tracking-widest uppercase text-sm mb-2">From the Management's Desk</h3>
-                                    <h2 className="text-4xl md:text-5xl font-heading font-bold text-gulf-blue">Shaping Tomorrow's Leaders</h2>
+                                    <h3 className="text-rose-500 font-bold tracking-widest uppercase text-sm mb-2">A Promise from Us</h3>
+                                    <h2 className="text-4xl md:text-5xl font-heading font-black text-slate-800">Heads, Hearts & Hands</h2>
                                 </div>
-                                <div className="relative">
-                                    <QuoteIcon className="absolute -top-6 -left-8 text-yellow-400/30 w-16 h-16" />
-                                    <p className="text-xl text-slate-700 italic leading-relaxed font-serif relative z-10">
-                                        "At Renaissance, we believe that the early years are the most critical in a child's life. Our mission is to create a safe, joyful, and stimulating environment where every child feels loved, valued, and inspired to explore the world around them."
+                                <div className="relative p-6 bg-yellow-50 rounded-2xl border border-yellow-100">
+                                    <QuoteIcon className="absolute -top-4 -left-4 text-yellow-400 w-12 h-12" />
+                                    <p className="text-lg text-slate-700 italic leading-relaxed font-serif relative z-10">
+                                        "At Renaissance, we don't just teach directly to the brain; we teach to the heart. Every child is a universe of potential waiting to be loved, understood, and guided. Your child is our family."
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-4 pt-4">
-                                    <div className="h-px bg-slate-200 flex-1"></div>
-                                    <span className="font-heading font-bold text-lg text-gulf-blue">The Principal</span>
+                                    <div className="h-2 w-2 rounded-full bg-rose-500"></div>
+                                    <span className="font-heading font-bold text-lg text-slate-800">The Principal</span>
                                 </div>
                             </div>
                         </div>
@@ -166,25 +173,48 @@ const About = () => {
                         <ValueCard
                             icon={<Target size={32} />}
                             title="Our Mission"
-                            desc="Holistic learning through play and discovery, fostering curiosity that lasts a lifetime."
-                            color="text-blue-600"
-                            bg="bg-blue-50"
+                            desc="To spark a lifelong love for learning through play, giggles, and discovery."
+                            color="text-white"
+                            bg="bg-sky-400"
+                            shadow="shadow-sky-200"
                         />
                         <ValueCard
                             icon={<Heart size={32} />}
                             title="Our Vision"
-                            desc="To be a beacon of educational excellence where every child's potential is recognized."
-                            color="text-rose-600"
-                            bg="bg-rose-50"
+                            desc="A world where every child feels confident, kind, and capable of anything."
+                            color="text-white"
+                            bg="bg-rose-400"
+                            shadow="shadow-rose-200"
                         />
                         <ValueCard
                             icon={<Users size={32} />}
                             title="Our Values"
-                            desc="Integrity, Inclusivity, Compassion, and a relentless commitment to quality education."
-                            color="text-emerald-600"
-                            bg="bg-emerald-50"
+                            desc="Kindness in our hearts, honesty in our words, and friendship in our actions."
+                            color="text-white"
+                            bg="bg-emerald-400"
+                            shadow="shadow-emerald-200"
                         />
                     </div>
+                </section>
+
+                {/* --- 5. ADMISSION CTA (New) --- */}
+                <section className="mt-32 text-center pb-20">
+                    <motion.div
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        className="bg-slate-900 rounded-[3rem] p-12 md:p-20 relative overflow-hidden mx-auto max-w-6xl text-white"
+                    >
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400 rounded-full blur-[100px] opacity-20"></div>
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-rose-500 rounded-full blur-[100px] opacity-20"></div>
+
+                        <div className="relative z-10">
+                            <h2 className="text-4xl md:text-6xl font-heading font-black mb-6">Start Your Child's Journey Today</h2>
+                            <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">Limited seats available for the upcoming academic year. Give your child the gift of Renaissance.</p>
+                            <button className="bg-yellow-400 text-slate-900 font-bold text-xl px-12 py-5 rounded-full hover:bg-yellow-300 hover:scale-105 transition-all shadow-xl shadow-yellow-400/20">
+                                Apply for Admission
+                            </button>
+                        </div>
+                    </motion.div>
                 </section>
 
             </div>
@@ -234,7 +264,7 @@ const TimelineItem = ({ data, index }) => {
         <div className={`flex flex-col md:flex-row items-center w-full ${isEven ? 'md:flex-row-reverse' : ''} relative group pl-16 md:pl-0`}>
 
             {/* Center Dot */}
-            <div className={`absolute left-[20px] md:left-1/2 md:-ml-2.5 w-5 h-5 rounded-full border-4 border-white bg-blue-600 z-20 shadow-lg transform group-hover:scale-150 transition-transform duration-300`}></div>
+            <div className={`absolute left-[20px] md:left-1/2 md:-ml-3 w-6 h-6 rounded-full border-4 border-white ${data.dotColor} z-20 shadow-lg transform group-hover:scale-150 transition-transform duration-300`}></div>
 
             {/* Spacer */}
             <div className="hidden md:block w-1/2"></div>
@@ -246,14 +276,14 @@ const TimelineItem = ({ data, index }) => {
                 viewport={{ once: true, margin: "-50px" }}
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.5 }}
-                className={`w-full md:w-[45%] bg-white p-8 rounded-[2rem] shadow-xl border border-slate-100 relative overflow-hidden ${isEven ? 'md:mr-auto' : 'md:ml-auto'}`}
+                className={`w-full md:w-[45%] bg-white p-8 rounded-[2rem] shadow-xl border-b-8 ${data.borderColor} relative overflow-hidden ${isEven ? 'md:mr-auto' : 'md:ml-auto'}`}
             >
                 <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${data.accent} opacity-10 rounded-bl-[100%] transition-transform duration-500 group-hover:scale-150`}></div>
 
                 <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-4">
-                        <span className={`px-4 py-1 rounded-full text-sm font-bold bg-slate-100 text-slate-800 border border-slate-200`}>{data.year}</span>
-                        <div className={`text-slate-600`}>{data.icon}</div>
+                        <span className={`px-4 py-1 rounded-full text-sm font-bold bg-slate-50 text-slate-800 border-2 ${data.badgeBorder}`}>{data.year}</span>
+                        <div className={`${data.iconColor}`}>{data.icon}</div>
                     </div>
                     <h3 className="text-2xl font-bold font-heading mb-3 text-slate-900">{data.title}</h3>
                     <p className="text-slate-600 leading-relaxed font-medium">{data.desc}</p>
@@ -263,12 +293,12 @@ const TimelineItem = ({ data, index }) => {
     );
 };
 
-const ValueCard = ({ icon, title, desc, color, bg }) => (
+const ValueCard = ({ icon, title, desc, color, bg, shadow }) => (
     <motion.div
         whileHover={{ y: -10 }}
-        className="bg-white p-10 rounded-[2.5rem] shadow-lg hover:shadow-2xl transition-all border border-slate-100 text-center group"
+        className={`bg-white p-10 rounded-[2.5rem] shadow-xl ${shadow} hover:shadow-2xl transition-all border-b-8 ${shadow.replace('shadow', 'border')} text-center group`}
     >
-        <div className={`w-20 h-20 mx-auto rounded-full ${bg} ${color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+        <div className={`w-20 h-20 mx-auto rounded-full ${bg} ${color} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-inner`}>
             {icon}
         </div>
         <h3 className="text-2xl font-heading font-black mb-4 text-slate-800">{title}</h3>
@@ -279,24 +309,37 @@ const ValueCard = ({ icon, title, desc, color, bg }) => (
 const JOURNEY_DATA = [
     {
         year: "2020",
-        title: "The Inception",
-        desc: "The seed of Renaissance was planted during a brainstorming session, focusing on a truly child-centric approach to early education.",
-        icon: <Star size={20} />,
-        accent: "from-yellow-400 to-orange-500"
+        title: "A Dreamer's Idea",
+        desc: "The seed of Renaissance was planted to create a place that honors the child's spirit above all else.",
+        icon: <Star size={24} />,
+        accent: "from-yellow-400 to-orange-500",
+        dotColor: "bg-yellow-400",
+        borderColor: "border-yellow-400",
+        badgeBorder: "border-yellow-200",
+        iconColor: "text-yellow-500"
     },
     {
         year: "2022",
-        title: "Curriculum Design",
-        desc: "Two years of intensive research with child psychologists and educators led to our unique 'Seven Petals' methodology.",
-        icon: <BrainCircuit size={20} />,
-        accent: "from-pink-400 to-rose-500"
+        title: "Crafting Joy",
+        desc: "We designed our 'Seven Petals' curriculum not in a boardroom, but by listening to what helps children thrive.",
+        icon: <BrainCircuit size={24} />,
+        accent: "from-purple-400 to-pink-500",
+        dotColor: "bg-purple-500",
+        borderColor: "border-purple-500",
+        badgeBorder: "border-purple-200",
+        iconColor: "text-purple-500"
     },
     {
         year: "2025",
-        title: "Grand Opening",
-        desc: "We finally opened our doors to the first batch of happy learners in Bhiwandi, marking the start of a new era.",
-        icon: <Award size={20} />,
-        accent: "from-emerald-400 to-teal-500"
+        title: "The Doors Open!",
+        desc: "The laughter of our first students filled the halls, marking the start of a beautiful journey in Bhiwandi.",
+        icon: <Award size={24} />,
+        accent: "from-emerald-400 to-teal-500",
+        dotColor: "bg-emerald-500",
+        borderColor: "border-emerald-500",
+        badgeBorder: "border-emerald-200",
+        iconColor: "text-emerald-500"
+
     }
 ];
 
