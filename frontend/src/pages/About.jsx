@@ -12,7 +12,7 @@ const About = () => {
     const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
     return (
-        <div ref={containerRef} className="min-h-screen bg-yellow-50/50 font-body text-slate-800 overflow-x-hidden selection:bg-rose-500 selection:text-white">
+        <div ref={containerRef} className="min-h-screen bg-yellow-50/50 font-body text-slate-800 selection:bg-rose-500 selection:text-white">
 
             {/* --- HERO SECTION --- */}
             <div className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
@@ -142,7 +142,7 @@ const About = () => {
                             <div className="md:col-span-4 relative">
                                 <div className="absolute inset-0 bg-yellow-300 rounded-2xl transform translate-x-4 translate-y-4"></div>
                                 <img
-                                    src="/assets/management-profile.png"
+                                    src="/otherimp/rushiuncle.jpeg"
                                     alt="Principal"
                                     className="w-full h-auto rounded-2xl shadow-lg relative z-10"
                                 />
