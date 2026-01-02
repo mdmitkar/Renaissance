@@ -48,14 +48,14 @@ const reelAssets = [
 ];
 
 const campusAssets = [
-    { id: 'cam1', src: '/SchoolPremises/SchoolPremises_1.jpeg', title: 'Entrance' }, // Re-added or ensured existence
+    { id: 'cam1', src: '/SchoolPremises/playground2.jpeg', title: 'Entrance' },
     { id: 'cam2', src: '/SchoolPremises/classplay.jpeg', title: 'Play Area' },
     { id: 'cam3', src: '/SchoolPremises/classroom1.jpeg', title: 'Classroom' },
     { id: 'cam4', src: '/SchoolPremises/classroom2.jpeg', title: 'Learning Space' },
     { id: 'cam5', src: '/SchoolPremises/classroom3.png', title: 'Interactive' },
     { id: 'cam6', src: '/SchoolPremises/playground1.jpeg', title: 'Playground' },
     { id: 'cam9', src: '/SchoolPremises/schoolbuilding.avif', title: 'School Building' },
-    { id: 'vid_tour', src: '/videos/SchoolTour.mp4', title: 'Full Tour', type: 'video' }
+    { id: 'vid_tour', src: '/videos/schooltour.mp4', title: 'Full Tour', type: 'video' }
 ];
 
 const celebrationAssets = [
