@@ -733,81 +733,74 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* --- SECTION 7: PREMIUM FOOTER CTA --- */}
-            <section className="relative py-32 px-6 overflow-hidden">
-                {/* Background with Gradient and Noise */}
-                <div className="absolute inset-0 bg-[#0F172A] z-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-gulf-lebanese via-[#0F172A] to-luxury-pink/20 opacity-80"></div>
-                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
+            {/* --- SECTION 7: PROFESSIONAL CTA --- */}
+            <section className="relative py-24 px-6 overflow-hidden bg-[#FDFBF7]">
+                <div className="max-w-7xl mx-auto">
+                    <div className="bg-white rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
 
-                    {/* Animated Blobs */}
-                    <motion.div
-                        animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], opacity: [0.3, 0.5, 0.3] }}
-                        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-luxury-pink rounded-full mix-blend-screen filter blur-[100px]"
-                    ></motion.div>
-                    <motion.div
-                        animate={{ scale: [1, 1.1, 1], x: [0, -30, 0], opacity: [0.2, 0.4, 0.2] }}
-                        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-600 rounded-full mix-blend-screen filter blur-[120px]"
-                    ></motion.div>
-                </div>
+                        {/* Decorative Background Elements */}
+                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-luxury-pink/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gulf-blue/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-                <div className="max-w-6xl mx-auto relative z-10">
-                    <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-[3rem] p-10 md:p-20 overflow-hidden shadow-2xl ring-1 ring-white/20">
-                        {/* Decorative 2025 Watermark */}
-                        <div className="absolute -top-12 -right-12 text-[15rem] font-black text-white/5 leading-none select-none pointer-events-none rotate-12">
-                            2025
-                        </div>
+                        {/* Left: Content */}
+                        <div className="flex-1 relative z-10 text-center md:text-left">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-luxury-pink/10 text-luxury-pink font-bold text-xs tracking-widest uppercase mb-8"
+                            >
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-luxury-pink opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-luxury-pink"></span>
+                                </span>
+                                Admissions Open 2025-26
+                            </motion.div>
 
-                        <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <div className="text-left">
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-yellow-300 font-bold tracking-wider text-xs uppercase mb-8"
-                                >
-                                    <Sparkles size={14} /> Admissions Open
-                                </motion.div>
-                                <h2 className="text-5xl md:text-7xl font-heading font-black text-white leading-[1.1] mb-6 drop-shadow-lg">
-                                    Start Their <br />
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-indigo-400">
-                                        Legacy Today.
-                                    </span>
-                                </h2>
-                                <p className="text-xl text-blue-100/80 font-light leading-relaxed max-w-lg">
-                                    Don't just choose a school; choose a future. Limited seats available for the upcoming academic year.
-                                </p>
-                            </div>
+                            <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese mb-6 leading-tight">
+                                Ready to Shape <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-600">The Future?</span>
+                            </h2>
 
-                            <div className="flex flex-col items-center md:items-end justify-center gap-8">
+                            <p className="text-xl text-gray-500 font-medium leading-relaxed mb-10 max-w-xl mx-auto md:mx-0">
+                                Give your child the gift of a world-class foundation. Applications are filling up fast for the upcoming academic year.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => setIsAdmissionOpen(true)}
-                                    className="group relative w-full md:w-auto overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-4 focus:ring-yellow-300/50"
+                                    className="bg-gulf-lebanese text-white px-10 py-5 rounded-full text-lg font-bold shadow-lg shadow-gulf-lebanese/30 hover:bg-gulf-lebanese/90 transition-colors flex items-center justify-center gap-3"
                                 >
-                                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2E8F0_0%,#500724_50%,#E2E8F0_100%)]" />
-                                    <span className="relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-r from-gulf-lebanese to-gray-900 px-12 py-6 text-xl font-bold text-white transition-all group-hover:bg-gray-900/90 gap-4">
-                                        Start Admission <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                                    </span>
+                                    Apply Now <ArrowRight size={20} />
                                 </motion.button>
 
-                                <div className="flex items-center gap-6">
-                                    <div className="flex -space-x-4">
-                                        {[1, 2, 3].map((_, i) => (
-                                            <div key={i} className="w-12 h-12 rounded-full border-2 border-slate-900 bg-gray-600 flex items-center justify-center overflow-hidden">
-                                                <img src={`https://i.pravatar.cc/100?img=${10 + i}`} alt="User" className="w-full h-full object-cover" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <div className="text-left text-white/80 text-sm">
-                                        <div className="font-bold text-white text-lg">500+</div>
-                                        <div>Parents joined recently</div>
-                                    </div>
+                                <button className="px-10 py-5 rounded-full text-lg font-bold text-gulf-lebanese border-2 border-gulf-lebanese/10 hover:bg-gulf-lebanese/5 transition-colors">
+                                    Book a Campus Visit
+                                </button>
+                            </div>
+
+
+                        </div>
+
+                        {/* Right: Image Frame */}
+                        <div className="flex-1 relative z-10 w-full">
+                            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 group">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
+                                <img
+                                    src="/otherimp/childturf.png"
+                                    alt="Happy Students Outdoors"
+                                    className="w-full h-[500px] object-cover"
+                                />
+
+                                {/* Floating Badge */}
+                                <div className="absolute bottom-8 left-8 z-20 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl text-white">
+                                    <div className="text-3xl font-black mb-1">100%</div>
+                                    <div className="text-xs font-bold uppercase tracking-widest opacity-80">Results & Happiness</div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
