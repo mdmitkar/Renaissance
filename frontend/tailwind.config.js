@@ -55,8 +55,8 @@ export default {
         }
       },
       fontFamily: {
-        heading: ['Cinzel', 'serif'],
-        body: ['Poppins', 'sans-serif'],
+        heading: ['"Playfair Display"', 'serif'],
+        body: ['"Playfair Display"', 'serif'],
       },
     },
   },
