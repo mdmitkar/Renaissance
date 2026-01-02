@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ArrowRight, Sparkles, Cloud, Quote, Rocket, Flower2, Star } from 'lucide-react';
+import { ArrowRight, Sparkles, Cloud, Quote, Rocket, Flower2, Star, Plus, Minus } from 'lucide-react';
 import { googleReviews } from '../data/reviews';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
@@ -12,13 +12,77 @@ import AdmissionModal from '../components/AdmissionModal';
 gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
-    "/assets/hero-slide-1.png",
-    "/assets/hero-slide-2.png",
-    "/assets/hero-slide-3.png",
-    "/assets/hero-slide-4.png",
-    "/assets/hero-slide-5.png",
-    "/assets/hero-slide-6.png"
+    "/SchoolPremises/schoolbuilding.avif",
+    "/ChildrensDay/ChildrensDay_2.jpeg",
+    "/RedDay/RedDay_1.jpeg",
+    "/IndependenceDay/IndependenceDay_2.jpeg",
+    "/SchoolPremises/classroom2.jpeg",
+    "/ChildrensDay/ChildrensDay_1.jpeg"
 ];
+
+const FAQItem = ({ question, answer }) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    return (
+        <div className="border border-gulf-lebanese/10 rounded-2xl bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full flex items-center justify-between p-6 text-left"
+            >
+                <span className="text-lg font-bold text-gulf-lebanese">{question}</span>
+                <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-luxury-pink text-white' : 'bg-gray-100 text-gulf-lebanese'}`}>
+                    {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                </div>
+            </button>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                    >
+                        <div className="p-6 pt-0 text-gray-600 leading-relaxed">
+                            {answer}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
+
+const HoverVideo = ({ src }) => {
+    const videoRef = React.useRef(null);
+
+    return (
+        <div
+            className="w-24 h-24 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-[0_10px_30px_rgba(0,0,0,0.2)] relative transform hover:scale-110 transition-transform duration-300 bg-black cursor-pointer block" // Visible on all devices
+            onMouseEnter={() => videoRef.current?.play()}
+            onMouseLeave={() => {
+                if (videoRef.current) {
+                    videoRef.current.pause();
+                    videoRef.current.currentTime = 0;
+                }
+            }}
+        >
+            <video
+                ref={videoRef}
+                src={src}
+                className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
+                loop
+                playsInline
+            />
+            {/* Play Icon Overlay (Optional) */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 const Home = () => {
     const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
@@ -54,7 +118,7 @@ const Home = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-        }, 4000); // Slower for more impact
+        }, 6000); // 6s for better readability
         return () => clearInterval(timer);
     }, []);
 
@@ -72,8 +136,8 @@ const Home = () => {
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 1.5,
-                    ease: "power3.out",
+                    duration: 1.2,
+                    ease: "power2.out",
                     scrollTrigger: {
                         trigger: el,
                         start: "top 90%",
@@ -223,15 +287,15 @@ const Home = () => {
                         style={{ y: textY, opacity: textOpacity }}
                     >
                         <motion.div
-                            initial={{ scale: 0, rotate: -10 }}
-                            animate={{ scale: 1, rotate: -3 }}
+                            initial={{ scale: 0, rotate: 0 }}
+                            animate={{ scale: 1, rotate: 0 }}
                             transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-                            className="inline-block bg-white/10 backdrop-blur-md text-white px-8 py-3 rounded-full font-bold text-lg mb-10 border border-white/20 shadow-2xl"
+                            className="inline-block bg-white/10 backdrop-blur-md text-white px-5 py-2 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-lg mb-6 md:mb-10 border border-white/20 shadow-2xl whitespace-nowrap"
                         >
                             ✨ Est. 2025 • The Future of Learning
                         </motion.div>
 
-                        <h1 className="text-5xl sm:text-7xl md:text-[9rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-6 tracking-tighter w-full max-w-[100vw]">
+                        <h1 className="text-[13vw] md:text-[8rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-8 tracking-tighter w-full break-words">
                             RENAISSANCE
                         </h1>
 
@@ -279,41 +343,85 @@ const Home = () => {
 
 
             {/* --- SECTION 2: PHILOSOPHY --- */}
-            <section className="relative py-40 px-6 bg-[#F9F7F2]">
+            <section className="relative py-24 md:py-32 px-6 bg-[#F9F7F2]">
                 <div className="max-w-7xl mx-auto">
-                    <div className="reveal-text text-xl font-bold text-gulf-blue mb-8 uppercase tracking-[0.2em]">
-                        Welcome to the Future
+                    {/* Header + Image Row */}
+                    <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+                        {/* Left: Text */}
+                        <div>
+                            <div className="reveal-text text-xl font-bold text-gulf-blue mb-8 uppercase tracking-[0.2em]">
+                                Welcome to the Future
+                            </div>
+                            <h2 className="reveal-text text-4xl md:text-6xl font-heading font-black text-gulf-lebanese leading-tight">
+                                WE BUILD <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink via-purple-400 to-indigo-500 animate-gradient-x">
+                                    BRIGHT MINDS
+                                </span> <br />
+                                FOR TOMORROW.
+                            </h2>
+                        </div>
+
+                        {/* Right: Image */}
+                        <div className="reveal-text relative hidden md:block">
+                            <div className="absolute inset-0 bg-luxury-pink/10 rounded-[2.5rem] rotate-3 transform scale-105 z-0"></div>
+                            <img
+                                src="/otherimp/a.jpeg"
+                                alt="Modern Classroom"
+                                className="relative z-10 w-full h-[400px] object-cover rounded-[2.5rem] shadow-2xl rotate-[-2deg] hover:rotate-0 transition-transform duration-500"
+                            />
+                        </div>
                     </div>
-                    <h2 className="reveal-text text-4xl md:text-7xl font-heading font-black text-gulf-lebanese leading-[0.9] mb-20">
-                        WE BUILD <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink via-purple-400 to-indigo-500 animate-gradient-x">
-                            BRIGHT MINDS
-                        </span> <br />
-                        FOR TOMORROW.
-                    </h2>
 
                     <div className="grid md:grid-cols-2 gap-20 items-center">
-                        <div className="reveal-text">
-                            <p className="text-2xl text-gray-600 leading-relaxed font-medium">
+                        <div className="reveal-text grid grid-cols-2 gap-6 w-full">
+                            {/* Feature Cards with Hover Animation */}
+                            {[
+                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit", img: "/assets/cards/holistic_growth.png" },
+                                { icon: "🛡️", title: "Safety First", desc: "Top-tier Security", img: "/assets/cards/safety_first.png" },
+                                { icon: "🎨", title: "Creative Arts", desc: "Express Freely", img: "/assets/cards/creative_arts.png" },
+                                { icon: "🤝", title: "Community", desc: "Stronger Together", img: "/assets/cards/community.png" }
+                            ].map((item, idx) => (
+                                <div key={idx} className="group relative overflow-hidden rounded-[2rem] h-[350px] shadow-sm hover:shadow-xl cursor-default border border-gray-100 transition-shadow duration-300">
+                                    {/* 1. Background Image */}
+                                    <img
+                                        src={item.img}
+                                        alt={item.title}
+                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+
+                                    {/* 2. Slide-up Content Overlay */}
+                                    {/* Initial: Translated DOWN (off-screen or minimal visibility). Hover: Slides UP to cover. */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-8 translate-y-[60%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+
+                                        {/* Visible Part (Icon + Title) */}
+                                        <div className="mb-2">
+                                            <span className="text-4xl mb-3 block filter drop-shadow-md">{item.icon}</span>
+                                            <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-md leading-tight">{item.title}</h3>
+                                        </div>
+
+                                        {/* Hidden Part (Description + Decor) */}
+                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                            <div className="w-12 h-1 bg-luxury-pink mb-4 rounded-full"></div>
+                                            <p className="text-white/90 font-medium text-lg leading-relaxed">
+                                                {item.desc}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="reveal-text px-4 md:px-0">
+                            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium text-justify">
                                 Imagine a place where every corner sparks <span className="text-luxury-pink font-semibold">curiosity</span>.
                                 At Renaissance, we don't just teach foundations; we inspire lifelong dreamers.
                                 A modern sanctuary for little explorers.
+                                <br /><br />
+                                Our carefully curated environment encourages independent discovery, while our dedicated mentors ensure every child feels seen and heard. From the first steps of playgroup to the confident strides of Senior KG, we nurture the unique potential within each young mind.
+                                <br /><br />
+                                We believe that education is not just about filling a bucket, but lighting a fire. Our holistic approach integrates academics with arts, sports, and emotional well-being, creating a balanced ecosystem where children flourish. Every element of our campus, from the sunlit classrooms to the vibrant play areas, is designed to stimulate imagination and foster a deep, lasting love for learning.
+                                <br /><br />
+                                Parents are our partners in this journey. We maintain open channels of communication, ensuring that you are always part of your child's milestones. Together, we build a strong foundation of values, resilience, and joy, preparing your little ones not just for school, but for life itself. Join us in shaping a future where kindness and knowledge go hand in hand.
                             </p>
-                        </div>
-                        <div className="reveal-text grid grid-cols-2 gap-6">
-                            {/* Feature Cards */}
-                            {[
-                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit" },
-                                { icon: "🛡️", title: "Safety First", desc: "Top-tier Security" },
-                                { icon: "🎨", title: "Creative Arts", desc: "Express Freely" },
-                                { icon: "🤝", title: "Community", desc: "Stronger Together" }
-                            ].map((item, idx) => (
-                                <div key={idx} className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                                    <span className="text-4xl block mb-4">{item.icon}</span>
-                                    <h3 className="text-lg font-bold text-gulf-lebanese">{item.title}</h3>
-                                    <p className="text-sm text-gray-400 mt-1">{item.desc}</p>
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </div>
@@ -357,16 +465,16 @@ const Home = () => {
                             <h3 className="text-sm md:text-base font-bold tracking-[0.4em] uppercase text-gulf-lebanese">Our Philosophy</h3>
                             <div className="h-[1px] w-12 bg-gulf-lebanese"></div>
                         </div>
-                        <h2 className="text-5xl md:text-8xl font-heading font-black text-gulf-lebanese relative z-10 drop-shadow-sm">
-                            The Seven <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-500 italic">Petals</span>
+                        <h2 className="text-4xl md:text-8xl font-heading font-black text-gulf-lebanese relative z-10 drop-shadow-sm px-4">
+                            The Seven <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-500 italic block md:inline">Petals</span>
                         </h2>
                     </div>
 
-                    <div className="relative w-full h-[60vh] flex items-center justify-center">
+                    <div className="relative w-full h-auto flex flex-col md:h-[60vh] md:flex-row items-center justify-center">
                         {PETAL_DATA.map((petal, index) => (
                             <div
                                 key={index}
-                                className={`reveal-on-mobile petal-card relative md:absolute w-full md:w-[800px] h-auto md:h-[500px] ${petal.bg} p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl md:shadow-2xl border border-white/50 flex flex-col md:flex-row gap-10 items-center justify-between overflow-hidden mb-10 md:mb-0`}
+                                className={`reveal-on-mobile petal-card relative md:absolute w-full md:max-w-5xl h-auto md:h-[450px] ${petal.bg} p-6 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-xl md:shadow-2xl border border-white/50 flex flex-col md:flex-row gap-8 md:gap-10 items-center justify-between overflow-hidden mb-8 md:mb-0`}
                                 style={{
                                     // Inline styles removed for mobile to allow CSS flow, logic handled by GSAP matchMedia on desktop
                                 }}
@@ -387,7 +495,7 @@ const Home = () => {
 
                                 {/* Image Content */}
                                 <div className="md:w-1/2 h-64 md:h-full w-full relative rounded-[2rem] overflow-hidden shadow-inner rotate-3">
-                                    <img src={petal.img} alt={petal.title} className="w-full h-full object-cover transform scale-110" />
+                                    <img src={petal.img} alt={petal.title} className={`w-full h-full object-cover transform scale-110 ${petal.imgPos || 'object-center'}`} />
                                 </div>
                             </div>
                         ))}
@@ -426,11 +534,11 @@ const Home = () => {
                     {PROGRAMS.map((prog, i) => (
                         <div
                             key={i}
-                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[60vw] h-auto md:h-[70vh] flex flex-col md:flex-row shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
+                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[650px] h-[600px] md:h-[550px] flex flex-col md:flex-row shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
                             style={{ backgroundColor: prog.bg }}
                         >
                             {/* Content Side */}
-                            <div className="md:w-5/12 p-8 md:p-10 flex flex-col justify-between relative z-10 text-white">
+                            <div className="md:w-1/2 p-5 md:p-8 flex flex-col justify-between relative z-10 text-white h-full">
                                 <div>
                                     <div className="flex items-center gap-4 mb-6">
                                         <span className="px-3 py-1 rounded-full border border-white/30 text-xs font-bold uppercase tracking-wider text-white">
@@ -439,19 +547,19 @@ const Home = () => {
                                         <div className="h-[1px] flex-grow bg-white/20"></div>
                                     </div>
 
-                                    <h3 className="text-3xl md:text-5xl font-black mb-4 leading-tight text-white">
+                                    <h3 className="text-2xl md:text-[2rem] font-black mb-2 md:mb-4 leading-tight text-white">
                                         {prog.title}
                                     </h3>
-                                    <p className="text-base text-white/90 font-medium leading-relaxed">
+                                    <p className="text-sm md:text-base text-white/90 font-medium leading-relaxed">
                                         {prog.desc}
                                     </p>
                                 </div>
 
-                                <div className="mt-8">
-                                    <h4 className="font-bold text-sm uppercase tracking-widest text-white/60 mb-4">Highlights</h4>
-                                    <div className="flex flex-wrap gap-3">
+                                <div className="mt-2 md:mt-4">
+                                    <h4 className="font-bold text-xs md:text-sm uppercase tracking-widest text-white/60 mb-2 md:mb-4">Highlights</h4>
+                                    <div className="flex flex-wrap gap-2 md:gap-3">
                                         {prog.tags.map((tag, idx) => (
-                                            <span key={idx} className="px-5 py-2 bg-white/10 backdrop-blur-md rounded-full font-bold text-sm border border-white/20 text-white">
+                                            <span key={idx} className="px-3 py-1 md:px-5 md:py-2 bg-white/10 backdrop-blur-md rounded-full font-bold text-xs md:text-sm border border-white/20 text-white">
                                                 {tag}
                                             </span>
                                         ))}
@@ -460,7 +568,7 @@ const Home = () => {
                             </div>
 
                             {/* Image Side */}
-                            <div className="md:w-7/12 h-64 md:h-full relative overflow-hidden">
+                            <div className="md:w-1/2 h-64 md:h-full relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent z-10 w-32"></div>
                                 <img
                                     src={prog.img}
@@ -468,7 +576,7 @@ const Home = () => {
                                     className="journey-img w-full h-full object-cover"
                                 />
                                 {/* Overlay Number */}
-                                <div className="absolute bottom-6 right-8 text-[12rem] font-black text-white/10 leading-none z-0 select-none">
+                                <div className="absolute bottom-6 right-8 text-[8rem] md:text-[10rem] font-black text-white/10 leading-none z-0 select-none">
                                     0{i + 1}
                                 </div>
                             </div>
@@ -493,9 +601,17 @@ const Home = () => {
 
             {/* --- SECTION 5: LIVE STATS & TESTIMONIALS --- */}
             <section className="py-32 bg-white overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)]">
-                <div className="max-w-7xl mx-auto px-6 mb-20 text-center">
-                    <p className="text-luxury-pink font-bold text-xl uppercase tracking-[0.3em] mb-4">The Voice of Parents</p>
-                    <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese">Community Love</h2>
+                <div className="max-w-7xl mx-auto px-6 mb-20 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
+                    {/* Left Video */}
+                    <HoverVideo src="/videos/Testimonial_1.mp4" />
+
+                    <div className="text-center">
+                        <p className="text-luxury-pink font-bold text-xl uppercase tracking-[0.3em] mb-4">The Voice of Parents</p>
+                        <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese">Community Love</h2>
+                    </div>
+
+                    {/* Right Video */}
+                    <HoverVideo src="/videos/Testimonial_2.mp4" />
                 </div>
 
                 {/* Marquee */}
@@ -549,13 +665,13 @@ const Home = () => {
                 <div className="max-w-7xl mx-auto px-6 mt-32">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-gray-100">
                         {[
-                            { num: "1.5K+", label: "Happy Students" },
-                            { num: "50+", label: "Expert Teachers" },
-                            { num: "20+", label: "Years Impact" },
+                            { num: "50+", label: "Happy Students" },
+                            { num: "5+", label: "Expert Mentors" }, // More premium term than teachers
+                            { num: "2025", label: "Established" },
                             { num: "100%", label: "Safety Record" },
                         ].map((stat, i) => (
                             <div key={i} className="reveal-text px-4">
-                                <h3 className="text-6xl md:text-7xl font-black text-gulf-lebanese mb-4 bg-clip-text text-transparent bg-gradient-to-b from-gulf-lebanese to-gray-400">
+                                <h3 className="text-4xl md:text-7xl font-black text-gulf-lebanese mb-4 bg-clip-text text-transparent bg-gradient-to-b from-gulf-lebanese to-gray-400">
                                     {stat.num}
                                 </h3>
                                 <p className="text-gray-500 font-bold uppercase tracking-widest text-sm">{stat.label}</p>
@@ -565,37 +681,103 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* --- SECTION 6: FOOTER CTA --- */}
-            <section className="relative py-40 bg-gulf-lebanese text-white text-center overflow-hidden">
-                <div className="absolute inset-0 opacity-10 bg-[url('/assets/pattern.png')] mix-blend-overlay"></div>
-                <div className="absolute top-0 w-full h-32 bg-gradient-to-b from-white to-transparent opacity-10"></div>
+            {/* --- SECTION 6: FAQ --- */}
+            <section className="py-24 bg-[#F9F7F2] relative z-10 px-6">
+                <div className="max-w-4xl mx-auto">
+                    <div className="text-center mb-16">
+                        <span className="text-luxury-pink font-bold tracking-widest uppercase text-sm">Got Questions?</span>
+                        <h2 className="text-5xl font-heading font-black text-gulf-lebanese mt-4">We Have Answers</h2>
+                    </div>
 
-                <div className="relative z-10 max-w-5xl mx-auto px-6">
+                    <div className="space-y-4">
+                        {[
+                            { q: "What is the age criteria for admission?", a: "We welcome children from 1.5 years for Playgroup, 2.5 years for Nursery, 3.5 years for Junior KG, and 4.5 years for Senior KG." },
+                            { q: "What is the 'Seven Petals' philosophy?", a: "It is our proprietary holistic curriculum focusing on 7 key areas: Cognitive, Motor Skills, Creativity, Culture, Sports, Social, and Life Skills." },
+                            { q: "Is transport facility available?", a: "Yes, we offer safe and comfortable transport facilities covering all major nearby areas with GPS tracking for parents." },
+                            { q: "How do I schedule a campus visit?", a: "You can simply fill out the enquiry form by clicking the 'Enroll Now' button, or call our admissions office directly to book a slot." },
+                            { q: "What are the safety measures on campus?", a: "Safety is our priority. We have 24/7 CCTV surveillance, security personnel, soft-flooring in play areas, and background-verified staff." }
+                        ].map((faq, i) => (
+                            <FAQItem key={i} question={faq.q} answer={faq.a} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* --- SECTION 7: PREMIUM FOOTER CTA --- */}
+            <section className="relative py-32 px-6 overflow-hidden">
+                {/* Background with Gradient and Noise */}
+                <div className="absolute inset-0 bg-[#0F172A] z-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-gulf-lebanese via-[#0F172A] to-luxury-pink/20 opacity-80"></div>
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
+
+                    {/* Animated Blobs */}
                     <motion.div
-                        animate={{ y: [0, -20, 0] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                        <Rocket size={80} className="mx-auto mb-12 text-yellow-400 drop-shadow-[0_0_30px_rgba(250,204,21,0.6)]" />
-                    </motion.div>
+                        animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], opacity: [0.3, 0.5, 0.3] }}
+                        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-luxury-pink rounded-full mix-blend-screen filter blur-[100px]"
+                    ></motion.div>
+                    <motion.div
+                        animate={{ scale: [1, 1.1, 1], x: [0, -30, 0], opacity: [0.2, 0.4, 0.2] }}
+                        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-600 rounded-full mix-blend-screen filter blur-[120px]"
+                    ></motion.div>
+                </div>
 
-                    <h2 className="text-6xl md:text-9xl font-heading font-black mb-10 tracking-tight">
-                        Ready to <span className="text-luxury-pink italic">Launch?</span>
-                    </h2>
-                    <p className="text-2xl md:text-3xl text-gray-300 mb-16 max-w-3xl mx-auto font-light leading-relaxed">
-                        Admissions for 2025 are filling up fast. Join the family where your child's future shines brightest.
-                    </p>
+                <div className="max-w-6xl mx-auto relative z-10">
+                    <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-[3rem] p-10 md:p-20 overflow-hidden shadow-2xl ring-1 ring-white/20">
+                        {/* Decorative 2025 Watermark */}
+                        <div className="absolute -top-12 -right-12 text-[15rem] font-black text-white/5 leading-none select-none pointer-events-none rotate-12">
+                            2025
+                        </div>
 
-                    <button
-                        onClick={() => setIsAdmissionOpen(true)}
-                        className="group relative inline-flex items-center justify-center px-16 py-8 overflow-hidden font-bold text-gulf-lebanese transition-all duration-300 bg-white rounded-full hover:scale-105 shadow-[0_0_60px_rgba(255,255,255,0.2)]"
-                    >
-                        <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-luxury-pink rounded-full group-hover:w-[150%] group-hover:h-[150%] opacity-20"></span>
-                        <span className="relative text-2xl tracking-wide uppercase">Start Admission</span>
-                        <ArrowRight className="ml-3 relative transition-transform group-hover:translate-x-2" size={28} />
-                    </button>
+                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                            <div className="text-left">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-yellow-300 font-bold tracking-wider text-xs uppercase mb-8"
+                                >
+                                    <Sparkles size={14} /> Admissions Open
+                                </motion.div>
+                                <h2 className="text-5xl md:text-7xl font-heading font-black text-white leading-[1.1] mb-6 drop-shadow-lg">
+                                    Start Their <br />
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-indigo-400">
+                                        Legacy Today.
+                                    </span>
+                                </h2>
+                                <p className="text-xl text-blue-100/80 font-light leading-relaxed max-w-lg">
+                                    Don't just choose a school; choose a future. Limited seats available for the upcoming academic year.
+                                </p>
+                            </div>
 
-                    <div className="mt-16 text-white/30 text-sm font-semibold tracking-[0.2em] uppercase">
-                        * Limited Seats • Terms Apply
+                            <div className="flex flex-col items-center md:items-end justify-center gap-8">
+                                <motion.button
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={() => setIsAdmissionOpen(true)}
+                                    className="group relative w-full md:w-auto overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-4 focus:ring-yellow-300/50"
+                                >
+                                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2E8F0_0%,#500724_50%,#E2E8F0_100%)]" />
+                                    <span className="relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-r from-gulf-lebanese to-gray-900 px-12 py-6 text-xl font-bold text-white transition-all group-hover:bg-gray-900/90 gap-4">
+                                        Start Admission <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+                                    </span>
+                                </motion.button>
+
+                                <div className="flex items-center gap-6">
+                                    <div className="flex -space-x-4">
+                                        {[1, 2, 3].map((_, i) => (
+                                            <div key={i} className="w-12 h-12 rounded-full border-2 border-slate-900 bg-gray-600 flex items-center justify-center overflow-hidden">
+                                                <img src={`https://i.pravatar.cc/100?img=${10 + i}`} alt="User" className="w-full h-full object-cover" />
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="text-left text-white/80 text-sm">
+                                        <div className="font-bold text-white text-lg">500+</div>
+                                        <div>Parents joined recently</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -608,13 +790,13 @@ const Home = () => {
 // --- DATA CONSTANTS ---
 
 const PETAL_DATA = [
-    { title: "Cognitive", emoji: "🧠", desc: "Building strong mental foundations through puzzles and logic.", img: "/SchoolPremises/classroom2.jpeg", color: "text-white", bg: "bg-[#1E3A8A]" }, // Dark Blue
-    { title: "Motor Skills", emoji: "🤸", desc: "Fine and gross motor development with active play.", img: "/Activities/motor.jpeg", color: "text-white", bg: "bg-[#831843]" }, // Dark Pink
-    { title: "Creativity", emoji: "🎨", desc: "Expressing imagination through art, music, and dance.", img: "/Activities/Activities_1.jpeg", color: "text-white", bg: "bg-[#065F46]" }, // Dark Emerald
-    { title: "Culture", emoji: "🌏", desc: "Understanding our world, traditions, and values.", img: "/otherimp/IndependenceDay_3.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
-    { title: "Sports", emoji: "🏆", desc: "Teamwork, discipline, and physical health.", img: "/SportsDay/sportsday1.jpeg", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
-    { title: "Social", emoji: "🤝", desc: "Making friends, sharing, and emotional intelligence.", img: "/Activities/RedDay_3.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
-    { title: "Life Skills", emoji: "🌱", desc: "Practical skills for independent living and hygiene.", img: "/Activities/Activities_2.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
+    { title: "Faith & Values", emoji: "🤲", desc: "Rooted in Islamic teachings, learning duas, akhlaq, gratitude, and moral discipline.", img: "/otherimp/IndependenceDay_3.jpeg", color: "text-white", bg: "bg-[#1E3A8A]" }, // Dark Blue
+    { title: "Play-Based", emoji: "🧸", desc: "Learning through exploration and curiosity to naturally develop skills while having fun.", img: "/SchoolPremises/classplay.jpeg", color: "text-white", bg: "bg-[#831843]" }, // Dark Pink
+    { title: "Creativity", emoji: "🎨", desc: "Encouraging art, craft, storytelling, and imagination for confident self-expression.", img: "/otherimp/ChildrensDay_2_copy.jpeg", color: "text-white", bg: "bg-[#065F46]" }, // Dark Emerald
+    { title: "Social Growth", emoji: "❤️", desc: "Building teamwork, empathy, and communication to help children feel valued.", img: "/Activities/RedDay_3.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
+    { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/SchoolPremises/classroom2.jpeg", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
+    { title: "Physical", emoji: "🏃", desc: "Focus on movement, coordination, and healthy habits through active play.", img: "/SportsDay/sportsday1.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
+    { title: "Care & Safety", emoji: "🛡️", desc: "A nurturing, secure environment with qualified mentors and strong parent connection.", img: "/Activities/Activities_2.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
 ];
 
 const PROGRAMS = [
@@ -629,7 +811,7 @@ const PROGRAMS = [
     {
         title: "Nursery",
         age: "2.5 - 3.5 Years",
-        desc: "Stepping stones to literacy. Letters and numbers become friends through stories.",
+        desc: "Stepping stones to early literacy. Letters and numbers become friends through stories.",
         bg: "#059669", // Emerald 600 - Vibrant Green
         img: "/Activities/Activities_1.jpeg",
         tags: ["Phonics", "Nature", "Reading"]

@@ -6,15 +6,19 @@ const About = () => {
     return (
         <div className="min-h-screen bg-bg-cream dark:bg-bg-dark font-body text-gulf-lebanese">
             {/* HERO */}
-            <div className="bg-gulf-dark text-white py-24 text-center relative overflow-hidden">
+            <div className="bg-gulf-dark text-white py-32 md:py-48 text-center relative overflow-hidden">
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8 }}
-                    className="relative z-10"
+                    initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="relative z-10 px-4"
                 >
-                    <h1 className="text-5xl md:text-7xl font-heading font-extrabold mb-4 tracking-tight">About Us</h1>
-                    <p className="text-xl max-w-2xl mx-auto font-light text-gulf-icy">Knowing the heart behind Renaissance.</p>
+                    <h1 className="text-6xl md:text-8xl font-heading font-extrabold mb-6 tracking-tight drop-shadow-lg">
+                        About <span className="text-transparent bg-clip-text bg-gradient-to-r from-gulf-icy to-white">Us</span>
+                    </h1>
+                    <p className="text-2xl max-w-3xl mx-auto font-light text-gulf-icy/90 leading-relaxed">
+                        Knowing the heart behind Renaissance.
+                    </p>
                 </motion.div>
                 {/* Decor - Animated Circles */}
                 <motion.div
@@ -51,13 +55,14 @@ const About = () => {
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="relative"
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="relative group"
                     >
-                        <div className="absolute inset-0 bg-gulf-blue/20 rounded-3xl transform rotate-3"></div>
+                        <div className="absolute inset-0 bg-gulf-blue/20 rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-500 ease-in-out"></div>
                         <img
-                            src="/schoolbuilding.avif"
+                            src="/SchoolPremises/schoolbuilding.avif"
                             alt="Renaissance School Building"
-                            className="relative rounded-3xl shadow-2xl w-full object-cover h-80 md:h-[500px] border-4 border-white"
+                            className="relative rounded-3xl shadow-2xl w-full object-cover h-80 md:h-[500px] border-4 border-white dark:border-gray-800 transition-transform duration-500 group-hover:-translate-y-2"
                         />
                     </motion.div>
                 </section>
@@ -83,7 +88,7 @@ const About = () => {
                 </section>
 
                 {/* 3. Management Profile - Wide Card */}
-                <section className="bg-white dark:bg-[#222] rounded-[3rem] p-8 md:p-16 shadow-xl relative overflow-hidden mb-24 transform transition-all hover:shadow-2xl">
+                <section className="bg-gradient-to-br from-white to-gulf-icy/30 dark:from-[#222] dark:to-[#1a1a1a] backdrop-blur-md rounded-[3rem] p-8 md:p-16 shadow-xl relative overflow-hidden mb-24 transform transition-all hover:shadow-2xl border border-white/20">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center relative z-10">
                         <div className="md:col-span-1">
                             <img
@@ -141,10 +146,11 @@ const TimelineSvg = () => {
                     d="M 10 0 L 10 100"
                     fill="none"
                     stroke="#0060AA"
-                    strokeWidth="2"
+                    strokeWidth="4"
                     strokeLinecap="round"
                     vectorEffect="non-scaling-stroke"
                     style={{ pathLength: scrollYProgress }}
+                    className="drop-shadow-[0_0_8px_rgba(0,96,170,0.6)]"
                 />
             </svg>
         </div>
@@ -217,8 +223,8 @@ const JOURNEY_DATA = [
 
 const ValueCard = ({ icon, title, desc, color }) => (
     <motion.div
-        whileHover={{ y: -10 }}
-        className="bg-white dark:bg-[#222] p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all"
+        whileHover={{ y: -15, scale: 1.02 }}
+        className="bg-white dark:bg-[#222] p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all border border-transparent hover:border-gulf-blue/10 group"
     >
         <div className={`w-20 h-20 mx-auto rounded-full ${color} flex items-center justify-center mb-6 text-gulf-lebanese`}>
             {icon}
