@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Calendar, MapPin, Clock, ArrowRight, Star, Heart, Trophy, Music, Shield, Sprout, GraduationCap, Palette } from 'lucide-react';
 import ImgWithFallback from '../components/ImgWithFallback';
+import Footer from '../components/Footer';
 
 // --- DATA & CONFIGURATION ---
 
@@ -429,6 +430,11 @@ const LifeAtRenaissance = () => {
                         Join Renaissance Today
                     </button>
                 </motion.div>
+            </div>
+
+            {/* FOOTER */}
+            <div className="snap-start">
+                <Footer />
             </div>
 
         </div>
