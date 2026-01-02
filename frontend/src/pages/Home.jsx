@@ -850,7 +850,7 @@ const PROGRAMS = [
         age: "1.5 - 2.5 Years",
         desc: "A sensory wonderland for our tiniest tots. Montessori-inspired aids meet messy play.",
         bg: "#BE185D", // Pink 700 - Vibrant
-        img: "/SchoolPremises/classplay.jpeg",
+        img: "/assets/generated/playgroup.png",
         tags: ["Sensory Play", "Music", "Safety"]
     },
     {
@@ -858,7 +858,7 @@ const PROGRAMS = [
         age: "2.5 - 3.5 Years",
         desc: "Stepping stones to early literacy. Letters and numbers become friends through stories.",
         bg: "#059669", // Emerald 600 - Vibrant Green
-        img: "/Activities/Activities_1.jpeg",
+        img: "/assets/generated/nursery.png",
         tags: ["Phonics", "Nature", "Reading"]
     },
     {
@@ -866,7 +866,7 @@ const PROGRAMS = [
         age: "3.5 - 4.5 Years",
         desc: "Curiosity takes flight. Science experiments, reading clubs, and logical reasoning.",
         bg: "#D97706", // Amber 600 - Rich Orange/Gold
-        img: "/otherimp/Activities_3.jpeg",
+        img: "/assets/generated/junior_kg.png",
         tags: ["Science", "Logic", "Math"]
     },
     {
@@ -874,7 +874,7 @@ const PROGRAMS = [
         age: "4.5 - 5.5 Years",
         desc: "Ready for the big world. Advanced concepts, leadership, and school readiness.",
         bg: "#4F46E5", // Indigo 600 - Vibrant Blue/Purple
-        img: "/Activities/Activities_4.jpeg",
+        img: "/assets/generated/senior_kg.png",
         tags: ["Writing", "Leadership", "Speaking"]
     }
 ];
