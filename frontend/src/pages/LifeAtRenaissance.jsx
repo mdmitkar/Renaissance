@@ -273,23 +273,14 @@ const TimelineSection = ({ event, index }) => {
 };
 
 const LifeAtRenaissance = () => {
-    const { scrollYProgress } = useScroll();
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
+
 
 
 
     return (
         <div className="bg-[#F3F0E8] dark:bg-[#111] min-h-screen font-body transition-colors duration-300">
 
-            {/* PROGRESS BAR */}
-            <motion.div
-                className="fixed top-0 left-0 right-0 h-2 origin-left z-50"
-                style={{ scaleX, backgroundColor: '#0060AA' }}
-            />
+
 
             {/* HERO HEADER */}
             <header className="relative w-full h-[70vh] md:h-screen flex items-center justify-center overflow-hidden">
@@ -307,13 +298,13 @@ const LifeAtRenaissance = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="relative z-10 text-center px-4 max-w-5xl mx-auto"
+                    className="relative z-10 text-center px-4 w-full"
                 >
-                    <h1 className="text-6xl md:text-9xl font-heading font-black text-white mb-6 tracking-tight drop-shadow-2xl">
-                        LIFE @ RENAISSANCE
+                    <h1 className="text-[8vw] md:text-[7vw] font-heading font-black text-white mb-4 tracking-tighter drop-shadow-2xl whitespace-nowrap leading-none">
+                        LIFE AT RENAISSANCE
                     </h1>
 
-                    <p className="text-xl md:text-3xl text-white/90 font-medium max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+                    <p className="text-lg md:text-2xl text-white/90 font-medium max-w-4xl mx-auto leading-relaxed drop-shadow-lg tracking-wide">
                         A dynamic journey of joy, learning, and unforgettable moments.
                     </p>
                 </motion.div>
@@ -351,10 +342,7 @@ const LifeAtRenaissance = () => {
                 </motion.div>
             </div>
 
-            {/* FOOTER */}
-            <div className="snap-start">
-                <Footer />
-            </div>
+
 
         </div>
     );
