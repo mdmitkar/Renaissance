@@ -23,7 +23,7 @@ const EVENTS = [
             "classroom1.jpeg",
             "classroom2.jpeg",
             "classplay.jpeg",
-            "SchoolPremises_1.jpeg"
+
         ],
         theme: {
             primary: "#81BAD9", // Gulf Blue
@@ -121,7 +121,8 @@ const EVENTS = [
         folder: "SportsDay",
         images: [
             "sportsday1.jpeg",
-            "sportdaymedal.jpeg"
+            "sportdaymedal.jpeg",
+            "sportday4.webp"
         ],
         theme: {
             primary: "#F3DD89", // Gentle Yellow

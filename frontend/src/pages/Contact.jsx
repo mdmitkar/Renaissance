@@ -10,7 +10,7 @@ const Contact = () => {
             <div className="relative h-[60vh] min-h-[600px] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="/SchoolPremises/SchoolPremises_1.jpeg"
+                        src="/SchoolPremises/contact_hero.png"
                         alt="Renaissance Campus"
                         className="w-full h-full object-cover filter brightness-[0.3]"
                     />
@@ -26,7 +26,7 @@ const Contact = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-5xl md:text-8xl font-heading font-extrabold text-white mb-6 drop-shadow-2xl tracking-tight"
+                        className="text-5xl md:text-8xl font-heading font-medium text-white mb-6 drop-shadow-2xl tracking-tight leading-[0.9]"
                     >
                         Join the <span className="text-gentle-yellow relative">Renaissance <svg className="absolute w-full h-3 bottom-1 left-0 text-primary-carmine" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" /></svg></span> Family
                     </motion.h1>
@@ -34,7 +34,7 @@ const Contact = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
-                        className="text-xl md:text-2xl text-gray-100 max-w-2xl mx-auto leading-relaxed font-light"
+                        className="text-xl md:text-2xl text-slate-100 max-w-2xl mx-auto leading-relaxed font-body font-light tracking-wide drop-shadow-lg"
                     >
                         Visits, enquiries, or just a friendly hello. We are always here for you.
                     </motion.p>
@@ -253,7 +253,7 @@ const AdmissionForm = () => {
 
                     {/* Class Selection */}
                     <div className="pt-2">
-                        <label className="text-sm font-bold text-gulf-lebanese dark:text-gray-400 mb-4 block uppercase tracking-wide flex items-center gap-2">
+                        <label className="text-sm font-bold text-gulf-lebanese dark:text-gray-400 mb-4 uppercase tracking-wide flex items-center gap-2">
                             <BookOpen size={18} className="text-primary-carmine" /> Select Class/Grade
                         </label>
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

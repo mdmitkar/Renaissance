@@ -19,7 +19,7 @@ const reelAssets = [
 ];
 
 const campusAssets = [
-    { id: 'cam1', src: '/SchoolPremises/SchoolPremises_1.jpeg', title: 'Entrance' },
+
     { id: 'cam2', src: '/SchoolPremises/classplay.jpeg', title: 'Play Area' },
     { id: 'cam3', src: '/SchoolPremises/classroom1.jpeg', title: 'Classroom' },
     { id: 'cam4', src: '/SchoolPremises/classroom2.jpeg', title: 'Learning Space' },
