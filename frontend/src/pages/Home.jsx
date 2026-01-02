@@ -12,7 +12,7 @@ import AdmissionModal from '../components/AdmissionModal';
 gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
-    
+
     "/ChildrensDay/ChildrenDay_2.jpeg",
     "/RedDay/RedDay_1.jpeg",
     "/IndependenceDay/IndependenceDay_2.jpeg",
@@ -284,7 +284,7 @@ const Home = () => {
                     <Cloud size={140} fill="currentColor" />
                 </motion.div>
 
-                <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-32 text-center">
+                <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center text-center">
                     <motion.div
                         style={{ y: textY, opacity: textOpacity }}
                     >
@@ -307,9 +307,9 @@ const Home = () => {
                             }}
                             initial="hidden"
                             animate="visible"
-                            className="text-[10vw] md:text-[8rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-8 tracking-tighter w-full text-center"
+                            className="text-[15vw] md:text-[12rem] font-heading font-normal text-white leading-none drop-shadow-2xl mb-4 tracking-tighter w-full text-center"
                         >
-                            {"RENAISSANCE".split("").map((char, index) => (
+                            {"Renaissance".split("").map((char, index) => (
                                 <motion.span
                                     key={index}
                                     className="inline-block"
@@ -327,7 +327,7 @@ const Home = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1.5, duration: 1 }}
-                            className="text-2xl md:text-5xl font-handwriting font-bold text-gentle-yellow drop-shadow-lg mb-12"
+                            className="text-xl md:text-3xl font-body font-light text-slate-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg tracking-wide mb-12"
                         >
                             Where Magic Happens Daily
                         </motion.h2>

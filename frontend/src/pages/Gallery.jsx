@@ -243,10 +243,10 @@ const Gallery = () => {
 
                 <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-                        <h1 className="text-7xl md:text-9xl font-black text-white tracking-tighter mb-6 drop-shadow-2xl">
-                            GALLERY
+                        <h1 className="text-7xl md:text-9xl font-heading font-normal text-white tracking-tighter mb-6 drop-shadow-2xl">
+                            Gallery
                         </h1>
-                        <p className="text-xl md:text-3xl font-light text-slate-100 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+                        <p className="text-xl md:text-3xl font-light text-slate-100 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg font-body tracking-wide">
                             A curated collection of moments that define the Renaissance experience.
                         </p>
                         <motion.button

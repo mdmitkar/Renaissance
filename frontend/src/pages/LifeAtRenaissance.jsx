@@ -300,11 +300,11 @@ const LifeAtRenaissance = () => {
                     transition={{ duration: 0.8 }}
                     className="relative z-10 text-center px-4 w-full"
                 >
-                    <h1 className="text-[8vw] md:text-[7vw] font-heading font-black text-white mb-4 tracking-tighter drop-shadow-2xl whitespace-nowrap leading-none">
-                        LIFE AT RENAISSANCE
+                    <h1 className="text-[8vw] md:text-[7vw] font-heading font-normal text-white mb-4 tracking-tighter drop-shadow-2xl whitespace-nowrap leading-none">
+                        Life @ Renaissance
                     </h1>
 
-                    <p className="text-lg md:text-2xl text-white/90 font-medium max-w-4xl mx-auto leading-relaxed drop-shadow-lg tracking-wide">
+                    <p className="text-lg md:text-2xl font-light text-slate-100 max-w-4xl mx-auto leading-relaxed drop-shadow-lg font-body tracking-wide">
                         A dynamic journey of joy, learning, and unforgettable moments.
                     </p>
                 </motion.div>
