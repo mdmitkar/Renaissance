@@ -180,7 +180,14 @@ const RennyChatbot = () => {
 
     const handleBotResponse = (nodeId) => {
         setIsTyping(true);
-        const node = CHAT_FLOW[nodeId];
+        let node = CHAT_FLOW[nodeId];
+
+        // --- Dynamic Game Logic ---
+        if (nodeId === 'game_color') {
+            node = generateColorGame();
+        } else if (nodeId === 'game_count') {
+            node = generateCountGame();
+        }
 
         // Simulate reading delay
         setTimeout(() => {
@@ -219,6 +226,59 @@ const RennyChatbot = () => {
         } else if (option.next) {
             handleBotResponse(option.next);
         }
+    };
+
+    // --- DOMAIN LOGIC HELPERS ---
+    const generateColorGame = () => {
+        const colors = [
+            { name: 'RED', emoji: '❤️' },
+            { name: 'BLUE', emoji: '💙' },
+            { name: 'YELLOW', emoji: '💛' },
+            { name: 'GREEN', emoji: '💚' },
+            { name: 'ORANGE', emoji: '🧡' },
+            { name: 'PURPLE', emoji: '💜' }
+        ];
+        // Random Target
+        const target = colors[Math.floor(Math.random() * colors.length)];
+
+        // Get 2 unique random wrong options
+        const wrongColors = colors.filter(c => c.name !== target.name)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 2);
+
+        // Combine and shuffle
+        const optionsData = [target, ...wrongColors]
+            .sort(() => 0.5 - Math.random());
+
+        return {
+            message: `Can you find the ${target.name} color? 🎨`,
+            options: optionsData.map(c => ({
+                label: c.emoji,
+                next: c.name === target.name ? 'game_color_win' : 'game_color_lose'
+            }))
+        };
+    };
+
+    const generateCountGame = () => {
+        const count = Math.floor(Math.random() * 5) + 1; // 1 to 5
+        const stars = "⭐".repeat(count);
+
+        // Generate wrong options
+        const allOptions = [1, 2, 3, 4, 5];
+        const wrongOptions = allOptions.filter(n => n !== count)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 2);
+
+        const optionsData = [count, ...wrongOptions]
+            .sort(() => 0.5 - Math.random());
+
+        return {
+            message: `Let’s count together ⭐\nHow many stars are here? \n\n${stars}`,
+            options: optionsData.map(num => ({
+                label: num.toString(),
+                next: num === count ? 'game_count_win' : 'game_count_lose'
+            }))
+        };
     };
 
     const resetChat = () => {
