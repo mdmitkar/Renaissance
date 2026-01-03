@@ -12,10 +12,11 @@ import AdmissionModal from '../components/AdmissionModal';
 gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
-    "/SchoolPremises/schoolbuilding.avif",
-    "/ChildrensDay/ChildrensDay_2.jpeg",
+
+    "/ChildrensDay/ChildrenDay_2.jpeg",
     "/RedDay/RedDay_1.jpeg",
     "/IndependenceDay/IndependenceDay_2.jpeg",
+    "/SchoolPremises/schoolbuilding.avif",
     "/SchoolPremises/classroom2.jpeg",
     "/ChildrensDay/ChildrensDay_1.jpeg"
 ];
@@ -24,13 +25,13 @@ const FAQItem = ({ question, answer }) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <div className="border border-gulf-lebanese/10 rounded-2xl bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <div className="border border-gulf-lebanese/10 dark:border-white/10 rounded-2xl bg-white dark:bg-[#1a1a1a] overflow-hidden shadow-sm hover:shadow-md transition-all">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full flex items-center justify-between p-6 text-left"
             >
-                <span className="text-lg font-bold text-gulf-lebanese">{question}</span>
-                <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-luxury-pink text-white' : 'bg-gray-100 text-gulf-lebanese'}`}>
+                <span className="text-lg font-bold text-gulf-lebanese dark:text-white">{question}</span>
+                <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-luxury-pink text-white' : 'bg-gray-100 dark:bg-white/10 text-gulf-lebanese dark:text-white'}`}>
                     {isOpen ? <Minus size={18} /> : <Plus size={18} />}
                 </div>
             </button>
@@ -43,7 +44,7 @@ const FAQItem = ({ question, answer }) => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                     >
-                        <div className="p-6 pt-0 text-gray-600 leading-relaxed">
+                        <div className="p-6 pt-0 text-gray-600 dark:text-gray-300 leading-relaxed">
                             {answer}
                         </div>
                     </motion.div>
@@ -207,6 +208,7 @@ const Home = () => {
                     scrollTrigger: {
                         trigger: journeySection,
                         pin: true,
+                        start: "center center",
                         scrub: 1,
                         end: () => "+=" + journeyContainer.scrollWidth,
                         invalidateOnRefresh: true,
@@ -241,7 +243,11 @@ const Home = () => {
             elements.forEach(el => {
                 gsap.fromTo(el, { y: 50, opacity: 0 }, {
                     y: 0, opacity: 1, duration: 0.8,
-                    scrollTrigger: { trigger: el, start: "top 85%" }
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play reverse play reverse"
+                    }
                 });
             });
         });
@@ -282,7 +288,7 @@ const Home = () => {
                     <Cloud size={140} fill="currentColor" />
                 </motion.div>
 
-                <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center pt-32 text-center">
+                <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col justify-center text-center">
                     <motion.div
                         style={{ y: textY, opacity: textOpacity }}
                     >
@@ -295,13 +301,40 @@ const Home = () => {
                             ✨ Est. 2025 • The Future of Learning
                         </motion.div>
 
-                        <h1 className="text-[13vw] md:text-[8rem] font-heading font-black text-white leading-none drop-shadow-2xl mb-8 tracking-tighter w-full break-words">
-                            RENAISSANCE
-                        </h1>
+                        <motion.h1
+                            variants={{
+                                hidden: { opacity: 1 },
+                                visible: {
+                                    opacity: 1,
+                                    transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+                                }
+                            }}
+                            initial="hidden"
+                            animate="visible"
+                            className="text-[15vw] md:text-[12rem] font-heading font-normal text-white leading-none drop-shadow-2xl mb-4 tracking-tighter w-full text-center"
+                        >
+                            {"Renaissance".split("").map((char, index) => (
+                                <motion.span
+                                    key={index}
+                                    className="inline-block"
+                                    variants={{
+                                        hidden: { opacity: 0, y: 50, filter: "blur(10px)" },
+                                        visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { type: "spring", damping: 12, stiffness: 200 } }
+                                    }}
+                                >
+                                    {char}
+                                </motion.span>
+                            ))}
+                        </motion.h1>
 
-                        <h2 className="text-2xl md:text-5xl font-handwriting font-bold text-gentle-yellow drop-shadow-lg mb-12">
-                            Where Magic Happens Daily
-                        </h2>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.5, duration: 1 }}
+                            className="text-xl md:text-3xl font-body font-light text-slate-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg tracking-wide mb-12"
+                        >
+                            LEARNING THROUGH LOVE AND LAUGHTER
+                        </motion.h2>
 
                         <div className="flex flex-col md:flex-row gap-8 justify-center items-center mt-8">
                             <motion.button
@@ -343,7 +376,7 @@ const Home = () => {
 
 
             {/* --- SECTION 2: PHILOSOPHY --- */}
-            <section className="relative py-24 md:py-32 px-6 bg-[#F9F7F2]">
+            <section className="relative py-24 md:py-32 px-6 bg-[#F9F7F2] dark:bg-[#111] transition-colors duration-300">
                 <div className="max-w-7xl mx-auto">
                     {/* Header + Image Row */}
                     <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
@@ -352,7 +385,7 @@ const Home = () => {
                             <div className="reveal-text text-xl font-bold text-gulf-blue mb-8 uppercase tracking-[0.2em]">
                                 Welcome to the Future
                             </div>
-                            <h2 className="reveal-text text-4xl md:text-6xl font-heading font-black text-gulf-lebanese leading-tight">
+                            <h2 className="reveal-text text-4xl md:text-6xl font-heading font-black text-gulf-lebanese dark:text-white leading-tight">
                                 WE BUILD <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink via-purple-400 to-indigo-500 animate-gradient-x">
                                     BRIGHT MINDS
@@ -411,7 +444,7 @@ const Home = () => {
                             ))}
                         </div>
                         <div className="reveal-text px-4 md:px-0">
-                            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium text-justify">
+                            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-medium text-justify">
                                 Imagine a place where every corner sparks <span className="text-luxury-pink font-semibold">curiosity</span>.
                                 At Renaissance, we don't just teach foundations; we inspire lifelong dreamers.
                                 A modern sanctuary for little explorers.
@@ -428,7 +461,7 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 3: THE SEVEN PETALS (Enhanced Interaction) --- */}
-            <section className="petals-section min-h-screen h-auto md:h-screen w-full bg-[#FAF9F6] text-gulf-lebanese flex items-center justify-center overflow-hidden relative py-20 md:py-0">
+            <section className="petals-section min-h-screen h-auto md:h-screen w-full bg-[#FAF9F6] dark:bg-black text-gulf-lebanese dark:text-white flex items-center justify-center overflow-hidden relative py-20 md:py-0 transition-colors duration-300">
 
                 {/* Nice Styling: Animated Background Elements */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -461,11 +494,11 @@ const Home = () => {
                     {/* Logical Title Separation */}
                     <div className="text-center mb-16 relative z-20 flex flex-col items-center gap-3">
                         <div className="flex items-center gap-4 mb-2 opacity-60">
-                            <div className="h-[1px] w-12 bg-gulf-lebanese"></div>
-                            <h3 className="text-sm md:text-base font-bold tracking-[0.4em] uppercase text-gulf-lebanese">Our Philosophy</h3>
-                            <div className="h-[1px] w-12 bg-gulf-lebanese"></div>
+                            <div className="h-[1px] w-12 bg-gulf-lebanese dark:bg-white/50"></div>
+                            <h3 className="text-sm md:text-base font-bold tracking-[0.4em] uppercase text-gulf-lebanese dark:text-white/80">Our Philosophy</h3>
+                            <div className="h-[1px] w-12 bg-gulf-lebanese dark:bg-white/50"></div>
                         </div>
-                        <h2 className="text-4xl md:text-8xl font-heading font-black text-gulf-lebanese relative z-10 drop-shadow-sm px-4">
+                        <h2 className="text-4xl md:text-8xl font-heading font-black text-gulf-lebanese dark:text-white relative z-10 drop-shadow-sm px-4">
                             The Seven <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-500 italic block md:inline">Petals</span>
                         </h2>
                     </div>
@@ -504,23 +537,18 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 4: PROGRAMS (Horizontal Scroll) --- */}
-            <section className="journey-section min-h-screen h-auto md:h-screen bg-gulf-lebanese text-white overflow-hidden relative flex flex-col md:flex-row items-center py-20 md:py-0">
+            <section className="journey-section h-auto bg-gulf-lebanese text-white overflow-hidden relative flex flex-col md:flex-row items-center py-20 md:py-24">
 
-                {/* Background Text/Decor */}
-                <div className="absolute top-10 left-10 z-10">
-                    <h2 className="text-xl font-bold uppercase tracking-[0.3em] text-white/30">
-                        The Renaissance Journey
-                    </h2>
-                </div>
+
 
                 {/* Horizontal Container */}
-                <div className="journey-container flex flex-col md:flex-row h-auto md:h-[80vh] items-center px-6 md:px-[10vw] gap-12 md:gap-[20vw] w-full md:w-max">
+                <div className="journey-container flex flex-col md:flex-row h-auto items-center px-6 md:px-[10vw] gap-12 md:gap-[20vw] w-full md:w-max mt-[5%]">
 
                     {/* Intro Card */}
                     <div className="reveal-on-mobile journey-card min-w-[85vw] md:min-w-[30vw] flex flex-col justify-center shrink-0 text-center md:text-left">
-                        <h2 className="text-7xl md:text-9xl font-heading font-black leading-none mb-6">
-                            GROWING<br />
-                            <span className="text-luxury-pink">UP.</span>
+                        <h2 className="text-2xl md:text-5xl font-heading font-black leading-none mb-6">
+                            GROWING
+                            <span className="text-luxury-pink"> UP.</span>
                         </h2>
                         <p className="text-2xl text-white/60 max-w-lg mb-10">
                             Every stage is a new adventure. Scroll to explore the path your child will take with us.
@@ -538,24 +566,24 @@ const Home = () => {
                             style={{ backgroundColor: prog.bg }}
                         >
                             {/* Content Side */}
-                            <div className="md:w-1/2 p-5 md:p-8 flex flex-col justify-between relative z-10 text-white h-full">
+                            <div className="md:w-1/2 p-5 md:p-8 flex flex-col relative z-10 text-white h-full">
                                 <div>
                                     <div className="flex items-center gap-4 mb-6">
-                                        <span className="px-3 py-1 rounded-full border border-white/30 text-xs font-bold uppercase tracking-wider text-white">
+                                        <span className="px-3 py-1 rounded-full border border-white/30 text-xs font-bold uppercase tracking-wider text-white relative z-20">
                                             {prog.age}
                                         </span>
-                                        <div className="h-[1px] flex-grow bg-white/20"></div>
+                                        <div className="h-[1px] flex-grow bg-white/20 relative z-20"></div>
                                     </div>
 
-                                    <h3 className="text-2xl md:text-[2rem] font-black mb-2 md:mb-4 leading-tight text-white">
+                                    <h3 className="text-2xl md:text-[2rem] font-black mb-2 md:mb-4 leading-tight text-white relative z-20">
                                         {prog.title}
                                     </h3>
-                                    <p className="text-sm md:text-base text-white/90 font-medium leading-relaxed">
+                                    <p className="text-sm md:text-base text-white/90 font-medium leading-relaxed relative z-20">
                                         {prog.desc}
                                     </p>
                                 </div>
 
-                                <div className="mt-2 md:mt-4">
+                                <div className="mt-8 md:mt-12 relative z-20">
                                     <h4 className="font-bold text-xs md:text-sm uppercase tracking-widest text-white/60 mb-2 md:mb-4">Highlights</h4>
                                     <div className="flex flex-wrap gap-2 md:gap-3">
                                         {prog.tags.map((tag, idx) => (
@@ -564,6 +592,11 @@ const Home = () => {
                                             </span>
                                         ))}
                                     </div>
+                                </div>
+
+                                {/* Overlay Number */}
+                                <div className="absolute bottom-[-1rem] right-0 text-[10rem] md:text-[12rem] font-black text-white/5 leading-none z-0 select-none pointer-events-none">
+                                    0{i + 1}
                                 </div>
                             </div>
 
@@ -575,10 +608,7 @@ const Home = () => {
                                     alt={prog.title}
                                     className="journey-img w-full h-full object-cover"
                                 />
-                                {/* Overlay Number */}
-                                <div className="absolute bottom-6 right-8 text-[8rem] md:text-[10rem] font-black text-white/10 leading-none z-0 select-none">
-                                    0{i + 1}
-                                </div>
+                                {/* Overlay Number Removed */}
                             </div>
                         </div>
                     ))}
@@ -600,14 +630,14 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 5: LIVE STATS & TESTIMONIALS --- */}
-            <section className="py-32 bg-white overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)]">
+            <section className="py-10 bg-white dark:bg-[#111] overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)] transition-colors duration-300">
                 <div className="max-w-7xl mx-auto px-6 mb-20 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
                     {/* Left Video */}
                     <HoverVideo src="/videos/Testimonial_1.mp4" />
 
                     <div className="text-center">
                         <p className="text-luxury-pink font-bold text-xl uppercase tracking-[0.3em] mb-4">The Voice of Parents</p>
-                        <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese">Community Love</h2>
+                        <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese dark:text-white">Community Love</h2>
                     </div>
 
                     {/* Right Video */}
@@ -671,7 +701,7 @@ const Home = () => {
                             { num: "100%", label: "Safety Record" },
                         ].map((stat, i) => (
                             <div key={i} className="reveal-text px-4">
-                                <h3 className="text-4xl md:text-7xl font-black text-gulf-lebanese mb-4 bg-clip-text text-transparent bg-gradient-to-b from-gulf-lebanese to-gray-400">
+                                <h3 className="text-4xl md:text-7xl font-black text-gulf-lebanese dark:text-white mb-4 bg-clip-text text-transparent bg-gradient-to-b from-gulf-lebanese to-gray-400 dark:from-white dark:to-gray-500">
                                     {stat.num}
                                 </h3>
                                 <p className="text-gray-500 font-bold uppercase tracking-widest text-sm">{stat.label}</p>
@@ -682,18 +712,18 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 6: FAQ --- */}
-            <section className="py-24 bg-[#F9F7F2] relative z-10 px-6">
+            <section className="py-24 bg-[#F9F7F2] dark:bg-black relative z-10 px-6 transition-colors duration-300">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
                         <span className="text-luxury-pink font-bold tracking-widest uppercase text-sm">Got Questions?</span>
-                        <h2 className="text-5xl font-heading font-black text-gulf-lebanese mt-4">We Have Answers</h2>
+                        <h2 className="text-5xl font-heading font-black text-gulf-lebanese dark:text-white mt-4">We Have Answers</h2>
                     </div>
 
                     <div className="space-y-4">
                         {[
                             { q: "What is the age criteria for admission?", a: "We welcome children from 1.5 years for Playgroup, 2.5 years for Nursery, 3.5 years for Junior KG, and 4.5 years for Senior KG." },
-                            { q: "What is the 'Seven Petals' philosophy?", a: "It is our proprietary holistic curriculum focusing on 7 key areas: Cognitive, Motor Skills, Creativity, Culture, Sports, Social, and Life Skills." },
-                            { q: "Is transport facility available?", a: "Yes, we offer safe and comfortable transport facilities covering all major nearby areas with GPS tracking for parents." },
+                            { q: "What is the 'Seven Petals' philosophy?", a: "Our curriculum depends on 7 key areas: Culture & Patriotism, Play-Based Learning, Creativity, Social Growth, Intellectual Development, Physical Growth, and Parent Partnership." },
+                            { q: "Is transport facility available?", a: "Currently, we do not provide school transport facilities. Parents are requested to make their own travel arrangements." },
                             { q: "How do I schedule a campus visit?", a: "You can simply fill out the enquiry form by clicking the 'Enroll Now' button, or call our admissions office directly to book a slot." },
                             { q: "What are the safety measures on campus?", a: "Safety is our priority. We have 24/7 CCTV surveillance, security personnel, soft-flooring in play areas, and background-verified staff." }
                         ].map((faq, i) => (
@@ -703,81 +733,74 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* --- SECTION 7: PREMIUM FOOTER CTA --- */}
-            <section className="relative py-32 px-6 overflow-hidden">
-                {/* Background with Gradient and Noise */}
-                <div className="absolute inset-0 bg-[#0F172A] z-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-gulf-lebanese via-[#0F172A] to-luxury-pink/20 opacity-80"></div>
-                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
+            {/* --- SECTION 7: PROFESSIONAL CTA --- */}
+            <section className="relative py-24 px-6 overflow-hidden bg-[#FDFBF7] dark:bg-[#111] transition-colors duration-300">
+                <div className="max-w-7xl mx-auto">
+                    <div className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 dark:border-white/10 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
 
-                    {/* Animated Blobs */}
-                    <motion.div
-                        animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], opacity: [0.3, 0.5, 0.3] }}
-                        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-luxury-pink rounded-full mix-blend-screen filter blur-[100px]"
-                    ></motion.div>
-                    <motion.div
-                        animate={{ scale: [1, 1.1, 1], x: [0, -30, 0], opacity: [0.2, 0.4, 0.2] }}
-                        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-indigo-600 rounded-full mix-blend-screen filter blur-[120px]"
-                    ></motion.div>
-                </div>
+                        {/* Decorative Background Elements */}
+                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-luxury-pink/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+                        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gulf-blue/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-                <div className="max-w-6xl mx-auto relative z-10">
-                    <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-[3rem] p-10 md:p-20 overflow-hidden shadow-2xl ring-1 ring-white/20">
-                        {/* Decorative 2025 Watermark */}
-                        <div className="absolute -top-12 -right-12 text-[15rem] font-black text-white/5 leading-none select-none pointer-events-none rotate-12">
-                            2025
-                        </div>
+                        {/* Left: Content */}
+                        <div className="flex-1 relative z-10 text-center md:text-left">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-luxury-pink/10 text-luxury-pink font-bold text-xs tracking-widest uppercase mb-8"
+                            >
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-luxury-pink opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-luxury-pink"></span>
+                                </span>
+                                Admissions Open 2025-26
+                            </motion.div>
 
-                        <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <div className="text-left">
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-yellow-300 font-bold tracking-wider text-xs uppercase mb-8"
-                                >
-                                    <Sparkles size={14} /> Admissions Open
-                                </motion.div>
-                                <h2 className="text-5xl md:text-7xl font-heading font-black text-white leading-[1.1] mb-6 drop-shadow-lg">
-                                    Start Their <br />
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-indigo-400">
-                                        Legacy Today.
-                                    </span>
-                                </h2>
-                                <p className="text-xl text-blue-100/80 font-light leading-relaxed max-w-lg">
-                                    Don't just choose a school; choose a future. Limited seats available for the upcoming academic year.
-                                </p>
-                            </div>
+                            <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese dark:text-white mb-6 leading-tight">
+                                Ready to Shape <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-600">The Future?</span>
+                            </h2>
 
-                            <div className="flex flex-col items-center md:items-end justify-center gap-8">
+                            <p className="text-xl text-gray-500 font-medium leading-relaxed mb-10 max-w-xl mx-auto md:mx-0">
+                                Give your child the gift of a world-class foundation. Applications are filling up fast for the upcoming academic year.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => setIsAdmissionOpen(true)}
-                                    className="group relative w-full md:w-auto overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-4 focus:ring-yellow-300/50"
+                                    className="bg-gulf-lebanese text-white px-10 py-5 rounded-full text-lg font-bold shadow-lg shadow-gulf-lebanese/30 hover:bg-gulf-lebanese/90 transition-colors flex items-center justify-center gap-3"
                                 >
-                                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2E8F0_0%,#500724_50%,#E2E8F0_100%)]" />
-                                    <span className="relative flex h-full w-full items-center justify-center rounded-full bg-gradient-to-r from-gulf-lebanese to-gray-900 px-12 py-6 text-xl font-bold text-white transition-all group-hover:bg-gray-900/90 gap-4">
-                                        Start Admission <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                                    </span>
+                                    Apply Now <ArrowRight size={20} />
                                 </motion.button>
 
-                                <div className="flex items-center gap-6">
-                                    <div className="flex -space-x-4">
-                                        {[1, 2, 3].map((_, i) => (
-                                            <div key={i} className="w-12 h-12 rounded-full border-2 border-slate-900 bg-gray-600 flex items-center justify-center overflow-hidden">
-                                                <img src={`https://i.pravatar.cc/100?img=${10 + i}`} alt="User" className="w-full h-full object-cover" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <div className="text-left text-white/80 text-sm">
-                                        <div className="font-bold text-white text-lg">500+</div>
-                                        <div>Parents joined recently</div>
-                                    </div>
+                                <button className="px-10 py-5 rounded-full text-lg font-bold text-gulf-lebanese dark:text-white border-2 border-gulf-lebanese/10 dark:border-white/20 hover:bg-gulf-lebanese/5 dark:hover:bg-white/5 transition-colors">
+                                    Book a Campus Visit
+                                </button>
+                            </div>
+
+
+                        </div>
+
+                        {/* Right: Image Frame */}
+                        <div className="flex-1 relative z-10 w-full">
+                            <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 group">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
+                                <img
+                                    src="/otherimp/childturf.png"
+                                    alt="Happy Students Outdoors"
+                                    className="w-full h-[500px] object-cover"
+                                />
+
+                                {/* Floating Badge */}
+                                <div className="absolute bottom-8 left-8 z-20 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl text-white">
+                                    <div className="text-3xl font-black mb-1">100%</div>
+                                    <div className="text-xs font-bold uppercase tracking-widest opacity-80">Results & Happiness</div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
@@ -790,13 +813,28 @@ const Home = () => {
 // --- DATA CONSTANTS ---
 
 const PETAL_DATA = [
-    { title: "Faith & Values", emoji: "🤲", desc: "Rooted in Islamic teachings, learning duas, akhlaq, gratitude, and moral discipline.", img: "/otherimp/IndependenceDay_3.jpeg", color: "text-white", bg: "bg-[#1E3A8A]" }, // Dark Blue
+    {
+        title: "Culture & Patriotism",
+        emoji: (
+            <div className="w-8 h-6 flex flex-col shadow-sm rounded-[1px] overflow-hidden" aria-label="India Flag">
+                <div className="h-1/3 w-full bg-[#FF9933]"></div>
+                <div className="h-1/3 w-full bg-white flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full border border-blue-800"></div>
+                </div>
+                <div className="h-1/3 w-full bg-[#138808]"></div>
+            </div>
+        ),
+        desc: "Instilling love for the nation, celebrating diverse festivals, and fostering a deep sense of unity and pride.",
+        img: "/IndependenceDay/IndependenceDay_2.jpeg",
+        color: "text-white",
+        bg: "bg-[#1E3A8A]"
+    }, // Dark Blue
     { title: "Play-Based", emoji: "🧸", desc: "Learning through exploration and curiosity to naturally develop skills while having fun.", img: "/SchoolPremises/classplay.jpeg", color: "text-white", bg: "bg-[#831843]" }, // Dark Pink
     { title: "Creativity", emoji: "🎨", desc: "Encouraging art, craft, storytelling, and imagination for confident self-expression.", img: "/otherimp/ChildrensDay_2_copy.jpeg", color: "text-white", bg: "bg-[#065F46]" }, // Dark Emerald
-    { title: "Social Growth", emoji: "❤️", desc: "Building teamwork, empathy, and communication to help children feel valued.", img: "/Activities/RedDay_3.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
+    { title: "Social Growth", emoji: "❤️", desc: "Building teamwork, empathy, and communication to help children feel valued.", img: "/ChildrensDay/ChildrensDay_1.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
     { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/SchoolPremises/classroom2.jpeg", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
-    { title: "Physical", emoji: "🏃", desc: "Focus on movement, coordination, and healthy habits through active play.", img: "/SportsDay/sportsday1.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
-    { title: "Care & Safety", emoji: "🛡️", desc: "A nurturing, secure environment with qualified mentors and strong parent connection.", img: "/Activities/Activities_2.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
+    { title: "Physical", emoji: "🏃", desc: "Focus on movement, coordination, and healthy habits through active play.", img: "/Activities/motor.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
+    { title: "Parent Partnership", emoji: "🤝", desc: "Building a bridge between home and school, ensuring you are an active partner in your child's growth.", img: "/PTM/PTM_3.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
 ];
 
 const PROGRAMS = [
@@ -805,7 +843,7 @@ const PROGRAMS = [
         age: "1.5 - 2.5 Years",
         desc: "A sensory wonderland for our tiniest tots. Montessori-inspired aids meet messy play.",
         bg: "#BE185D", // Pink 700 - Vibrant
-        img: "/SchoolPremises/classplay.jpeg",
+        img: "/assets/generated/playgroup.png",
         tags: ["Sensory Play", "Music", "Safety"]
     },
     {
@@ -813,7 +851,7 @@ const PROGRAMS = [
         age: "2.5 - 3.5 Years",
         desc: "Stepping stones to early literacy. Letters and numbers become friends through stories.",
         bg: "#059669", // Emerald 600 - Vibrant Green
-        img: "/Activities/Activities_1.jpeg",
+        img: "/otherimp/nursery.png",
         tags: ["Phonics", "Nature", "Reading"]
     },
     {
@@ -821,7 +859,7 @@ const PROGRAMS = [
         age: "3.5 - 4.5 Years",
         desc: "Curiosity takes flight. Science experiments, reading clubs, and logical reasoning.",
         bg: "#D97706", // Amber 600 - Rich Orange/Gold
-        img: "/otherimp/Activities_3.jpeg",
+        img: "/otherimp/jrkg.png",
         tags: ["Science", "Logic", "Math"]
     },
     {
@@ -829,7 +867,7 @@ const PROGRAMS = [
         age: "4.5 - 5.5 Years",
         desc: "Ready for the big world. Advanced concepts, leadership, and school readiness.",
         bg: "#4F46E5", // Indigo 600 - Vibrant Blue/Purple
-        img: "/Activities/Activities_4.jpeg",
+        img: "/otherimp/srjkg.png",
         tags: ["Writing", "Leadership", "Speaking"]
     }
 ];

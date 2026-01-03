@@ -27,8 +27,8 @@ const Navbar = () => {
 
     return (
         <nav className={`fixed top-0 z-50 w-full transition-all duration-300 h-[90px] flex items-center ${scrolled
-                ? 'bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-lg support-backdrop-blur:bg-white/60'
-                : 'bg-transparent shadow-none'
+            ? 'bg-cream-velvet/90 dark:bg-black/80 backdrop-blur-md shadow-lg'
+            : 'bg-transparent shadow-none'
             }`}>
             {/* Main Container - Full Width */}
             <div className="w-full px-6 md:px-12 flex justify-between items-center h-full">
@@ -53,7 +53,7 @@ const Navbar = () => {
                                     to={link.path}
                                     className={({ isActive }) =>
                                         `relative font-body font-semibold text-base xl:text-lg py-2 transition-colors duration-300 whitespace-nowrap
-                    ${isActive ? 'text-primary-gold' : 'text-secondary-black dark:text-gray-200 hover:text-primary-gold dark:hover:text-primary-gold'}
+                    ${isActive ? 'text-primary-gold' : `${scrolled ? 'text-secondary-black dark:text-gentle-sweet' : 'text-gentle-sweet'} hover:text-primary-gold dark:hover:text-primary-gold`} 
                     after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-primary-gold 
                     after:transform after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100
                     ${isActive ? 'after:scale-x-100' : ''}`
@@ -86,7 +86,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu */}
-                <div className={`fixed top-[90px] left-0 w-full h-[calc(100vh-90px)] bg-white dark:bg-black transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden z-40 overflow-y-auto`}>
+                <div className={`fixed top-[90px] left-0 w-full h-[calc(100vh-90px)] bg-cream-velvet dark:bg-black transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden z-40 overflow-y-auto`}>
                     <ul className="flex flex-col items-center justify-start pt-12 h-full gap-8 p-4">
                         {navLinks.map((link, index) => (
                             <li key={index} className="w-full text-center">

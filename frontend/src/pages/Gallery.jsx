@@ -1,11 +1,40 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect, Component } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, PlayCircle, Play, ArrowDown } from 'lucide-react';
+import { X, PlayCircle, Play, ArrowDown, ChevronRight, ChevronLeft } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
+
+// --- Error Boundary ---
+class GalleryErrorBoundary extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { hasError: false };
+    }
+
+    static getDerivedStateFromError(error) {
+        return { hasError: true };
+    }
+
+    componentDidCatch(error, errorInfo) {
+        console.error("Gallery Error Boundary Caught:", error, errorInfo);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return (
+                <div className="p-8 text-center bg-red-50 rounded-xl border border-red-200 my-8">
+                    <h3 className="text-red-800 font-bold mb-2">Something went wrong with this gallery section.</h3>
+                    <p className="text-red-600">Please try refreshing the page.</p>
+                </div>
+            );
+        }
+
+        return this.props.children;
+    }
+}
 
 // --- Data ---
 const reelAssets = [
@@ -19,14 +48,14 @@ const reelAssets = [
 ];
 
 const campusAssets = [
-    { id: 'cam1', src: '/SchoolPremises/SchoolPremises_1.jpeg', title: 'Entrance' },
+    { id: 'cam1', src: '/SchoolPremises/playground2.jpeg', title: 'Entrance' },
     { id: 'cam2', src: '/SchoolPremises/classplay.jpeg', title: 'Play Area' },
     { id: 'cam3', src: '/SchoolPremises/classroom1.jpeg', title: 'Classroom' },
     { id: 'cam4', src: '/SchoolPremises/classroom2.jpeg', title: 'Learning Space' },
     { id: 'cam5', src: '/SchoolPremises/classroom3.png', title: 'Interactive' },
     { id: 'cam6', src: '/SchoolPremises/playground1.jpeg', title: 'Playground' },
     { id: 'cam9', src: '/SchoolPremises/schoolbuilding.avif', title: 'School Building' },
-    { id: 'vid_tour', src: '/videos/SchoolTour.mp4', title: 'Full Tour', type: 'video' }
+    { id: 'vid_tour', src: '/videos/schooltour.mp4', title: 'Full Tour', type: 'video' }
 ];
 
 const celebrationAssets = [
@@ -81,8 +110,8 @@ const SectionHeader = ({ title, subtitle, color = "text-slate-900", className = 
 
     return (
         <div ref={el} className={`mb-12 md:mb-20 px-6 ${className}`}>
-            <h3 className={`text-sm font-bold uppercase tracking-[0.2em] mb-3 ${color} opacity-60 split-text`}>{subtitle}</h3>
-            <h2 className={`text-4xl md:text-6xl font-black ${color} split-text`}>{title}</h2>
+            <h3 className={`text-sm font-bold uppercase tracking-[0.2em] mb-3 ${color} dark:text-white/70 opacity-60 split-text`}>{subtitle}</h3>
+            <h2 className={`text-4xl md:text-6xl font-black ${color} dark:text-white split-text`}>{title}</h2>
         </div>
     );
 };
@@ -91,9 +120,11 @@ const MediaCard = ({ item, onClick, className }) => {
     const videoRef = useRef(null);
     const [hover, setHover] = useState(false);
 
+    if (!item) return null; // Safeguard against undefined items
+
     return (
         <div
-            className={`relative overflow-hidden rounded-xl bg-gray-100 cursor-pointer group ${className}`}
+            className={`relative overflow-hidden rounded-xl bg-gray-100 dark:bg-[#1a1a1a] cursor-pointer group ${className}`}
             onClick={onClick}
             onMouseEnter={() => {
                 setHover(true);
@@ -144,6 +175,17 @@ const Gallery = () => {
     const celebRef = useRef(null);
     const learningRef = useRef(null);
     const trackRef = useRef(null);
+    const reelsRef = useRef(null);
+
+    const scrollReels = (direction) => {
+        if (reelsRef.current) {
+            const scrollAmount = 300;
+            reelsRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     const mergedLearningAssets = [...activityAssets, ...communityAssets];
 
@@ -226,7 +268,7 @@ const Gallery = () => {
     }, []);
 
     return (
-        <div ref={containerRef} className="bg-slate-50 min-h-screen text-slate-800 font-sans selection:bg-rose-500 selection:text-white pb-32">
+        <div ref={containerRef} className="bg-slate-50 dark:bg-black min-h-screen text-slate-800 dark:text-gray-200 font-sans selection:bg-rose-500 selection:text-white pb-32 transition-colors duration-300">
 
             {/* 1. Hero Section */}
             {/* 1. Hero Section */}
@@ -243,10 +285,10 @@ const Gallery = () => {
 
                 <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-                        <h1 className="text-7xl md:text-9xl font-black text-white tracking-tighter mb-6 drop-shadow-2xl">
-                            GALLERY
+                        <h1 className="text-7xl md:text-9xl font-heading font-normal text-white tracking-tighter mb-6 drop-shadow-2xl">
+                            Gallery
                         </h1>
-                        <p className="text-xl md:text-3xl font-light text-slate-100 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+                        <p className="text-xl md:text-3xl font-light text-slate-100 mb-12 max-w-3xl mx-auto leading-relaxed drop-shadow-lg font-body tracking-wide">
                             A curated collection of moments that define the Renaissance experience.
                         </p>
                         <motion.button
@@ -264,15 +306,34 @@ const Gallery = () => {
 
             {/* 2. Featured Reels (Stories) */}
             {/* 2. Featured Reels (Stories) */}
+            {/* 2. Featured Reels (Stories) */}
             <div className="reels-section max-w-[1920px] mx-auto mb-32 mt-10 relative z-20 pl-6 md:pl-12">
-                <div className="max-w-7xl mb-1 pr-6">
-                    <SectionHeader title="Highlights" subtitle="Stories in Motion" />
+                <div className="max-w-7xl mb-1 pr-6 flex justify-between items-end">
+                    <SectionHeader title="Highlights" subtitle="Stories in Motion" className="!mb-4" />
+
+                    {/* Navigation Buttons */}
+                    <div className="flex gap-4 mb-4 md:mr-10">
+                        <button
+                            onClick={() => scrollReels('left')}
+                            className="p-3 bg-white dark:bg-white/10 rounded-full shadow-lg border border-gray-100 dark:border-white/20 hover:scale-110 active:scale-95 transition-all text-slate-800 dark:text-white"
+                            aria-label="Scroll Left"
+                        >
+                            <ChevronLeft size={24} />
+                        </button>
+                        <button
+                            onClick={() => scrollReels('right')}
+                            className="p-3 bg-white dark:bg-white/10 rounded-full shadow-lg border border-gray-100 dark:border-white/20 hover:scale-110 active:scale-95 transition-all text-slate-800 dark:text-white"
+                            aria-label="Scroll Right"
+                        >
+                            <ChevronRight size={24} />
+                        </button>
+                    </div>
                 </div>
-                <div className="pt-3 flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6">
+                <div ref={reelsRef} className="pt-3 flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6 scroll-smooth">
                     {reelAssets.map((item, i) => (
                         <div key={item.id} className="reel-card snap-center shrink-0">
                             <div
-                                className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px] rounded-2xl overflow-hidden relative cursor-pointer group shadow-xl border-4 border-black transition-transform hover:-translate-y-2"
+                                className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px] rounded-2xl overflow-hidden relative cursor-pointer group shadow-xl border-4 border-black dark:border-white/20 transition-transform hover:-translate-y-2"
                                 onClick={() => setSelectedItem({ ...item, type: 'video' })}
                             >
                                 <video src={item.src} className="w-full h-full object-cover" muted loop />
@@ -292,22 +353,24 @@ const Gallery = () => {
             {/* 3. Campus Life (Grid) */}
             <div ref={campusRef} className="max-w-7xl mx-auto px-6 mb-32">
                 <SectionHeader title="Campus Life" subtitle="Where we grow" />
-                <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[650px]">
-                    {/* Custom Mosaic */}
-                    <MediaCard item={campusAssets[7]} className="campus-item md:col-span-2 md:row-span-2 min-h-[300px] border-4 border-black shadow-lg" onClick={() => setSelectedItem(campusAssets[7])} />
-                    <MediaCard item={campusAssets[0]} className="campus-item min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[0])} />
-                    <MediaCard item={campusAssets[1]} className="campus-item min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[1])} />
-                    <MediaCard item={campusAssets[2]} className="campus-item md:col-span-2 min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[2])} />
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                    {campusAssets.slice(3, 7).map((item) => (
-                        <MediaCard key={item.id} item={item} className="campus-item h-[200px] md:h-[250px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(item)} />
-                    ))}
-                </div>
+                <GalleryErrorBoundary>
+                    <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[650px]">
+                        {/* Custom Mosaic - safely accessing items */}
+                        {campusAssets[7] && <MediaCard item={campusAssets[7]} className="campus-item md:col-span-2 md:row-span-2 min-h-[300px] border-4 border-black dark:border-white/20 shadow-lg" onClick={() => setSelectedItem(campusAssets[7])} />}
+                        {campusAssets[0] && <MediaCard item={campusAssets[0]} className="campus-item min-h-[200px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(campusAssets[0])} />}
+                        {campusAssets[1] && <MediaCard item={campusAssets[1]} className="campus-item min-h-[200px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(campusAssets[1])} />}
+                        {campusAssets[2] && <MediaCard item={campusAssets[2]} className="campus-item md:col-span-2 min-h-[200px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(campusAssets[2])} />}
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                        {campusAssets.slice(3, 7).map((item) => (
+                            <MediaCard key={item.id} item={item} className="campus-item h-[200px] md:h-[250px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(item)} />
+                        ))}
+                    </div>
+                </GalleryErrorBoundary>
             </div>
 
             {/* 4. Celebrations (Horizontal Focus) */}
-            <div ref={celebRef} className="bg-slate-900 py-32 text-slate-100 relative overflow-hidden">
+            <div ref={celebRef} className="bg-slate-900 dark:bg-[#111] py-32 text-slate-100 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <SectionHeader title="Celebrations" subtitle="Moments of Joy" color="text-white" />
 
@@ -331,7 +394,7 @@ const Gallery = () => {
             </div>
 
             {/* 5. Learning & Fun (Side-Scroll Pin) */}
-            <div ref={learningRef} className="py-20 md:py-0 md:h-[100vh] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-white to-slate-100 relative mb-20 section-learning">
+            <div ref={learningRef} className="py-20 md:py-0 md:h-[100vh] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-white to-slate-100 dark:from-black dark:to-[#111] relative mb-20 section-learning">
                 <div className="max-w-7xl mx-auto w-full px-6 relative mb-8 md:mb-12 z-10 pointer-events-none">
                     <SectionHeader title="Learning & Fun" subtitle="Everyday Adventure" className="!mb-0" />
                 </div>
@@ -340,13 +403,35 @@ const Gallery = () => {
                     {mergedLearningAssets.map((item, index) => (
                         <div
                             key={item.id}
-                            className={`relative shrink-0 w-[80vw] md:w-[600px] aspect-video md:aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl cursor-pointer group border-4 border-black ${index % 2 === 0 ? 'md:rotate-1' : 'md:-rotate-1'}`}
+                            className={`relative shrink-0 w-[80vw] md:w-[600px] aspect-video md:aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl cursor-pointer group border-4 border-black dark:border-white/20 ${index % 2 === 0 ? 'md:rotate-1' : 'md:-rotate-1'}`}
                             onClick={() => setSelectedItem(item)}
                         >
                             <MediaCard item={item} className="w-full h-full transition-transform duration-700 hover:scale-105" />
                         </div>
                     ))}
                 </div>
+            </div>
+
+            {/* 6. CTA Section */}
+            <div className="py-32 flex flex-col justify-center items-center text-center bg-rose-50 dark:bg-[#1a1a1a] transition-colors duration-300">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="inline-block px-6"
+                >
+                    <h3 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-slate-900 dark:text-white">See the Magic in Person</h3>
+                    <p className="text-lg md:text-xl text-slate-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto font-medium">
+                        These photos are just a glimpse. Experience the laughter, learning, and love firsthand.
+                    </p>
+                    <button
+                        onClick={() => window.location.href = '/contact'}
+                        className="bg-rose-500 hover:bg-rose-600 text-white px-12 py-5 rounded-full text-xl font-bold shadow-xl transition-all hover:scale-105 active:scale-95"
+                    >
+                        Schedule a Visit
+                    </button>
+                </motion.div>
             </div>
 
             {/* Lightbox */}

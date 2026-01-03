@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply font-body bg-cream-velvet text-text-dark dark:bg-black dark:text-text-light transition-colors duration-300 antialiased selection:bg-gulf-blue selection:text-white overflow-x-hidden relative w-full;
+    @apply font-body bg-cream-velvet text-text-dark dark:bg-black dark:text-text-light dark:font-medium transition-colors duration-300 antialiased selection:bg-gulf-blue selection:text-white overflow-x-hidden relative w-full;
   }
 
   h1,

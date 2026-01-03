@@ -38,7 +38,7 @@ export default {
           lavender: '#E4DAFB',
         },
         cream: {
-          velvet: '#F3F0E8', // Background
+          velvet: '#F8F6E8', // Background
         },
 
         secondary: {
@@ -46,7 +46,7 @@ export default {
           charcoal: '#222222',
         },
         bg: {
-          cream: '#F3F0E8', // Updated to Smooth Velvety Cream
+          cream: '#F8F6E8', // Updated to #F8F6E8 per user request
           dark: '#1a1a1a',
         },
         text: {
@@ -55,7 +55,7 @@ export default {
         }
       },
       fontFamily: {
-        heading: ['Cinzel', 'serif'],
+        heading: ['Playfair Display', 'serif'],
         body: ['Poppins', 'sans-serif'],
       },
     },

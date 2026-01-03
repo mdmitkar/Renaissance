@@ -10,7 +10,7 @@ const Contact = () => {
             <div className="relative h-[60vh] min-h-[600px] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="/SchoolPremises/SchoolPremises_1.jpeg"
+                        src="/SchoolPremises/contact_hero.png"
                         alt="Renaissance Campus"
                         className="w-full h-full object-cover filter brightness-[0.3]"
                     />
@@ -26,7 +26,7 @@ const Contact = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-5xl md:text-8xl font-heading font-extrabold text-white mb-6 drop-shadow-2xl tracking-tight"
+                        className="text-5xl md:text-8xl font-heading font-medium text-white mb-6 drop-shadow-2xl tracking-tight leading-[0.9]"
                     >
                         Join the <span className="text-gentle-yellow relative">Renaissance <svg className="absolute w-full h-3 bottom-1 left-0 text-primary-carmine" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" /></svg></span> Family
                     </motion.h1>
@@ -34,7 +34,7 @@ const Contact = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
-                        className="text-xl md:text-2xl text-gray-100 max-w-2xl mx-auto leading-relaxed font-light"
+                        className="text-xl md:text-2xl text-slate-100 max-w-2xl mx-auto leading-relaxed font-body font-light tracking-wide drop-shadow-lg"
                     >
                         Visits, enquiries, or just a friendly hello. We are always here for you.
                     </motion.p>
@@ -82,9 +82,10 @@ const Contact = () => {
                     {/* RIGHT COLUMN: CONTACT INFO (5 Cols) */}
                     <div className="lg:col-span-5 space-y-8 pt-4 lg:pt-12">
                         <motion.div
-                            initial={{ x: 50, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
-                            viewport={{ once: true }}
+                            initial={{ y: 30, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            exit={{ y: -50, opacity: 0 }}
+                            viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
                             className="bg-white dark:bg-[#1a1a1a] p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-gulf-blue/10 relative overflow-hidden group hover:shadow-2xl transition-all duration-300"
                         >
                             {/* Decorative Circle */}
@@ -174,7 +175,9 @@ const AdmissionForm = () => {
     return (
         <motion.div
             initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            exit={{ y: -50, opacity: 0 }}
+            viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
             transition={{ type: "spring", bounce: 0.3 }}
             className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] p-8 md:p-12 border border-gray-100 dark:border-gray-800 relative overflow-hidden"
         >
@@ -253,7 +256,7 @@ const AdmissionForm = () => {
 
                     {/* Class Selection */}
                     <div className="pt-2">
-                        <label className="text-sm font-bold text-gulf-lebanese dark:text-gray-400 mb-4 block uppercase tracking-wide flex items-center gap-2">
+                        <label className="text-sm font-bold text-gulf-lebanese dark:text-gray-400 mb-4 uppercase tracking-wide flex items-center gap-2">
                             <BookOpen size={18} className="text-primary-carmine" /> Select Class/Grade
                         </label>
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
