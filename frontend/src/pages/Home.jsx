@@ -542,9 +542,9 @@ const Home = () => {
 
                     {/* Intro Card */}
                     <div className="reveal-on-mobile journey-card min-w-[85vw] md:min-w-[30vw] flex flex-col justify-center shrink-0 text-center md:text-left">
-                        <h2 className="text-7xl md:text-9xl font-heading font-black leading-none mb-6">
-                            GROWING<br />
-                            <span className="text-luxury-pink">UP.</span>
+                        <h2 className="text-2xl md:text-5xl font-heading font-black leading-none mb-6">
+                            GROWING
+                            <span className="text-luxury-pink"> UP.</span>
                         </h2>
                         <p className="text-2xl text-white/60 max-w-lg mb-10">
                             Every stage is a new adventure. Scroll to explore the path your child will take with us.
