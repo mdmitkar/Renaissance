@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useLayoutEffect, Component } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, PlayCircle, Play, ArrowDown } from 'lucide-react';
+import { X, PlayCircle, Play, ArrowDown, ChevronRight, ChevronLeft } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -175,6 +175,17 @@ const Gallery = () => {
     const celebRef = useRef(null);
     const learningRef = useRef(null);
     const trackRef = useRef(null);
+    const reelsRef = useRef(null);
+
+    const scrollReels = (direction) => {
+        if (reelsRef.current) {
+            const scrollAmount = 300;
+            reelsRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     const mergedLearningAssets = [...activityAssets, ...communityAssets];
 
@@ -295,11 +306,30 @@ const Gallery = () => {
 
             {/* 2. Featured Reels (Stories) */}
             {/* 2. Featured Reels (Stories) */}
+            {/* 2. Featured Reels (Stories) */}
             <div className="reels-section max-w-[1920px] mx-auto mb-32 mt-10 relative z-20 pl-6 md:pl-12">
-                <div className="max-w-7xl mb-1 pr-6">
-                    <SectionHeader title="Highlights" subtitle="Stories in Motion" />
+                <div className="max-w-7xl mb-1 pr-6 flex justify-between items-end">
+                    <SectionHeader title="Highlights" subtitle="Stories in Motion" className="!mb-4" />
+
+                    {/* Navigation Buttons */}
+                    <div className="flex gap-4 mb-4 md:mr-10">
+                        <button
+                            onClick={() => scrollReels('left')}
+                            className="p-3 bg-white dark:bg-white/10 rounded-full shadow-lg border border-gray-100 dark:border-white/20 hover:scale-110 active:scale-95 transition-all text-slate-800 dark:text-white"
+                            aria-label="Scroll Left"
+                        >
+                            <ChevronLeft size={24} />
+                        </button>
+                        <button
+                            onClick={() => scrollReels('right')}
+                            className="p-3 bg-white dark:bg-white/10 rounded-full shadow-lg border border-gray-100 dark:border-white/20 hover:scale-110 active:scale-95 transition-all text-slate-800 dark:text-white"
+                            aria-label="Scroll Right"
+                        >
+                            <ChevronRight size={24} />
+                        </button>
+                    </div>
                 </div>
-                <div className="pt-3 flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6">
+                <div ref={reelsRef} className="pt-3 flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6 scroll-smooth">
                     {reelAssets.map((item, i) => (
                         <div key={item.id} className="reel-card snap-center shrink-0">
                             <div
@@ -380,6 +410,28 @@ const Gallery = () => {
                         </div>
                     ))}
                 </div>
+            </div>
+
+            {/* 6. CTA Section */}
+            <div className="py-32 flex flex-col justify-center items-center text-center bg-rose-50 dark:bg-[#1a1a1a] transition-colors duration-300">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="inline-block px-6"
+                >
+                    <h3 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-slate-900 dark:text-white">See the Magic in Person</h3>
+                    <p className="text-lg md:text-xl text-slate-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto font-medium">
+                        These photos are just a glimpse. Experience the laughter, learning, and love firsthand.
+                    </p>
+                    <button
+                        onClick={() => window.location.href = '/contact'}
+                        className="bg-rose-500 hover:bg-rose-600 text-white px-12 py-5 rounded-full text-xl font-bold shadow-xl transition-all hover:scale-105 active:scale-95"
+                    >
+                        Schedule a Visit
+                    </button>
+                </motion.div>
             </div>
 
             {/* Lightbox */}
