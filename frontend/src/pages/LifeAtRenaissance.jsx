@@ -202,10 +202,10 @@ const TimelineSection = ({ event, index }) => {
 
                 {/* Content Side - 30% */}
                 <motion.div
-                    initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    viewport={{ margin: "-100px" }}
+                    viewport={{ margin: "-50px" }}
                     className="w-full md:w-[35%] lg:w-[30%] text-center md:text-left shrink-0 z-10 relative"
                 >
                     {/* Floating Decorative Icon - BOLDER */}

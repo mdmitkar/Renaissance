@@ -82,8 +82,8 @@ const About = () => {
                 {/* --- 1. LEGACY SECTION --- */}
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-32 relative z-10">
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
@@ -297,8 +297,8 @@ const TimelineItem = ({ data, index }) => {
 
             {/* Content Card */}
             <motion.div
-                initial={{ opacity: 0, y: 30, x: isEven ? -30 : 30 }}
-                whileInView={{ opacity: 1, y: 0, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.5 }}

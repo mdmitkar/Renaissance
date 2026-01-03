@@ -82,8 +82,8 @@ const Contact = () => {
                     {/* RIGHT COLUMN: CONTACT INFO (5 Cols) */}
                     <div className="lg:col-span-5 space-y-8 pt-4 lg:pt-12">
                         <motion.div
-                            initial={{ x: 50, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
+                            initial={{ y: 30, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
                             viewport={{ once: true }}
                             className="bg-white dark:bg-[#1a1a1a] p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-gulf-blue/10 relative overflow-hidden group hover:shadow-2xl transition-all duration-300"
                         >
