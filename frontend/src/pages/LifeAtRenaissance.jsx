@@ -61,7 +61,6 @@ const EVENTS = [
         folder: "IndependenceDay",
         images: [
             "IndependenceDay_1.jpeg",
-            "IndependenceDay_4.jpeg",
             "IndependenceDay_2.jpeg"
         ],
         theme: {
