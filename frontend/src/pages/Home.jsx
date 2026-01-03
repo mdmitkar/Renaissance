@@ -718,8 +718,8 @@ const Home = () => {
                     <div className="space-y-4">
                         {[
                             { q: "What is the age criteria for admission?", a: "We welcome children from 1.5 years for Playgroup, 2.5 years for Nursery, 3.5 years for Junior KG, and 4.5 years for Senior KG." },
-                            { q: "What is the 'Seven Petals' philosophy?", a: "It is our proprietary holistic curriculum focusing on 7 key areas: Cognitive, Motor Skills, Creativity, Culture, Sports, Social, and Life Skills." },
-                            { q: "Is transport facility available?", a: "Yes, we offer safe and comfortable transport facilities covering all major nearby areas with GPS tracking for parents." },
+                            { q: "What is the 'Seven Petals' philosophy?", a: "Our curriculum depends on 7 key areas: Culture & Patriotism, Play-Based Learning, Creativity, Social Growth, Intellectual Development, Physical Growth, and Parent Partnership." },
+                            { q: "Is transport facility available?", a: "Currently, we do not provide school transport facilities. Parents are requested to make their own travel arrangements." },
                             { q: "How do I schedule a campus visit?", a: "You can simply fill out the enquiry form by clicking the 'Enroll Now' button, or call our admissions office directly to book a slot." },
                             { q: "What are the safety measures on campus?", a: "Safety is our priority. We have 24/7 CCTV surveillance, security personnel, soft-flooring in play areas, and background-verified staff." }
                         ].map((faq, i) => (
