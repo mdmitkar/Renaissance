@@ -1,94 +1,337 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
+/* ===== CHEERFUL COLORFUL THEME - GLOBAL STYLES ===== */
+
+:root {
+  /* Cheerful Color Palette */
+  --color-primary: #FF6B6B;
+  /* Coral Pink */
+  --color-secondary: #4ECDC4;
+  /* Teal */
+  --color-tertiary: #FFE66D;
+  /* Sunny Yellow */
+  --color-orange: #FF9F43;
+  /* Warm Orange */
+  --color-purple: #A855F7;
+  /* Soft Purple */
+
+  /* Backgrounds */
+  --bg-light: #F5F5DC;
+  /* Soft Beige */
+  --bg-dark: #1A1A2E;
+
+  /* Text */
+  --text-primary: #2D3748;
+  --text-secondary: #4A5568;
+  --text-muted: #718096;
+
+  /* Lando-Style Animation */
+  --transition-fast: 200ms;
+  --transition-base: 400ms;
+  --transition-slow: 600ms;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ===== LANDO-STYLE ANIMATIONS ===== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
 
-  body {
-    @apply font-body bg-cream-velvet text-text-dark dark:bg-black dark:text-text-light dark:font-medium transition-colors duration-300 antialiased selection:bg-gulf-blue selection:text-white overflow-x-hidden relative w-full;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-heading;
-    /* Default colors, can be overridden by utility classes */
-    color: var(--tw-prose-headings);
-  }
-
-  /* Set defaults for body but allow overrides */
-  :root {
-    --text-main: #333333;
-    --text-dark: #f5f5f5;
-  }
-
-  .text-secondary-black {
-    color: #111111;
-  }
-
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #F3F0E8;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #81BAD9;
-    border-radius: 5px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #0060AA;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scroll-triggered animation classes */
+.fade-up {
+  animation: fadeUp 0.6s var(--ease-smooth) forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s var(--ease-smooth) forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.5s var(--ease-smooth) forwards;
+}
+
+/* Staggered animation delays (Lando-style) */
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+
+.stagger-5 {
+  animation-delay: 0.5s;
+}
+
+/* ===== BASE STYLES ===== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-body text-text-primary bg-cream-warm antialiased;
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body,
+body.dark {
+  @apply text-slate-100 bg-navy-deep;
+}
+
+/* ===== TYPOGRAPHY (Professional Sizes) ===== */
+
+h1,
+h2,
+h3 {
+  @apply font-display font-bold tracking-tight;
+}
+
+h4,
+h5,
+h6 {
+  @apply font-heading font-semibold;
+}
+
+p {
+  @apply font-body leading-relaxed text-base;
+}
+
+/* ===== SELECTION ===== */
+
+::selection {
+  @apply bg-primary text-white;
+}
+
+/* ===== SCROLLBAR ===== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cream-soft;
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-slate-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/50;
+}
+
+/* Hide scrollbar */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== LANDO-STYLE COMPONENT CLASSES ===== */
+
+@layer components {
+
+  /* Buttons - Neon Purple Theme */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-white font-heading font-bold text-lg transition-all duration-300 hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary/30;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-transparent text-text-primary font-heading font-semibold border-2 border-slate-300 transition-all duration-300 hover:border-primary hover:text-primary;
+  }
+
+  .dark .btn-secondary {
+    @apply text-slate-100 border-slate-600 hover:border-primary hover:text-primary;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-transparent text-text-primary font-heading font-semibold border border-slate-300 transition-all duration-300 hover:border-primary hover:text-primary;
+  }
+
+  /* Cards - Lando Style (Thin Borders, Minimal) */
+  .card {
+    @apply bg-cream-soft rounded-2xl p-6 border border-slate-200/80 transition-all duration-300;
+  }
+
+  .dark .card {
+    @apply bg-navy-soft border-slate-700;
+  }
+
+  .card-hover {
+    @apply hover:border-primary hover:-translate-y-1;
+  }
+
+  /* Section Layout */
+  .section {
+    @apply py-20 md:py-28 lg:py-32 px-4;
+  }
+
+  .section-header {
+    @apply max-w-3xl mx-auto text-center mb-16;
+  }
+
+  .container-pro {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-heading font-semibold uppercase tracking-wider bg-slate-100 text-slate-600;
+  }
+
+  .dark .badge {
+    @apply bg-slate-800 text-slate-300;
+  }
+
+  .badge-primary {
+    @apply bg-primary/10 text-primary;
+  }
+
+  .badge-secondary {
+    @apply bg-secondary/10 text-secondary;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-tertiary to-secondary;
+  }
+
+  /* Divider */
+  .divider {
+    @apply w-16 h-1 bg-primary rounded-full mx-auto my-8;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+
 @layer utilities {
-  .perspective-1000 {
-    perspective: 1000px;
+  .animate-in {
+    animation: animate-in 0.6s var(--ease-smooth) forwards;
   }
 
-  .transform-style-3d {
-    transform-style: preserve-3d;
+  .animate-in-delay-1 {
+    animation-delay: 0.1s;
   }
 
-  .backface-hidden {
-    backface-visibility: hidden;
+  .animate-in-delay-2 {
+    animation-delay: 0.2s;
   }
 
-  .rotate-y-180 {
-    transform: rotateY(180deg);
+  .animate-in-delay-3 {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
 
-  /* Hide Scrollbar Utility */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+/* ===== FOCUS STATES ===== */
 
-  .bg-grain {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.04;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2;
+}
+
+.dark :focus-visible {
+  @apply ring-offset-slate-900;
+}
+
+/* ===== LINK STYLES ===== */
+
+a {
+  @apply transition-colors duration-200;
+}
+
+/* ===== IMAGE STYLES ===== */
+
+img {
+  @apply max-w-full h-auto;
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

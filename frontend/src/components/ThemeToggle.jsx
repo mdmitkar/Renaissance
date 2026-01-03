@@ -1,40 +1,55 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Sun, Moon } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const ThemeToggle = () => {
-    const [isDark, setIsDark] = useState(false);
+const ThemeToggle = ({ scrolled = false }) => {
+    const [isDark, setIsDark] = React.useState(false);
 
-    useEffect(() => {
-        // Check local storage or system preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    React.useEffect(() => {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
             setIsDark(true);
             document.documentElement.classList.add('dark');
-        } else {
-            setIsDark(false);
-            document.documentElement.classList.remove('dark');
         }
     }, []);
 
     const toggleTheme = () => {
-        if (isDark) {
-            document.documentElement.classList.remove('dark');
-            localStorage.theme = 'light';
-            setIsDark(false);
-        } else {
+        const newTheme = !isDark;
+        setIsDark(newTheme);
+
+        if (newTheme) {
             document.documentElement.classList.add('dark');
-            localStorage.theme = 'dark';
-            setIsDark(true);
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
         }
     };
 
     return (
-        <button
+        <motion.button
             onClick={toggleTheme}
-            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle Dark Mode"
+            whileTap={{ scale: 0.95 }}
+            className={`
+                relative p-2.5 rounded-xl
+                transition-all duration-300
+                ${scrolled
+                    ? 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                    : 'bg-white/10 text-white hover:bg-white/20'
+                }
+            `}
+            aria-label="Toggle theme"
         >
-            {isDark ? <Sun className="text-primary-gold" size={24} /> : <Moon className="text-secondary-black" size={24} />}
-        </button>
+            <motion.div
+                initial={false}
+                animate={{ rotate: isDark ? 180 : 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+                {isDark ? <Moon size={18} /> : <Sun size={18} />}
+            </motion.div>
+        </motion.button>
     );
 };
 
