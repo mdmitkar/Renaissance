@@ -84,7 +84,8 @@ const Contact = () => {
                         <motion.div
                             initial={{ y: 30, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: false, margin: "-50px" }}
+                            exit={{ y: -50, opacity: 0 }}
+                            viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
                             className="bg-white dark:bg-[#1a1a1a] p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-gulf-blue/10 relative overflow-hidden group hover:shadow-2xl transition-all duration-300"
                         >
                             {/* Decorative Circle */}
@@ -174,7 +175,9 @@ const AdmissionForm = () => {
     return (
         <motion.div
             initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            exit={{ y: -50, opacity: 0 }}
+            viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
             transition={{ type: "spring", bounce: 0.3 }}
             className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] p-8 md:p-12 border border-gray-100 dark:border-gray-800 relative overflow-hidden"
         >

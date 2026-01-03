@@ -84,7 +84,8 @@ const About = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: false, margin: "-50px" }}
+                        exit={{ opacity: 0, y: -50 }}
+                        viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
                         transition={{ duration: 0.8 }}
                     >
                         <h3 className="text-orange-500 font-bold tracking-widest uppercase text-sm mb-4">Our Happy Place</h3>
@@ -112,7 +113,8 @@ const About = () => {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: false, margin: "-50px" }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
                             transition={{ duration: 0.8 }}
                             className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white transform transition-transform duration-500 hover:-translate-y-2"
                         >
@@ -151,7 +153,8 @@ const About = () => {
                     <motion.div
                         initial={{ y: 50, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
-                        viewport={{ once: false, margin: "-50px" }}
+                        exit={{ y: -50, opacity: 0 }}
+                        viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
                         className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-16 shadow-xl relative overflow-hidden border-4 border-white dark:border-white/10"
                     >
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
@@ -218,7 +221,8 @@ const About = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: false, margin: "-50px" }}
+                        exit={{ opacity: 0, y: -50 }}
+                        viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
                         transition={{ duration: 0.6 }}
                         className="bg-slate-900 rounded-[2rem] p-10 md:p-14 relative overflow-hidden mx-auto max-w-5xl text-white shadow-xl"
                     >
@@ -299,7 +303,8 @@ const TimelineItem = ({ data, index }) => {
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-50px" }}
+                exit={{ opacity: 0, y: -50 }}
+                viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.5 }}
                 className={`w-full md:w-[45%] bg-white dark:bg-[#1a1a1a] p-8 rounded-[2rem] shadow-xl border-b-8 ${data.borderColor} relative overflow-hidden ${isEven ? 'md:mr-auto' : 'md:ml-auto'}`}

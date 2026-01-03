@@ -243,7 +243,11 @@ const Home = () => {
             elements.forEach(el => {
                 gsap.fromTo(el, { y: 50, opacity: 0 }, {
                     y: 0, opacity: 1, duration: 0.8,
-                    scrollTrigger: { trigger: el, start: "top 85%" }
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play reverse play reverse"
+                    }
                 });
             });
         });
