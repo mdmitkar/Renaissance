@@ -110,8 +110,8 @@ const SectionHeader = ({ title, subtitle, color = "text-slate-900", className = 
 
     return (
         <div ref={el} className={`mb-12 md:mb-20 px-6 ${className}`}>
-            <h3 className={`text-sm font-bold uppercase tracking-[0.2em] mb-3 ${color} opacity-60 split-text`}>{subtitle}</h3>
-            <h2 className={`text-4xl md:text-6xl font-black ${color} split-text`}>{title}</h2>
+            <h3 className={`text-sm font-bold uppercase tracking-[0.2em] mb-3 ${color} dark:text-white/70 opacity-60 split-text`}>{subtitle}</h3>
+            <h2 className={`text-4xl md:text-6xl font-black ${color} dark:text-white split-text`}>{title}</h2>
         </div>
     );
 };
@@ -124,7 +124,7 @@ const MediaCard = ({ item, onClick, className }) => {
 
     return (
         <div
-            className={`relative overflow-hidden rounded-xl bg-gray-100 cursor-pointer group ${className}`}
+            className={`relative overflow-hidden rounded-xl bg-gray-100 dark:bg-[#1a1a1a] cursor-pointer group ${className}`}
             onClick={onClick}
             onMouseEnter={() => {
                 setHover(true);
@@ -257,7 +257,7 @@ const Gallery = () => {
     }, []);
 
     return (
-        <div ref={containerRef} className="bg-slate-50 min-h-screen text-slate-800 font-sans selection:bg-rose-500 selection:text-white pb-32">
+        <div ref={containerRef} className="bg-slate-50 dark:bg-black min-h-screen text-slate-800 dark:text-gray-200 font-sans selection:bg-rose-500 selection:text-white pb-32 transition-colors duration-300">
 
             {/* 1. Hero Section */}
             {/* 1. Hero Section */}
@@ -303,7 +303,7 @@ const Gallery = () => {
                     {reelAssets.map((item, i) => (
                         <div key={item.id} className="reel-card snap-center shrink-0">
                             <div
-                                className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px] rounded-2xl overflow-hidden relative cursor-pointer group shadow-xl border-4 border-black transition-transform hover:-translate-y-2"
+                                className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px] rounded-2xl overflow-hidden relative cursor-pointer group shadow-xl border-4 border-black dark:border-white/20 transition-transform hover:-translate-y-2"
                                 onClick={() => setSelectedItem({ ...item, type: 'video' })}
                             >
                                 <video src={item.src} className="w-full h-full object-cover" muted loop />
@@ -326,21 +326,21 @@ const Gallery = () => {
                 <GalleryErrorBoundary>
                     <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[650px]">
                         {/* Custom Mosaic - safely accessing items */}
-                        {campusAssets[7] && <MediaCard item={campusAssets[7]} className="campus-item md:col-span-2 md:row-span-2 min-h-[300px] border-4 border-black shadow-lg" onClick={() => setSelectedItem(campusAssets[7])} />}
-                        {campusAssets[0] && <MediaCard item={campusAssets[0]} className="campus-item min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[0])} />}
-                        {campusAssets[1] && <MediaCard item={campusAssets[1]} className="campus-item min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[1])} />}
-                        {campusAssets[2] && <MediaCard item={campusAssets[2]} className="campus-item md:col-span-2 min-h-[200px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(campusAssets[2])} />}
+                        {campusAssets[7] && <MediaCard item={campusAssets[7]} className="campus-item md:col-span-2 md:row-span-2 min-h-[300px] border-4 border-black dark:border-white/20 shadow-lg" onClick={() => setSelectedItem(campusAssets[7])} />}
+                        {campusAssets[0] && <MediaCard item={campusAssets[0]} className="campus-item min-h-[200px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(campusAssets[0])} />}
+                        {campusAssets[1] && <MediaCard item={campusAssets[1]} className="campus-item min-h-[200px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(campusAssets[1])} />}
+                        {campusAssets[2] && <MediaCard item={campusAssets[2]} className="campus-item md:col-span-2 min-h-[200px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(campusAssets[2])} />}
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                         {campusAssets.slice(3, 7).map((item) => (
-                            <MediaCard key={item.id} item={item} className="campus-item h-[200px] md:h-[250px] border-4 border-black shadow-sm" onClick={() => setSelectedItem(item)} />
+                            <MediaCard key={item.id} item={item} className="campus-item h-[200px] md:h-[250px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(item)} />
                         ))}
                     </div>
                 </GalleryErrorBoundary>
             </div>
 
             {/* 4. Celebrations (Horizontal Focus) */}
-            <div ref={celebRef} className="bg-slate-900 py-32 text-slate-100 relative overflow-hidden">
+            <div ref={celebRef} className="bg-slate-900 dark:bg-[#111] py-32 text-slate-100 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <SectionHeader title="Celebrations" subtitle="Moments of Joy" color="text-white" />
 
@@ -364,7 +364,7 @@ const Gallery = () => {
             </div>
 
             {/* 5. Learning & Fun (Side-Scroll Pin) */}
-            <div ref={learningRef} className="py-20 md:py-0 md:h-[100vh] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-white to-slate-100 relative mb-20 section-learning">
+            <div ref={learningRef} className="py-20 md:py-0 md:h-[100vh] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-white to-slate-100 dark:from-black dark:to-[#111] relative mb-20 section-learning">
                 <div className="max-w-7xl mx-auto w-full px-6 relative mb-8 md:mb-12 z-10 pointer-events-none">
                     <SectionHeader title="Learning & Fun" subtitle="Everyday Adventure" className="!mb-0" />
                 </div>
@@ -373,7 +373,7 @@ const Gallery = () => {
                     {mergedLearningAssets.map((item, index) => (
                         <div
                             key={item.id}
-                            className={`relative shrink-0 w-[80vw] md:w-[600px] aspect-video md:aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl cursor-pointer group border-4 border-black ${index % 2 === 0 ? 'md:rotate-1' : 'md:-rotate-1'}`}
+                            className={`relative shrink-0 w-[80vw] md:w-[600px] aspect-video md:aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl cursor-pointer group border-4 border-black dark:border-white/20 ${index % 2 === 0 ? 'md:rotate-1' : 'md:-rotate-1'}`}
                             onClick={() => setSelectedItem(item)}
                         >
                             <MediaCard item={item} className="w-full h-full transition-transform duration-700 hover:scale-105" />

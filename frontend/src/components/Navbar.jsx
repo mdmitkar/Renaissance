@@ -53,7 +53,7 @@ const Navbar = () => {
                                     to={link.path}
                                     className={({ isActive }) =>
                                         `relative font-body font-semibold text-base xl:text-lg py-2 transition-colors duration-300 whitespace-nowrap
-                    ${isActive ? 'text-primary-gold' : 'text-secondary-black dark:text-gray-200 hover:text-primary-gold dark:hover:text-primary-gold'}
+                    ${isActive ? 'text-primary-gold' : `${scrolled ? 'text-secondary-black dark:text-gentle-sweet' : 'text-gentle-sweet'} hover:text-primary-gold dark:hover:text-primary-gold`} 
                     after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-primary-gold 
                     after:transform after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100
                     ${isActive ? 'after:scale-x-100' : ''}`

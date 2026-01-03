@@ -25,13 +25,13 @@ const FAQItem = ({ question, answer }) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <div className="border border-gulf-lebanese/10 rounded-2xl bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <div className="border border-gulf-lebanese/10 dark:border-white/10 rounded-2xl bg-white dark:bg-[#1a1a1a] overflow-hidden shadow-sm hover:shadow-md transition-all">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full flex items-center justify-between p-6 text-left"
             >
-                <span className="text-lg font-bold text-gulf-lebanese">{question}</span>
-                <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-luxury-pink text-white' : 'bg-gray-100 text-gulf-lebanese'}`}>
+                <span className="text-lg font-bold text-gulf-lebanese dark:text-white">{question}</span>
+                <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-luxury-pink text-white' : 'bg-gray-100 dark:bg-white/10 text-gulf-lebanese dark:text-white'}`}>
                     {isOpen ? <Minus size={18} /> : <Plus size={18} />}
                 </div>
             </button>
@@ -44,7 +44,7 @@ const FAQItem = ({ question, answer }) => {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                     >
-                        <div className="p-6 pt-0 text-gray-600 leading-relaxed">
+                        <div className="p-6 pt-0 text-gray-600 dark:text-gray-300 leading-relaxed">
                             {answer}
                         </div>
                     </motion.div>
@@ -372,7 +372,7 @@ const Home = () => {
 
 
             {/* --- SECTION 2: PHILOSOPHY --- */}
-            <section className="relative py-24 md:py-32 px-6 bg-[#F9F7F2]">
+            <section className="relative py-24 md:py-32 px-6 bg-[#F9F7F2] dark:bg-[#111] transition-colors duration-300">
                 <div className="max-w-7xl mx-auto">
                     {/* Header + Image Row */}
                     <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
@@ -381,7 +381,7 @@ const Home = () => {
                             <div className="reveal-text text-xl font-bold text-gulf-blue mb-8 uppercase tracking-[0.2em]">
                                 Welcome to the Future
                             </div>
-                            <h2 className="reveal-text text-4xl md:text-6xl font-heading font-black text-gulf-lebanese leading-tight">
+                            <h2 className="reveal-text text-4xl md:text-6xl font-heading font-black text-gulf-lebanese dark:text-white leading-tight">
                                 WE BUILD <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink via-purple-400 to-indigo-500 animate-gradient-x">
                                     BRIGHT MINDS
@@ -440,7 +440,7 @@ const Home = () => {
                             ))}
                         </div>
                         <div className="reveal-text px-4 md:px-0">
-                            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium text-justify">
+                            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-medium text-justify">
                                 Imagine a place where every corner sparks <span className="text-luxury-pink font-semibold">curiosity</span>.
                                 At Renaissance, we don't just teach foundations; we inspire lifelong dreamers.
                                 A modern sanctuary for little explorers.
@@ -457,7 +457,7 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 3: THE SEVEN PETALS (Enhanced Interaction) --- */}
-            <section className="petals-section min-h-screen h-auto md:h-screen w-full bg-[#FAF9F6] text-gulf-lebanese flex items-center justify-center overflow-hidden relative py-20 md:py-0">
+            <section className="petals-section min-h-screen h-auto md:h-screen w-full bg-[#FAF9F6] dark:bg-black text-gulf-lebanese dark:text-white flex items-center justify-center overflow-hidden relative py-20 md:py-0 transition-colors duration-300">
 
                 {/* Nice Styling: Animated Background Elements */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -490,11 +490,11 @@ const Home = () => {
                     {/* Logical Title Separation */}
                     <div className="text-center mb-16 relative z-20 flex flex-col items-center gap-3">
                         <div className="flex items-center gap-4 mb-2 opacity-60">
-                            <div className="h-[1px] w-12 bg-gulf-lebanese"></div>
-                            <h3 className="text-sm md:text-base font-bold tracking-[0.4em] uppercase text-gulf-lebanese">Our Philosophy</h3>
-                            <div className="h-[1px] w-12 bg-gulf-lebanese"></div>
+                            <div className="h-[1px] w-12 bg-gulf-lebanese dark:bg-white/50"></div>
+                            <h3 className="text-sm md:text-base font-bold tracking-[0.4em] uppercase text-gulf-lebanese dark:text-white/80">Our Philosophy</h3>
+                            <div className="h-[1px] w-12 bg-gulf-lebanese dark:bg-white/50"></div>
                         </div>
-                        <h2 className="text-4xl md:text-8xl font-heading font-black text-gulf-lebanese relative z-10 drop-shadow-sm px-4">
+                        <h2 className="text-4xl md:text-8xl font-heading font-black text-gulf-lebanese dark:text-white relative z-10 drop-shadow-sm px-4">
                             The Seven <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-500 italic block md:inline">Petals</span>
                         </h2>
                     </div>
@@ -626,14 +626,14 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 5: LIVE STATS & TESTIMONIALS --- */}
-            <section className="py-10 bg-white overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)]">
+            <section className="py-10 bg-white dark:bg-[#111] overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)] transition-colors duration-300">
                 <div className="max-w-7xl mx-auto px-6 mb-20 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
                     {/* Left Video */}
                     <HoverVideo src="/videos/Testimonial_1.mp4" />
 
                     <div className="text-center">
                         <p className="text-luxury-pink font-bold text-xl uppercase tracking-[0.3em] mb-4">The Voice of Parents</p>
-                        <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese">Community Love</h2>
+                        <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese dark:text-white">Community Love</h2>
                     </div>
 
                     {/* Right Video */}
@@ -697,7 +697,7 @@ const Home = () => {
                             { num: "100%", label: "Safety Record" },
                         ].map((stat, i) => (
                             <div key={i} className="reveal-text px-4">
-                                <h3 className="text-4xl md:text-7xl font-black text-gulf-lebanese mb-4 bg-clip-text text-transparent bg-gradient-to-b from-gulf-lebanese to-gray-400">
+                                <h3 className="text-4xl md:text-7xl font-black text-gulf-lebanese dark:text-white mb-4 bg-clip-text text-transparent bg-gradient-to-b from-gulf-lebanese to-gray-400 dark:from-white dark:to-gray-500">
                                     {stat.num}
                                 </h3>
                                 <p className="text-gray-500 font-bold uppercase tracking-widest text-sm">{stat.label}</p>
@@ -708,11 +708,11 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 6: FAQ --- */}
-            <section className="py-24 bg-[#F9F7F2] relative z-10 px-6">
+            <section className="py-24 bg-[#F9F7F2] dark:bg-black relative z-10 px-6 transition-colors duration-300">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
                         <span className="text-luxury-pink font-bold tracking-widest uppercase text-sm">Got Questions?</span>
-                        <h2 className="text-5xl font-heading font-black text-gulf-lebanese mt-4">We Have Answers</h2>
+                        <h2 className="text-5xl font-heading font-black text-gulf-lebanese dark:text-white mt-4">We Have Answers</h2>
                     </div>
 
                     <div className="space-y-4">
@@ -730,9 +730,9 @@ const Home = () => {
             </section>
 
             {/* --- SECTION 7: PROFESSIONAL CTA --- */}
-            <section className="relative py-24 px-6 overflow-hidden bg-[#FDFBF7]">
+            <section className="relative py-24 px-6 overflow-hidden bg-[#FDFBF7] dark:bg-[#111] transition-colors duration-300">
                 <div className="max-w-7xl mx-auto">
-                    <div className="bg-white rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
+                    <div className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 dark:border-white/10 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
 
                         {/* Decorative Background Elements */}
                         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-luxury-pink/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -752,7 +752,7 @@ const Home = () => {
                                 Admissions Open 2025-26
                             </motion.div>
 
-                            <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese mb-6 leading-tight">
+                            <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese dark:text-white mb-6 leading-tight">
                                 Ready to Shape <br />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-600">The Future?</span>
                             </h2>
@@ -771,7 +771,7 @@ const Home = () => {
                                     Apply Now <ArrowRight size={20} />
                                 </motion.button>
 
-                                <button className="px-10 py-5 rounded-full text-lg font-bold text-gulf-lebanese border-2 border-gulf-lebanese/10 hover:bg-gulf-lebanese/5 transition-colors">
+                                <button className="px-10 py-5 rounded-full text-lg font-bold text-gulf-lebanese dark:text-white border-2 border-gulf-lebanese/10 dark:border-white/20 hover:bg-gulf-lebanese/5 dark:hover:bg-white/5 transition-colors">
                                     Book a Campus Visit
                                 </button>
                             </div>

@@ -12,7 +12,7 @@ const About = () => {
     const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
     return (
-        <div ref={containerRef} className="min-h-screen bg-yellow-50/50 font-body text-slate-800 selection:bg-rose-500 selection:text-white">
+        <div ref={containerRef} className="min-h-screen bg-yellow-50/50 dark:bg-black font-body text-slate-800 dark:text-gray-200 selection:bg-rose-500 selection:text-white transition-colors duration-300">
 
             {/* --- HERO SECTION --- */}
             <div className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -88,7 +88,7 @@ const About = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <h3 className="text-orange-500 font-bold tracking-widest uppercase text-sm mb-4">Our Happy Place</h3>
-                        <h2 className="text-4xl md:text-6xl font-heading font-black mb-8 text-slate-800 leading-tight">
+                        <h2 className="text-4xl md:text-6xl font-heading font-black mb-8 text-slate-800 dark:text-white leading-tight">
                             A Legacy of <br />
                             <span className="relative inline-block text-rose-500">
                                 Love & Learning
@@ -97,7 +97,7 @@ const About = () => {
                                 </svg>
                             </span>
                         </h2>
-                        <div className="space-y-6 text-lg text-slate-600 leading-relaxed font-medium">
+                        <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                             <p>
                                 Started with a smile in <strong>2025</strong>, Renaissance Preschool isn't just a school—it's a second home. We believe childhood is a magical journey, not a race.
                             </p>
@@ -131,8 +131,8 @@ const About = () => {
                 {/* --- 2. TIMELINE SECTION --- */}
                 <section className="mb-32 relative">
                     <div className="text-center mb-20">
-                        <span className="inline-block py-1 px-4 rounded-full bg-purple-100 text-purple-600 text-sm font-bold tracking-wider mb-4 border border-purple-200">OUR STORY</span>
-                        <h2 className="text-5xl font-heading font-black text-slate-800">Growing Together</h2>
+                        <span className="inline-block py-1 px-4 rounded-full bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-200 text-sm font-bold tracking-wider mb-4 border border-purple-200 dark:border-purple-700">OUR STORY</span>
+                        <h2 className="text-5xl font-heading font-black text-slate-800 dark:text-white">Growing Together</h2>
                     </div>
 
                     <div className="relative max-w-5xl mx-auto">
@@ -152,7 +152,7 @@ const About = () => {
                         initial={{ y: 50, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
-                        className="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl relative overflow-hidden border-4 border-white"
+                        className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-16 shadow-xl relative overflow-hidden border-4 border-white dark:border-white/10"
                     >
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
                             <div className="md:col-span-4 relative">
@@ -168,15 +168,15 @@ const About = () => {
                                     <h3 className="text-rose-500 font-bold tracking-widest uppercase text-sm mb-2">A Promise from Us</h3>
                                     <h2 className="text-4xl md:text-5xl font-heading font-black text-slate-800">Heads, Hearts & Hands</h2>
                                 </div>
-                                <div className="relative p-6 bg-yellow-50 rounded-2xl border border-yellow-100">
+                                <div className="relative p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border border-yellow-100 dark:border-yellow-700/30">
                                     <QuoteIcon className="absolute -top-4 -left-4 text-yellow-400 w-12 h-12" />
-                                    <p className="text-lg text-slate-700 italic leading-relaxed font-serif relative z-10">
+                                    <p className="text-lg text-slate-700 dark:text-slate-200 italic leading-relaxed font-serif relative z-10">
                                         "At Renaissance, we don't just teach directly to the brain; we teach to the heart. Every child is a universe of potential waiting to be loved, understood, and guided. Your child is our family."
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-4 pt-4">
                                     <div className="h-2 w-2 rounded-full bg-rose-500"></div>
-                                    <span className="font-heading font-bold text-lg text-slate-800">The Principal</span>
+                                    <span className="font-heading font-bold text-lg text-slate-800 dark:text-white">Management Desk</span>
                                 </div>
                             </div>
                         </div>
@@ -302,17 +302,17 @@ const TimelineItem = ({ data, index }) => {
                 viewport={{ once: true, margin: "-50px" }}
                 whileHover={{ y: -5 }}
                 transition={{ duration: 0.5 }}
-                className={`w-full md:w-[45%] bg-white p-8 rounded-[2rem] shadow-xl border-b-8 ${data.borderColor} relative overflow-hidden ${isEven ? 'md:mr-auto' : 'md:ml-auto'}`}
+                className={`w-full md:w-[45%] bg-white dark:bg-[#1a1a1a] p-8 rounded-[2rem] shadow-xl border-b-8 ${data.borderColor} relative overflow-hidden ${isEven ? 'md:mr-auto' : 'md:ml-auto'}`}
             >
                 <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${data.accent} opacity-10 rounded-bl-[100%] transition-transform duration-500 group-hover:scale-150`}></div>
 
                 <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-4">
-                        <span className={`px-4 py-1 rounded-full text-sm font-bold bg-slate-50 text-slate-800 border-2 ${data.badgeBorder}`}>{data.year}</span>
+                        <span className={`px-4 py-1 rounded-full text-sm font-bold bg-slate-50 dark:bg-white/10 text-slate-800 dark:text-white border-2 ${data.badgeBorder}`}>{data.year}</span>
                         <div className={`${data.iconColor}`}>{data.icon}</div>
                     </div>
-                    <h3 className="text-2xl font-bold font-heading mb-3 text-slate-900">{data.title}</h3>
-                    <p className="text-slate-600 leading-relaxed font-medium">{data.desc}</p>
+                    <h3 className="text-2xl font-bold font-heading mb-3 text-slate-900 dark:text-white">{data.title}</h3>
+                    <p className="text-slate-600 dark:text-gray-300 leading-relaxed font-medium">{data.desc}</p>
                 </div>
             </motion.div>
         </div>
@@ -322,13 +322,13 @@ const TimelineItem = ({ data, index }) => {
 const ValueCard = ({ icon, title, desc, color, bg, shadow }) => (
     <motion.div
         whileHover={{ y: -10 }}
-        className={`bg-white p-10 rounded-[2.5rem] shadow-xl ${shadow} hover:shadow-2xl transition-all border-b-8 ${shadow.replace('shadow', 'border')} text-center group`}
+        className={`bg-white dark:bg-[#1a1a1a] p-10 rounded-[2.5rem] shadow-xl ${shadow} hover:shadow-2xl transition-all border-b-8 ${shadow.replace('shadow', 'border')} text-center group`}
     >
         <div className={`w-20 h-20 mx-auto rounded-full ${bg} ${color} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-inner`}>
             {icon}
         </div>
-        <h3 className="text-2xl font-heading font-black mb-4 text-slate-800">{title}</h3>
-        <p className="text-slate-600 leading-relaxed font-medium">{desc}</p>
+        <h3 className="text-2xl font-heading font-black mb-4 text-slate-800 dark:text-white">{title}</h3>
+        <p className="text-slate-600 dark:text-gray-300 leading-relaxed font-medium">{desc}</p>
     </motion.div>
 );
 
