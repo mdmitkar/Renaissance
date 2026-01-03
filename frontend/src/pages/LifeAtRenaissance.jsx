@@ -224,7 +224,7 @@ const TimelineSection = ({ event, index }) => {
 
                     <h2 className="text-3xl md:text-5xl font-heading font-extrabold mb-6 leading-tight">
                         <span
-                            className="bg-clip-text text-transparent bg-gradient-to-r"
+                            className="bg-clip-text text-transparent bg-gradient-to-r dark:!bg-none dark:!text-white"
                             style={{
                                 backgroundImage: `linear-gradient(to right, ${event.theme.secondary}, ${event.theme.accent})`
                             }}
@@ -233,7 +233,7 @@ const TimelineSection = ({ event, index }) => {
                         </span>
                     </h2>
 
-                    <p className="text-base md:text-lg leading-relaxed mb-8 font-medium text-justify" style={{ color: event.theme.text }}>
+                    <p className="text-base md:text-lg leading-relaxed mb-8 font-medium text-justify dark:!text-gray-300" style={{ color: event.theme.text }}>
                         {event.description}
                     </p>
 
