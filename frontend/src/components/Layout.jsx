@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import FloatingWhatsApp from './FloatingWhatsApp';
 import StickyRightSidebar from './StickyRightSidebar';
+import RennyChatbot from './RennyChatbot';
 import AdmissionModal from './AdmissionModal';
 
 const Layout = () => {
@@ -17,10 +17,8 @@ const Layout = () => {
             </main>
             <Footer />
 
-            {/* Mobile Only WhatsApp */}
-            <div className="md:hidden">
-                <FloatingWhatsApp />
-            </div>
+            {/* Renny Chatbot (Replaces Floating WhatsApp) */}
+            <RennyChatbot />
 
             {/* Desktop Sticky Sidebar */}
             <StickyRightSidebar onOpenAdmission={() => setIsAdmissionOpen(true)} />
