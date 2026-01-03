@@ -329,7 +329,7 @@ const Home = () => {
                             transition={{ delay: 1.5, duration: 1 }}
                             className="text-xl md:text-3xl font-body font-light text-slate-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg tracking-wide mb-12"
                         >
-                            Where Magic Happens Daily
+                            LEARNING THROUGH LOVE AND LAUGHTER
                         </motion.h2>
 
                         <div className="flex flex-col md:flex-row gap-8 justify-center items-center mt-8">
