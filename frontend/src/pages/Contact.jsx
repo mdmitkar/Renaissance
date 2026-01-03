@@ -84,7 +84,7 @@ const Contact = () => {
                         <motion.div
                             initial={{ y: 30, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false, margin: "-50px" }}
                             className="bg-white dark:bg-[#1a1a1a] p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-gulf-blue/10 relative overflow-hidden group hover:shadow-2xl transition-all duration-300"
                         >
                             {/* Decorative Circle */}
