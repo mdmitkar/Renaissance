@@ -198,7 +198,7 @@ const AdmissionForm = () => {
                             <Input
                                 label="Child Full Name"
                                 name="childName"
-                                placeholder="E.g. Aarav Sharma"
+                                placeholder="E.g. Samad Ansari"
                                 icon={<User size={20} />}
                                 value={formData.childName}
                                 onChange={handleChange}
@@ -210,7 +210,7 @@ const AdmissionForm = () => {
                             <Input
                                 label="Parent Full Name"
                                 name="parentName"
-                                placeholder="E.g. Rahul Sharma"
+                                placeholder="E.g. Javed Ansari"
                                 icon={<User size={20} />}
                                 value={formData.parentName}
                                 onChange={handleChange}
