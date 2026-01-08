@@ -311,7 +311,7 @@ const Home = () => {
                             }}
                             initial="hidden"
                             animate="visible"
-                            className="text-[15vw] md:text-[12rem] font-gothic font-normal text-white leading-none drop-shadow-2xl mb-4 tracking-tighter w-full text-center"
+                            className="text-[15vw] md:text-[12rem] font-gothic font-normal text-primary-gold leading-none drop-shadow-2xl mb-4 tracking-tighter w-full text-center"
                         >
                             {"Renaissance".split("").map((char, index) => (
                                 <motion.span
@@ -331,7 +331,7 @@ const Home = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1.2, duration: 1 }}
-                            className="text-3xl md:text-5xl font-heading font-light text-white uppercase tracking-[0.2em] mb-8"
+                            className="text-3xl md:text-5xl font-heading font-light text-gentle-sweet uppercase tracking-[0.2em] mb-8"
                         >
                             Preschool
                         </motion.div>
@@ -340,7 +340,7 @@ const Home = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1.5, duration: 1 }}
-                            className="text-xl md:text-3xl font-body font-light text-slate-100 max-w-3xl mx-auto leading-relaxed drop-shadow-lg tracking-wide mb-12"
+                            className="text-xl md:text-3xl font-body font-light text-gentle-sweet max-w-3xl mx-auto leading-relaxed drop-shadow-lg tracking-wide mb-12"
                         >
                             LEARNING THROUGH LOVE AND LAUGHTER
                         </motion.h2>
