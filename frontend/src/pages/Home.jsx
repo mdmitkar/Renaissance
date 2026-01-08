@@ -311,7 +311,7 @@ const Home = () => {
                             }}
                             initial="hidden"
                             animate="visible"
-                            className="text-[15vw] md:text-[12rem] font-heading font-normal text-white leading-none drop-shadow-2xl mb-4 tracking-tighter w-full text-center"
+                            className="text-[15vw] md:text-[12rem] font-gothic font-normal text-white leading-none drop-shadow-2xl mb-4 tracking-tighter w-full text-center"
                         >
                             {"Renaissance".split("").map((char, index) => (
                                 <motion.span
@@ -326,6 +326,15 @@ const Home = () => {
                                 </motion.span>
                             ))}
                         </motion.h1>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 1.2, duration: 1 }}
+                            className="text-3xl md:text-5xl font-heading font-light text-white uppercase tracking-[0.2em] mb-8"
+                        >
+                            Preschool
+                        </motion.div>
 
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
