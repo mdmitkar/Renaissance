@@ -39,7 +39,7 @@ const Navbar = () => {
                         <img
                             src="/logo.jpeg"
                             alt="Renaissance Preschool Logo"
-                            className="h-[70px] w-auto object-contain"
+                            className="h-[70px] w-auto object-contain rounded-full"
                         />
                     </NavLink>
                 </div>
