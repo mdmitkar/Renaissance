@@ -25,6 +25,7 @@ const CHAT_FLOW = {
             { label: "⏰ School Timings", next: "p_timings" },
             { label: "💰 Fees Enquiry", next: "p_fees" },
             { label: "🏫 About the School", next: "p_about" },
+            { label: "❤️ What Parents Say", action: "navigate", path: "/reviews" },
             { label: "🖼️ Gallery & Activities", next: "p_gallery" },
             { label: "📍 Contact & Location", next: "p_contact" },
             { label: "📞 Chat on WhatsApp", action: "whatsapp" },
