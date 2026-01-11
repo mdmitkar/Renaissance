@@ -15,7 +15,6 @@ const TESTIMONIAL_VIDEOS = [
     { id: 'v2', src: '/videos/Testimonial_2.mp4', title: 'Why We Choose Renaissance', type: 'video' },
     { id: 'v3', src: '/videos/Testimonial_3.mp4', title: 'Child Growth', type: 'video' },
     { id: 'v4', src: '/videos/testimonial_4.mp4', title: 'Happy Parents', type: 'video' },
-    { id: 'nt4', src: '/New/New Testimonials/newtest4.mp4', title: 'Love & Support', type: 'video' },
     { id: 'nt5', src: '/New/New Testimonials/newtest5.mp4', title: 'Amazing Teachers', type: 'video' },
     { id: 'nt6', src: '/New/New Testimonials/newtest6.mp4', title: 'Safe Environment', type: 'video' },
     { id: 'nt7', src: '/New/New Testimonials/newtest7.mp4', title: 'Best Decision', type: 'video' },
