@@ -8,6 +8,7 @@ import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Admission from './pages/Admission';
 import LifeAtRenaissance from './pages/LifeAtRenaissance';
+import ParentsPraise from './pages/ParentsPraise';
 import Contact from './pages/Contact';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="life" element={<LifeAtRenaissance />} />
+            <Route path="reviews" element={<ParentsPraise />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="admission" element={<Admission />} />
             <Route path="contact" element={<Contact />} />

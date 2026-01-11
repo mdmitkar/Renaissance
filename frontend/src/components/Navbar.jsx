@@ -21,6 +21,7 @@ const Navbar = () => {
         { name: 'Home', path: '/' },
         { name: 'About', path: '/about' },
         { name: 'Life @ Renaissance', path: '/life' },
+        { name: "Parents' Praise", path: '/reviews' },
         { name: 'Gallery', path: '/gallery' },
         { name: 'Contact', path: '/contact' },
     ];
