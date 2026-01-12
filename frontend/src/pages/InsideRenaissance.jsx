@@ -596,7 +596,7 @@ const GallerySection = () => {
     }, []);
 
     return (
-        <div ref={containerRef} className="bg-slate-50 dark:bg-black min-h-screen text-slate-800 dark:text-gray-200 font-sans selection:bg-rose-500 selection:text-white pb-32 transition-colors duration-300">
+        <div ref={containerRef} className="bg-slate-50 dark:bg-black min-h-screen text-slate-800 dark:text-gray-200 font-sans selection:bg-rose-500 selection:text-white transition-colors duration-300">
 
             {/* 1. New Simple Header */}
             <div className="pt-20 pb-10 text-center bg-slate-50 dark:bg-black transition-colors duration-300">

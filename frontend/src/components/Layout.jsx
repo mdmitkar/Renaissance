@@ -15,7 +15,9 @@ const Layout = () => {
             <main>
                 <Outlet />
             </main>
-            <Footer />
+            <div className="relative z-50">
+                <Footer />
+            </div>
 
             {/* Renny Chatbot (Replaces Floating WhatsApp) */}
             <RennyChatbot />
