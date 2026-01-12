@@ -16,7 +16,7 @@ const TESTIMONIAL_VIDEOS = [
     { id: 'v3', src: '/videos/Testimonial_3.mp4', title: 'Child Growth', type: 'video' },
     { id: 'v4', src: '/videos/testimonial_4.mp4', title: 'Happy Parents', type: 'video' },
     { id: 'nt5', src: '/New/New Testimonials/newtest5.mp4', title: 'Amazing Teachers', type: 'video' },
-    { id: 'nt6', src: '/New/New Testimonials/newtest6.mp4', title: 'Safe Environment', type: 'video' },
+
     { id: 'nt7', src: '/New/New Testimonials/newtest7.mp4', title: 'Best Decision', type: 'video' },
     { id: 'nt8', src: '/New/New Testimonials/newtest8.mp4', title: 'Holistic Growth', type: 'video' },
     { id: 'nt9', src: '/New/New Testimonials/newtest9.mp4', title: 'Creativity', type: 'video' },

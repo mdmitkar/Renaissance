@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mb-8">
                 {/* Brand Section */}
                 <div className="flex flex-col items-start">
-                    <img src="/logo.jpeg" alt="Renaissance Preschool" className="h-[80px] mb-4 bg-white p-1 rounded" />
+                    <img src="/logo.jpeg" alt="Renaissance Preschool" className="h-[80px] mb-4 bg-white p-1 rounded-full" />
                     <h3 className="text-xl font-heading text-primary-gold mb-2">Renaissance Preschool</h3>
                     <p className="text-sm opacity-80">Learning Through Love and Laughter</p>
                 </div>
