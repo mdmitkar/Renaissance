@@ -147,43 +147,144 @@ const About = () => {
                     </div>
                 </section>
 
-                {/* --- 3. MANAGEMENT DESK --- */}
-                <section className="relative mb-32">
-                    <div className="absolute inset-0 bg-gradient-to-r from-orange-100 to-rose-100 rounded-[3rem] transform -rotate-1"></div>
-                    <motion.div
-                        initial={{ y: 50, opacity: 0 }}
-                        whileInView={{ y: 0, opacity: 1 }}
-                        exit={{ y: -50, opacity: 0 }}
-                        viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
-                        className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-16 shadow-xl relative overflow-hidden border-4 border-white dark:border-white/10"
-                    >
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-                            <div className="md:col-span-4 relative">
-                                <div className="absolute inset-0 bg-yellow-300 rounded-2xl transform translate-x-4 translate-y-4"></div>
-                                <img
-                                    src="/otherimp/rushiuncle.jpeg"
-                                    alt="Principal"
-                                    className="w-full h-auto rounded-2xl shadow-lg relative z-10"
-                                />
-                            </div>
-                            <div className="md:col-span-8 space-y-8">
-                                <div>
-                                    <h3 className="text-rose-500 font-bold tracking-widest uppercase text-sm mb-2">A Promise from Us</h3>
-                                    <h2 className="text-4xl md:text-5xl font-heading font-black text-slate-800">Heads, Hearts & Hands</h2>
+                {/* --- 3. MEET THE FOUNDERS --- */}
+                <section className="relative mb-32 z-10">
+                    <div className="text-center mb-16">
+                        <span className="inline-block py-1 px-4 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-900 dark:text-rose-200 text-sm font-bold tracking-wider mb-4 border border-rose-200 dark:border-rose-700">LEADERSHIP</span>
+                        <h2 className="text-5xl font-heading font-black text-slate-800 dark:text-white">Heads, Hearts & Hands</h2>
+                    </div>
+
+                    <div className="space-y-20">
+                        {/* Founder 1: Mr. Rushi Patel */}
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-r from-orange-100 via-white to-rose-100 dark:from-gray-800 dark:to-gray-900 rounded-[3rem] transform rotate-1 transition-transform group-hover:-rotate-1"></div>
+                            <motion.div
+                                initial={{ y: 50, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                viewport={{ amount: 0.3 }}
+                                className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-12 shadow-xl relative overflow-hidden border-4 border-white dark:border-white/10"
+                            >
+                                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+                                    <div className="md:col-span-4 relative">
+                                        <div className="absolute inset-0 bg-yellow-300 rounded-2xl transform translate-x-3 translate-y-3"></div>
+                                        <img
+                                            src="/otherimp/rushiuncle.jpeg"
+                                            alt="Mr. Rushi Patel"
+                                            className="w-full h-auto rounded-2xl shadow-lg relative z-10 aspect-[3/4] object-cover"
+                                        />
+                                    </div>
+                                    <div className="md:col-span-8 space-y-6">
+                                        <div>
+                                            <h3 className="text-rose-500 font-bold tracking-widest uppercase text-sm mb-2">Co-Founder</h3>
+                                            <h2 className="text-3xl md:text-5xl font-heading font-black text-slate-800 dark:text-white">Mr. Rushi Patel</h2>
+                                        </div>
+
+                                        <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                                            <p>
+                                                Mr. Rushi Patel brings over <strong>20 years of rich experience</strong> in Business Development, having worked with renowned corporate groups such as Cobra Group, Aditya Birla Group, and Mahindra Group. His journey from leading corporate roles to the field of education is driven by a deep passion for shaping young minds.
+                                            </p>
+                                            <p>
+                                                A firm believer in holistic development, Mr. Patel is an active sports enthusiast and a dedicated social contributor, working closely towards children’s and youth physical development and engagement through sports activities.
+                                            </p>
+                                        </div>
+
+                                        <div className="relative p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border border-yellow-100 dark:border-yellow-700/30">
+                                            <QuoteIcon className="absolute -top-4 -left-4 text-yellow-400 w-10 h-10" />
+                                            <p className="text-lg text-slate-700 dark:text-slate-200 italic font-serif relative z-10">
+                                                "My vision for Renaissance Preschool is to create a nurturing, joyful, and value-driven learning environment where children grow with confidence, curiosity, and character."
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="relative p-6 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl border border-yellow-100 dark:border-yellow-700/30">
-                                    <QuoteIcon className="absolute -top-4 -left-4 text-yellow-400 w-12 h-12" />
-                                    <p className="text-lg text-slate-700 dark:text-slate-200 italic leading-relaxed font-serif relative z-10">
-                                        "At Renaissance, we don't just teach directly to the brain; we teach to the heart. Every child is a universe of potential waiting to be loved, understood, and guided. Your child is our family."
-                                    </p>
-                                </div>
-                                <div className="flex items-center gap-4 pt-4">
-                                    <div className="h-2 w-2 rounded-full bg-rose-500"></div>
-                                    <span className="font-heading font-bold text-lg text-slate-800 dark:text-white">Management Desk</span>
-                                </div>
-                            </div>
+                            </motion.div>
                         </div>
-                    </motion.div>
+
+                        {/* Founder 2: Mr. Meraj Patel */}
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-gradient-to-l from-blue-100 via-white to-purple-100 dark:from-gray-800 dark:to-gray-900 rounded-[3rem] transform -rotate-1 transition-transform group-hover:rotate-1"></div>
+                            <motion.div
+                                initial={{ y: 50, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                viewport={{ amount: 0.3 }}
+                                className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-12 shadow-xl relative overflow-hidden border-4 border-white dark:border-white/10"
+                            >
+                                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start md:flex-row-reverse">
+                                    <div className="md:col-span-8 space-y-6 order-2 md:order-1">
+                                        <div>
+                                            <h3 className="text-purple-500 font-bold tracking-widest uppercase text-sm mb-2">Co-Founder</h3>
+                                            <h2 className="text-3xl md:text-5xl font-heading font-black text-slate-800 dark:text-white">Mr. Meraj Patel</h2>
+                                        </div>
+                                        <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                                            <p>
+                                                As a visionary Co-Founder, Mr. Meraj Patel shares the deep commitment to redefining early childhood education. With a focus on creating safe, innovative, and inspiring spaces, he ensures that Renaissance Preschool stands as a beacon of quality and care in the community.
+                                            </p>
+                                        </div>
+                                        <div className="relative p-6 bg-purple-50 dark:bg-purple-900/20 rounded-2xl border border-purple-100 dark:border-purple-700/30">
+                                            <QuoteIcon className="absolute -top-4 -left-4 text-purple-400 w-10 h-10" />
+                                            <p className="text-lg text-slate-700 dark:text-slate-200 italic font-serif relative z-10">
+                                                "We are building more than just a school; we are building a foundation for life where every child is celebrated."
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div className="md:col-span-4 relative order-1 md:order-2">
+                                        <div className="absolute inset-0 bg-purple-300 rounded-2xl transform -translate-x-3 translate-y-3"></div>
+                                        <img
+                                            src="/otherimp/owner2.jpeg"
+                                            alt="Mr. Meraj Patel"
+                                            className="w-full h-auto rounded-2xl shadow-lg relative z-10 aspect-[3/4] object-cover"
+                                        />
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* --- PRINCIPAL'S MESSAGE --- */}
+                {/* --- PRINCIPAL'S MESSAGE --- */}
+                <section className="relative mb-32 z-10">
+                    <div className="relative group">
+                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-100 via-white to-purple-100 dark:from-gray-800 dark:to-gray-900 rounded-[3rem] transform rotate-1 transition-transform group-hover:-rotate-1"></div>
+                        <motion.div
+                            initial={{ y: 50, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ amount: 0.3 }}
+                            className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-12 shadow-xl relative overflow-hidden border-4 border-white dark:border-white/10"
+                        >
+                            <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+                                <div className="md:col-span-4 relative">
+                                    <div className="absolute inset-0 bg-indigo-300 rounded-2xl transform translate-x-3 translate-y-3"></div>
+                                    <img
+                                        src="/assets/swimming_area.jpeg"
+                                        alt="Ms. Shagufta Madoo"
+                                        className="w-full h-auto rounded-2xl shadow-lg relative z-10 aspect-[3/4] object-cover"
+                                    />
+                                </div>
+                                <div className="md:col-span-8 space-y-6">
+                                    <div>
+                                        <h3 className="text-indigo-500 font-bold tracking-widest uppercase text-sm mb-2">Principal</h3>
+                                        <h2 className="text-3xl md:text-5xl font-heading font-black text-slate-800 dark:text-white">Ms. Shagufta Madoo</h2>
+                                    </div>
+
+                                    <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <p>
+                                            At the heart of our preschool is a leader whose vision, compassion, and dedication shape the very foundation of early learning. With over <strong>15 years of rich experience</strong> in education and strong academic qualifications (M.Com, B.Ed), Ms. Madoo brings wisdom, warmth, and purpose to her role.
+                                        </p>
+                                        <p>
+                                            For Ms. Madoo, a preschool is not just a place to learn letters and numbers, but a <em>second home</em> where little hearts feel safe, valued, and encouraged. She believes early childhood education is about nurturing curiosity, confidence, and kindness — values that stay with children for life.
+                                        </p>
+                                    </div>
+
+                                    <div className="relative p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-700/30">
+                                        <QuoteIcon className="absolute -top-4 -left-4 text-indigo-400 w-10 h-10" />
+                                        <p className="text-lg text-slate-700 dark:text-slate-200 italic font-serif relative z-10">
+                                            "Under her gentle yet inspiring leadership, Renaissance Preschool flourishes as a happy, vibrant environment where every child is guided with love, patience, and care."
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
                 </section>
 
                 {/* --- 4. VALUES GRID --- */}
