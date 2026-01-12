@@ -343,6 +343,16 @@ const LifeSection = () => {
                 <TimelineSection key={event.id} event={event} index={index} />
             ))}
 
+            {/* VIEW GALLERY NAV */}
+            <div className="flex justify-center py-20 snap-start">
+                <button
+                    onClick={() => document.getElementById('gallery-start').scrollIntoView({ behavior: 'smooth' })}
+                    className="group flex items-center gap-3 px-8 py-4 bg-white dark:bg-white/10 text-slate-900 dark:text-white rounded-full font-bold shadow-xl border border-white/20 hover:scale-105 hover:bg-rose-500 hover:text-white transition-all"
+                >
+                    View Our Full Gallery <ArrowDown className="group-hover:animate-bounce" size={20} />
+                </button>
+            </div>
+
 
         </div>
     );
@@ -352,262 +362,214 @@ const LifeSection = () => {
 // PART 2: GALLERY DATA & COMPONENT
 // ===================================
 
-class GalleryErrorBoundary extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { hasError: false };
-    }
-
-    static getDerivedStateFromError(error) {
-        return { hasError: true };
-    }
-
-    componentDidCatch(error, errorInfo) {
-        console.error("Gallery Error Boundary Caught:", error, errorInfo);
-    }
-
-    render() {
-        if (this.state.hasError) {
-            return (
-                <div className="p-8 text-center bg-red-50 rounded-xl border border-red-200 my-8">
-                    <h3 className="text-red-800 font-bold mb-2">Something went wrong with this gallery section.</h3>
-                    <p className="text-red-600">Please try refreshing the page.</p>
-                </div>
-            );
+const GALLERY_DATA = {
+    events: [
+        {
+            id: 'activities',
+            title: 'Activities',
+            cover: '/Activities/Activities_1.jpeg',
+            media: [
+                { type: 'image', src: '/Activities/0.1.jpeg' },
+                { type: 'image', src: '/Activities/Activities_4.jpeg' },
+                { type: 'image', src: '/Activities/motor.jpeg' },
+                { type: 'image', src: '/Activities/otherchemical.jpeg' },
+                { type: 'image', src: '/Activities/otherchiolddraw.jpeg' },
+                { type: 'image', src: '/Activities/otherimpkidplayball.jpeg' },
+                { type: 'image', src: '/Activities/otherimprenistaclass.jpeg' },
+                { type: 'image', src: '/Activities/otherkidinroom.jpeg' },
+                { type: 'image', src: '/Activities/student_flower_craft_project.jpeg' },
+                { type: 'image', src: '/Activities/students_group_drawing_on_floor.jpeg' },
+                { type: 'video', src: '/Activities/Find the alphabets activity.mp4' },
+                { type: 'video', src: '/Activities/Shapes exercise Activity.mp4' },
+                { type: 'video', src: '/Activities/groupequiliactivity.mp4' },
+                { type: 'video', src: '/Activities/psycomotorskullreels.mp4' },
+                { type: 'video', src: '/Activities/renaisanecefiestareel.mp4' },
+            ]
+        },
+        {
+            id: 'sports',
+            title: 'Sports',
+            cover: '/SportsDay/newsportday.jpeg',
+            media: [
+                { type: 'image', src: '/SportsDay/newsportday.jpeg' },
+                { type: 'image', src: '/SportsDay/sportday4.webp' },
+                { type: 'image', src: '/SportsDay/sportdaymedal.jpeg' },
+                { type: 'image', src: '/SportsDay/sportsday1.jpeg' },
+                { type: 'image', src: '/SportsDay/student_with_awards_and_medals.jpeg' },
+                { type: 'video', src: '/SportsDay/SportsDay_1.mp4' },
+                { type: 'video', src: '/SportsDay/SportsDay_2.mp4' },
+                { type: 'video', src: '/SportsDay/parentracesp[oprots.mp4' },
+                { type: 'video', src: '/videos/sportsdayreel.mp4' },
+            ]
+        },
+        {
+            id: 'ptm',
+            title: 'PTM',
+            cover: '/PTM/PTM_5.jpeg',
+            media: [
+                { type: 'image', src: '/PTM/PTM_3.jpeg' },
+                { type: 'image', src: '/PTM/PTM_5.jpeg' },
+                { type: 'image', src: '/PTM/ptm6.jpeg' },
+                { type: 'image', src: '/PTM/ptma.jpeg' },
+                { type: 'image', src: '/PTM/ptmb.jpeg' },
+                { type: 'image', src: '/Activities/PTM_1.jpeg' },
+                { type: 'image', src: '/Activities/PTM_4.jpeg' },
+            ]
+        },
+        {
+            id: 'awards',
+            title: 'Awards',
+            cover: '/New/givingaward2/givingaward.jpeg',
+            media: [
+                { type: 'image', src: '/New/givingaward2/Activities_1.jpeg' },
+                { type: 'image', src: '/New/givingaward2/Awards_2.jpeg' },
+                { type: 'image', src: '/New/givingaward2/givingaward copy.jpeg' },
+                { type: 'image', src: '/New/givingaward2/givingaward.jpeg' },
+                { type: 'image', src: '/New/givingaward2/otherkidrecivinggift.jpeg' },
+                { type: 'image', src: '/New/givingaward2/teachers_in_niqab_with_student.jpeg' },
+                { type: 'image', src: '/New/givingaward2/teachers_with_student_and_gift.jpeg' },
+            ]
+        },
+        {
+            id: 'campus',
+            title: 'Campus',
+            cover: '/SchoolPremises/schoolbuilding.avif',
+            media: [
+                { type: 'image', src: '/SchoolPremises/classplay.jpeg' },
+                { type: 'image', src: '/SchoolPremises/classroom1.jpeg' },
+                { type: 'image', src: '/SchoolPremises/classroom2.jpeg' },
+                { type: 'image', src: '/SchoolPremises/classroom3.png' },
+                { type: 'image', src: '/SchoolPremises/classroom_panorama_view.jpeg' },
+                { type: 'image', src: '/SchoolPremises/otherimpentry.jpeg' },
+                { type: 'image', src: '/SchoolPremises/otherstaircase.jpeg' },
+                { type: 'image', src: '/SchoolPremises/playground1.jpeg' },
+                { type: 'image', src: '/SchoolPremises/playground2.jpeg' },
+                { type: 'image', src: '/SchoolPremises/playground3.png' },
+                { type: 'image', src: '/SchoolPremises/schoolbuilding.avif' },
+                { type: 'image', src: '/SchoolPremises/schoolentry.jpeg' },
+                { type: 'image', src: '/SchoolPremises/teachers_day_classroom_decorations.jpeg' },
+                { type: 'video', src: '/videos/schooltour.mp4' },
+                { type: 'video', src: '/videos/schooltourreel.mp4' },
+            ]
+        },
+        {
+            id: 'testimonials',
+            title: 'Testimonials',
+            cover: '/New/New Testimonials/newtest1.jpeg',
+            media: [
+                { type: 'image', src: '/New/New Testimonials/newtest1.jpeg' },
+                { type: 'image', src: '/New/New Testimonials/newtest14.jpeg' },
+                { type: 'image', src: '/New/New Testimonials/newtest2.jpeg' },
+                { type: 'image', src: '/New/New Testimonials/newtest3.jpeg' },
+                { type: 'image', src: '/New/New Testimonials/newtest4.jpeg' },
+                { type: 'image', src: '/New/New Testimonials/newtest5.jpeg' },
+                { type: 'image', src: '/New/New Testimonials/newtest6.jpeg' },
+                { type: 'image', src: '/New/New Testimonials/newtest7.jpeg' },
+                { type: 'image', src: '/New/New Testimonials/newtest8.jpeg' },
+                { type: 'image', src: '/New/New Testimonials/newtest9.jpeg' },
+                { type: 'video', src: '/New/New Testimonials/newtest10.mp4' },
+                { type: 'video', src: '/New/New Testimonials/newtest11.mp4' },
+                { type: 'video', src: '/New/New Testimonials/newtest12.mp4' },
+                { type: 'video', src: '/New/New Testimonials/newtest4.mp4' },
+                { type: 'video', src: '/New/New Testimonials/newtest5.mp4' },
+                { type: 'video', src: '/New/New Testimonials/newtest6.mp4' },
+                { type: 'video', src: '/New/New Testimonials/newtest7.mp4' },
+                { type: 'video', src: '/New/New Testimonials/newtest8.mp4' },
+                { type: 'video', src: '/New/New Testimonials/newtest9.mp4' },
+                { type: 'video', src: '/videos/Testimonial_1.mp4' },
+                { type: 'video', src: '/videos/Testimonial_2.mp4' },
+                { type: 'video', src: '/videos/Testimonial_3.mp4' },
+                { type: 'video', src: '/videos/testimonial_4.mp4' },
+            ]
         }
-
-        return this.props.children;
-    }
-}
-
-const reelAssets = [
-    { id: 'r1', src: '/IndependenceDay/Independence Day reel.mp4', title: 'Independence Day Bash', color: 'bg-primary-carmine' },
-    { id: 'r2', src: '/videos/psycomotorskullreels.mp4', title: 'Building Motor Skills', color: 'bg-gulf-blue' },
-    { id: 'r3', src: '/videos/reddayreel.mp4', title: 'Red Day Celebration', color: 'bg-primary-carmine' },
-    { id: 'r4', src: '/videos/renaisanecefiestareel.mp4', title: 'The Renaissance Fiesta', color: 'bg-gentle-yellow text-gulf-lebanese' },
-    { id: 'r5', src: '/videos/schooltourreel.mp4', title: 'Mini Campus Tour', color: 'bg-gulf-blue' },
-    { id: 'r6', src: '/videos/sportsdayreel.mp4', title: 'Sports Day Action', color: 'bg-desert-coral' },
-    { id: 'r7', src: '/videos/testimonial_4.mp4', title: 'Parent Love & Trust', color: 'bg-charming-green' },
-];
-
-const campusAssets = [
-    { id: 'cam1', src: '/SchoolPremises/playground2.jpeg', title: 'Entrance' },
-    { id: 'cam2', src: '/SchoolPremises/classplay.jpeg', title: 'Play Area' },
-    { id: 'cam3', src: '/SchoolPremises/classroom1.jpeg', title: 'Classroom' },
-    { id: 'cam4', src: '/SchoolPremises/classroom2.jpeg', title: 'Learning Space' },
-    { id: 'cam5', src: '/SchoolPremises/classroom3.png', title: 'Interactive' },
-    { id: 'cam6', src: '/SchoolPremises/playground1.jpeg', title: 'Playground' },
-    { id: 'cam9', src: '/SchoolPremises/schoolbuilding.avif', title: 'School Building' },
-    { id: 'vid_tour', src: '/videos/schooltour.mp4', title: 'Full Tour', type: 'video' }
-];
-
-const celebrationAssets = [
-    { id: 'cel1', src: '/ChildrensDay/ChildrenDay_2.jpeg', title: 'Smiles' },
-    { id: 'cel2', src: '/ChildrensDay/ChildrensDay_1.jpeg', title: 'Joy' },
-    { id: 'cel3', src: '/IndependenceDay/IndependenceDay_1.jpeg', title: 'March Past' },
-    { id: 'cel4', src: '/IndependenceDay/IndependenceDay_2.jpeg', title: 'Flag Hoisting' },
-    { id: 'cel6', src: '/RedDay/REDDAY6.png', title: 'Red Day' },
-    { id: 'cel7', src: '/RedDay/RedDay_1.jpeg', title: 'Red Learning' },
-    { id: 'vid_indep', src: '/IndependenceDay/indepencedneday activity.mp4', title: 'Independence Act', type: 'video' }
-];
-
-const activityAssets = [
-    { id: 'act1', src: '/Activities/0.1.jpeg', title: 'Arts' },
-    { id: 'act2', src: '/Activities/Activities_1.jpeg', title: 'Science' },
-    { id: 'act4', src: '/Activities/motor.jpeg', title: 'Motor Skills' },
-    { id: 'vid_shapes', src: '/videos/Shapes exercise Activity.mp4', title: 'Shapes', type: 'video' },
-    { id: 'vid_group', src: '/videos/groupequiliactivity.mp4', title: 'Group Balance', type: 'video' },
-    { id: 'vid_alpha', src: '/videos/Find the alphabets activity.mp4', title: 'Alphabets', type: 'video' }
-];
-
-const communityAssets = [
-    { id: 'com1', src: '/PTM/PTM_3.jpeg', title: 'Parents' },
-    { id: 'com2', src: '/PTM/PTM_5.jpeg', title: 'Open House' },
-    { id: 'spo1', src: '/SportsDay/sportdaymedal.jpeg', title: 'Medals' },
-    { id: 'spo2', src: '/SportsDay/sportsday1.jpeg', title: 'Racing' },
-];
-
-const SectionHeader = ({ title, subtitle, color = "text-slate-900", className = "" }) => {
-    const el = useRef();
-
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.fromTo(".split-text",
-                { y: 50, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    stagger: 0.1,
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: el.current,
-                        start: "top 80%",
-                    }
-                }
-            );
-        }, el);
-        return () => ctx.revert();
-    }, []);
-
-    return (
-        <div ref={el} className={`mb-12 md:mb-20 px-6 ${className}`}>
-            <h3 className={`text-sm font-bold uppercase tracking-[0.2em] mb-3 ${color} dark:text-white/70 opacity-60 split-text`}>{subtitle}</h3>
-            <h2 className={`text-4xl md:text-6xl font-black ${color} dark:text-white split-text`}>{title}</h2>
-        </div>
-    );
+    ],
+    celebrations: [
+        {
+            id: 'childrens_day',
+            title: "Children's Day",
+            cover: '/ChildrensDay/ChildrenDay_2.jpeg',
+            media: [
+                { type: 'image', src: '/ChildrensDay/ChildrenDay_2.jpeg' },
+                { type: 'image', src: '/ChildrensDay/ChildrensDay_1.jpeg' },
+            ]
+        },
+        {
+            id: 'independence_day',
+            title: "Independence Day",
+            cover: '/IndependenceDay/IndependenceDay_2.jpeg',
+            media: [
+                { type: 'image', src: '/IndependenceDay/IndependenceDay_1.jpeg' },
+                { type: 'image', src: '/IndependenceDay/IndependenceDay_2.jpeg' },
+                { type: 'image', src: '/IndependenceDay/IndependenceDay_4.jpeg' },
+                { type: 'video', src: '/IndependenceDay/Independence Day reel.mp4' },
+                { type: 'video', src: '/IndependenceDay/indepencedneday activity.mp4' },
+            ]
+        },
+        {
+            id: 'islamic_day',
+            title: "Islamic Day",
+            cover: '/New/Islamic Day/ilamioc1.jpeg',
+            media: [
+                { type: 'image', src: '/New/Islamic Day/ilamioc1.jpeg' },
+                { type: 'image', src: '/New/Islamic Day/islamic2.jpeg' },
+                { type: 'image', src: '/New/Islamic Day/islamic3.jpeg' },
+                { type: 'image', src: '/New/Islamic Day/islamic5.jpeg' },
+                { type: 'image', src: '/New/Islamic Day/islamic6.jpeg' },
+            ]
+        },
+        {
+            id: 'red_day',
+            title: "Red Day",
+            cover: '/RedDay/REDDAY6.png',
+            media: [
+                { type: 'image', src: '/RedDay/REDDAY6.png' },
+                { type: 'image', src: '/RedDay/RedDay_1.jpeg' },
+                { type: 'image', src: '/RedDay/redday5.jpeg' },
+                { type: 'video', src: '/RedDay/reddayvideo.mp4' },
+                { type: 'video', src: '/videos/reddayreel.mp4' },
+            ]
+        }
+    ]
 };
 
-const MediaCard = ({ item, onClick, className }) => {
-    const videoRef = useRef(null);
-    const [hover, setHover] = useState(false);
-
-    if (!item) return null;
-
+const SectionHeader = ({ title, subtitle, color = "text-slate-900", className = "" }) => {
     return (
-        <div
-            className={`relative overflow-hidden rounded-xl bg-gray-100 dark:bg-[#1a1a1a] cursor-pointer group ${className}`}
-            onClick={onClick}
-            onMouseEnter={() => {
-                setHover(true);
-                videoRef.current?.play().catch(() => { });
-            }}
-            onMouseLeave={() => {
-                setHover(false);
-                videoRef.current?.pause();
-            }}
-        >
-            {item.type === 'video' ? (
-                <>
-                    <video
-                        ref={videoRef}
-                        src={item.src}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        muted loop playsInline
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-80 group-hover:opacity-0 transition-opacity">
-                        <div className="bg-white/20 backdrop-blur-md p-3 rounded-full border border-white/40">
-                            <PlayCircle className="text-white w-8 h-8" />
-                        </div>
-                    </div>
-                </>
-            ) : (
-                <img
-                    src={item.src}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                />
-            )}
-
-            <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <p className="text-white font-bold">{item.title}</p>
-            </div>
+        <div className={`mb-12 md:mb-20 px-6 ${className}`}>
+            <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 0.6, y: 0 }}
+                viewport={{ once: true }}
+                className={`text-sm font-bold uppercase tracking-[0.2em] mb-3 ${color} dark:text-white/70`}
+            >
+                {subtitle}
+            </motion.h3>
+            <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className={`text-4xl md:text-6xl font-black ${color} dark:text-white`}
+            >
+                {title}
+            </motion.h2>
         </div>
     );
 };
 
 const GallerySection = () => {
-    const [selectedItem, setSelectedItem] = useState(null);
     const containerRef = useRef(null);
-    const heroRef = useRef(null);
-    const campusRef = useRef(null);
-    const celebRef = useRef(null);
-    const learningRef = useRef(null);
-    const trackRef = useRef(null);
     const reelsRef = useRef(null);
 
     const scrollReels = (direction) => {
         if (reelsRef.current) {
-            const scrollAmount = 300;
-            reelsRef.current.scrollBy({
-                left: direction === 'left' ? -scrollAmount : scrollAmount,
-                behavior: 'smooth'
-            });
+            reelsRef.current.scrollBy({ left: direction === 'left' ? -300 : 300, behavior: 'smooth' });
         }
     };
 
-    const mergedLearningAssets = [...activityAssets, ...communityAssets];
-
-    useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
-            // Hero Parallax
-            gsap.to(".hero-bg", {
-                yPercent: 30,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: heroRef.current,
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-
-            // Horizontal Scroll for Reels
-            gsap.from(".reel-card", {
-                y: 100,
-                opacity: 0,
-                stagger: 0.1,
-                scrollTrigger: {
-                    trigger: ".reels-section",
-                    start: "top 80%",
-                }
-            });
-
-            // Campus Grid Reveal
-            gsap.from(".campus-item", {
-                y: 50,
-                opacity: 0,
-                stagger: 0.1,
-                duration: 0.8,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: campusRef.current,
-                    start: "top 70%",
-                }
-            });
-
-            // Celebration Horizontal Scroll Effect
-            const sections = gsap.utils.toArray(".celeb-item");
-            gsap.from(sections, {
-                x: 100,
-                opacity: 0,
-                stagger: 0.1,
-                scrollTrigger: {
-                    trigger: celebRef.current,
-                    start: "top 75%",
-                }
-            });
-
-            // Learning & Fun Horizontal Pin Scroll
-            if (trackRef.current) {
-                const scrollWidth = trackRef.current.scrollWidth;
-                const windowWidth = window.innerWidth;
-                const xTo = -1 * (scrollWidth - windowWidth);
-
-                gsap.to(trackRef.current, {
-                    x: xTo,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: learningRef.current,
-                        start: "center center",
-                        end: () => "+=" + (scrollWidth - windowWidth),
-                        pin: true,
-                        scrub: 1,
-                        anticipatePin: 1,
-                        invalidateOnRefresh: true,
-                    }
-                });
-            }
-
-        }, containerRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <div ref={containerRef} className="bg-slate-50 dark:bg-black min-h-screen text-slate-800 dark:text-gray-200 font-sans selection:bg-rose-500 selection:text-white transition-colors duration-300">
+        <div ref={containerRef} className="bg-slate-50 dark:bg-black min-h-screen text-slate-800 dark:text-gray-200 font-sans transition-colors duration-300 pb-20" id="gallery-start">
 
-            {/* 1. New Simple Header */}
+            {/* 1. Header & Navigation */}
             <div className="pt-20 pb-10 text-center bg-slate-50 dark:bg-black transition-colors duration-300">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -618,117 +580,135 @@ const GallerySection = () => {
                     <h2 className="text-5xl md:text-7xl font-heading font-normal text-slate-800 dark:text-white mb-4">
                         Our Whole Gallery
                     </h2>
-                    <div className="w-24 h-1 bg-rose-500 mx-auto rounded-full"></div>
+                    <div className="w-24 h-1 bg-rose-500 mx-auto rounded-full mb-8"></div>
                 </motion.div>
             </div>
 
-
-            {/* 2. Featured Reels (Stories) */}
-            <div className="reels-section max-w-[1920px] mx-auto mb-32 mt-10 relative z-20 pl-6 md:pl-12">
+            {/* 2. Featured Reels (Stories in Motion) */}
+            <div className="reels-section max-w-[1920px] mx-auto mb-24 relative z-20 pl-6 md:pl-12">
                 <div className="max-w-7xl mb-1 pr-6 flex justify-between items-end">
                     <SectionHeader title="Highlights" subtitle="Stories in Motion" className="!mb-4" />
-
-                    {/* Navigation Buttons */}
                     <div className="flex gap-4 mb-4 md:mr-10">
-                        <button
-                            onClick={() => scrollReels('left')}
-                            className="p-3 bg-white dark:bg-white/10 rounded-full shadow-lg border border-gray-100 dark:border-white/20 hover:scale-110 active:scale-95 transition-all text-slate-800 dark:text-white"
-                            aria-label="Scroll Left"
-                        >
-                            <ChevronLeft size={24} />
-                        </button>
-                        <button
-                            onClick={() => scrollReels('right')}
-                            className="p-3 bg-white dark:bg-white/10 rounded-full shadow-lg border border-gray-100 dark:border-white/20 hover:scale-110 active:scale-95 transition-all text-slate-800 dark:text-white"
-                            aria-label="Scroll Right"
-                        >
-                            <ChevronRight size={24} />
-                        </button>
+                        <button onClick={() => scrollReels('left')} className="p-3 bg-white dark:bg-white/10 rounded-full shadow-lg border border-gray-100 dark:border-white/20 hover:scale-110 active:scale-95 transition-all text-slate-800 dark:text-white"><ChevronLeft size={24} /></button>
+                        <button onClick={() => scrollReels('right')} className="p-3 bg-white dark:bg-white/10 rounded-full shadow-lg border border-gray-100 dark:border-white/20 hover:scale-110 active:scale-95 transition-all text-slate-800 dark:text-white"><ChevronRight size={24} /></button>
                     </div>
                 </div>
                 <div ref={reelsRef} className="pt-3 flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6 scroll-smooth">
-                    {reelAssets.map((item, i) => (
-                        <div key={item.id} className="reel-card snap-center shrink-0">
+                    {GALLERY_DATA.events.flatMap(e => e.media).filter(m => m.type === 'video').slice(0, 8).map((item, i) => (
+                        <div key={i} className="reel-card snap-center shrink-0">
                             <div
                                 className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px] rounded-2xl overflow-hidden relative cursor-pointer group shadow-xl border-4 border-black dark:border-white/20 transition-transform hover:-translate-y-2"
-                                onClick={() => setSelectedItem({ ...item, type: 'video' })}
                             >
                                 <video src={item.src} className="w-full h-full object-cover" muted loop />
                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full">
-                                    <Play size={16} className="text-white" fill="white" />
-                                </div>
-                                <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                                    <p className="text-white font-bold text-sm leading-tight">{item.title}</p>
-                                </div>
+                                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full"><Play size={16} className="text-white" fill="white" /></div>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
 
-            {/* 3. Campus Life (Grid) */}
-            <div ref={campusRef} className="max-w-7xl mx-auto px-6 mb-32">
-                <SectionHeader title="Campus Life" subtitle="Where we grow" />
-                <GalleryErrorBoundary>
-                    <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[650px]">
-                        {campusAssets[7] && <MediaCard item={campusAssets[7]} className="campus-item md:col-span-2 md:row-span-2 min-h-[300px] border-4 border-black dark:border-white/20 shadow-lg" onClick={() => setSelectedItem(campusAssets[7])} />}
-                        {campusAssets[0] && <MediaCard item={campusAssets[0]} className="campus-item min-h-[200px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(campusAssets[0])} />}
-                        {campusAssets[1] && <MediaCard item={campusAssets[1]} className="campus-item min-h-[200px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(campusAssets[1])} />}
-                        {campusAssets[2] && <MediaCard item={campusAssets[2]} className="campus-item md:col-span-2 min-h-[200px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(campusAssets[2])} />}
-                    </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                        {campusAssets.slice(3, 7).map((item) => (
-                            <MediaCard key={item.id} item={item} className="campus-item h-[200px] md:h-[250px] border-4 border-black dark:border-white/20 shadow-sm" onClick={() => setSelectedItem(item)} />
-                        ))}
-                    </div>
-                </GalleryErrorBoundary>
-            </div>
+            {/* 3. Main Stacked Gallery Sections */}
 
-            {/* 4. Celebrations (Horizontal Focus) */}
-            <div ref={celebRef} className="bg-slate-900 dark:bg-[#111] py-32 text-slate-100 relative overflow-hidden">
-                <div className="max-w-7xl mx-auto px-6 relative z-10">
-                    <SectionHeader title="Celebrations" subtitle="Moments of Joy" color="text-white" />
-
-                    <div className="flex flex-wrap md:flex-nowrap gap-6 md:gap-8 justify-center md:overflow-x-visible">
-                        {celebrationAssets.slice(0, 5).map((item, i) => (
-                            <motion.div
-                                className="celeb-item w-full md:w-1/3 xl:w-1/5 aspect-[3/4] rounded-xl overflow-hidden relative cursor-pointer group shadow-2xl shadow-rose-900/20 border-4 border-white"
-                                whileHover={{ y: -20, rotate: i % 2 === 0 ? 2 : -2 }}
-                                key={item.id}
-                                onClick={() => setSelectedItem(item)}
-                            >
-                                <img src={item.src} className="w-full h-full object-cover" alt={item.title} />
-                                <div className="absolute inset-0 bg-gradient-to-t from-rose-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                                    <h4 className="font-bold text-xl">{item.title}</h4>
-                                </div>
-                            </motion.div>
+            {/* EVENTS SECTION */}
+            <div id="events-section" className="max-w-[1920px] mx-auto mb-32 pt-10">
+                <div className="bg-slate-100 dark:bg-white/5 py-12 mb-12 shadow-inner">
+                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-200 dark:text-white/10 tracking-widest uppercase mb-4">Experiences</h2>
+                    <div className="flex flex-wrap justify-center gap-4 px-4 sticky top-24 z-30">
+                        {GALLERY_DATA.events.map(event => (
+                            <a key={event.id} href={`#${event.id}`} className="px-6 py-2 bg-white dark:bg-black rounded-full shadow-md text-sm font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">{event.title}</a>
                         ))}
                     </div>
                 </div>
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-600/20 rounded-full blur-[150px] pointer-events-none" />
-            </div>
 
-            {/* 5. Learning & Fun (Side-Scroll Pin) */}
-            <div ref={learningRef} className="py-20 md:py-0 md:h-[100vh] flex flex-col justify-center overflow-hidden bg-gradient-to-b from-white to-slate-100 dark:from-black dark:to-[#111] relative mb-20 section-learning">
-                <div className="max-w-7xl mx-auto w-full px-6 relative mb-8 md:mb-12 z-10 pointer-events-none">
-                    <SectionHeader title="Learning & Fun" subtitle="Everyday Adventure" className="!mb-0" />
-                </div>
+                <div className="flex flex-col gap-32">
+                    {GALLERY_DATA.events.map((album) => (
+                        <div key={album.id} id={album.id} className="scroll-mt-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
+                            <div className="flex flex-col md:flex-row items-end gap-6 mb-12 border-b border-black/10 dark:border-white/10 pb-6">
+                                <h3 className="text-4xl md:text-6xl font-black text-slate-800 dark:text-white">{album.title}</h3>
+                                <span className="text-lg text-slate-500 dark:text-gray-400 font-medium pb-2">
+                                    {album.media.length} Memories
+                                </span>
+                            </div>
 
-                <div ref={trackRef} className="flex gap-8 md:gap-12 px-6 md:px-20 mt-12 md:mt-0 overflow-visible no-scrollbar w-max">
-                    {mergedLearningAssets.map((item, index) => (
-                        <div
-                            key={item.id}
-                            className={`relative shrink-0 w-[80vw] md:w-[600px] aspect-video md:aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl cursor-pointer group border-4 border-black dark:border-white/20 ${index % 2 === 0 ? 'md:rotate-1' : 'md:-rotate-1'}`}
-                            onClick={() => setSelectedItem(item)}
-                        >
-                            <MediaCard item={item} className="w-full h-full transition-transform duration-700 hover:scale-105" />
+                            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                                {album.media.map((item, idx) => (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 50 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "100px" }}
+                                        transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.5) }}
+                                        key={idx}
+                                        className="break-inside-avoid relative rounded-2xl overflow-hidden group shadow-lg cursor-pointer bg-slate-200 dark:bg-white/5"
+                                    >
+                                        {item.type === 'video' ? (
+                                            <div className="relative w-full aspect-video">
+                                                <video src={item.src} className="w-full h-full object-cover" muted loop playsInline />
+                                                <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-transparent transition-all">
+                                                    <div className="bg-white/20 backdrop-blur-md p-3 rounded-full"><Play className="text-white fill-white" size={20} /></div>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <ImgWithFallback src={item.src} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700" alt={`${album.title} ${idx}`} />
+                                        )}
+                                    </motion.div>
+                                ))}
+                            </div>
                         </div>
                     ))}
                 </div>
             </div>
 
-            {/* 6. CTA Section */}
+            {/* CELEBRATIONS SECTION */}
+            <div id="celebrations-section" className="max-w-[1920px] mx-auto mb-32 pt-10">
+                <div className="bg-slate-100 dark:bg-white/5 py-12 mb-12 shadow-inner">
+                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-200 dark:text-white/10 tracking-widest uppercase mb-4">Celebrations</h2>
+                    <div className="flex flex-wrap justify-center gap-4 px-4 sticky top-24 z-30">
+                        {GALLERY_DATA.celebrations.map(event => (
+                            <a key={event.id} href={`#${event.id}`} className="px-6 py-2 bg-white dark:bg-black rounded-full shadow-md text-sm font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">{event.title}</a>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-32">
+                    {GALLERY_DATA.celebrations.map((album) => (
+                        <div key={album.id} id={album.id} className="scroll-mt-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
+                            <div className="flex flex-col md:flex-row items-end gap-6 mb-12 border-b border-black/10 dark:border-white/10 pb-6">
+                                <h3 className="text-4xl md:text-6xl font-black text-slate-800 dark:text-white">{album.title}</h3>
+                                <span className="text-lg text-slate-500 dark:text-gray-400 font-medium pb-2">
+                                    {album.media.length} Memories
+                                </span>
+                            </div>
+
+                            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                                {album.media.map((item, idx) => (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 50 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: "100px" }}
+                                        transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.5) }}
+                                        key={idx}
+                                        className="break-inside-avoid relative rounded-2xl overflow-hidden group shadow-lg cursor-pointer bg-slate-200 dark:bg-white/5"
+                                    >
+                                        {item.type === 'video' ? (
+                                            <div className="relative w-full aspect-video">
+                                                <video src={item.src} className="w-full h-full object-cover" muted loop playsInline />
+                                                <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-transparent transition-all">
+                                                    <div className="bg-white/20 backdrop-blur-md p-3 rounded-full"><Play className="text-white fill-white" size={20} /></div>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <ImgWithFallback src={item.src} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700" alt={`${album.title} ${idx}`} />
+                                        )}
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* CTA Section */}
             <div className="py-32 flex flex-col justify-center items-center text-center bg-rose-50 dark:bg-[#1a1a1a] transition-colors duration-300">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -749,37 +729,7 @@ const GallerySection = () => {
                     </button>
                 </motion.div>
             </div>
-
-            {/* Lightbox */}
-            <AnimatePresence>
-                {selectedItem && (
-                    <motion.div
-                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
-                        onClick={() => setSelectedItem(null)}
-                    >
-                        <button className="absolute top-6 right-6 text-white bg-white/10 p-2 rounded-full hover:bg-white/20">
-                            <X size={32} />
-                        </button>
-                        <div
-                            className="w-full max-w-6xl max-h-[90vh] flex flex-col items-center"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            {selectedItem.type === 'video' ? (
-                                <video src={selectedItem.src} controls autoPlay className="max-w-full max-h-[80vh] rounded-lg shadow-2xl" />
-                            ) : (
-                                <motion.img
-                                    initial={{ scale: 0.9 }} animate={{ scale: 1 }}
-                                    src={selectedItem.src}
-                                    className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
-                                />
-                            )}
-                            <h3 className="text-white text-2xl font-bold mt-6">{selectedItem.title}</h3>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div >
+        </div>
     );
 };
 
