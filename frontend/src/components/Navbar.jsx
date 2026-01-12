@@ -20,9 +20,8 @@ const Navbar = () => {
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'About', path: '/about' },
-        { name: 'Life @ Renaissance', path: '/life' },
+        { name: 'Inside Renaissance', path: '/inside-renaissance' },
         { name: "Parents' Praise", path: '/reviews' },
-        { name: 'Gallery', path: '/gallery' },
         { name: 'Contact', path: '/contact' },
     ];
 

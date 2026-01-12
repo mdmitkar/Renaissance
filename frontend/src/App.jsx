@@ -10,6 +10,7 @@ import Admission from './pages/Admission';
 import LifeAtRenaissance from './pages/LifeAtRenaissance';
 import ParentsPraise from './pages/ParentsPraise';
 import Contact from './pages/Contact';
+import InsideRenaissance from './pages/InsideRenaissance';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="life" element={<LifeAtRenaissance />} />
             <Route path="reviews" element={<ParentsPraise />} />
             <Route path="gallery" element={<Gallery />} />
+            <Route path="inside-renaissance" element={<InsideRenaissance />} />
             <Route path="admission" element={<Admission />} />
             <Route path="contact" element={<Contact />} />
           </Route>
