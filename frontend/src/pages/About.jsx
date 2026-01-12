@@ -139,7 +139,7 @@ const About = () => {
 
                     <div className="relative max-w-5xl mx-auto">
                         <TimelineSvg />
-                        <div className="space-y-32 relative z-10 pt-10">
+                        <div className="space-y-12 md:space-y-0 relative z-10 pt-0">
                             {JOURNEY_DATA.map((item, index) => (
                                 <TimelineItem key={index} data={item} index={index} />
                             ))}
@@ -391,8 +391,11 @@ const TimelineSvg = () => {
 
 const TimelineItem = ({ data, index }) => {
     const isEven = index % 2 === 0;
+    // Overlap items on desktop to reduce scrolling, except the first one
+    const overlapClass = index !== 0 ? 'md:-mt-32 lg:-mt-40' : '';
+
     return (
-        <div className={`flex flex-col md:flex-row items-center w-full ${isEven ? 'md:flex-row-reverse' : ''} relative group pl-16 md:pl-0`}>
+        <div className={`flex flex-col md:flex-row items-center w-full ${isEven ? 'md:flex-row-reverse' : ''} relative group pl-16 md:pl-0 ${overlapClass}`}>
 
             {/* Center Dot */}
             <div className={`absolute left-[20px] md:left-1/2 md:-ml-3 w-6 h-6 rounded-full border-4 border-white ${data.dotColor} z-20 shadow-lg transform group-hover:scale-150 transition-transform duration-300`}></div>
