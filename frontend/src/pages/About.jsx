@@ -152,12 +152,12 @@ const About = () => {
                             className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white transform transition-transform duration-500 hover:-translate-y-2"
                         >
                             <img
-                                src="/SchoolPremises/classroom2.jpeg"
-                                alt="Modern Classroom"
+                                src="/New/otherimprenaisanceentry.jpeg"
+                                alt="Renaissance Entry"
                                 className="w-full h-[500px] object-cover"
                             />
                             <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent text-white">
-                                <p className="font-bold text-xl flex items-center gap-2"><Sparkles className="text-yellow-400" /> Magic Happens Here</p>
+                                <p className="font-bold text-xl flex items-center gap-2"><Sparkles className="text-yellow-400" /> Welcome to Excellence</p>
                             </div>
                         </motion.div>
                     </div>
