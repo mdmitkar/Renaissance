@@ -38,7 +38,78 @@ const TESTIMONIAL_IMAGES = [
     { id: 'img14', src: '/New/New Testimonials/newtest14.jpeg', title: 'Play', type: 'image' },
 ];
 
+const NEW_IMAGE_REVIEWS = [
+    '/assets/testi/review_1.jpeg',
+    '/assets/testi/review_2.jpeg',
+    '/assets/testi/review_3.jpeg',
+    '/assets/testi/review_4.jpeg',
+    '/assets/testi/review_5.jpeg',
+    '/assets/testi/review_6.jpeg',
+    '/assets/testi/review_7.jpeg',
+    '/assets/testi/review_8.jpeg',
+    '/assets/testi/review_9.jpeg',
+    '/assets/testi/review_10.jpeg',
+];
+
+const CARD_COLORS = [
+    'bg-[#FDE047]', // Yellow
+    'bg-[#A5B4FC]', // Blue
+    'bg-[#BE185D]', // Magenta/Dark Pink
+    'bg-[#EA580C]', // Orange
+    'bg-[#06B6D4]', // Cyan
+];
+
 // --- 2. COMPONENTS ---
+
+const ReviewImageCard = ({ src, index }) => {
+    const colorClass = CARD_COLORS[index % CARD_COLORS.length];
+
+    // Determine text color for contrast (Yellow requires dark text, others white)
+    const isYellow = index % 5 === 0;
+    const contentColor = isYellow ? 'text-slate-900' : 'text-white';
+
+    return (
+        <div className={`relative ${colorClass} rounded-[1rem] p-6 shadow-xl transform transition-transform duration-300 hover:scale-[1.02] flex flex-col items-center text-center h-full overflow-hidden`}>
+
+            {/* Header: Fancy Italic Serif */}
+            <div className={`mb-6 flex flex-col items-center leading-tight ${contentColor} relative z-10`}>
+                <h3 className="font-heading italic text-2xl md:text-3xl">Renaissance</h3>
+                <h3 className="font-heading italic text-2xl md:text-3xl">Preschool</h3>
+            </div>
+
+            {/* Quote Icon Top-Left */}
+            <div className="absolute top-12 left-2 z-0 opacity-90">
+                <Quote size={64} className={`${contentColor} fill-current rotate-180`} />
+            </div>
+
+            {/* Inner Image Container with Unique Curve */}
+            {/* rounded-tr-[5rem] matches the 'Frame 36' specific large curve */}
+            <div className="relative w-full bg-[#F5F6F8] rounded-tl-2xl rounded-bl-2xl rounded-br-2xl rounded-tr-[5rem] overflow-hidden shadow-sm aspect-square z-10 flex items-center justify-center p-0">
+                <img
+                    src={src}
+                    alt="Parent Review"
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                />
+            </div>
+
+            {/* Logo Badge - Positioned to overlap right edge */}
+            <div className="absolute top-[22%] -right-0 z-20 w-16 h-16 rounded-full bg-white p-1 shadow-lg border-2 border-slate-100 flex items-center justify-center">
+                <img src="/logo.jpeg" alt="Logo" className="w-full h-full object-cover rounded-full" />
+            </div>
+
+            {/* Quote Icon Bottom-Right */}
+            <div className="absolute bottom-12 right-2 z-0 opacity-90">
+                <Quote size={64} className={`${contentColor} fill-current`} />
+            </div>
+
+            {/* Footer: Simple Sans-Serif */}
+            <div className={`mt-auto pt-6 ${contentColor} relative z-10`}>
+                <h4 className="font-body text-xl md:text-2xl font-medium tracking-wide">Parents Praise</h4>
+            </div>
+        </div>
+    );
+};
 
 const MediaCard = ({ item, onClick, className }) => {
     const videoRef = useRef(null);
@@ -196,19 +267,16 @@ const ParentsPraise = () => {
                         <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent to-rose-500"></div>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 h-auto">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 h-auto"> {/* Changed to col-4 to accommodate cards better */}
                         {TESTIMONIAL_IMAGES.map((img, idx) => (
-                            <motion.div
-                                key={img.id}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.05 }}
-                                className={`rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-xl transition-all ${idx === 0 || idx === 6 ? 'md:col-span-2 md:row-span-2' : ''}`}
-                                onClick={() => setSelectedItem(img)}
-                            >
-                                <img src={img.src} alt={img.title} className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
-                            </motion.div>
+                            <div key={img.id} className="w-full">
+                                <ReviewImageCard src={img.src} index={idx} />
+                            </div>
+                        ))}
+                        {NEW_IMAGE_REVIEWS.map((src, idx) => (
+                            <div key={`img-review-happy-${idx}`} className="w-full">
+                                <ReviewImageCard src={src} index={idx} />
+                            </div>
                         ))}
                     </div>
                 </div>
