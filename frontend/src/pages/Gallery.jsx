@@ -38,7 +38,7 @@ class GalleryErrorBoundary extends Component {
 
 // --- Data ---
 const reelAssets = [
-    { id: 'r1', src: '/videos/Independence Day reel.mp4', title: 'Independence Day Bash', color: 'bg-primary-carmine' },
+    { id: 'r1', src: '/IndependenceDay/Independence Day reel.mp4', title: 'Independence Day Bash', color: 'bg-primary-carmine' },
     { id: 'r2', src: '/videos/psycomotorskullreels.mp4', title: 'Building Motor Skills', color: 'bg-gulf-blue' },
     { id: 'r3', src: '/videos/reddayreel.mp4', title: 'Red Day Celebration', color: 'bg-primary-carmine' },
     { id: 'r4', src: '/videos/renaisanecefiestareel.mp4', title: 'The Renaissance Fiesta', color: 'bg-gentle-yellow text-gulf-lebanese' },
@@ -65,7 +65,7 @@ const celebrationAssets = [
     { id: 'cel4', src: '/IndependenceDay/IndependenceDay_2.jpeg', title: 'Flag Hoisting' },
     { id: 'cel6', src: '/RedDay/REDDAY6.png', title: 'Red Day' },
     { id: 'cel7', src: '/RedDay/RedDay_1.jpeg', title: 'Red Learning' },
-    { id: 'vid_indep', src: '/videos/indepencedneday activity.mp4', title: 'Independence Act', type: 'video' }
+    { id: 'vid_indep', src: '/IndependenceDay/indepencedneday activity.mp4', title: 'Independence Act', type: 'video' }
 ];
 
 const activityAssets = [
