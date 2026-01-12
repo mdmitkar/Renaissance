@@ -10,7 +10,7 @@ const Contact = () => {
             <div className="relative h-[60vh] min-h-[600px] flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="/SchoolPremises/contact_hero.png"
+                        src="/New/otherimprenaisanceentry.jpeg"
                         alt="Renaissance Campus"
                         className="w-full h-full object-cover filter brightness-[0.3]"
                     />
