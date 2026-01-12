@@ -41,6 +41,28 @@ const EVENTS = [
         icon: <MapPin size={24} />
     },
     {
+        id: 'islamic-day',
+        title: "Islamic Day",
+        description: "Celebrating faith, values, and community. A day filled with reflection, joy, and spiritual growth for our students.",
+        date: "Faith & Values",
+        folder: "New/Islamic Day",
+        images: [
+            "ilamioc1.jpeg",
+            "islamic2.jpeg",
+            "islamic3.jpeg",
+            "islamic5.jpeg",
+            "islamic6.jpeg"
+        ],
+        theme: {
+            primary: "#0F766E", // Teal
+            secondary: "#134E4A", // Dark Teal
+            accent: "#134E4A",
+            shadow: "rgba(15, 118, 110, 0.4)",
+            text: "#0D5E56" // Deep Teal
+        },
+        icon: <Star size={24} />
+    },
+    {
         id: 'children-day',
         title: "Children's Day",
         description: "A day dedicated to the pure joy and innocence of childhood. We celebrate with games, laughter, and special performances that light up every face.",
@@ -180,10 +202,9 @@ const TimelineSection = ({ event, index }) => {
 
     return (
         <section ref={ref} className={`min-h-screen snap-start flex items-center justify-center py-12 md:py-0 relative overflow-hidden`}>
-            {/* Background Watermark Number - BLACK OUTLINE */}
-            <div className={`absolute top-20 md:top-auto opacity-[0.05] text-[10rem] md:text-[20rem] font-heading font-black z-0 pointer-events-none select-none text-transparent`}
+            {/* Background Watermark Number - VISIBLE IN DARK MODE */}
+            <div className={`absolute top-20 md:top-auto opacity-[0.05] dark:opacity-[0.1] text-[10rem] md:text-[20rem] font-heading font-black z-0 pointer-events-none select-none text-black dark:text-white`}
                 style={{
-                    WebkitTextStroke: '4px black',
                     [isEven ? 'left' : 'right']: '5%'
                 }}>
                 {String(index + 1).padStart(2, '0')}
@@ -297,7 +318,7 @@ const LifeSection = () => {
                     className="relative z-10 text-center px-4 w-full"
                 >
                     <h1 className="text-[8vw] md:text-[7vw] font-heading font-normal text-white mb-4 tracking-tighter drop-shadow-2xl whitespace-nowrap leading-none">
-                        Life @ Renaissance
+                        Inside Renaissance
                     </h1>
 
                     <p className="text-lg md:text-2xl font-light text-slate-100 max-w-4xl mx-auto leading-relaxed drop-shadow-lg font-body tracking-wide">
@@ -322,19 +343,7 @@ const LifeSection = () => {
                 <TimelineSection key={event.id} event={event} index={index} />
             ))}
 
-            {/* FOOTER CTA */}
-            <div className="min-h-[50vh] snap-start flex flex-col justify-center items-center text-center py-24 bg-white dark:bg-[#1a1a1a]">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    className="inline-block"
-                >
-                    <h3 className="text-3xl md:text-5xl font-heading font-bold mb-8 text-[#131720] dark:text-white">Ready to be part of our story?</h3>
-                    <button className="bg-[#0060AA] hover:bg-[#81BAD9] text-white px-12 py-5 rounded-full text-xl font-bold shadow-xl transition-all hover:scale-105 active:scale-95">
-                        Join Renaissance Today
-                    </button>
-                </motion.div>
-            </div>
+
         </div>
     );
 };
