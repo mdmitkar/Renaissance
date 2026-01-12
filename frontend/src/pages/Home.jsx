@@ -8,11 +8,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import Lenis from 'lenis';
 import AdmissionModal from '../components/AdmissionModal';
+import Butterfly from '../components/Butterfly';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
-
     "/ChildrensDay/ChildrenDay_2.jpeg",
     "/RedDay/RedDay_1.jpeg",
     "/IndependenceDay/IndependenceDay_2.jpeg",
@@ -22,31 +22,22 @@ const HERO_SLIDES = [
 ];
 
 const FAQItem = ({ question, answer }) => {
-    const [isOpen, setIsOpen] = React.useState(false);
-
+    const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className="border border-gulf-lebanese/10 dark:border-white/10 rounded-2xl bg-white dark:bg-[#1a1a1a] overflow-hidden shadow-sm hover:shadow-md transition-all">
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between p-6 text-left"
-            >
-                <span className="text-lg font-bold text-gulf-lebanese dark:text-white">{question}</span>
-                <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-luxury-pink text-white' : 'bg-gray-100 dark:bg-white/10 text-gulf-lebanese dark:text-white'}`}>
-                    {isOpen ? <Minus size={18} /> : <Plus size={18} />}
-                </div>
-            </button>
+        <div className="border border-gray-200 dark:border-white/10 rounded-2xl p-6 cursor-pointer bg-white dark:bg-[#1a1a1a] shadow-sm hover:shadow-md transition-all" onClick={() => setIsOpen(!isOpen)}>
+            <div className="flex justify-between items-center">
+                <h3 className="font-bold text-lg text-gulf-lebanese dark:text-gray-200">{question}</h3>
+                {isOpen ? <Minus size={20} className="text-luxury-pink" /> : <Plus size={20} className="text-luxury-pink" />}
+            </div>
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                        animate={{ height: "auto", opacity: 1, marginTop: 16 }}
+                        exit={{ height: 0, opacity: 0, marginTop: 0 }}
                         className="overflow-hidden"
                     >
-                        <div className="p-6 pt-0 text-gray-600 dark:text-gray-300 leading-relaxed">
-                            {answer}
-                        </div>
+                        <p className="text-gray-600 dark:text-gray-400 font-medium leading-relaxed">{answer}</p>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -55,11 +46,10 @@ const FAQItem = ({ question, answer }) => {
 };
 
 const HoverVideo = ({ src }) => {
-    const videoRef = React.useRef(null);
-
+    const videoRef = useRef(null);
     return (
         <div
-            className="w-24 h-24 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white shadow-[0_10px_30px_rgba(0,0,0,0.2)] relative transform hover:scale-110 transition-transform duration-300 bg-black cursor-pointer block" // Visible on all devices
+            className="w-full md:w-[400px] h-[300px] rounded-[3rem] overflow-hidden shadow-2xl rotate-[-3deg] hover:rotate-0 transition-transform duration-500 bg-black"
             onMouseEnter={() => videoRef.current?.play()}
             onMouseLeave={() => {
                 if (videoRef.current) {
@@ -71,19 +61,73 @@ const HoverVideo = ({ src }) => {
             <video
                 ref={videoRef}
                 src={src}
-                className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
+                muted
                 loop
-                playsInline
+                className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
             />
-            {/* Play Icon Overlay (Optional) */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-8 h-8 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
-                </div>
-            </div>
         </div>
     );
 };
+
+const PETAL_DATA = [
+    {
+        title: "Culture & Patriotism",
+        emoji: (
+            <div className="w-8 h-6 flex flex-col shadow-sm rounded-[1px] overflow-hidden" aria-label="India Flag">
+                <div className="h-1/3 w-full bg-[#FF9933]"></div>
+                <div className="h-1/3 w-full bg-white flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full border border-blue-800"></div>
+                </div>
+                <div className="h-1/3 w-full bg-[#138808]"></div>
+            </div>
+        ),
+        desc: "Instilling love for the nation, celebrating diverse festivals, and fostering a deep sense of unity and pride.",
+        img: "/IndependenceDay/IndependenceDay_2.jpeg",
+        color: "text-white",
+        bg: "bg-[#1E3A8A]"
+    },
+    { title: "Play-Based", emoji: "🧸", desc: "Learning through exploration and curiosity to naturally develop skills while having fun.", img: "/SchoolPremises/classplay.jpeg", color: "text-white", bg: "bg-[#831843]" },
+    { title: "Creativity", emoji: "🎨", desc: "Encouraging art, craft, storytelling, and imagination for confident self-expression.", img: "/otherimp/ChildrensDay_2_copy.jpeg", color: "text-white", bg: "bg-[#065F46]" },
+    { title: "Social Growth", emoji: "❤️", desc: "Building teamwork, empathy, and communication to help children feel valued.", img: "/ChildrensDay/ChildrensDay_1.jpeg", color: "text-white", bg: "bg-[#581C87]" },
+    { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/SchoolPremises/classroom2.jpeg", color: "text-white", bg: "bg-[#7F1D1D]" },
+    { title: "Physical", emoji: "🏃", desc: "Focus on movement, coordination, and healthy habits through active play.", img: "/Activities/motor.jpeg", color: "text-white", bg: "bg-[#0F766E]" },
+    { title: "Parent Partnership", emoji: "🤝", desc: "Building a bridge between home and school, ensuring you are an active partner in your child's growth.", img: "/PTM/PTM_3.jpeg", color: "text-white", bg: "bg-[#C2410C]" },
+];
+
+const PROGRAMS = [
+    {
+        title: "Playgroup",
+        age: "1.5 - 2.5 Years",
+        desc: "A sensory wonderland for our tiniest tots. Montessori-inspired aids meet messy play.",
+        bg: "#BE185D", // Pink 700 - Vibrant
+        img: "/assets/generated/playgroup.png",
+        tags: ["Sensory Play", "Music", "Safety"]
+    },
+    {
+        title: "Nursery",
+        age: "2.5 - 3.5 Years",
+        desc: "Stepping stones to early literacy. Letters and numbers become friends through stories.",
+        bg: "#059669", // Emerald 600 - Vibrant Green
+        img: "/otherimp/nursery.png",
+        tags: ["Phonics", "Nature", "Reading"]
+    },
+    {
+        title: "Junior KG",
+        age: "3.5 - 4.5 Years",
+        desc: "Curiosity takes flight. Science experiments, reading clubs, and logical reasoning.",
+        bg: "#D97706", // Amber 600 - Rich Orange/Gold
+        img: "/otherimp/jrkg.png",
+        tags: ["Science", "Logic", "Math"]
+    },
+    {
+        title: "Senior KG",
+        age: "4.5 - 5.5 Years",
+        desc: "Ready for the big world. Advanced concepts, leadership, and school readiness.",
+        bg: "#4F46E5", // Indigo 600 - Vibrant Blue/Purple
+        img: "/otherimp/srjkg.png",
+        tags: ["Writing", "Leadership", "Speaking"]
+    }
+];
 
 const Home = () => {
     const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
@@ -119,7 +163,7 @@ const Home = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-        }, 6000); // 6s for better readability
+        }, 6000);
         return () => clearInterval(timer);
     }, []);
 
@@ -129,129 +173,8 @@ const Home = () => {
     const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
     useGSAP(() => {
-        // 1. Reveal Animations for Text
-        const textElements = gsap.utils.toArray('.reveal-text');
-        textElements.forEach((el) => {
-            gsap.fromTo(el,
-                { y: 50, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 90%",
-                        toggleActions: "play none none reverse"
-                    }
-                }
-            );
-        });
-
-        // 2. Seven Petals - Pin & Rotate Logic
-        const mm = gsap.matchMedia();
-
-        // --- DESKTOP ANIMATIONS (Pinning & Horizontal Scroll) ---
-        mm.add("(min-width: 768px)", () => {
-            // 2. Seven Petals - Pin & Rotate Logic
-            const cards = gsap.utils.toArray('.petal-card');
-            const totalCards = cards.length;
-
-            // FIX: Robust Initial State - Hide all except first
-            gsap.set(cards, { autoAlpha: 0, scale: 0.9, y: 50 });
-            gsap.set(cards[0], { autoAlpha: 1, scale: 1, y: 0 });
-
-            let tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".petals-section",
-                    pin: true,
-                    start: "top top",
-                    end: "+=2200",
-                    scrub: 1,
-                    snap: {
-                        snapTo: 1 / (totalCards - 1),
-                        duration: { min: 0.1, max: 0.5 },
-                        delay: 0,
-                        ease: "power1.inOut"
-                    },
-                    onUpdate: (self) => {
-                        const progress = self.progress;
-                        const index = Math.min(
-                            Math.round(progress * (totalCards - 1)),
-                            totalCards - 1
-                        );
-                        if (index !== activePetalRef.current) {
-                            setActivePetal(index);
-                            activePetalRef.current = index;
-                        }
-                    }
-                }
-            });
-
-            // Chain animations linearly: Fade Out Current -> Fade In Next
-            for (let i = 0; i < totalCards - 1; i++) {
-                const current = cards[i];
-                const next = cards[i + 1];
-
-                tl.to(current, { autoAlpha: 0, scale: 0.95, y: -20, duration: 1 })
-                    .to(next, { autoAlpha: 1, scale: 1, y: 0, duration: 1 }, "<"); // Start at same time
-            }
-
-            // Journey Horizontal Scroll
-            const journeySection = document.querySelector('.journey-section');
-            const journeyContainer = document.querySelector('.journey-container');
-
-            if (journeySection && journeyContainer) {
-                const scrollTween = gsap.to(journeyContainer, {
-                    x: () => -(journeyContainer.scrollWidth - window.innerWidth),
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: journeySection,
-                        pin: true,
-                        start: "center center",
-                        scrub: 1,
-                        end: () => "+=" + journeyContainer.scrollWidth,
-                        invalidateOnRefresh: true,
-                    }
-                });
-
-                const cards = gsap.utils.toArray('.journey-card');
-                cards.forEach((card, i) => {
-                    const img = card.querySelector('.journey-img');
-                    if (img) {
-                        gsap.fromTo(img,
-                            { scale: 1.2, x: -50 },
-                            {
-                                scale: 1, x: 50, ease: "none",
-                                scrollTrigger: {
-                                    trigger: card,
-                                    containerAnimation: scrollTween,
-                                    start: "left right",
-                                    end: "right left",
-                                    scrub: true,
-                                }
-                            }
-                        );
-                    }
-                });
-            }
-        });
-
-        // --- MOBILE ANIMATIONS (Simple Vertical Stacking) ---
-        mm.add("(max-width: 767px)", () => {
-            const elements = gsap.utils.toArray('.reveal-on-mobile');
-            elements.forEach(el => {
-                gsap.fromTo(el, { y: 50, opacity: 0 }, {
-                    y: 0, opacity: 1, duration: 0.8,
-                    scrollTrigger: {
-                        trigger: el,
-                        start: "top 85%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                });
-            });
-        });
-
+        // Animation logic temporarily disabled for debugging to fix crash
+        // Once page loads, we can re-enable logic incrementally.
     }, { scope: containerRef });
 
     return (
@@ -259,6 +182,12 @@ const Home = () => {
 
             {/* Grain Overlay for Cinematic Feel */}
             <div className="bg-grain fixed inset-0 z-[9999] pointer-events-none opacity-[0.03]"></div>
+
+            {/* Flying Butterflies Container - ENABLED */}
+            <div className="fixed inset-0 pointer-events-none z-[60] overflow-hidden">
+                <Butterfly id={1} sizeClasses="w-24 h-24 md:w-32 md:h-32" />
+                <Butterfly id={2} />
+            </div>
 
             {/* --- HERO SECTION START --- */}
             <section className="relative w-full h-screen md:h-[110vh] min-h-[600px] md:min-h-[700px] flex items-center justify-center overflow-hidden">
@@ -382,6 +311,7 @@ const Home = () => {
                     <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
                 </motion.div>
             </section>
+
 
 
             {/* --- SECTION 2: PHILOSOPHY --- */}
@@ -818,69 +748,5 @@ const Home = () => {
         </div>
     );
 };
-
-// --- DATA CONSTANTS ---
-
-const PETAL_DATA = [
-    {
-        title: "Culture & Patriotism",
-        emoji: (
-            <div className="w-8 h-6 flex flex-col shadow-sm rounded-[1px] overflow-hidden" aria-label="India Flag">
-                <div className="h-1/3 w-full bg-[#FF9933]"></div>
-                <div className="h-1/3 w-full bg-white flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full border border-blue-800"></div>
-                </div>
-                <div className="h-1/3 w-full bg-[#138808]"></div>
-            </div>
-        ),
-        desc: "Instilling love for the nation, celebrating diverse festivals, and fostering a deep sense of unity and pride.",
-        img: "/IndependenceDay/IndependenceDay_2.jpeg",
-        color: "text-white",
-        bg: "bg-[#1E3A8A]"
-    }, // Dark Blue
-    { title: "Play-Based", emoji: "🧸", desc: "Learning through exploration and curiosity to naturally develop skills while having fun.", img: "/SchoolPremises/classplay.jpeg", color: "text-white", bg: "bg-[#831843]" }, // Dark Pink
-    { title: "Creativity", emoji: "🎨", desc: "Encouraging art, craft, storytelling, and imagination for confident self-expression.", img: "/otherimp/ChildrensDay_2_copy.jpeg", color: "text-white", bg: "bg-[#065F46]" }, // Dark Emerald
-    { title: "Social Growth", emoji: "❤️", desc: "Building teamwork, empathy, and communication to help children feel valued.", img: "/ChildrensDay/ChildrensDay_1.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
-    { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/SchoolPremises/classroom2.jpeg", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
-    { title: "Physical", emoji: "🏃", desc: "Focus on movement, coordination, and healthy habits through active play.", img: "/Activities/motor.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
-    { title: "Parent Partnership", emoji: "🤝", desc: "Building a bridge between home and school, ensuring you are an active partner in your child's growth.", img: "/PTM/PTM_3.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
-];
-
-const PROGRAMS = [
-    {
-        title: "Playgroup",
-        age: "1.5 - 2.5 Years",
-        desc: "A sensory wonderland for our tiniest tots. Montessori-inspired aids meet messy play.",
-        bg: "#BE185D", // Pink 700 - Vibrant
-        img: "/assets/generated/playgroup.png",
-        tags: ["Sensory Play", "Music", "Safety"]
-    },
-    {
-        title: "Nursery",
-        age: "2.5 - 3.5 Years",
-        desc: "Stepping stones to early literacy. Letters and numbers become friends through stories.",
-        bg: "#059669", // Emerald 600 - Vibrant Green
-        img: "/otherimp/nursery.png",
-        tags: ["Phonics", "Nature", "Reading"]
-    },
-    {
-        title: "Junior KG",
-        age: "3.5 - 4.5 Years",
-        desc: "Curiosity takes flight. Science experiments, reading clubs, and logical reasoning.",
-        bg: "#D97706", // Amber 600 - Rich Orange/Gold
-        img: "/otherimp/jrkg.png",
-        tags: ["Science", "Logic", "Math"]
-    },
-    {
-        title: "Senior KG",
-        age: "4.5 - 5.5 Years",
-        desc: "Ready for the big world. Advanced concepts, leadership, and school readiness.",
-        bg: "#4F46E5", // Indigo 600 - Vibrant Blue/Purple
-        img: "/otherimp/srjkg.png",
-        tags: ["Writing", "Leadership", "Speaking"]
-    }
-];
-
-
 
 export default Home;
