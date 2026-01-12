@@ -197,11 +197,11 @@ const About = () => {
                     <div className="space-y-20">
                         {/* Founder 1: Mr. Rushi Patel */}
                         <div className="relative group">
-                            <div className="absolute inset-0 bg-gradient-to-r from-orange-100 via-white to-rose-100 dark:from-gray-800 dark:to-gray-900 rounded-[3rem] transform rotate-1 transition-transform group-hover:-rotate-1"></div>
+                            <div className="absolute inset-0 bg-gradient-to-r from-orange-100 via-white to-rose-100 dark:from-gray-800 dark:to-gray-900 rounded-[3rem] transform rotate-1 transition-transform"></div>
                             <motion.div
                                 initial={{ y: 50, opacity: 0 }}
                                 whileInView={{ y: 0, opacity: 1 }}
-                                viewport={{ amount: 0.3 }}
+                                viewport={{ amount: 0.3, once: true }}
                                 className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-12 shadow-xl relative overflow-hidden border-4 border-white dark:border-white/10"
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
@@ -241,11 +241,11 @@ const About = () => {
 
                         {/* Founder 2: Mr. Meraj Patel */}
                         <div className="relative group">
-                            <div className="absolute inset-0 bg-gradient-to-l from-blue-100 via-white to-purple-100 dark:from-gray-800 dark:to-gray-900 rounded-[3rem] transform -rotate-1 transition-transform group-hover:rotate-1"></div>
+                            <div className="absolute inset-0 bg-gradient-to-l from-blue-100 via-white to-purple-100 dark:from-gray-800 dark:to-gray-900 rounded-[3rem] transform -rotate-1 transition-transform"></div>
                             <motion.div
                                 initial={{ y: 50, opacity: 0 }}
                                 whileInView={{ y: 0, opacity: 1 }}
-                                viewport={{ amount: 0.3 }}
+                                viewport={{ amount: 0.3, once: true }}
                                 className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-12 shadow-xl relative overflow-hidden border-4 border-white dark:border-white/10"
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start md:flex-row-reverse">
@@ -256,13 +256,16 @@ const About = () => {
                                         </div>
                                         <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed">
                                             <p>
-                                                As a visionary Co-Founder, Mr. Meraj Patel shares the deep commitment to redefining early childhood education. With a focus on creating safe, innovative, and inspiring spaces, he ensures that Renaissance Preschool stands as a beacon of quality and care in the community.
+                                                Mr. Patel is a <strong>Textile Engineer and an Economics graduate</strong> from the prestigious Elphinstone College, an institution known for shaping great visionaries of India. Inspired by its rich legacy, he believes deeply in the power of education to bring meaningful social change.
+                                            </p>
+                                            <p>
+                                                After a successful professional journey in the textile industry, Mr. Patel chose a purpose-driven path—dedicating himself to education and the nurturing of young minds. Currently serving as a committed Social Science educator at Iqra School, he blends real-world experience with strong values and thoughtful learning.
                                             </p>
                                         </div>
                                         <div className="relative p-6 bg-purple-50 dark:bg-purple-900/20 rounded-2xl border border-purple-100 dark:border-purple-700/30">
                                             <QuoteIcon className="absolute -top-4 -left-4 text-purple-400 w-10 h-10" />
                                             <p className="text-lg text-slate-700 dark:text-slate-200 italic font-serif relative z-10">
-                                                "We are building more than just a school; we are building a foundation for life where every child is celebrated."
+                                                "At Renaissance Preschool, his vision is to create a joyful, nurturing, and value-based environment where children grow with curiosity, confidence, and compassion—laying the foundation for a brighter future."
                                             </p>
                                         </div>
                                     </div>
@@ -284,11 +287,11 @@ const About = () => {
                 {/* --- PRINCIPAL'S MESSAGE --- */}
                 <section className="relative mb-32 z-10">
                     <div className="relative group">
-                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-100 via-white to-purple-100 dark:from-gray-800 dark:to-gray-900 rounded-[3rem] transform rotate-1 transition-transform group-hover:-rotate-1"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-100 via-white to-purple-100 dark:from-gray-800 dark:to-gray-900 rounded-[3rem] transform rotate-1 transition-transform"></div>
                         <motion.div
                             initial={{ y: 50, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ amount: 0.3 }}
+                            viewport={{ amount: 0.3, once: true }}
                             className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-12 shadow-xl relative overflow-hidden border-4 border-white dark:border-white/10"
                         >
                             <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
