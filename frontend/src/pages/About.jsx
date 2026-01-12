@@ -149,9 +149,16 @@ const About = () => {
 
                 {/* --- 3. MEET THE FOUNDERS --- */}
                 <section className="relative mb-32 z-10">
-                    <div className="text-center mb-16">
-                        <span className="inline-block py-1 px-4 rounded-full bg-rose-100 text-rose-600 dark:bg-rose-900 dark:text-rose-200 text-sm font-bold tracking-wider mb-4 border border-rose-200 dark:border-rose-700">LEADERSHIP</span>
-                        <h2 className="text-5xl font-heading font-black text-slate-800 dark:text-white">Heads, Hearts & Hands</h2>
+                    <div className="text-center mb-16 relative">
+                        {/* Decorative background glow for header */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-32 bg-rose-200/50 dark:bg-rose-900/30 blur-3xl -z-10 rounded-full"></div>
+
+                        <span className="inline-block py-2 px-6 rounded-full bg-gradient-to-r from-rose-100 to-orange-100 text-rose-600 dark:from-rose-900 dark:to-orange-900 dark:text-rose-200 text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-6 border border-rose-200 dark:border-rose-700 shadow-sm">
+                            Leadership
+                        </span>
+                        <h2 className="text-5xl md:text-6xl font-heading font-black text-slate-800 dark:text-white drop-shadow-sm">
+                            Heads, Hearts & Hands
+                        </h2>
                     </div>
 
                     <div className="space-y-20">
@@ -367,10 +374,10 @@ const TimelineSvg = () => {
     });
 
     return (
-        <div ref={ref} className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 md:-translate-x-1/2 h-full z-0">
-            <svg className="absolute top-0 left-0 md:left-1/2 md:-translate-x-1/2 w-full h-full overflow-visible">
+        <div ref={ref} className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 md:-translate-x-1/2 h-full z-0 overflow-hidden">
+            <svg className="absolute top-0 left-0 md:left-1/2 md:-translate-x-1/2 w-full h-full">
                 <motion.path
-                    d="M 1 0 L 1 1500" // Arbitrary long height, clipped by div
+                    d="M 1 0 L 1 5000" // Increased length to ensure coverage, reliance on overflow-hidden
                     fill="none"
                     stroke="#E2E8F0"
                     strokeWidth="4"
