@@ -79,6 +79,36 @@ const About = () => {
                 <div className="absolute -bottom-8 left-20 w-32 h-32 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
 
 
+                {/* --- 0. VALUES GRID (Moved to Top) --- */}
+                <section className="mb-32 relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <ValueCard
+                            icon={<Target size={32} />}
+                            title="Our Mission"
+                            desc="To spark a lifelong love for learning through play, giggles, and discovery."
+                            color="text-white"
+                            bg="bg-sky-400"
+                            shadow="shadow-sky-200"
+                        />
+                        <ValueCard
+                            icon={<Heart size={32} />}
+                            title="Our Vision"
+                            desc="A world where every child feels confident, kind, and capable of anything."
+                            color="text-white"
+                            bg="bg-rose-400"
+                            shadow="shadow-rose-200"
+                        />
+                        <ValueCard
+                            icon={<Users size={32} />}
+                            title="Our Values"
+                            desc="Kindness in our hearts, honesty in our words, and friendship in our actions."
+                            color="text-white"
+                            bg="bg-emerald-400"
+                            shadow="shadow-emerald-200"
+                        />
+                    </div>
+                </section>
+
                 {/* --- 1. LEGACY SECTION --- */}
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-32 relative z-10">
                     <motion.div
@@ -294,35 +324,7 @@ const About = () => {
                     </div>
                 </section>
 
-                {/* --- 4. VALUES GRID --- */}
-                <section>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <ValueCard
-                            icon={<Target size={32} />}
-                            title="Our Mission"
-                            desc="To spark a lifelong love for learning through play, giggles, and discovery."
-                            color="text-white"
-                            bg="bg-sky-400"
-                            shadow="shadow-sky-200"
-                        />
-                        <ValueCard
-                            icon={<Heart size={32} />}
-                            title="Our Vision"
-                            desc="A world where every child feels confident, kind, and capable of anything."
-                            color="text-white"
-                            bg="bg-rose-400"
-                            shadow="shadow-rose-200"
-                        />
-                        <ValueCard
-                            icon={<Users size={32} />}
-                            title="Our Values"
-                            desc="Kindness in our hearts, honesty in our words, and friendship in our actions."
-                            color="text-white"
-                            bg="bg-emerald-400"
-                            shadow="shadow-emerald-200"
-                        />
-                    </div>
-                </section>
+
 
                 {/* --- 5. ADMISSION CTA (New) --- */}
                 <section className="mt-20 text-center pb-20 px-6">
