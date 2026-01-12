@@ -85,7 +85,7 @@ const About = () => {
                         <ValueCard
                             icon={<Target size={32} />}
                             title="Our Mission"
-                            desc="To spark a lifelong love for learning through play, giggles, and discovery."
+                            desc="To provide a nurturing, safe, and interactive environment where young children can explore, learn, and grow through a balanced blend of Islamic teachings and modern education."
                             color="text-white"
                             bg="bg-sky-400"
                             shadow="shadow-sky-200"
@@ -93,15 +93,15 @@ const About = () => {
                         <ValueCard
                             icon={<Heart size={32} />}
                             title="Our Vision"
-                            desc="A world where every child feels confident, kind, and capable of anything."
+                            desc="To be a leading Chain of Schools that nurtures young minds with the perfect balance of knowledge, skills, values and faith."
                             color="text-white"
                             bg="bg-rose-400"
                             shadow="shadow-rose-200"
                         />
                         <ValueCard
                             icon={<Users size={32} />}
-                            title="Our Values"
-                            desc="Kindness in our hearts, honesty in our words, and friendship in our actions."
+                            title="Our Approach"
+                            desc="We blend play-based learning with a structured curriculum to foster creativity, critical thinking, and social skills alongside Islamic values."
                             color="text-white"
                             bg="bg-emerald-400"
                             shadow="shadow-emerald-200"
@@ -118,11 +118,11 @@ const About = () => {
                         viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h3 className="text-orange-500 font-bold tracking-widest uppercase text-sm mb-4">Our Happy Place</h3>
+                        <h3 className="text-orange-500 font-bold tracking-widest uppercase text-sm mb-4">About Renaissance</h3>
                         <h2 className="text-4xl md:text-6xl font-heading font-black mb-8 text-slate-800 dark:text-white leading-tight">
-                            A Legacy of <br />
+                            Modern Academics & <br />
                             <span className="relative inline-block text-rose-500">
-                                Love & Learning
+                                Islamic Values
                                 <svg className="absolute w-full h-3 -bottom-1 left-0 text-yellow-300 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
                                     <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
                                 </svg>
@@ -130,10 +130,13 @@ const About = () => {
                         </h2>
                         <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                             <p>
-                                Started with a smile in <strong>2025</strong>, Renaissance Preschool isn't just a school—it's a second home. We believe childhood is a magical journey, not a race.
+                                At <strong>Renaissance Preschool</strong>, we are dedicated to providing a nurturing and high-quality early childhood education that blends modern academics with Islamic values.
                             </p>
                             <p>
-                                From our colorful classrooms to our caring teachers, everything is designed to make your child feel <span className="text-purple-600 font-bold">safe, loved, and excited</span> to learn every single day.
+                                Our preschool follows a <span className="text-purple-600 font-bold">play-based learning approach</span>, alongside a well-structured curriculum that fosters creativity, critical thinking, and social skills. We aim to instill a love for learning through a curriculum that integrates faith, academics, social development, and righteousness.
+                            </p>
+                            <p className="border-l-4 border-yellow-400 pl-4 italic text-slate-500">
+                                "Affordable high-standard schooling is one of our key intentions for all socio-economic backgrounds."
                             </p>
                         </div>
                     </motion.div>
