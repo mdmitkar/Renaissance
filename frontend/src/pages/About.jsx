@@ -219,7 +219,7 @@ const About = () => {
                                             <h2 className="text-3xl md:text-5xl font-heading font-black text-slate-800 dark:text-white">Mr. Rushi Patel</h2>
                                         </div>
 
-                                        <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
                                             <p>
                                                 Mr. Rushi Patel brings over <strong>20 years of rich experience</strong> in Business Development, having worked with renowned corporate groups such as Cobra Group, Aditya Birla Group, and Mahindra Group. His journey from leading corporate roles to the field of education is driven by a deep passion for shaping young minds.
                                             </p>
@@ -254,7 +254,7 @@ const About = () => {
                                             <h3 className="text-purple-500 font-bold tracking-widest uppercase text-sm mb-2">Co-Founder</h3>
                                             <h2 className="text-3xl md:text-5xl font-heading font-black text-slate-800 dark:text-white">Mr. Meraj Patel</h2>
                                         </div>
-                                        <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
                                             <p>
                                                 Mr. Patel is a <strong>Textile Engineer and an Economics graduate</strong> from the prestigious Elphinstone College, an institution known for shaping great visionaries of India. Inspired by its rich legacy, he believes deeply in the power of education to bring meaningful social change.
                                             </p>
@@ -309,7 +309,7 @@ const About = () => {
                                         <h2 className="text-3xl md:text-5xl font-heading font-black text-slate-800 dark:text-white">Ms. Shagufta Madoo</h2>
                                     </div>
 
-                                    <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                                    <div className="prose prose-lg text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
                                         <p>
                                             At the heart of our preschool is a leader whose vision, compassion, and dedication shape the very foundation of early learning. With over <strong>15 years of rich experience</strong> in education and strong academic qualifications (M.Com, B.Ed), Ms. Madoo brings wisdom, warmth, and purpose to her role.
                                         </p>
