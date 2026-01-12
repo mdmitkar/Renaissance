@@ -163,6 +163,22 @@ const MediaCard = ({ item, onClick, className }) => {
 const ParentsPraise = () => {
     const [selectedItem, setSelectedItem] = useState(null);
     const containerRef = useRef(null);
+    const sceneRef = useRef(null);
+
+    const handleMouseMove = (e) => {
+        if (!sceneRef.current) return;
+        const { clientX, clientY } = e;
+        // Subtle tilt
+        const xPos = (clientX / window.innerWidth - 0.5) * 5; // Max 2.5deg tilt
+        const yPos = (clientY / window.innerHeight - 0.5) * 5;
+
+        gsap.to(sceneRef.current, {
+            rotateY: xPos,
+            rotateX: -yPos,
+            duration: 2,
+            ease: "power2.out"
+        });
+    };
 
     // GSAP Animations
     useLayoutEffect(() => {
@@ -177,14 +193,49 @@ const ParentsPraise = () => {
                 }
             });
 
-            gsap.from(".anim-review-card", {
+            // --- SOFT CLOUD HERO ANIMATIONS ---
+            const floatingElements = document.querySelectorAll('.soft-float-item');
+
+            // 1. Initial State
+            gsap.set(floatingElements, {
+                opacity: 0,
+                scale: 0.5,
+                y: 50
+            });
+
+            // 2. Entrance (Gentle Pop)
+            gsap.to(floatingElements, {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 1.5,
+                stagger: 0.1,
+                ease: "back.out(1.2)"
+            });
+
+            // 3. Continuous Bobbing (Cloud Effect)
+            floatingElements.forEach((el, i) => {
+                const delay = Math.random() * 2;
+                gsap.to(el, {
+                    y: "random(-20, 20)",
+                    x: "random(-10, 10)",
+                    rotation: "random(-5, 5)",
+                    duration: "random(3, 6)",
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: delay
+                });
+            });
+
+            // Hero Text Entrance
+            gsap.from(".hero-text-anim", {
                 y: 30,
                 opacity: 0,
-                stagger: 0.05,
-                scrollTrigger: {
-                    trigger: "#review-grid",
-                    start: "top 85%"
-                }
+                duration: 1.2,
+                stagger: 0.2,
+                ease: "power3.out",
+                delay: 0.5
             });
         }, containerRef);
         return () => ctx.revert();
@@ -193,32 +244,85 @@ const ParentsPraise = () => {
     return (
         <div ref={containerRef} className="min-h-screen bg-rose-50/30 dark:bg-black font-body text-slate-800 dark:text-gray-200 transition-colors duration-500 pb-32">
 
-            {/* --- HERO SECTION --- */}
-            <section className="relative h-[60vh] flex flex-col items-center justify-center overflow-hidden text-center px-6">
-                <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-                    <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-yellow-400/10 rounded-full blur-[120px]"></div>
-                    <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-rose-500/10 rounded-full blur-[120px]"></div>
-                </div>
+            {/* --- HERO SECTION: SOFT 3D CLOUD --- */}
+            <section
+                onMouseMove={handleMouseMove}
+                className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden [perspective:1000px] bg-gradient-to-br from-rose-50 via-white to-sky-50 dark:from-slate-900 dark:via-black dark:to-slate-900 transition-colors duration-500"
+            >
+                {/* 3D Scene Container */}
+                <div ref={sceneRef} className="relative w-full h-full max-w-[1400px] flex items-center justify-center [transform-style:preserve-3d]">
 
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    className="relative z-10 max-w-4xl"
-                >
-                    <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/60 dark:bg-white/5 border border-rose-200 dark:border-white/10 backdrop-blur-md mb-8 shadow-sm">
-                        <Heart size={16} className="text-rose-500 fill-rose-500" />
-                        <span className="text-sm font-bold tracking-widest uppercase text-rose-600 dark:text-rose-400">Our Pride & Joy</span>
+                    {/* --- Floating Testimonial Cards (Cloud Ring) --- */}
+                    {/* Positioned absolutely around the center */}
+
+                    {/* Top Left */}
+                    <div className="soft-float-item absolute top-[15%] left-[10%] md:left-[15%] w-40 md:w-56 z-10 hidden md:block">
+                        <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-rose-100 dark:border-white/10 rotate-[-6deg]">
+                            <img src={TESTIMONIAL_IMAGES[0].src} className="rounded-xl w-full h-auto" alt="Happy" />
+                        </div>
                     </div>
 
-                    <h1 className="text-5xl md:text-8xl font-heading font-black text-slate-900 dark:text-white mb-6">
-                        Parents' <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-400">Praise</span>
-                    </h1>
+                    {/* Top Right */}
+                    <div className="soft-float-item absolute top-[20%] right-[5%] md:right-[15%] w-36 md:w-48 z-10 hidden md:block">
+                        <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-sky-100 dark:border-white/10 rotate-[4deg]">
+                            <img src={TESTIMONIAL_IMAGES[1].src} className="rounded-xl w-full h-auto" alt="Joy" />
+                        </div>
+                    </div>
 
-                    <p className="text-xl md:text-2xl font-light text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
-                        Real stories. Real smiles. Real trust.
-                    </p>
-                </motion.div>
+                    {/* Bottom Left */}
+                    <div className="soft-float-item absolute bottom-[20%] left-[5%] md:left-[12%] w-36 md:w-52 z-10 hidden md:block">
+                        <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-yellow-100 dark:border-white/10 rotate-[6deg]">
+                            <div className="p-4 text-center">
+                                <p className="text-sm font-heading font-bold text-slate-700 dark:text-gray-300">"Simply amazing!"</p>
+                                <div className="flex justify-center mt-2 gap-1"><Star size={12} className="fill-yellow-400 text-yellow-400" /><Star size={12} className="fill-yellow-400 text-yellow-400" /><Star size={12} className="fill-yellow-400 text-yellow-400" /></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Bottom Right */}
+                    <div className="soft-float-item absolute bottom-[15%] right-[10%] md:right-[12%] w-40 md:w-60 z-10 hidden md:block">
+                        <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-rose-100 dark:border-white/10 rotate-[-3deg]">
+                            <img src={TESTIMONIAL_IMAGES[2].src} className="rounded-xl w-full h-auto" alt="Smile" />
+                        </div>
+                    </div>
+
+                    {/* --- Floating Icons/Particles --- */}
+                    <div className="soft-float-item absolute top-[10%] right-[30%] text-rose-300 opacity-60"><Heart size={48} fill="currentColor" /></div>
+                    <div className="soft-float-item absolute bottom-[25%] left-[25%] text-sky-300 opacity-60"><Star size={32} fill="currentColor" /></div>
+                    <div className="soft-float-item absolute top-[40%] left-[8%] text-yellow-300 opacity-50"><div className="w-16 h-16 rounded-full bg-current blur-xl"></div></div>
+                    <div className="soft-float-item absolute bottom-[10%] right-[35%] text-rose-200 opacity-40"><Heart size={64} fill="currentColor" /></div>
+
+
+                    {/* --- CENTRAL CONTENT (Foreground) --- */}
+                    <div className="relative z-30 text-center px-6 max-w-3xl [transform:translateZ(40px)]">
+                        <div className="hero-text-anim inline-block mb-6">
+                            <div className="px-6 py-2 rounded-full bg-rose-100/50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-300 font-bold tracking-widest uppercase text-xs md:text-sm backdrop-blur-sm border border-rose-200/50">
+                                ❤️ 150+ Happy Families
+                            </div>
+                        </div>
+
+                        <h1 className="hero-text-anim text-5xl md:text-7xl lg:text-8xl font-heading font-black text-slate-900 dark:text-white mb-8 leading-tight drop-shadow-sm">
+                            What Parents <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-400">Love</span> About Us
+                        </h1>
+
+                        <p className="hero-text-anim text-lg md:text-2xl text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-2xl mx-auto mb-10">
+                            A safe haven where confidence grows, smiles bloom, and every child feels at home.
+                        </p>
+
+                        <div className="hero-text-anim">
+                            <button
+                                onClick={() => document.getElementById('video-grid')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="px-10 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold shadow-2xl hover:scale-105 hover:shadow-rose-500/20 transition-all duration-300 flex items-center gap-3 mx-auto"
+                            >
+                                <PlayCircle size={20} className="fill-current" /> Hear Their Stories
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Soft Gradient Overlay at Bottom */}
+                <div className="absolute bottom-0 w-full h-32 bg-gradient-to-t from-white dark:from-black to-transparent pointer-events-none z-20"></div>
             </section>
 
             {/* --- TRUST STATS --- */}
