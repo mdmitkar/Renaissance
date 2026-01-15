@@ -435,7 +435,7 @@ const ParentsPraise = () => {
                 </div>
 
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-                    {[...new Map(googleReviews.filter(r => r.review && r.review.trim() !== "").map(item => [item.name + item.review, item])).values()].map((review, idx) => (
+                    {googleReviews.map((review, idx) => (
                         <div
                             key={idx}
                             className="anim-review-card bg-white dark:bg-[#1a1a1a] p-8 rounded-[2rem] shadow-lg border border-slate-100 dark:border-white/5 break-inside-avoid hover:-translate-y-2 transition-transform duration-300"
