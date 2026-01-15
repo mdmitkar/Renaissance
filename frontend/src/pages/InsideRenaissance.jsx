@@ -613,7 +613,7 @@ const GallerySection = () => {
             {/* EVENTS SECTION */}
             <div id="events-section" className="max-w-[1920px] mx-auto mb-32 pt-10">
                 <div className="bg-slate-100 dark:bg-white/5 py-12 mb-12 shadow-inner">
-                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-200 dark:text-white/10 tracking-widest uppercase mb-4">Experiences</h2>
+                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-200 dark:text-white/10 tracking-widest uppercase mb-4">Events</h2>
                     <div className="flex flex-wrap justify-center gap-4 px-4 sticky top-24 z-30">
                         {GALLERY_DATA.events.map(event => (
                             <a key={event.id} href={`#${event.id}`} className="px-6 py-2 bg-white dark:bg-black rounded-full shadow-md text-sm font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">{event.title}</a>

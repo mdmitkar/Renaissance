@@ -24,21 +24,37 @@ const Navbar = () => {
         {
             name: 'Inside Renaissance',
             path: '/inside-renaissance',
-            dropdown: [
-                { name: 'Experiences', hash: 'events-section' },
-                { name: 'Celebrations', hash: 'celebrations-section' }
+            // Structure: Groups of links
+            dropdownGroups: [
+                {
+                    title: 'Events',
+                    items: [
+                        { name: 'Activities', hash: 'activities' },
+                        { name: 'Sports', hash: 'sports' },
+                        { name: 'PTM', hash: 'ptm' },
+                        { name: 'Awards', hash: 'awards' },
+                        { name: 'Campus', hash: 'campus' },
+                        { name: 'Testimonials', hash: 'testimonials' },
+                    ]
+                },
+                {
+                    title: 'Celebrations',
+                    items: [
+                        { name: "Children's Day", hash: 'childrens_day' },
+                        { name: "Independence Day", hash: 'independence_day' },
+                        { name: "Islamic Day", hash: 'islamic_day' },
+                        { name: "Red Day", hash: 'red_day' },
+                    ]
+                }
             ]
         },
         { name: "Parents' Praise", path: '/reviews' },
         { name: 'Contact', path: '/contact' },
     ];
 
-    const handleNavClick = (path, hash) => {
+    const handleNavClick = () => {
         setIsOpen(false);
         setDropdownOpen(false);
-        // If we are on the same page and using a hash, standard navigation might skip scrolling
-        // But React Router's <NavLink> or <a> with # usually works if the ID exists.
-        // We will just return true to let the Link handle it, or we can use custom logic if needed.
     };
 
     return (
@@ -65,8 +81,8 @@ const Navbar = () => {
                     <ul className="flex items-center justify-center flex-1 gap-10 xl:gap-14">
                         {navLinks.map((link, index) => (
                             <li key={index} className="relative group"
-                                onMouseEnter={() => link.dropdown && setDropdownOpen(true)}
-                                onMouseLeave={() => link.dropdown && setDropdownOpen(false)}
+                                onMouseEnter={() => link.dropdownGroups && setDropdownOpen(true)}
+                                onMouseLeave={() => link.dropdownGroups && setDropdownOpen(false)}
                             >
                                 <NavLink
                                     to={link.path}
@@ -81,19 +97,24 @@ const Navbar = () => {
                                     {link.name}
                                 </NavLink>
 
-                                {/* Dropdown Menu */}
-                                {link.dropdown && (
-                                    <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-4 w-48 transition-all duration-300 transform origin-top ${dropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}>
-                                        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-800">
-                                            {link.dropdown.map((subItem, subIndex) => (
-                                                <a
-                                                    key={subIndex}
-                                                    href={`${link.path}#${subItem.hash}`}
-                                                    className="block px-6 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 hover:bg-rose-50 dark:hover:bg-white/5 hover:text-rose-500 transition-colors"
-                                                    onClick={() => handleNavClick()}
-                                                >
-                                                    {subItem.name}
-                                                </a>
+                                {/* Categories Dropdown Menu */}
+                                {link.dropdownGroups && (
+                                    <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[500px] transition-all duration-300 transform origin-top ${dropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}>
+                                        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-800 p-6 grid grid-cols-2 gap-8">
+                                            {link.dropdownGroups.map((group, gIndex) => (
+                                                <div key={gIndex} className="flex flex-col gap-2">
+                                                    <h3 className="text-xs font-bold uppercase tracking-widest text-[#BA1054] mb-2 border-b border-gray-100 dark:border-gray-800 pb-2">{group.title}</h3>
+                                                    {group.items.map((subItem, subIndex) => (
+                                                        <a
+                                                            key={subIndex}
+                                                            href={`${link.path}#${subItem.hash}`}
+                                                            className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#BA1054] hover:translate-x-1 transition-all"
+                                                            onClick={handleNavClick}
+                                                        >
+                                                            {subItem.name}
+                                                        </a>
+                                                    ))}
+                                                </div>
                                             ))}
                                         </div>
                                     </div>
@@ -133,21 +154,26 @@ const Navbar = () => {
                                         `block text-2xl font-body font-semibold py-2
                     ${isActive ? 'text-primary-gold' : 'text-secondary-black dark:text-white'}`
                                     }
-                                    onClick={() => !link.dropdown && setIsOpen(false)}
+                                    onClick={() => !link.dropdownGroups && setIsOpen(false)}
                                 >
                                     {link.name}
                                 </NavLink>
-                                {link.dropdown && (
-                                    <div className="mt-2 flex flex-col gap-3 bg-black/5 dark:bg-white/5 w-full max-w-xs rounded-xl p-4">
-                                        {link.dropdown.map((subItem, subIndex) => (
-                                            <a
-                                                key={subIndex}
-                                                href={`${link.path}#${subItem.hash}`}
-                                                className="text-lg font-medium text-gray-600 dark:text-gray-300"
-                                                onClick={() => setIsOpen(false)}
-                                            >
-                                                {subItem.name}
-                                            </a>
+                                {link.dropdownGroups && (
+                                    <div className="mt-4 flex flex-col gap-6 bg-black/5 dark:bg-white/5 w-full max-w-sm rounded-xl p-6">
+                                        {link.dropdownGroups.map((group, gIndex) => (
+                                            <div key={gIndex} className="flex flex-col gap-3">
+                                                <h3 className="text-sm font-bold uppercase tracking-widest text-[#BA1054] border-b border-gray-300 dark:border-gray-700 pb-1">{group.title}</h3>
+                                                {group.items.map((subItem, subIndex) => (
+                                                    <a
+                                                        key={subIndex}
+                                                        href={`${link.path}#${subItem.hash}`}
+                                                        className="text-lg font-medium text-gray-600 dark:text-gray-300"
+                                                        onClick={() => setIsOpen(false)}
+                                                    >
+                                                        {subItem.name}
+                                                    </a>
+                                                ))}
+                                            </div>
                                         ))}
                                     </div>
                                 )}
