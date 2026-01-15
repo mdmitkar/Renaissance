@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useLayoutEffect, Component } from 'react';
+import { useLocation } from 'react-router-dom';
 import Slider from "react-slick";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, MapPin, Clock, ArrowRight, Star, Heart, Trophy, X, PlayCircle, Play, ArrowDown, ChevronRight, ChevronLeft } from 'lucide-react';
@@ -556,9 +557,68 @@ const SectionHeader = ({ title, subtitle, color = "text-slate-900", className = 
     );
 };
 
+const MediaCard = ({ item, onClick, className = "" }) => {
+    const videoRef = useRef(null);
+    const [hover, setHover] = useState(false);
+
+    return (
+        <div
+            className={`relative overflow-hidden rounded-2xl bg-gray-100 dark:bg-[#1a1a1a] cursor-pointer group shadow-lg border border-black/5 dark:border-white/10 w-full h-full ${className}`}
+            onClick={onClick}
+            onMouseEnter={() => {
+                setHover(true);
+                videoRef.current?.play().catch(() => { });
+            }}
+            onMouseLeave={() => {
+                setHover(false);
+                videoRef.current?.pause();
+            }}
+        >
+            {item.type === 'video' ? (
+                <>
+                    <video
+                        ref={videoRef}
+                        src={item.src}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 block"
+                        muted loop playsInline
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-80 group-hover:opacity-0 transition-opacity bg-black/20">
+                        <div className="bg-white/20 backdrop-blur-md p-4 rounded-full border border-white/40">
+                            <PlayCircle className="text-white w-8 h-8 md:w-10 md:h-10" />
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <ImgWithFallback
+                    src={item.src}
+                    alt={item.title || "Gallery Image"}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 block"
+                />
+            )}
+
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+        </div>
+    );
+};
+
 const GallerySection = () => {
     const containerRef = useRef(null);
     const reelsRef = useRef(null);
+    const location = useLocation();
+    const [selectedMedia, setSelectedMedia] = useState(null);
+
+    // Fix: Handle Hash Scrolling on Mount and Location Change
+    useEffect(() => {
+        if (location.hash) {
+            const id = location.hash.replace('#', '');
+            setTimeout(() => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 500); // Small delay to ensure content is rendered
+        }
+    }, [location]);
 
     const scrollReels = (direction) => {
         if (reelsRef.current) {
@@ -596,12 +656,8 @@ const GallerySection = () => {
                 <div ref={reelsRef} className="pt-3 flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6 scroll-smooth">
                     {GALLERY_DATA.events.flatMap(e => e.media).filter(m => m.type === 'video').slice(0, 8).map((item, i) => (
                         <div key={i} className="reel-card snap-center shrink-0">
-                            <div
-                                className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px] rounded-2xl overflow-hidden relative cursor-pointer group shadow-xl border-4 border-black dark:border-white/20 transition-transform hover:-translate-y-2"
-                            >
-                                <video src={item.src} className="w-full h-full object-cover" muted loop />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full"><Play size={16} className="text-white" fill="white" /></div>
+                            <div className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px]">
+                                <MediaCard item={item} onClick={() => setSelectedMedia(item)} />
                             </div>
                         </div>
                     ))}
@@ -611,9 +667,10 @@ const GallerySection = () => {
             {/* 3. Main Stacked Gallery Sections */}
 
             {/* EVENTS SECTION */}
-            <div id="events-section" className="max-w-[1920px] mx-auto mb-32 pt-10">
-                <div className="bg-slate-100 dark:bg-white/5 py-12 mb-12 shadow-inner">
-                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-200 dark:text-white/10 tracking-widest uppercase mb-4">Events</h2>
+            <div id="events-section" className="max-w-[1920px] mx-auto mb-32 pt-10 scroll-mt-24">
+                <div className="bg-slate-200 dark:bg-white/5 py-12 mb-12 shadow-inner">
+                    {/* Visibility Fix: Changed text color to text-slate-400 for better visibility in light mode */}
+                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-400 dark:text-white/10 tracking-widest uppercase mb-4">Events</h2>
                     <div className="flex flex-wrap justify-center gap-4 px-4 sticky top-24 z-30">
                         {GALLERY_DATA.events.map(event => (
                             <a key={event.id} href={`#${event.id}`} className="px-6 py-2 bg-white dark:bg-black rounded-full shadow-md text-sm font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">{event.title}</a>
@@ -639,18 +696,9 @@ const GallerySection = () => {
                                         viewport={{ once: true, margin: "100px" }}
                                         transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.5) }}
                                         key={idx}
-                                        className="break-inside-avoid relative rounded-2xl overflow-hidden group shadow-lg cursor-pointer bg-slate-200 dark:bg-white/5"
+                                        className="break-inside-avoid"
                                     >
-                                        {item.type === 'video' ? (
-                                            <div className="relative w-full aspect-video">
-                                                <video src={item.src} className="w-full h-full object-cover" muted loop playsInline />
-                                                <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-transparent transition-all">
-                                                    <div className="bg-white/20 backdrop-blur-md p-3 rounded-full"><Play className="text-white fill-white" size={20} /></div>
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            <ImgWithFallback src={item.src} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700" alt={`${album.title} ${idx}`} />
-                                        )}
+                                        <MediaCard item={item} onClick={() => setSelectedMedia(item)} className={item.type === 'video' ? 'aspect-video' : ''} />
                                     </motion.div>
                                 ))}
                             </div>
@@ -660,9 +708,10 @@ const GallerySection = () => {
             </div>
 
             {/* CELEBRATIONS SECTION */}
-            <div id="celebrations-section" className="max-w-[1920px] mx-auto mb-32 pt-10">
-                <div className="bg-slate-100 dark:bg-white/5 py-12 mb-12 shadow-inner">
-                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-200 dark:text-white/10 tracking-widest uppercase mb-4">Celebrations</h2>
+            <div id="celebrations-section" className="max-w-[1920px] mx-auto mb-32 pt-10 scroll-mt-24">
+                <div className="bg-slate-200 dark:bg-white/5 py-12 mb-12 shadow-inner">
+                    {/* Visibility Fix: Changed text color to text-slate-400 */}
+                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-400 dark:text-white/10 tracking-widest uppercase mb-4">Celebrations</h2>
                     <div className="flex flex-wrap justify-center gap-4 px-4 sticky top-24 z-30">
                         {GALLERY_DATA.celebrations.map(event => (
                             <a key={event.id} href={`#${event.id}`} className="px-6 py-2 bg-white dark:bg-black rounded-full shadow-md text-sm font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">{event.title}</a>
@@ -688,18 +737,9 @@ const GallerySection = () => {
                                         viewport={{ once: true, margin: "100px" }}
                                         transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.5) }}
                                         key={idx}
-                                        className="break-inside-avoid relative rounded-2xl overflow-hidden group shadow-lg cursor-pointer bg-slate-200 dark:bg-white/5"
+                                        className="break-inside-avoid"
                                     >
-                                        {item.type === 'video' ? (
-                                            <div className="relative w-full aspect-video">
-                                                <video src={item.src} className="w-full h-full object-cover" muted loop playsInline />
-                                                <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-transparent transition-all">
-                                                    <div className="bg-white/20 backdrop-blur-md p-3 rounded-full"><Play className="text-white fill-white" size={20} /></div>
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            <ImgWithFallback src={item.src} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700" alt={`${album.title} ${idx}`} />
-                                        )}
+                                        <MediaCard item={item} onClick={() => setSelectedMedia(item)} className={item.type === 'video' ? 'aspect-video' : ''} />
                                     </motion.div>
                                 ))}
                             </div>
@@ -707,6 +747,44 @@ const GallerySection = () => {
                     ))}
                 </div>
             </div>
+
+            {/* LIGHTBOX OVERLAY */}
+            <AnimatePresence>
+                {selectedMedia && (
+                    <motion.div
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
+                        onClick={() => setSelectedMedia(null)}
+                    >
+                        <button className="absolute top-6 right-6 text-white bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors z-50">
+                            <X size={24} />
+                        </button>
+
+                        <div
+                            className="w-full max-w-6xl max-h-[90vh] flex flex-col items-center justify-center"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {selectedMedia.type === 'video' ? (
+                                <div className="relative w-full aspect-video md:aspect-auto md:h-[80vh]">
+                                    <video
+                                        src={selectedMedia.src}
+                                        controls
+                                        autoPlay
+                                        className="w-full h-full object-contain rounded-lg shadow-2xl"
+                                    />
+                                </div>
+                            ) : (
+                                <motion.img
+                                    initial={{ scale: 0.9 }} animate={{ scale: 1 }}
+                                    src={selectedMedia.src}
+                                    className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                                />
+                            )}
+                            <h3 className="text-white/80 text-xl font-medium mt-6 text-center">{selectedMedia.title || "Gallery Moment"}</h3>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* CTA Section */}
             <div className="py-32 flex flex-col justify-center items-center text-center bg-rose-50 dark:bg-[#1a1a1a] transition-colors duration-300">
