@@ -66,7 +66,10 @@ const ReviewImageCard = ({ src, index, onMaximize }) => {
     const contentColor = isYellow ? 'text-slate-900' : 'text-white';
 
     return (
-        <div className={`relative ${colorClass} rounded-[1rem] p-6 shadow-xl transform transition-transform duration-300 hover:scale-[1.02] flex flex-col items-center text-center h-full overflow-hidden`}>
+        <div
+            onClick={onMaximize}
+            className={`relative ${colorClass} rounded-[1rem] p-6 shadow-xl transform transition-transform duration-300 hover:scale-[1.02] flex flex-col items-center text-center h-full overflow-hidden cursor-pointer`}
+        >
 
             {/* Header: Fancy Italic Serif */}
             <div className={`mb-6 flex flex-col items-center leading-tight ${contentColor} relative z-10`}>
@@ -76,7 +79,7 @@ const ReviewImageCard = ({ src, index, onMaximize }) => {
 
             {/* Quote Icon Top-Left */}
             <div className="absolute top-12 left-2 z-0 opacity-90">
-                <Quote size={64} className={`${contentColor} fill-current rotate-180`} />
+                <Quote size={64} className={`text-black fill-current rotate-180`} />
             </div>
 
             {/* Inner Image Container with Unique Curve */}
@@ -108,8 +111,8 @@ const ReviewImageCard = ({ src, index, onMaximize }) => {
             </div>
 
             {/* Quote Icon Bottom-Right */}
-            <div className="absolute bottom-12 right-2 z-0 opacity-90">
-                <Quote size={64} className={`${contentColor} fill-current`} />
+            <div className="absolute bottom-12 right-2 z-20 opacity-90">
+                <Quote size={64} className={`text-black fill-current`} />
             </div>
 
             {/* Footer: Simple Sans-Serif */}
@@ -519,19 +522,19 @@ const ParentsPraise = () => {
                         </button>
 
                         <div
-                            className="w-full max-w-6xl max-h-[90vh] flex flex-col items-center justify-center relative"
+                            className="w-full max-w-full px-4 max-h-[95vh] flex flex-col items-center justify-center relative"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <motion.div
                                 key={selectedItem.src || selectedItem.id}
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.3 }}
                                 className="w-full flex flex-col items-center justify-center"
                             >
                                 {selectedItem.type === 'video' ? (
-                                    <div className="relative w-full aspect-video md:aspect-auto md:h-[80vh]">
+                                    <div className="relative w-full max-w-6xl aspect-video md:aspect-auto md:h-[80vh]">
                                         <video
                                             src={selectedItem.src}
                                             controls
@@ -542,7 +545,7 @@ const ParentsPraise = () => {
                                 ) : (
                                     <img
                                         src={selectedItem.src}
-                                        className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                                        className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
                                         alt={selectedItem.title}
                                     />
                                 )}
