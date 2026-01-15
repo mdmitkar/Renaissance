@@ -292,14 +292,7 @@ const Home = () => {
                     <motion.div
                         style={{ y: textY, opacity: textOpacity }}
                     >
-                        <motion.div
-                            initial={{ scale: 0, rotate: 0 }}
-                            animate={{ scale: 1, rotate: 0 }}
-                            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-                            className="inline-block bg-white/10 backdrop-blur-md text-white px-5 py-2 md:px-8 md:py-3 rounded-full font-bold text-sm md:text-lg mb-6 md:mb-10 border border-white/20 shadow-2xl whitespace-nowrap"
-                        >
-                            ✨ Est. 2025 • The Future of Learning
-                        </motion.div>
+
 
                         <motion.h1
                             variants={{
@@ -702,11 +695,10 @@ const Home = () => {
 
                 {/* Big Numbers */}
                 <div className="max-w-7xl mx-auto px-6 mt-32">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center divide-x divide-gray-100">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-center divide-x divide-gray-100">
                         {[
                             { num: "50+", label: "Happy Students" },
                             { num: "5+", label: "Expert Mentors" }, // More premium term than teachers
-                            { num: "2025", label: "Established" },
                             { num: "100%", label: "Safety Record" },
                         ].map((stat, i) => (
                             <div key={i} className="reveal-text px-4">

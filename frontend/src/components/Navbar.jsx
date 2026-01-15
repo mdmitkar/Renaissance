@@ -11,7 +11,7 @@ const Navbar = () => {
     const location = useLocation();
 
     // Pages that have a dark hero section (needs light text even when transparent)
-    const isDarkHeroPage = ['/inside-renaissance'].includes(location.pathname);
+    const isDarkHeroPage = ['/', '/inside-renaissance', '/about', '/contact'].includes(location.pathname);
 
     useEffect(() => {
         const handleScroll = () => {

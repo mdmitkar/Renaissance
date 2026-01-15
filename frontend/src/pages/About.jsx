@@ -152,8 +152,8 @@ const About = () => {
                             className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white transform transition-transform duration-500 hover:-translate-y-2"
                         >
                             <img
-                                src="/New/otherimprenaisanceentry.jpeg"
-                                alt="Renaissance Entry"
+                                src="/New/students_holding_flags_in_class.jpeg"
+                                alt="Students holding flags"
                                 className="w-full h-[500px] object-cover"
                             />
                             <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent text-white">
