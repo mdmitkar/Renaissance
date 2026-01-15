@@ -502,8 +502,8 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/IndependenceDay/IndependenceDay_1.jpeg' },
                 { type: 'image', src: '/IndependenceDay/IndependenceDay_2.jpeg' },
                 { type: 'image', src: '/IndependenceDay/IndependenceDay_4.jpeg' },
-                { type: 'video', src: '/IndependenceDay/Independence Day reel.mp4' },
-                { type: 'video', src: '/IndependenceDay/indepencedneday activity.mp4' },
+                { type: 'video', src: '/IndependenceDay/independence_day_reel.mp4' },
+                { type: 'video', src: '/IndependenceDay/independence_day_activity.mp4' },
             ]
         },
         {
@@ -637,7 +637,7 @@ const GallerySection = () => {
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-5xl md:text-7xl font-heading font-normal text-slate-800 dark:text-white mb-4">
+                    <h2 className="text-4xl sm:text-5xl md:text-7xl font-heading font-normal text-slate-800 dark:text-white mb-4 px-4 break-words">
                         Our Whole Gallery
                     </h2>
                     <div className="w-24 h-1 bg-rose-500 mx-auto rounded-full mb-8"></div>
@@ -670,7 +670,7 @@ const GallerySection = () => {
             <div id="events-section" className="max-w-[1920px] mx-auto mb-32 pt-10 scroll-mt-24">
                 <div className="bg-slate-200 dark:bg-white/5 py-12 mb-12 shadow-inner">
                     {/* Visibility Fix: Changed text color to text-slate-600 for better visibility in light mode */}
-                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-600 dark:text-white/80 tracking-widest uppercase mb-4">Events</h2>
+                    <h2 className="text-3xl sm:text-5xl md:text-8xl font-black text-center text-slate-600 dark:text-white/80 tracking-widest uppercase mb-4 px-4 break-words">Events</h2>
                     <div className="flex flex-wrap justify-center gap-4 px-4 sticky top-24 z-30">
                         {GALLERY_DATA.events.map(event => (
                             <a key={event.id} href={`#${event.id}`} className="px-6 py-2 bg-white dark:bg-black rounded-full shadow-md text-sm font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">{event.title}</a>
@@ -681,7 +681,7 @@ const GallerySection = () => {
                 <div className="flex flex-col gap-32">
                     {GALLERY_DATA.events.map((album) => (
                         <div key={album.id} id={album.id} className="scroll-mt-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
-                            <div className="flex flex-col md:flex-row items-end gap-6 mb-12 border-b border-black/10 dark:border-white/10 pb-6">
+                            <div className="flex flex-col md:flex-row items-center md:items-end gap-6 mb-12 border-b border-black/10 dark:border-white/10 pb-6">
                                 <h3 className="text-4xl md:text-6xl font-black text-slate-800 dark:text-white">{album.title}</h3>
                                 <span className="text-lg text-slate-500 dark:text-gray-400 font-medium pb-2">
                                     {album.media.length} Memories
@@ -711,7 +711,7 @@ const GallerySection = () => {
             <div id="celebrations-section" className="max-w-[1920px] mx-auto mb-32 pt-10 scroll-mt-24">
                 <div className="bg-slate-200 dark:bg-white/5 py-12 mb-12 shadow-inner">
                     {/* Visibility Fix: Changed text color to text-slate-600 for better visibility in light mode */}
-                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-600 dark:text-white/80 tracking-widest uppercase mb-4">Celebrations</h2>
+                    <h2 className="text-3xl sm:text-5xl md:text-8xl font-black text-center text-slate-600 dark:text-white/80 tracking-widest uppercase mb-4 px-4 break-words">Celebrations</h2>
                     <div className="flex flex-wrap justify-center gap-4 px-4 sticky top-24 z-30">
                         {GALLERY_DATA.celebrations.map(event => (
                             <a key={event.id} href={`#${event.id}`} className="px-6 py-2 bg-white dark:bg-black rounded-full shadow-md text-sm font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">{event.title}</a>
@@ -722,7 +722,7 @@ const GallerySection = () => {
                 <div className="flex flex-col gap-32">
                     {GALLERY_DATA.celebrations.map((album) => (
                         <div key={album.id} id={album.id} className="scroll-mt-32 px-6 md:px-12 max-w-7xl mx-auto w-full">
-                            <div className="flex flex-col md:flex-row items-end gap-6 mb-12 border-b border-black/10 dark:border-white/10 pb-6">
+                            <div className="flex flex-col md:flex-row items-center md:items-end gap-6 mb-12 border-b border-black/10 dark:border-white/10 pb-6">
                                 <h3 className="text-4xl md:text-6xl font-black text-slate-800 dark:text-white">{album.title}</h3>
                                 <span className="text-lg text-slate-500 dark:text-gray-400 font-medium pb-2">
                                     {album.media.length} Memories
