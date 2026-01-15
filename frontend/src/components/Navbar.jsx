@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
+    const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -54,7 +55,7 @@ const Navbar = () => {
 
     const handleNavClick = () => {
         setIsOpen(false);
-        setDropdownOpen(false);
+        setDesktopDropdownOpen(false);
     };
 
     return (
@@ -81,8 +82,8 @@ const Navbar = () => {
                     <ul className="flex items-center justify-center flex-1 gap-10 xl:gap-14">
                         {navLinks.map((link, index) => (
                             <li key={index} className="relative group"
-                                onMouseEnter={() => link.dropdownGroups && setDropdownOpen(true)}
-                                onMouseLeave={() => link.dropdownGroups && setDropdownOpen(false)}
+                                onMouseEnter={() => link.dropdownGroups && setDesktopDropdownOpen(true)}
+                                onMouseLeave={() => link.dropdownGroups && setDesktopDropdownOpen(false)}
                             >
                                 <NavLink
                                     to={link.path}
@@ -95,11 +96,14 @@ const Navbar = () => {
                                     }
                                 >
                                     {link.name}
+                                    {link.dropdownGroups && (
+                                        <ChevronDown size={16} className={`ml-1 transition-transform duration-300 ${desktopDropdownOpen ? 'rotate-180' : ''}`} />
+                                    )}
                                 </NavLink>
 
                                 {/* Categories Dropdown Menu */}
                                 {link.dropdownGroups && (
-                                    <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[500px] transition-all duration-300 transform origin-top ${dropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}>
+                                    <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[500px] transition-all duration-300 transform origin-top ${desktopDropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}>
                                         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-800 p-6 grid grid-cols-2 gap-8">
                                             {link.dropdownGroups.map((group, gIndex) => (
                                                 <div key={gIndex} className="flex flex-col gap-2">
@@ -148,31 +152,51 @@ const Navbar = () => {
                     <ul className="flex flex-col items-center justify-start pt-12 h-full gap-8 p-4">
                         {navLinks.map((link, index) => (
                             <li key={index} className="w-full text-center flex flex-col items-center">
-                                <NavLink
-                                    to={link.path}
-                                    className={({ isActive }) =>
-                                        `block text-2xl font-body font-semibold py-2
+                                {/* Mobile Link Item Container */}
+                                <div className="flex items-center justify-center gap-2">
+                                    <NavLink
+                                        to={link.path}
+                                        className={({ isActive }) =>
+                                            `text-2xl font-body font-semibold py-2
                     ${isActive ? 'text-primary-gold' : 'text-secondary-black dark:text-white'}`
-                                    }
-                                    onClick={() => !link.dropdownGroups && setIsOpen(false)}
-                                >
-                                    {link.name}
-                                </NavLink>
-                                {link.dropdownGroups && (
-                                    <div className="mt-4 flex flex-col gap-6 bg-black/5 dark:bg-white/5 w-full max-w-sm rounded-xl p-6">
+                                        }
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        {link.name}
+                                    </NavLink>
+
+                                    {/* Separate Dropdown Trigger for Mobile */}
+                                    {link.dropdownGroups && (
+                                        <button
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                setMobileDropdownOpen(!mobileDropdownOpen);
+                                            }}
+                                            className="p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 active:scale-95 transition-all"
+                                        >
+                                            <ChevronDown size={24} className={`transition-transform duration-300 ${mobileDropdownOpen ? 'rotate-180' : ''}`} />
+                                        </button>
+                                    )}
+                                </div>
+
+                                {link.dropdownGroups && mobileDropdownOpen && (
+                                    <div className="mt-4 flex flex-col gap-6 bg-white dark:bg-white/10 w-[95%] max-w-sm rounded-2xl p-6 shadow-xl border border-gray-100 dark:border-white/5 animate-in slide-in-from-top-4 duration-300">
                                         {link.dropdownGroups.map((group, gIndex) => (
-                                            <div key={gIndex} className="flex flex-col gap-3">
-                                                <h3 className="text-sm font-bold uppercase tracking-widest text-[#BA1054] border-b border-gray-300 dark:border-gray-700 pb-1">{group.title}</h3>
-                                                {group.items.map((subItem, subIndex) => (
-                                                    <a
-                                                        key={subIndex}
-                                                        href={`${link.path}#${subItem.hash}`}
-                                                        className="text-lg font-medium text-gray-600 dark:text-gray-300"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        {subItem.name}
-                                                    </a>
-                                                ))}
+                                            <div key={gIndex} className="flex flex-col gap-3 items-center">
+                                                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-rose-500 border-b-2 border-rose-100 dark:border-white/10 pb-2 w-full text-center">{group.title}</h3>
+                                                <div className="flex flex-col gap-2 w-full">
+                                                    {group.items.map((subItem, subIndex) => (
+                                                        <a
+                                                            key={subIndex}
+                                                            href={`${link.path}#${subItem.hash}`}
+                                                            className="text-lg font-medium text-slate-600 dark:text-slate-300 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-white/5 py-2 rounded-lg transition-all w-full text-center"
+                                                            onClick={() => setIsOpen(false)}
+                                                        >
+                                                            {subItem.name}
+                                                        </a>
+                                                    ))}
+                                                </div>
                                             </div>
                                         ))}
                                     </div>

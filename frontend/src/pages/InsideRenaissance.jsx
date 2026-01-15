@@ -669,8 +669,8 @@ const GallerySection = () => {
             {/* EVENTS SECTION */}
             <div id="events-section" className="max-w-[1920px] mx-auto mb-32 pt-10 scroll-mt-24">
                 <div className="bg-slate-200 dark:bg-white/5 py-12 mb-12 shadow-inner">
-                    {/* Visibility Fix: Changed text color to text-slate-400 for better visibility in light mode */}
-                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-400 dark:text-white/10 tracking-widest uppercase mb-4">Events</h2>
+                    {/* Visibility Fix: Changed text color to text-slate-600 for better visibility in light mode */}
+                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-600 dark:text-white/80 tracking-widest uppercase mb-4">Events</h2>
                     <div className="flex flex-wrap justify-center gap-4 px-4 sticky top-24 z-30">
                         {GALLERY_DATA.events.map(event => (
                             <a key={event.id} href={`#${event.id}`} className="px-6 py-2 bg-white dark:bg-black rounded-full shadow-md text-sm font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">{event.title}</a>
@@ -710,8 +710,8 @@ const GallerySection = () => {
             {/* CELEBRATIONS SECTION */}
             <div id="celebrations-section" className="max-w-[1920px] mx-auto mb-32 pt-10 scroll-mt-24">
                 <div className="bg-slate-200 dark:bg-white/5 py-12 mb-12 shadow-inner">
-                    {/* Visibility Fix: Changed text color to text-slate-400 */}
-                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-400 dark:text-white/10 tracking-widest uppercase mb-4">Celebrations</h2>
+                    {/* Visibility Fix: Changed text color to text-slate-600 for better visibility in light mode */}
+                    <h2 className="text-5xl md:text-8xl font-black text-center text-slate-600 dark:text-white/80 tracking-widest uppercase mb-4">Celebrations</h2>
                     <div className="flex flex-wrap justify-center gap-4 px-4 sticky top-24 z-30">
                         {GALLERY_DATA.celebrations.map(event => (
                             <a key={event.id} href={`#${event.id}`} className="px-6 py-2 bg-white dark:bg-black rounded-full shadow-md text-sm font-bold uppercase hover:bg-rose-500 hover:text-white transition-colors">{event.title}</a>
