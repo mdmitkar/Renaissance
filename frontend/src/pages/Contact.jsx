@@ -86,19 +86,19 @@ const Contact = () => {
 
                     {/* --- FLOATING CAMPUS IMAGES --- */}
 
-                    {/* Top Left: School Building - VISIBLE ON MOBILE */}
-                    <div className="contact-float-item absolute top-[12%] left-[2%] md:top-[8%] md:left-[5%] w-24 md:w-72 z-10 opacity-80 md:opacity-100">
-                        <div className="bg-white dark:bg-zinc-800 p-1 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[5deg] md:rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
-                            <img src="/SchoolPremises/schoolbuilding.avif" alt="Our Campus" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
-                            <div className="hidden md:block text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
+                    {/* Top Left: School Building - HIDDEN ON MOBILE (Like Parents Praise) */}
+                    <div className="contact-float-item absolute top-[8%] left-[5%] w-72 z-10 hidden md:block">
+                        <div className="bg-white dark:bg-zinc-800 p-3 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                            <img src="/SchoolPremises/schoolbuilding.avif" alt="Our Campus" className="rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
+                            <div className="text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
                         </div>
                     </div>
 
-                    {/* Bottom Right: Classroom - VISIBLE ON MOBILE */}
-                    <div className="contact-float-item absolute bottom-[18%] right-[2%] md:bottom-[12%] md:right-[5%] w-24 md:w-72 z-10 opacity-80 md:opacity-100">
-                        <div className="bg-white dark:bg-zinc-800 p-1 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-5deg] md:rotate-[5deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
-                            <img src="/SchoolPremises/classroom1.jpeg" alt="Classroom" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
-                            <div className="hidden md:block text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Learning Spaces</div>
+                    {/* Bottom Right: Classroom - HIDDEN ON MOBILE (Like Parents Praise) */}
+                    <div className="contact-float-item absolute bottom-[12%] right-[5%] w-72 z-10 hidden md:block">
+                        <div className="bg-white dark:bg-zinc-800 p-3 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[5deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                            <img src="/SchoolPremises/classroom1.jpeg" alt="Classroom" className="rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
+                            <div className="text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Learning Spaces</div>
                         </div>
                     </div>
 
@@ -123,9 +123,9 @@ const Contact = () => {
 
 
                     {/* --- CENTRAL HERO TEXT --- */}
-                    <div className="relative z-30 text-center px-2 md:px-4 max-w-5xl mx-auto [transform:translateZ(60px)]">
+                    <div className="relative z-30 text-center px-6 max-w-3xl mx-auto [transform:translateZ(60px)]">
                         <motion.h1
-                            className="hero-text-enter text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-6 md:mb-8 drop-shadow-sm tracking-tighter leading-[1.1] md:leading-[0.9] break-words"
+                            className="hero-text-enter text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-6 md:mb-8 drop-shadow-sm leading-[1.1] md:leading-[0.9] break-words"
                         >
                             Join the <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:to-violet-400 relative inline-block px-2 md:px-4">
@@ -147,16 +147,9 @@ const Contact = () => {
                         </motion.div>
                     </div>
 
-                    {/* ADDED SCROLL INDICATOR */}
-                    <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 1, repeat: Infinity, repeatType: "reverse" }}
-                        className="absolute bottom-20 md:bottom-28 left-1/2 -translate-x-1/2 z-20 text-slate-400 dark:text-slate-600 flex flex-col items-center gap-2"
-                    >
-                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-70">Scroll</span>
-                        <ChevronsDown size={24} />
-                    </motion.div>
+
+
+
 
                 </div>
 
@@ -165,12 +158,22 @@ const Contact = () => {
                     <svg className="block w-full h-16 md:h-32" viewBox="0 0 1440 320" preserveAspectRatio="none">
                         <path fill="currentColor" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
                     </svg>
+                    {/* ADDED SCROLL INDICATOR */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 1, repeat: Infinity, repeatType: "reverse" }}
+                        className=" absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-20 text-slate-400 dark:text-slate-600 flex flex-col items-center gap-2"
+                    >
+                        <span className=" text-[15px] uppercase tracking-widest font-bold opacity-70">Scroll</span>
+                        <ChevronsDown size={34} />
+                    </motion.div>
                 </div>
 
             </div>
 
             {/* MAIN CONTENT - FIXED Z-INDEX & OVERLAP */}
-            <div className="max-w-[1400px] mx-auto px-6 pb-12 pt-0 -mt-12 md:-mt-24 relative z-30">
+            <div className="max-w-6xl mx-auto px-6 pb-12 pt-0 mt-4 md:mt-8 relative z-30">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
                     {/* LEFT COLUMN: ADMISSION FORM (7 Cols) */}
@@ -300,14 +303,14 @@ const AdmissionForm = () => {
             exit={{ y: -50, opacity: 0 }}
             viewport={{ amount: 0.3, margin: "0px 0px -100px 0px" }}
             transition={{ type: "spring", bounce: 0.3 }}
-            className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] p-8 md:p-12 border border-gray-100 dark:border-gray-800 relative overflow-hidden"
+            className="bg-white dark:bg-[#1a1a1a] rounded-[2rem] md:rounded-[3rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] p-6 md:p-12 border border-gray-100 dark:border-gray-800 relative overflow-hidden"
         >
             {/* Form Decor */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-gulf-blue/10 to-transparent rounded-full -mr-20 -mt-20 pointer-events-none blur-2xl"></div>
 
             <div className="relative z-10">
-                <div className="mb-8 border-l-8 border-gentle-yellow pl-6">
-                    <h2 className="text-4xl md:text-5xl font-heading font-black text-gulf-dark dark:text-white mb-2">Admission Open</h2>
+                <div className="mb-8 border-l-8 border-gentle-yellow pl-4 md:pl-6">
+                    <h2 className="text-3xl md:text-5xl font-heading font-black text-gulf-dark dark:text-white mb-2">Admission Open</h2>
                     <h3 className="text-xl text-gray-500 font-medium tracking-wide">Academic Year 2025-26</h3>
                 </div>
 
