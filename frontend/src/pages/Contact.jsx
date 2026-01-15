@@ -1,5 +1,5 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
-import { MapPin, Phone, Mail, Clock, Send, User, Calendar, BookOpen, Star, Heart, Sun, Instagram, Facebook, Youtube, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, User, Calendar, BookOpen, Star, Heart, Sun, Instagram, Facebook, Youtube, MessageCircle, ChevronsDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 
@@ -79,74 +79,84 @@ const Contact = () => {
             {/* 1. HERO SECTION - 3D Campus Floating Scene */}
             <div
                 onMouseMove={handleMouseMove}
-                className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden [perspective:1000px] bg-gradient-to-br from-[#FDFBF7] via-white to-[#F0F4F8] dark:from-[#0a0a0a] dark:via-[#111] dark:to-[#0a0a0a]"
+                className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden [perspective:1000px] bg-gradient-to-br from-[#FDFBF7] via-white to-[#F0F4F8] dark:from-[#0a0a0a] dark:via-[#111] dark:to-[#0a0a0a]"
             >
                 {/* 3D Scene Wrapper */}
-                <div ref={sceneRef} className="relative w-full h-full max-w-[1600px] flex items-center justify-center [transform-style:preserve-3d] py-20">
+                <div ref={sceneRef} className="relative w-full h-full max-w-[1600px] flex items-center justify-center [transform-style:preserve-3d] py-12 md:py-20">
 
                     {/* --- FLOATING CAMPUS IMAGES --- */}
-                    {/* Spread out more to avoid overlapping text */}
 
-                    {/* Top Left: School Building */}
-                    <div className="contact-float-item absolute top-[8%] left-[2%] md:left-[5%] w-40 md:w-72 z-10 hidden md:block">
-                        <div className="bg-white dark:bg-zinc-800 p-3 rounded-2xl shadow-2xl border border-white/50 dark:border-white/10 rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
-                            <img src="/SchoolPremises/schoolbuilding.avif" alt="Our Campus" className="rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
-                            <div className="text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
+                    {/* Top Left: School Building - VISIBLE ON MOBILE */}
+                    <div className="contact-float-item absolute top-[12%] left-[2%] md:top-[8%] md:left-[5%] w-24 md:w-72 z-10 opacity-80 md:opacity-100">
+                        <div className="bg-white dark:bg-zinc-800 p-1 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[5deg] md:rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                            <img src="/SchoolPremises/schoolbuilding.avif" alt="Our Campus" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
+                            <div className="hidden md:block text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
                         </div>
                     </div>
 
-                    {/* Bottom Right: Classroom */}
-                    <div className="contact-float-item absolute bottom-[12%] right-[2%] md:right-[5%] w-40 md:w-72 z-10 hidden md:block">
-                        <div className="bg-white dark:bg-zinc-800 p-3 rounded-2xl shadow-2xl border border-white/50 dark:border-white/10 rotate-[5deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
-                            <img src="/SchoolPremises/classroom1.jpeg" alt="Classroom" className="rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
-                            <div className="text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Learning Spaces</div>
+                    {/* Bottom Right: Classroom - VISIBLE ON MOBILE */}
+                    <div className="contact-float-item absolute bottom-[18%] right-[2%] md:bottom-[12%] md:right-[5%] w-24 md:w-72 z-10 opacity-80 md:opacity-100">
+                        <div className="bg-white dark:bg-zinc-800 p-1 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-5deg] md:rotate-[5deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                            <img src="/SchoolPremises/classroom1.jpeg" alt="Classroom" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
+                            <div className="hidden md:block text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Learning Spaces</div>
                         </div>
                     </div>
 
-                    {/* Top Right: Playground Environment */}
+                    {/* Top Right: Playground - HIDDEN ON MOBILE */}
                     <div className="contact-float-item absolute top-[12%] right-[5%] md:right-[8%] w-32 md:w-60 z-0 hidden md:block opacity-80 hover:opacity-100 transition-opacity">
                         <div className="bg-white dark:bg-zinc-800 p-2 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[3deg] hover:scale-105 transition-transform duration-300">
                             <img src="/SchoolPremises/playground3.png" alt="Play Area" className="rounded-xl w-full h-auto object-cover aspect-square" />
                         </div>
                     </div>
 
-                    {/* Bottom Left: Activity/Play */}
+                    {/* Bottom Left: Activity - HIDDEN ON MOBILE */}
                     <div className="contact-float-item absolute bottom-[15%] left-[5%] md:left-[8%] w-36 md:w-60 z-0 hidden md:block opacity-80 hover:opacity-100 transition-opacity">
                         <div className="bg-white dark:bg-zinc-800 p-2 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-4deg] hover:scale-105 transition-transform duration-300">
                             <img src="/SchoolPremises/classplay.jpeg" alt="Activities" className="rounded-xl w-full h-auto object-cover aspect-square" />
                         </div>
                     </div>
 
-                    {/* --- FLOATING ICONS/DECORATIONS --- */}
-                    <div className="contact-float-item absolute top-[25%] left-[28%] text-blue-200 dark:text-blue-900/30 blur-[1px]"><MapPin size={48} className="fill-current" /></div>
-                    <div className="contact-float-item absolute bottom-[35%] right-[28%] text-rose-200 dark:text-rose-900/30 blur-[1px]"><Mail size={40} className="fill-current" /></div>
-                    <div className="contact-float-item absolute top-[18%] right-[32%] text-amber-200 dark:text-amber-900/30 blur-[1px]"><Sun size={56} className="animate-[spin_10s_linear_infinite]" /></div>
+                    {/* --- FLOATING ICONS - Adjust positions for mobile --- */}
+                    <div className="contact-float-item absolute top-[20%] left-[10%] md:left-[28%] text-blue-200 dark:text-blue-900/30 blur-[1px]"><MapPin size={32} md:size={48} className="fill-current" /></div>
+                    <div className="contact-float-item absolute bottom-[25%] right-[10%] md:right-[28%] text-rose-200 dark:text-rose-900/30 blur-[1px]"><Mail size={24} md:size={40} className="fill-current" /></div>
+                    <div className="contact-float-item absolute top-[15%] right-[15%] md:right-[32%] text-amber-200 dark:text-amber-900/30 blur-[1px]"><Sun size={40} md:size={56} className="animate-[spin_10s_linear_infinite]" /></div>
 
 
                     {/* --- CENTRAL HERO TEXT --- */}
-                    <div className="relative z-30 text-center px-4 max-w-5xl mx-auto [transform:translateZ(60px)]">
+                    <div className="relative z-30 text-center px-2 md:px-4 max-w-5xl mx-auto [transform:translateZ(60px)]">
                         <motion.h1
-                            className="hero-text-enter text-6xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-8 drop-shadow-sm tracking-tighter leading-[0.85]"
+                            className="hero-text-enter text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-6 md:mb-8 drop-shadow-sm tracking-tighter leading-[1.1] md:leading-[0.9] break-words"
                         >
                             Join the <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:to-violet-400 relative inline-block px-4">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:to-violet-400 relative inline-block px-2 md:px-4">
                                 Renaissance
                                 {/* Subtle Underline Decoration */}
-                                <div className="absolute -bottom-2 left-0 w-full h-3 bg-yellow-300/30 -rotate-1 rounded-full -z-10"></div>
+                                <div className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 bg-yellow-300/30 -rotate-1 rounded-full -z-10"></div>
                             </span> <br />
                             Family
                         </motion.h1>
 
-                        <motion.div className="hero-text-enter flex flex-col items-center gap-6">
+                        <motion.div className="hero-text-enter flex flex-col items-center gap-4 md:gap-6">
                             <p
-                                className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-body font-medium tracking-wide"
+                                className="text-lg md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-body font-medium tracking-wide"
                             >
                                 Visits, enquiries, or just a friendly hello.
                             </p>
 
-                            <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
+                            <div className="w-12 md:w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
                         </motion.div>
                     </div>
+
+                    {/* ADDED SCROLL INDICATOR */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 1, repeat: Infinity, repeatType: "reverse" }}
+                        className="absolute bottom-20 md:bottom-28 left-1/2 -translate-x-1/2 z-20 text-slate-400 dark:text-slate-600 flex flex-col items-center gap-2"
+                    >
+                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-70">Scroll</span>
+                        <ChevronsDown size={24} />
+                    </motion.div>
 
                 </div>
 
@@ -160,7 +170,7 @@ const Contact = () => {
             </div>
 
             {/* MAIN CONTENT - FIXED Z-INDEX & OVERLAP */}
-            <div className="max-w-[1400px] mx-auto px-6 py-12 relative z-30">
+            <div className="max-w-[1400px] mx-auto px-6 pb-12 pt-0 -mt-12 md:-mt-24 relative z-30">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
                     {/* LEFT COLUMN: ADMISSION FORM (7 Cols) */}
@@ -246,7 +256,7 @@ const Contact = () => {
             {/* MAP SECTION - Enhanced Styling */}
             <div className="h-[450px] w-full relative z-0 mt-16 shadow-inner border-t-8 border-gulf-blue/20">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.9632497672!2d73.0560!3d19.2905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDE3JzI1LjgiTiA3M8KwMDMnMjEuNiJF!5e0!3m2!1sen!2sin!4v1631234567890!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.459697286655!2d73.05916307499606!3d19.305848681946635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7bdd8891e3395%3A0x9bc9f6f5e62ce3e5!2sRENAISSANCE%20Preschool!5e0!3m2!1sen!2sin!4v1768495823093!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
                     style={{ border: 0, filter: 'grayscale(0.1) contrast(1.1)' }}
