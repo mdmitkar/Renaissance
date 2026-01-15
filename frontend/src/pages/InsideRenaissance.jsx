@@ -21,6 +21,7 @@ const EVENTS = [
         description: "Embark on a journey through our state-of-the-art campus. From modern classrooms to expansive playgrounds, every corner is designed to inspire learning and joy.",
         date: "Discover Our Campus",
         folder: "SchoolPremises",
+        galleryId: 'campus',
         images: [
             "schoolbuilding.avif",
             "classroom3.png",
@@ -47,6 +48,7 @@ const EVENTS = [
         description: "Celebrating faith, values, and community. A day filled with reflection, joy, and spiritual growth for our students.",
         date: "Faith & Values",
         folder: "New/Islamic Day",
+        galleryId: 'islamic_day',
         images: [
             "ilamioc1.jpeg",
             "islamic2.jpeg",
@@ -69,6 +71,7 @@ const EVENTS = [
         description: "A day dedicated to the pure joy and innocence of childhood. We celebrate with games, laughter, and special performances that light up every face.",
         date: "Celebration of Joy",
         folder: "ChildrensDay",
+        galleryId: 'childrens_day',
         images: [
             "ChildrenDay_2.jpeg",
             "ChildrensDay_1.jpeg"
@@ -88,6 +91,7 @@ const EVENTS = [
         description: "Instilling patriotism and pride. Our little ones honor the nation with flag hoisting, cultural programs, and a spirit of unity.",
         date: "Pride of the Nation",
         folder: "IndependenceDay",
+        galleryId: 'independence_day',
         images: [
             "IndependenceDay_1.jpeg",
             "IndependenceDay_2.jpeg"
@@ -107,6 +111,7 @@ const EVENTS = [
         description: "Building a bridge between home and school. We believe in collaborative growth, discussing progress, and shaping the future of every child together.",
         date: "Better Together",
         folder: "PTM",
+        galleryId: 'ptm',
         images: [
             "PTM_5.jpeg",
             "PTM_3.jpeg",
@@ -127,6 +132,7 @@ const EVENTS = [
         description: "A vibrant celebration of the color Red! Through dress, decoration, and activities, children learn to associate the color with love, energy, and excitement.",
         date: "Color of Love",
         folder: "RedDay",
+        galleryId: 'red_day',
         images: [
             "REDDAY6.png",
             "RedDay_1.jpeg",
@@ -147,6 +153,7 @@ const EVENTS = [
         description: "Champions in the making! A high-energy day filled with races, relays, and team spirit, teaching resilience and the joy of participation.",
         date: "Energy & Action",
         folder: "SportsDay",
+        galleryId: 'sports',
         images: [
             "sportdaymedal.jpeg",
             "sportday4.webp"
@@ -267,6 +274,12 @@ const TimelineSection = ({ event, index }) => {
                         whileTap={{ scale: 0.95 }}
                     >
                         <button
+                            onClick={() => {
+                                const element = document.getElementById(event.galleryId);
+                                if (element) {
+                                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }
+                            }}
                             className="px-6 py-3 rounded-xl text-white font-bold shadow-xl flex items-center gap-2 mx-auto md:mx-0 transition-all hover:shadow-2xl hover:gap-4 text-sm md:text-base"
                             style={{ backgroundColor: event.theme.primary }}
                         >

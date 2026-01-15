@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
@@ -8,6 +8,10 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
     const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+    const location = useLocation();
+
+    // Pages that have a dark hero section (needs light text even when transparent)
+    const isDarkHeroPage = ['/inside-renaissance'].includes(location.pathname);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -89,7 +93,10 @@ const Navbar = () => {
                                     to={link.path}
                                     className={({ isActive }) =>
                                         `relative font-body font-semibold text-base xl:text-lg py-2 transition-colors duration-300 whitespace-nowrap flex items-center gap-1
-                    ${isActive ? 'text-primary-gold' : `${scrolled ? 'text-secondary-black dark:text-gentle-sweet' : 'text-gentle-sweet'} hover:text-primary-gold dark:hover:text-primary-gold`} 
+                    ${isActive
+                                            ? 'text-primary-gold'
+                                            : `${(scrolled || !isDarkHeroPage) ? 'text-secondary-black dark:text-gentle-sweet' : 'text-gentle-sweet'} hover:text-primary-gold dark:hover:text-primary-gold`
+                                        } 
                     after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-primary-gold 
                     after:transform after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100
                     ${isActive ? 'after:scale-x-100' : ''}`
