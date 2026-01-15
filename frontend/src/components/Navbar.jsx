@@ -109,14 +109,21 @@ const Navbar = () => {
                                                 <div key={gIndex} className="flex flex-col gap-2">
                                                     <h3 className="text-xs font-bold uppercase tracking-widest text-[#BA1054] mb-2 border-b border-gray-100 dark:border-gray-800 pb-2">{group.title}</h3>
                                                     {group.items.map((subItem, subIndex) => (
-                                                        <a
+                                                        <NavLink
                                                             key={subIndex}
-                                                            href={`${link.path}#${subItem.hash}`}
+                                                            to={`${link.path}#${subItem.hash}`}
                                                             className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#BA1054] hover:translate-x-1 transition-all"
-                                                            onClick={handleNavClick}
+                                                            onClick={(e) => {
+                                                                handleNavClick();
+                                                                // Manually scroll if on same page because React Router might not trigger scroll on hash change only
+                                                                if (window.location.pathname === link.path) {
+                                                                    const element = document.getElementById(subItem.hash);
+                                                                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                                                                }
+                                                            }}
                                                         >
                                                             {subItem.name}
-                                                        </a>
+                                                        </NavLink>
                                                     ))}
                                                 </div>
                                             ))}
@@ -187,14 +194,20 @@ const Navbar = () => {
                                                 <h3 className="text-xs font-black uppercase tracking-[0.2em] text-rose-500 border-b-2 border-rose-100 dark:border-white/10 pb-2 w-full text-center">{group.title}</h3>
                                                 <div className="flex flex-col gap-2 w-full">
                                                     {group.items.map((subItem, subIndex) => (
-                                                        <a
+                                                        <NavLink
                                                             key={subIndex}
-                                                            href={`${link.path}#${subItem.hash}`}
+                                                            to={`${link.path}#${subItem.hash}`}
                                                             className="text-lg font-medium text-slate-600 dark:text-slate-300 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-white/5 py-2 rounded-lg transition-all w-full text-center"
-                                                            onClick={() => setIsOpen(false)}
+                                                            onClick={(e) => {
+                                                                setIsOpen(false);
+                                                                if (window.location.pathname === link.path) {
+                                                                    const element = document.getElementById(subItem.hash);
+                                                                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                                                                }
+                                                            }}
                                                         >
                                                             {subItem.name}
-                                                        </a>
+                                                        </NavLink>
                                                     ))}
                                                 </div>
                                             </div>
