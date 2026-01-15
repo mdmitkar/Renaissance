@@ -1,6 +1,6 @@
-import React, { useState, useRef, useLayoutEffect } from 'react';
+import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Quote, Heart, Shield, Home, Play, Users, X, PlayCircle } from 'lucide-react';
+import { Star, Quote, Heart, Shield, Home, Play, Users, X, PlayCircle, Maximize2, ChevronRight, ChevronLeft } from 'lucide-react';
 import { googleReviews } from '../data/reviews';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -29,11 +29,10 @@ const TESTIMONIAL_IMAGES = [
     { id: 'img1', src: '/New/New Testimonials/newtest1.jpeg', title: 'Smiles', type: 'image' },
     { id: 'img2', src: '/New/New Testimonials/newtest2.jpeg', title: 'Joy', type: 'image' },
     { id: 'img3', src: '/New/New Testimonials/newtest3.jpeg', title: 'School', type: 'image' },
-    { id: 'img4', src: '/New/New Testimonials/newtest4.jpeg', title: 'Fun', type: 'image' },
+    // Removed duplicate newtest4 and newtest8
     { id: 'img5', src: '/New/New Testimonials/newtest5.jpeg', title: 'Learning', type: 'image' },
     { id: 'img6', src: '/New/New Testimonials/newtest6.jpeg', title: 'Friends', type: 'image' },
     { id: 'img7', src: '/New/New Testimonials/newtest7.jpeg', title: 'Growth', type: 'image' },
-    { id: 'img8', src: '/New/New Testimonials/newtest8.jpeg', title: 'Care', type: 'image' },
     { id: 'img9', src: '/New/New Testimonials/newtest9.jpeg', title: 'Creativity', type: 'image' },
     { id: 'img14', src: '/New/New Testimonials/newtest14.jpeg', title: 'Play', type: 'image' },
 ];
@@ -44,10 +43,8 @@ const NEW_IMAGE_REVIEWS = [
     '/assets/testi/review_3.jpeg',
     '/assets/testi/review_4.jpeg',
     '/assets/testi/review_5.jpeg',
-    '/assets/testi/review_6.jpeg',
-    '/assets/testi/review_7.jpeg',
+    '/assets/testi/review_7.jpeg', // Removed review_6 (duplicate)
     '/assets/testi/review_8.jpeg',
-    '/assets/testi/review_9.jpeg',
     '/assets/testi/review_10.jpeg',
 ];
 
@@ -61,7 +58,7 @@ const CARD_COLORS = [
 
 // --- 2. COMPONENTS ---
 
-const ReviewImageCard = ({ src, index }) => {
+const ReviewImageCard = ({ src, index, onMaximize }) => {
     const colorClass = CARD_COLORS[index % CARD_COLORS.length];
 
     // Determine text color for contrast (Yellow requires dark text, others white)
@@ -84,13 +81,25 @@ const ReviewImageCard = ({ src, index }) => {
 
             {/* Inner Image Container with Unique Curve */}
             {/* rounded-tr-[5rem] matches the 'Frame 36' specific large curve */}
-            <div className="relative w-full bg-[#F5F6F8] rounded-tl-2xl rounded-bl-2xl rounded-br-2xl rounded-tr-[5rem] overflow-hidden shadow-sm aspect-square z-10 flex items-center justify-center p-0">
+            <div className="relative w-full bg-[#F5F6F8] rounded-tl-2xl rounded-bl-2xl rounded-br-2xl rounded-tr-[5rem] overflow-hidden shadow-sm aspect-square z-10 flex items-center justify-center p-0 group">
                 <img
                     src={src}
                     alt="Parent Review"
                     className="w-full h-full object-contain"
                     loading="lazy"
                 />
+
+                {/* Maximize Button Overlay */}
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onMaximize();
+                    }}
+                    className="absolute bottom-3 right-3 bg-white/90 p-2 rounded-full shadow-lg text-slate-900 hover:bg-white hover:scale-110 transition-all opacity-0 group-hover:opacity-100 z-50 cursor-pointer"
+                    title="Maximize Image"
+                >
+                    <Maximize2 size={20} />
+                </button>
             </div>
 
             {/* Logo Badge - Positioned to overlap right edge */}
@@ -241,6 +250,32 @@ const ParentsPraise = () => {
         return () => ctx.revert();
     }, []);
 
+    // Keyboard Navigation for Lightbox
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!selectedItem) return;
+            const allMedia = [
+                ...TESTIMONIAL_VIDEOS,
+                ...TESTIMONIAL_IMAGES,
+                ...NEW_IMAGE_REVIEWS.map((src, i) => ({ type: 'image', src, title: 'Happy Moment', id: `new-img-${i}` }))
+            ];
+            const currentIndex = allMedia.findIndex(m => (m.id && m.id === selectedItem.id) || m.src === selectedItem.src);
+
+            if (e.key === 'ArrowRight') {
+                const nextIndex = (currentIndex + 1) % allMedia.length;
+                setSelectedItem(allMedia[nextIndex]);
+            } else if (e.key === 'ArrowLeft') {
+                const prevIndex = (currentIndex - 1 + allMedia.length) % allMedia.length;
+                setSelectedItem(allMedia[prevIndex]);
+            } else if (e.key === 'Escape') {
+                setSelectedItem(null);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedItem]);
+
     return (
         <div ref={containerRef} className="min-h-screen bg-rose-50/30 dark:bg-black font-body text-slate-800 dark:text-gray-200 transition-colors duration-500 pb-32">
 
@@ -327,11 +362,10 @@ const ParentsPraise = () => {
 
             {/* --- TRUST STATS --- */}
             <section className="py-12 border-y border-rose-200/50 dark:border-white/5 bg-white/50 dark:bg-white/5 backdrop-blur-sm">
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-3 gap-8">
                     {[
                         { label: "Families", val: "150+" },
                         { label: "Rating", val: "4.9/5" },
-                        { label: "Years", val: "2025" },
                         { label: "Smiles", val: "∞" }
                     ].map((stat, i) => (
                         <div key={i} className="text-center">
@@ -374,12 +408,16 @@ const ParentsPraise = () => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 h-auto"> {/* Changed to col-4 to accommodate cards better */}
                         {TESTIMONIAL_IMAGES.map((img, idx) => (
                             <div key={img.id} className="w-full">
-                                <ReviewImageCard src={img.src} index={idx} />
+                                <ReviewImageCard src={img.src} index={idx} onMaximize={() => setSelectedItem(img)} />
                             </div>
                         ))}
                         {NEW_IMAGE_REVIEWS.map((src, idx) => (
                             <div key={`img-review-happy-${idx}`} className="w-full">
-                                <ReviewImageCard src={src} index={idx} />
+                                <ReviewImageCard
+                                    src={src}
+                                    index={idx}
+                                    onMaximize={() => setSelectedItem({ type: 'image', src, title: 'Happy Moment', id: `new-img-${idx}` })}
+                                />
                             </div>
                         ))}
                     </div>
@@ -394,7 +432,7 @@ const ParentsPraise = () => {
                 </div>
 
                 <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-                    {googleReviews.map((review, idx) => (
+                    {[...new Map(googleReviews.filter(r => r.review && r.review.trim() !== "").map(item => [item.name + item.review, item])).values()].map((review, idx) => (
                         <div
                             key={idx}
                             className="anim-review-card bg-white dark:bg-[#1a1a1a] p-8 rounded-[2rem] shadow-lg border border-slate-100 dark:border-white/5 break-inside-avoid hover:-translate-y-2 transition-transform duration-300"
@@ -446,27 +484,70 @@ const ParentsPraise = () => {
                             <X size={24} />
                         </button>
 
+                        {/* Navigation Buttons */}
+                        <button
+                            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white bg-white/10 p-4 rounded-full hover:bg-white/20 transition-all hover:scale-110 z-50"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                const allMedia = [
+                                    ...TESTIMONIAL_VIDEOS,
+                                    ...TESTIMONIAL_IMAGES,
+                                    ...NEW_IMAGE_REVIEWS.map((src, i) => ({ type: 'image', src, title: 'Happy Moment', id: `new-img-${i}` }))
+                                ];
+                                const currentIndex = allMedia.findIndex(m => (m.id && m.id === selectedItem.id) || m.src === selectedItem.src);
+                                const prevIndex = (currentIndex - 1 + allMedia.length) % allMedia.length;
+                                setSelectedItem(allMedia[prevIndex]);
+                            }}
+                        >
+                            <ChevronLeft size={32} />
+                        </button>
+                        <button
+                            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white bg-white/10 p-4 rounded-full hover:bg-white/20 transition-all hover:scale-110 z-50"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                const allMedia = [
+                                    ...TESTIMONIAL_VIDEOS,
+                                    ...TESTIMONIAL_IMAGES,
+                                    ...NEW_IMAGE_REVIEWS.map((src, i) => ({ type: 'image', src, title: 'Happy Moment', id: `new-img-${i}` }))
+                                ];
+                                const currentIndex = allMedia.findIndex(m => (m.id && m.id === selectedItem.id) || m.src === selectedItem.src);
+                                const nextIndex = (currentIndex + 1) % allMedia.length;
+                                setSelectedItem(allMedia[nextIndex]);
+                            }}
+                        >
+                            <ChevronRight size={32} />
+                        </button>
+
                         <div
-                            className="w-full max-w-6xl max-h-[90vh] flex flex-col items-center justify-center"
+                            className="w-full max-w-6xl max-h-[90vh] flex flex-col items-center justify-center relative"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {selectedItem.type === 'video' ? (
-                                <div className="relative w-full aspect-video md:aspect-auto md:h-[80vh]">
-                                    <video
+                            <motion.div
+                                key={selectedItem.src || selectedItem.id}
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                transition={{ duration: 0.3 }}
+                                className="w-full flex flex-col items-center justify-center"
+                            >
+                                {selectedItem.type === 'video' ? (
+                                    <div className="relative w-full aspect-video md:aspect-auto md:h-[80vh]">
+                                        <video
+                                            src={selectedItem.src}
+                                            controls
+                                            autoPlay
+                                            className="w-full h-full object-contain rounded-lg shadow-2xl"
+                                        />
+                                    </div>
+                                ) : (
+                                    <img
                                         src={selectedItem.src}
-                                        controls
-                                        autoPlay
-                                        className="w-full h-full object-contain rounded-lg shadow-2xl"
+                                        className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                                        alt={selectedItem.title}
                                     />
-                                </div>
-                            ) : (
-                                <motion.img
-                                    initial={{ scale: 0.9 }} animate={{ scale: 1 }}
-                                    src={selectedItem.src}
-                                    className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
-                                />
-                            )}
-                            <h3 className="text-white text-xl md:text-2xl font-bold mt-6 tracking-wide">{selectedItem.title}</h3>
+                                )}
+                                <h3 className="text-white text-xl md:text-2xl font-bold mt-6 tracking-wide text-center">{selectedItem.title}</h3>
+                            </motion.div>
                         </div>
                     </motion.div>
                 )}
