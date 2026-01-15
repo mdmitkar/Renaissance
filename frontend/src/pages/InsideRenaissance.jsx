@@ -620,6 +620,28 @@ const GallerySection = () => {
         }
     }, [location]);
 
+    // Keyboard Navigation for Lightbox
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!selectedMedia) return;
+            const allMedia = [...GALLERY_DATA.events, ...GALLERY_DATA.celebrations].flatMap(album => album.media);
+            const currentIndex = allMedia.findIndex(m => m === selectedMedia) || allMedia.findIndex(m => m.src === selectedMedia.src);
+
+            if (e.key === 'ArrowRight') {
+                const nextIndex = (currentIndex + 1) % allMedia.length;
+                setSelectedMedia(allMedia[nextIndex]);
+            } else if (e.key === 'ArrowLeft') {
+                const prevIndex = (currentIndex - 1 + allMedia.length) % allMedia.length;
+                setSelectedMedia(allMedia[prevIndex]);
+            } else if (e.key === 'Escape') {
+                setSelectedMedia(null);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedMedia]);
+
     const scrollReels = (direction) => {
         if (reelsRef.current) {
             reelsRef.current.scrollBy({ left: direction === 'left' ? -300 : 300, behavior: 'smooth' });
@@ -760,27 +782,63 @@ const GallerySection = () => {
                             <X size={24} />
                         </button>
 
+                        {/* Navigation Buttons */}
+                        <button
+                            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white bg-white/10 p-4 rounded-full hover:bg-white/20 transition-all hover:scale-110 z-50"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                const allMedia = [...GALLERY_DATA.events, ...GALLERY_DATA.celebrations].flatMap(album => album.media);
+                                const currentIndex = allMedia.findIndex(m => m === selectedMedia) || allMedia.findIndex(m => m.src === selectedMedia.src); // Fallback to src check
+                                const prevIndex = (currentIndex - 1 + allMedia.length) % allMedia.length;
+                                setSelectedMedia(allMedia[prevIndex]);
+                            }}
+                        >
+                            <ChevronLeft size={32} />
+                        </button>
+                        <button
+                            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white bg-white/10 p-4 rounded-full hover:bg-white/20 transition-all hover:scale-110 z-50"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                const allMedia = [...GALLERY_DATA.events, ...GALLERY_DATA.celebrations].flatMap(album => album.media);
+                                const currentIndex = allMedia.findIndex(m => m === selectedMedia) || allMedia.findIndex(m => m.src === selectedMedia.src);
+                                const nextIndex = (currentIndex + 1) % allMedia.length;
+                                setSelectedMedia(allMedia[nextIndex]);
+                            }}
+                        >
+                            <ChevronRight size={32} />
+                        </button>
+
+
                         <div
-                            className="w-full max-w-6xl max-h-[90vh] flex flex-col items-center justify-center"
+                            className="w-full max-w-6xl max-h-[90vh] flex flex-col items-center justify-center relative"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {selectedMedia.type === 'video' ? (
-                                <div className="relative w-full aspect-video md:aspect-auto md:h-[80vh]">
-                                    <video
+                            <motion.div
+                                key={selectedMedia.src} // Key change triggers animation
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                transition={{ duration: 0.3 }}
+                                className="w-full flex flex-col items-center justify-center"
+                            >
+                                {selectedMedia.type === 'video' ? (
+                                    <div className="relative w-full aspect-video md:aspect-auto md:h-[80vh]">
+                                        <video
+                                            src={selectedMedia.src}
+                                            controls
+                                            autoPlay
+                                            className="w-full h-full object-contain rounded-lg shadow-2xl"
+                                        />
+                                    </div>
+                                ) : (
+                                    <img
                                         src={selectedMedia.src}
-                                        controls
-                                        autoPlay
-                                        className="w-full h-full object-contain rounded-lg shadow-2xl"
+                                        className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                                        alt={selectedMedia.title || "Gallery Moment"}
                                     />
-                                </div>
-                            ) : (
-                                <motion.img
-                                    initial={{ scale: 0.9 }} animate={{ scale: 1 }}
-                                    src={selectedMedia.src}
-                                    className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
-                                />
-                            )}
-                            <h3 className="text-white/80 text-xl font-medium mt-6 text-center">{selectedMedia.title || "Gallery Moment"}</h3>
+                                )}
+                                <h3 className="text-white/80 text-xl font-medium mt-6 text-center">{selectedMedia.title || "Gallery Moment"}</h3>
+                            </motion.div>
                         </div>
                     </motion.div>
                 )}
