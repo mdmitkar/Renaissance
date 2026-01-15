@@ -1,51 +1,162 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, User, Calendar, BookOpen, Star, Heart, Sun, Instagram, Facebook, Youtube, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import gsap from 'gsap';
 
 const Contact = () => {
+    const sceneRef = useRef(null);
+
+    const handleMouseMove = (e) => {
+        if (!sceneRef.current) return;
+        const { clientX, clientY } = e;
+        // Subtle tilt
+        const xPos = (clientX / window.innerWidth - 0.5) * 8; // Slightly more movement than parent's praise
+        const yPos = (clientY / window.innerHeight - 0.5) * 8;
+
+        gsap.to(sceneRef.current, {
+            rotateY: xPos,
+            rotateX: -yPos,
+            duration: 2,
+            ease: "power2.out"
+        });
+    };
+
+    useLayoutEffect(() => {
+        let ctx = gsap.context(() => {
+            // --- FLOATING HERO ANIMATIONS ---
+            const floatingElements = document.querySelectorAll('.contact-float-item');
+
+            // 1. Initial State
+            gsap.set(floatingElements, {
+                opacity: 0,
+                scale: 0.5,
+                y: 50
+            });
+
+            // 2. Entrance (Gentle Pop)
+            gsap.to(floatingElements, {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 1.5,
+                stagger: 0.1,
+                ease: "back.out(1.2)"
+            });
+
+            // 3. Continuous Bobbing (Organic Float)
+            floatingElements.forEach((el, i) => {
+                const delay = Math.random() * 2;
+                gsap.to(el, {
+                    y: "random(-20, 20)",
+                    x: "random(-10, 10)",
+                    rotation: "random(-5, 5)",
+                    duration: "random(4, 7)", // Slower, more majestic float for buildings
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: delay
+                });
+            });
+
+            // Hero Text Entrance
+            gsap.from(".hero-text-enter", {
+                y: 30,
+                opacity: 0,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: "power3.out",
+                delay: 0.5
+            });
+
+        }, sceneRef); // Use sceneRef as scope if possible, or parent
+        return () => ctx.revert();
+    }, []);
+
     return (
         <div className="min-h-screen bg-bg-cream dark:bg-[#111] overflow-x-hidden font-body transition-colors duration-300">
 
-            {/* 1. HERO SECTION - Playful & Welcoming */}
-            <div className="relative h-[60vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src="/New/otherimprenaisanceentry.jpeg"
-                        alt="Renaissance Campus"
-                        className="w-full h-full object-cover filter brightness-[0.3]"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-gulf-blue/60 via-transparent to-[#111]/90"></div>
+            {/* 1. HERO SECTION - 3D Campus Floating Scene */}
+            {/* 1. HERO SECTION - 3D Campus Floating Scene */}
+            <div
+                onMouseMove={handleMouseMove}
+                className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden [perspective:1000px] bg-gradient-to-br from-[#FDFBF7] via-white to-[#F0F4F8] dark:from-[#0a0a0a] dark:via-[#111] dark:to-[#0a0a0a]"
+            >
+                {/* 3D Scene Wrapper */}
+                <div ref={sceneRef} className="relative w-full h-full max-w-[1600px] flex items-center justify-center [transform-style:preserve-3d] py-20">
+
+                    {/* --- FLOATING CAMPUS IMAGES --- */}
+                    {/* Spread out more to avoid overlapping text */}
+
+                    {/* Top Left: School Building */}
+                    <div className="contact-float-item absolute top-[8%] left-[2%] md:left-[5%] w-40 md:w-72 z-10 hidden md:block">
+                        <div className="bg-white dark:bg-zinc-800 p-3 rounded-2xl shadow-2xl border border-white/50 dark:border-white/10 rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                            <img src="/SchoolPremises/schoolbuilding.avif" alt="Our Campus" className="rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
+                            <div className="text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
+                        </div>
+                    </div>
+
+                    {/* Bottom Right: Classroom */}
+                    <div className="contact-float-item absolute bottom-[12%] right-[2%] md:right-[5%] w-40 md:w-72 z-10 hidden md:block">
+                        <div className="bg-white dark:bg-zinc-800 p-3 rounded-2xl shadow-2xl border border-white/50 dark:border-white/10 rotate-[5deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                            <img src="/SchoolPremises/classroom1.jpeg" alt="Classroom" className="rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
+                            <div className="text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Learning Spaces</div>
+                        </div>
+                    </div>
+
+                    {/* Top Right: Playground Environment */}
+                    <div className="contact-float-item absolute top-[12%] right-[5%] md:right-[8%] w-32 md:w-60 z-0 hidden md:block opacity-80 hover:opacity-100 transition-opacity">
+                        <div className="bg-white dark:bg-zinc-800 p-2 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[3deg] hover:scale-105 transition-transform duration-300">
+                            <img src="/SchoolPremises/playground3.png" alt="Play Area" className="rounded-xl w-full h-auto object-cover aspect-square" />
+                        </div>
+                    </div>
+
+                    {/* Bottom Left: Activity/Play */}
+                    <div className="contact-float-item absolute bottom-[15%] left-[5%] md:left-[8%] w-36 md:w-60 z-0 hidden md:block opacity-80 hover:opacity-100 transition-opacity">
+                        <div className="bg-white dark:bg-zinc-800 p-2 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-4deg] hover:scale-105 transition-transform duration-300">
+                            <img src="/SchoolPremises/classplay.jpeg" alt="Activities" className="rounded-xl w-full h-auto object-cover aspect-square" />
+                        </div>
+                    </div>
+
+                    {/* --- FLOATING ICONS/DECORATIONS --- */}
+                    <div className="contact-float-item absolute top-[25%] left-[28%] text-blue-200 dark:text-blue-900/30 blur-[1px]"><MapPin size={48} className="fill-current" /></div>
+                    <div className="contact-float-item absolute bottom-[35%] right-[28%] text-rose-200 dark:text-rose-900/30 blur-[1px]"><Mail size={40} className="fill-current" /></div>
+                    <div className="contact-float-item absolute top-[18%] right-[32%] text-amber-200 dark:text-amber-900/30 blur-[1px]"><Sun size={56} className="animate-[spin_10s_linear_infinite]" /></div>
+
+
+                    {/* --- CENTRAL HERO TEXT --- */}
+                    <div className="relative z-30 text-center px-4 max-w-5xl mx-auto [transform:translateZ(60px)]">
+                        <motion.h1
+                            className="hero-text-enter text-6xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-8 drop-shadow-sm tracking-tighter leading-[0.85]"
+                        >
+                            Join the <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:to-violet-400 relative inline-block px-4">
+                                Renaissance
+                                {/* Subtle Underline Decoration */}
+                                <div className="absolute -bottom-2 left-0 w-full h-3 bg-yellow-300/30 -rotate-1 rounded-full -z-10"></div>
+                            </span> <br />
+                            Family
+                        </motion.h1>
+
+                        <motion.div className="hero-text-enter flex flex-col items-center gap-6">
+                            <p
+                                className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-body font-medium tracking-wide"
+                            >
+                                Visits, enquiries, or just a friendly hello.
+                            </p>
+
+                            <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
+                        </motion.div>
+                    </div>
+
                 </div>
 
-                {/* Floating Blobs - Adjusted Position */}
-                <motion.div animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }} transition={{ duration: 6, repeat: Infinity }} className="absolute top-32 left-10 md:left-20 text-gentle-yellow opacity-60"><Sun size={80} /></motion.div>
-                <motion.div animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity }} className="absolute bottom-20 right-10 md:right-32 text-luxury-pink opacity-60"><Heart size={80} /></motion.div>
-
-                <div className="relative z-10 text-center px-4 max-w-4xl mx-auto pt-24 pb-20">
-                    <motion.h1
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-5xl md:text-8xl font-heading font-medium text-white mb-6 drop-shadow-2xl tracking-tight leading-[0.9]"
-                    >
-                        Join the <span className="text-gentle-yellow relative">Renaissance <svg className="absolute w-full h-3 bottom-1 left-0 text-primary-carmine" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" /></svg></span> Family
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                        className="text-xl md:text-2xl text-slate-100 max-w-2xl mx-auto leading-relaxed font-body font-light tracking-wide drop-shadow-lg"
-                    >
-                        Visits, enquiries, or just a friendly hello. We are always here for you.
-                    </motion.p>
-                </div>
-
-                {/* Wave Divider */}
+                {/* Soft Wave Divider at Bottom */}
                 <div className="absolute bottom-0 left-0 w-full leading-none z-20 text-bg-cream dark:text-[#111]">
                     <svg className="block w-full h-16 md:h-32" viewBox="0 0 1440 320" preserveAspectRatio="none">
                         <path fill="currentColor" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
                     </svg>
                 </div>
+
             </div>
 
             {/* MAIN CONTENT - FIXED Z-INDEX & OVERLAP */}
