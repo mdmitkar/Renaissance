@@ -58,6 +58,8 @@ export default {
         heading: ['Playfair Display', 'serif'],
         body: ['Poppins', 'sans-serif'],
         gothic: ['UnifrakturMaguntia', 'cursive'],
+        english: ['"English Towne"', 'cursive'],
+        baloo: ['"Baloo 2"', 'cursive'],
       },
     },
   },

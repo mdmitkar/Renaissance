@@ -304,7 +304,7 @@ const Home = () => {
                             }}
                             initial="hidden"
                             animate="visible"
-                            className="text-[15vw] md:text-[12rem] font-gothic font-normal text-primary-gold leading-none drop-shadow-2xl mb-4 tracking-tighter w-full text-center"
+                            className="text-[17vw] md:text-[14rem] font-english font-normal text-[#D4AF37] leading-none drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] mb-4 tracking-normal w-full text-center"
                         >
                             {"Renaissance".split("").map((char, index) => (
                                 <motion.span
@@ -324,7 +324,7 @@ const Home = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1.2, duration: 1 }}
-                            className="text-3xl md:text-5xl font-heading font-light text-gentle-sweet uppercase tracking-[0.2em] mb-8"
+                            className="text-3xl md:text-5xl font-baloo font-light text-gentle-sweet uppercase tracking-[0.2em] mb-8"
                         >
                             Preschool
                         </motion.div>
@@ -841,7 +841,7 @@ const PETAL_DATA = [
 const PROGRAMS = [
     {
         title: "Playgroup",
-        age: "1.5 - 2.5 Years",
+        age: "2 - 3 Years",
         desc: "A sensory wonderland for our tiniest tots. Montessori-inspired aids meet messy play.",
         bg: "#BE185D", // Pink 700 - Vibrant
         img: "/assets/generated/playgroup.png",
@@ -849,7 +849,7 @@ const PROGRAMS = [
     },
     {
         title: "Nursery",
-        age: "2.5 - 3.5 Years",
+        age: "3 - 4 Years",
         desc: "Stepping stones to early literacy. Letters and numbers become friends through stories.",
         bg: "#059669", // Emerald 600 - Vibrant Green
         img: "/otherimp/nursery.png",
@@ -857,7 +857,7 @@ const PROGRAMS = [
     },
     {
         title: "Junior KG",
-        age: "3.5 - 4.5 Years",
+        age: "4 - 5 Years",
         desc: "Curiosity takes flight. Science experiments, reading clubs, and logical reasoning.",
         bg: "#D97706", // Amber 600 - Rich Orange/Gold
         img: "/otherimp/jrkg.png",
@@ -865,7 +865,7 @@ const PROGRAMS = [
     },
     {
         title: "Senior KG",
-        age: "4.5 - 5.5 Years",
+        age: "5 - 6 Years",
         desc: "Ready for the big world. Advanced concepts, leadership, and school readiness.",
         bg: "#4F46E5", // Indigo 600 - Vibrant Blue/Purple
         img: "/otherimp/srjkg.png",
