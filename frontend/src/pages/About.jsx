@@ -274,7 +274,7 @@ const About = () => {
                                         <img
                                             src="/New/newowner23.png"
                                             alt="Mr. Meraj Patel"
-                                            className="w-full h-auto rounded-2xl shadow-lg relative z-10 aspect-[3/4] object-cover"
+                                            className="w-full h-auto rounded-2xl shadow-lg relative z-10 aspect-[3/4] object-cover object-top"
                                         />
                                     </div>
                                 </div>
