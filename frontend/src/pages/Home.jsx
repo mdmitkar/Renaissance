@@ -411,10 +411,10 @@ const Home = () => {
                         <div className="reveal-text grid grid-cols-2 gap-6 w-full">
                             {/* Feature Cards with Hover Animation */}
                             {[
-                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit", img: "/assets/cards/holistic_growth.png" },
-                                { icon: "🛡️", title: "Safety First", desc: "Top-tier Security", img: "/assets/cards/safety_first.png" },
-                                { icon: "🎨", title: "Creative Arts", desc: "Express Freely", img: "/assets/cards/creative_arts.png" },
-                                { icon: "🤝", title: "Community", desc: "Stronger Together", img: "/assets/cards/community.png" }
+                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit", img: "/assets/cards/holistic_growth_gen.png" },
+                                { icon: "🎨", title: "Express freely", desc: "Unleash Potential", img: "/New/expressfreely.png" },
+                                { icon: "🧩", title: "Fun & Learn", desc: "Joyful Discovery", img: "/New/funandlearn.png" },
+                                { icon: "🚀", title: "Activity & creativity base learning", desc: "Hands-on Growth", img: "/New/activityandcreativ.png" }
                             ].map((item, idx) => (
                                 <div key={idx} className="group relative overflow-hidden rounded-[2rem] h-[350px] shadow-sm hover:shadow-xl cursor-default border border-gray-100 transition-shadow duration-300">
                                     {/* 1. Background Image */}
@@ -833,7 +833,7 @@ const PETAL_DATA = [
     { title: "Play-Based", emoji: "🧸", desc: "Learning through exploration and curiosity to naturally develop skills while having fun.", img: "/SchoolPremises/classplay.jpeg", color: "text-white", bg: "bg-[#831843]" }, // Dark Pink
     { title: "Creativity", emoji: "🎨", desc: "Encouraging art, craft, storytelling, and imagination for confident self-expression.", img: "/otherimp/ChildrensDay_2_copy.jpeg", color: "text-white", bg: "bg-[#065F46]" }, // Dark Emerald
     { title: "Social Growth", emoji: "❤️", desc: "Building teamwork, empathy, and communication to help children feel valued.", img: "/ChildrensDay/ChildrensDay_1.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
-    { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/SchoolPremises/classroom2.jpeg", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
+    { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/New/intellectual.png", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
     { title: "Physical", emoji: "🏃", desc: "Focus on movement, coordination, and healthy habits through active play.", img: "/Activities/motor.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
     { title: "Parent Partnership", emoji: "🤝", desc: "Building a bridge between home and school, ensuring you are an active partner in your child's growth.", img: "/PTM/PTM_3.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
 ];
