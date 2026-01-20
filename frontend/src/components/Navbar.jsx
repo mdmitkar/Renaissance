@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 
-const Navbar = () => {
+const Navbar = ({ onOpenAdmission }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
@@ -143,12 +143,12 @@ const Navbar = () => {
 
                     {/* Right Actions: Admission Button + Theme Toggle */}
                     <div className="flex items-center gap-6">
-                        <NavLink
-                            to="/admission"
-                            className="bg-primary-gold text-secondary-black font-heading font-bold px-6 py-2 rounded-full hover:bg-yellow-500 transition-all transform hover:scale-105 shadow-md whitespace-nowrap"
+                        <button
+                            onClick={onOpenAdmission}
+                            className="bg-primary-gold text-secondary-black font-heading font-bold px-6 py-2 rounded-full hover:bg-yellow-500 transition-all transform hover:scale-105 shadow-md whitespace-nowrap cursor-pointer"
                         >
                             Admission
-                        </NavLink>
+                        </button>
                         <ThemeToggle />
                     </div>
                 </div>
@@ -224,13 +224,15 @@ const Navbar = () => {
                             </li>
                         ))}
                         <li className="w-full text-center mt-4">
-                            <NavLink
-                                to="/admission"
-                                className="inline-block bg-primary-gold text-secondary-black font-heading font-bold px-8 py-3 rounded-full text-xl hover:bg-yellow-500 transition-all shadow-md"
-                                onClick={() => setIsOpen(false)}
+                            <button
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    onOpenAdmission();
+                                }}
+                                className="inline-block bg-primary-gold text-secondary-black font-heading font-bold px-8 py-3 rounded-full text-xl hover:bg-yellow-500 transition-all shadow-md cursor-pointer"
                             >
                                 Admission
-                            </NavLink>
+                            </button>
                         </li>
                     </ul>
                 </div>

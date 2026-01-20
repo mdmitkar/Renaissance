@@ -11,7 +11,7 @@ const Layout = () => {
 
     return (
         <div className="min-h-screen bg-bg-cream text-secondary-black font-body dark:bg-bg-dark dark:text-gray-100 transition-colors duration-300">
-            <Navbar />
+            <Navbar onOpenAdmission={() => setIsAdmissionOpen(true)} />
             <main>
                 <Outlet />
             </main>
