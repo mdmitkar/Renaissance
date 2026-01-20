@@ -411,7 +411,7 @@ const Home = () => {
                         <div className="reveal-text grid grid-cols-2 gap-6 w-full">
                             {/* Feature Cards with Hover Animation */}
                             {[
-                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit", img: "/assets/cards/holistic_growth_gen.png" },
+                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit", img: "/assets/cards/holistic_growth_stages.png" },
                                 { icon: "🎨", title: "Express freely", desc: "Unleash Potential", img: "/New/expressfreely.png" },
                                 { icon: "🧩", title: "Fun & Learn", desc: "Joyful Discovery", img: "/New/funandlearn.png" },
                                 { icon: "🚀", title: "Activity & creativity base learning", desc: "Hands-on Growth", img: "/New/activityandcreativ.png" }
@@ -423,6 +423,17 @@ const Home = () => {
                                         alt={item.title}
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
+
+                                    {/* 1.1 Plant Growth Text Overlay (Specific to Holistic Growth) */}
+                                    {item.title === "Holistic Growth" && (
+                                        <div className="absolute inset-0 z-10 pointer-events-none font-body">
+                                            {/* Adjusted positions for 4-stage image */}
+                                            <span className="absolute left-[5%] bottom-[25%] text-white text-[10px] md:text-sm font-bold drop-shadow-md bg-black/20 backdrop-blur-[1px] px-2 py-0.5 rounded-full border border-white/20">Playgroup</span>
+                                            <span className="absolute left-[30%] bottom-[35%] text-white text-[10px] md:text-sm font-bold drop-shadow-md bg-black/20 backdrop-blur-[1px] px-2 py-0.5 rounded-full border border-white/20">Nursery</span>
+                                            <span className="absolute left-[55%] bottom-[50%] text-white text-[10px] md:text-sm font-bold drop-shadow-md bg-black/20 backdrop-blur-[1px] px-2 py-0.5 rounded-full border border-white/20">Jr. KG</span>
+                                            <span className="absolute left-[80%] bottom-[65%] text-white text-[10px] md:text-sm font-bold drop-shadow-md bg-black/20 backdrop-blur-[1px] px-2 py-0.5 rounded-full border border-white/20">Sr. KG</span>
+                                        </div>
+                                    )}
 
                                     {/* 2. Slide-up Content Overlay */}
                                     {/* Initial: Translated DOWN (off-screen or minimal visibility). Hover: Slides UP to cover. */}
@@ -530,7 +541,7 @@ const Home = () => {
 
                                 {/* Image Content */}
                                 <div className="md:w-1/2 h-64 md:h-full w-full relative rounded-[2rem] overflow-hidden shadow-inner rotate-3">
-                                    <img src={petal.img} alt={petal.title} className={`w-full h-full object-cover transform scale-110 ${petal.imgPos || 'object-center'}`} />
+                                    <img src={petal.img} alt={petal.title} className={`w-full h-full object-cover transform ${petal.scale || 'scale-110'} ${petal.imgPos || 'object-center'}`} />
                                 </div>
                             </div>
                         ))}
@@ -833,7 +844,7 @@ const PETAL_DATA = [
     { title: "Play-Based", emoji: "🧸", desc: "Learning through exploration and curiosity to naturally develop skills while having fun.", img: "/SchoolPremises/classplay.jpeg", color: "text-white", bg: "bg-[#831843]" }, // Dark Pink
     { title: "Creativity", emoji: "🎨", desc: "Encouraging art, craft, storytelling, and imagination for confident self-expression.", img: "/otherimp/ChildrensDay_2_copy.jpeg", color: "text-white", bg: "bg-[#065F46]" }, // Dark Emerald
     { title: "Social Growth", emoji: "❤️", desc: "Building teamwork, empathy, and communication to help children feel valued.", img: "/ChildrensDay/ChildrensDay_1.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
-    { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/New/intellectual.png", color: "text-white", bg: "bg-[#7F1D1D]" }, // Dark Red
+    { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/New/intellectual.png", color: "text-white", bg: "bg-[#7F1D1D]", imgPos: "object-top", scale: "scale-100" }, // Dark Red
     { title: "Physical", emoji: "🏃", desc: "Focus on movement, coordination, and healthy habits through active play.", img: "/Activities/motor.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
     { title: "Parent Partnership", emoji: "🤝", desc: "Building a bridge between home and school, ensuring you are an active partner in your child's growth.", img: "/PTM/PTM_3.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
 ];
