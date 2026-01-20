@@ -389,7 +389,7 @@ const Home = () => {
                             </div>
                             <h2 className="reveal-text text-4xl md:text-6xl font-heading font-black text-gulf-lebanese dark:text-white leading-tight">
                                 WE BUILD <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink via-purple-400 to-indigo-500 animate-gradient-x">
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink via-purple-400 to-indigo-500 dark:from-pink-300 dark:via-purple-300 dark:to-indigo-300 animate-gradient-x drop-shadow-sm">
                                     BRIGHT MINDS
                                 </span> <br />
                                 FOR TOMORROW.
@@ -411,41 +411,43 @@ const Home = () => {
                         <div className="reveal-text grid grid-cols-2 gap-6 w-full">
                             {/* Feature Cards with Hover Animation */}
                             {[
-                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit", img: "/assets/cards/holistic_growth_text.png" },
+                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit", img: "/assets/cards/holistic_growth_centered.png" },
                                 { icon: "🎨", title: "Express freely", desc: "Unleash Potential", img: "/New/expressfreely.png" },
                                 { icon: "🧩", title: "Fun & Learn", desc: "Joyful Discovery", img: "/New/funandlearn.png" },
                                 { icon: "🚀", title: "Activity & creativity base learning", desc: "Hands-on Growth", img: "/New/activityandcreativ.png" }
                             ].map((item, idx) => (
-                                <div key={idx} className="group relative overflow-hidden rounded-[2rem] h-[350px] shadow-sm hover:shadow-xl cursor-default border border-gray-100 transition-shadow duration-300">
+                                <div key={idx} className="group relative overflow-hidden rounded-[2rem] h-[350px] shadow-lg hover:shadow-2xl cursor-default border border-white/20 dark:border-white/10 transition-all duration-500 bg-black">
                                     {/* 1. Background Image */}
                                     <img
                                         src={item.img}
                                         alt={item.title}
-                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
                                     />
 
-                                    {/* Overlay removed as text is now in image */}
+                                    {/* Overlay for better text visibility */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500"></div>
 
-                                    {/* 2. Slide-up Content Overlay */}
-                                    {/* Initial: Translated DOWN (off-screen or minimal visibility). Hover: Slides UP to cover. */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-8 translate-y-[60%] group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                                    {/* 2. Content Overlay */}
+                                    <div className="absolute inset-0 flex flex-col justify-end p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
 
                                         {/* Visible Part (Icon + Title) */}
-                                        <div className="mb-2">
-                                            <span className="text-4xl mb-3 block filter drop-shadow-md">{item.icon}</span>
-                                            <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-md leading-tight">{item.title}</h3>
+                                        <div className="mb-2 relative z-10 transition-transform duration-500 group-hover:-translate-y-2">
+                                            <span className="text-4xl mb-4 block filter drop-shadow-lg">{item.icon}</span>
+                                            <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-lg leading-tight tracking-wide font-heading">{item.title}</h3>
                                         </div>
 
                                         {/* Hidden Part (Description + Decor) */}
-                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                                            <div className="w-12 h-1 bg-luxury-pink mb-4 rounded-full"></div>
-                                            <p className="text-white/90 font-medium text-lg leading-relaxed">
+                                        <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-500 opacity-0 group-hover:opacity-100">
+                                            <div className="w-12 h-1 bg-luxury-pink mb-3 rounded-full shadow-[0_0_10px_rgba(235,59,150,0.8)]"></div>
+                                            <p className="text-gray-200 font-medium text-lg leading-relaxed drop-shadow-md">
                                                 {item.desc}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             ))}
+
+
                         </div>
                         <div className="reveal-text px-4 md:px-0">
                             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed font-medium text-justify">
@@ -480,19 +482,21 @@ const Home = () => {
                     >
                         <Flower2 size={800} strokeWidth={0.5} />
                     </motion.div>
-                </div>
+                </div >
 
                 {/* Side Navigation for Petals */}
-                <div className="hidden md:flex flex-col gap-6 absolute left-12 top-1/2 -translate-y-1/2 z-20">
-                    {PETAL_DATA.map((_, idx) => (
-                        <div key={idx} className="flex items-center gap-4 transition-all duration-300" style={{ opacity: activePetal === idx ? 1 : 0.3 }}>
-                            <div className={`w-3 h-3 rounded-full ${activePetal === idx ? 'bg-gulf-lebanese scale-125' : 'bg-gray-400'}`}></div>
-                            <span className={`text-sm font-bold tracking-widest uppercase origin-left transition-all duration-300 ${activePetal === idx ? 'translate-x-0' : '-translate-x-4 opacity-0'}`}>
-                                0{idx + 1}
-                            </span>
-                        </div>
-                    ))}
-                </div>
+                < div className="hidden md:flex flex-col gap-6 absolute left-12 top-1/2 -translate-y-1/2 z-20" >
+                    {
+                        PETAL_DATA.map((_, idx) => (
+                            <div key={idx} className="flex items-center gap-4 transition-all duration-300" style={{ opacity: activePetal === idx ? 1 : 0.3 }}>
+                                <div className={`w-3 h-3 rounded-full ${activePetal === idx ? 'bg-gulf-lebanese scale-125' : 'bg-gray-400'}`}></div>
+                                <span className={`text-sm font-bold tracking-widest uppercase origin-left transition-all duration-300 ${activePetal === idx ? 'translate-x-0' : '-translate-x-4 opacity-0'}`}>
+                                    0{idx + 1}
+                                </span>
+                            </div>
+                        ))
+                    }
+                </div >
 
                 <div className="relative w-full max-w-7xl px-6 h-full flex flex-col justify-center">
                     {/* Logical Title Separation */}
@@ -538,18 +542,18 @@ const Home = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* --- SECTION 4: PROGRAMS (Horizontal Scroll) --- */}
-            <section className="journey-section h-auto bg-gulf-lebanese text-white overflow-hidden relative flex flex-col md:flex-row items-center py-20 md:py-24">
+            < section className="journey-section h-auto bg-gulf-lebanese text-white overflow-hidden relative flex flex-col md:flex-row items-center py-20 md:py-24" >
 
 
 
                 {/* Horizontal Container */}
-                <div className="journey-container flex flex-col md:flex-row h-auto items-center px-6 md:px-[10vw] gap-12 md:gap-[20vw] w-full md:w-max mt-[5%]">
+                < div className="journey-container flex flex-col md:flex-row h-auto items-center px-6 md:px-[10vw] gap-12 md:gap-[20vw] w-full md:w-max mt-[5%]" >
 
                     {/* Intro Card */}
-                    <div className="reveal-on-mobile journey-card min-w-[85vw] md:min-w-[30vw] flex flex-col justify-center shrink-0 text-center md:text-left">
+                    < div className="reveal-on-mobile journey-card min-w-[85vw] md:min-w-[30vw] flex flex-col justify-center shrink-0 text-center md:text-left" >
                         <h2 className="text-2xl md:text-5xl font-heading font-black leading-none mb-6">
                             GROWING
                             <span className="text-luxury-pink"> UP.</span>
@@ -561,61 +565,63 @@ const Home = () => {
                             <ArrowRight size={32} className="animate-pulse" />
                             <span className="uppercase tracking-widest text-sm">Scroll to Explore</span>
                         </div>
-                    </div>
+                    </div >
 
-                    {PROGRAMS.map((prog, i) => (
-                        <div
-                            key={i}
-                            className="reveal-on-mobile journey-card relative w-[90vw] md:w-[650px] h-[600px] md:h-[550px] flex flex-col md:flex-row shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
-                            style={{ backgroundColor: prog.bg }}
-                        >
-                            {/* Content Side */}
-                            <div className="md:w-1/2 p-5 md:p-8 flex flex-col relative z-10 text-white h-full">
-                                <div>
-                                    <div className="flex items-center gap-4 mb-6">
-                                        <span className="px-3 py-1 rounded-full border border-white/30 text-xs font-bold uppercase tracking-wider text-white relative z-20">
-                                            {prog.age}
-                                        </span>
-                                        <div className="h-[1px] flex-grow bg-white/20 relative z-20"></div>
-                                    </div>
-
-                                    <h3 className="text-2xl md:text-[2rem] font-black mb-2 md:mb-4 leading-tight text-white relative z-20">
-                                        {prog.title}
-                                    </h3>
-                                    <p className="text-sm md:text-base text-white/90 font-medium leading-relaxed relative z-20">
-                                        {prog.desc}
-                                    </p>
-                                </div>
-
-                                <div className="mt-8 md:mt-12 relative z-20">
-                                    <h4 className="font-bold text-xs md:text-sm uppercase tracking-widest text-white/60 mb-2 md:mb-4">Highlights</h4>
-                                    <div className="flex flex-wrap gap-2 md:gap-3">
-                                        {prog.tags.map((tag, idx) => (
-                                            <span key={idx} className="px-3 py-1 md:px-5 md:py-2 bg-white/10 backdrop-blur-md rounded-full font-bold text-xs md:text-sm border border-white/20 text-white">
-                                                {tag}
+                    {
+                        PROGRAMS.map((prog, i) => (
+                            <div
+                                key={i}
+                                className="reveal-on-mobile journey-card relative w-[90vw] md:w-[650px] h-[600px] md:h-[550px] flex flex-col md:flex-row shrink-0 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
+                                style={{ backgroundColor: prog.bg }}
+                            >
+                                {/* Content Side */}
+                                <div className="md:w-1/2 p-5 md:p-8 flex flex-col relative z-10 text-white h-full">
+                                    <div>
+                                        <div className="flex items-center gap-4 mb-6">
+                                            <span className="px-3 py-1 rounded-full border border-white/30 text-xs font-bold uppercase tracking-wider text-white relative z-20">
+                                                {prog.age}
                                             </span>
-                                        ))}
+                                            <div className="h-[1px] flex-grow bg-white/20 relative z-20"></div>
+                                        </div>
+
+                                        <h3 className="text-2xl md:text-[2rem] font-black mb-2 md:mb-4 leading-tight text-white relative z-20">
+                                            {prog.title}
+                                        </h3>
+                                        <p className="text-sm md:text-base text-white/90 font-medium leading-relaxed relative z-20">
+                                            {prog.desc}
+                                        </p>
+                                    </div>
+
+                                    <div className="mt-8 md:mt-12 relative z-20">
+                                        <h4 className="font-bold text-xs md:text-sm uppercase tracking-widest text-white/60 mb-2 md:mb-4">Highlights</h4>
+                                        <div className="flex flex-wrap gap-2 md:gap-3">
+                                            {prog.tags.map((tag, idx) => (
+                                                <span key={idx} className="px-3 py-1 md:px-5 md:py-2 bg-white/10 backdrop-blur-md rounded-full font-bold text-xs md:text-sm border border-white/20 text-white">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Overlay Number */}
+                                    <div className="absolute bottom-[-1rem] right-0 text-[10rem] md:text-[12rem] font-black text-white/5 leading-none z-0 select-none pointer-events-none">
+                                        0{i + 1}
                                     </div>
                                 </div>
 
-                                {/* Overlay Number */}
-                                <div className="absolute bottom-[-1rem] right-0 text-[10rem] md:text-[12rem] font-black text-white/5 leading-none z-0 select-none pointer-events-none">
-                                    0{i + 1}
+                                {/* Image Side */}
+                                <div className="md:w-1/2 h-64 md:h-full relative overflow-hidden">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent z-10 w-32"></div>
+                                    <img
+                                        src={prog.img}
+                                        alt={prog.title}
+                                        className="journey-img w-full h-full object-cover"
+                                    />
+                                    {/* Overlay Number Removed */}
                                 </div>
                             </div>
-
-                            {/* Image Side */}
-                            <div className="md:w-1/2 h-64 md:h-full relative overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent z-10 w-32"></div>
-                                <img
-                                    src={prog.img}
-                                    alt={prog.title}
-                                    className="journey-img w-full h-full object-cover"
-                                />
-                                {/* Overlay Number Removed */}
-                            </div>
-                        </div>
-                    ))}
+                        ))
+                    }
 
                     {/* End Card */}
                     <div className="reveal-on-mobile journey-card min-w-[85vw] md:min-w-[40vw] flex flex-col justify-center items-center text-center shrink-0 pr-0 md:pr-20 pb-20 md:pb-0">
@@ -630,11 +636,11 @@ const Home = () => {
                         </button>
                     </div>
 
-                </div>
-            </section>
+                </div >
+            </section >
 
             {/* --- SECTION 5: LIVE STATS & TESTIMONIALS --- */}
-            <section className="py-10 bg-white dark:bg-[#111] overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)] transition-colors duration-300">
+            < section className="py-10 bg-white dark:bg-[#111] overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)] transition-colors duration-300" >
                 <div className="max-w-7xl mx-auto px-6 mb-20 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
                     {/* Left Video */}
                     <HoverVideo src="/videos/Testimonial_1.mp4" />
@@ -712,10 +718,10 @@ const Home = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* --- SECTION 6: FAQ --- */}
-            <section className="py-24 bg-[#F9F7F2] dark:bg-black relative z-10 px-6 transition-colors duration-300">
+            < section className="py-24 bg-[#F9F7F2] dark:bg-black relative z-10 px-6 transition-colors duration-300" >
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
                         <span className="text-luxury-pink font-bold tracking-widest uppercase text-sm">Got Questions?</span>
@@ -734,10 +740,10 @@ const Home = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* --- SECTION 7: PROFESSIONAL CTA --- */}
-            <section className="relative py-24 px-6 overflow-hidden bg-[#FDFBF7] dark:bg-[#111] transition-colors duration-300">
+            < section className="relative py-24 px-6 overflow-hidden bg-[#FDFBF7] dark:bg-[#111] transition-colors duration-300" >
                 <div className="max-w-7xl mx-auto">
                     <div className="bg-white dark:bg-[#1a1a1a] rounded-[3rem] p-8 md:p-16 shadow-2xl border border-gray-100 dark:border-white/10 relative overflow-hidden flex flex-col md:flex-row gap-12 items-center">
 
@@ -806,10 +812,10 @@ const Home = () => {
 
                     </div>
                 </div>
-            </section>
+            </section >
 
             <AdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
-        </div>
+        </div >
     );
 };
 
