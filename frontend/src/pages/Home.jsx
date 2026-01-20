@@ -324,7 +324,7 @@ const Home = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1.2, duration: 1 }}
-                            className="text-3xl md:text-5xl font-baloo font-light text-gentle-sweet uppercase tracking-[0.2em] mb-8"
+                            className="text-3xl md:text-5xl font-baloo font-bold text-gentle-sweet uppercase tracking-[0.2em] mb-8"
                         >
                             Preschool
                         </motion.div>
@@ -724,7 +724,7 @@ const Home = () => {
                         {[
                             { q: "What is the age criteria for admission?", a: "We welcome children from 1.5 years for Playgroup, 2.5 years for Nursery, 3.5 years for Junior KG, and 4.5 years for Senior KG." },
                             { q: "What is the 'Seven Petals' philosophy?", a: "Our curriculum depends on 7 key areas: Culture & Patriotism, Play-Based Learning, Creativity, Social Growth, Intellectual Development, Physical Growth, and Parent Partnership." },
-                            { q: "Is transport facility available?", a: "Currently, we do not provide school transport facilities. Parents are requested to make their own travel arrangements." },
+                            { q: "Is transport facility available?", a: "Currently, we do not provide school transport facilities. Although we can introduce you to several transportation personnel who are already serving students of our school from almost all locations." },
                             { q: "How do I schedule a campus visit?", a: "You can simply fill out the enquiry form by clicking the 'Enroll Now' button, or call our admissions office directly to book a slot." },
                             { q: "What are the safety measures on campus?", a: "Safety is our priority. We have 24/7 CCTV surveillance, security personnel, soft-flooring in play areas, and background-verified staff." }
                         ].map((faq, i) => (
