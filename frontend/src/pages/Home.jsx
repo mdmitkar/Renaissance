@@ -16,7 +16,7 @@ const HERO_SLIDES = [
     "/ChildrensDay/ChildrenDay_2.jpeg",
     "/RedDay/RedDay_1.jpeg",
     "/IndependenceDay/IndependenceDay_2.jpeg",
-    "/SchoolPremises/schoolbuilding.avif",
+    "/assets/school_building_enhanced.png",
     "/SchoolPremises/classroom2.jpeg",
     "/ChildrensDay/ChildrensDay_1.jpeg"
 ];
@@ -325,7 +325,7 @@ const Home = () => {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1.2, duration: 1 }}
                             className="text-3xl md:text-5xl font-baloo font-bold text-gentle-sweet uppercase tracking-[0.2em] mb-8"
-                        >   
+                        >
                             Preschool
                         </motion.div>
 
@@ -413,7 +413,7 @@ const Home = () => {
                             {[
                                 { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit", img: "/assets/cards/holistic_growth_centered.png" },
                                 { icon: "🎨", title: "Express freely", desc: "Unleash Potential", img: "/New/expressfreely.png" },
-                                { icon: "🧩", title: "Fun & Learn", desc: "Joyful Discovery", img: "/New/funandlearn.png" },
+                                { icon: "🧩", title: "Fun & Learn", desc: "Joyful Learning", img: "/New/funandlearn.png" },
                                 { icon: "🚀", title: "Activity & creativity base learning", desc: "Hands-on Growth", img: "/New/activityandcreativ.png" }
                             ].map((item, idx) => (
                                 <div key={idx} className="group relative overflow-hidden rounded-[2rem] h-[350px] shadow-lg hover:shadow-2xl cursor-default border border-white/20 dark:border-white/10 transition-all duration-500 bg-black">
@@ -730,11 +730,11 @@ const Home = () => {
 
                     <div className="space-y-4">
                         {[
-                            { q: "What is the age criteria for admission?", a: "We welcome children from 1.5 years for Playgroup, 2.5 years for Nursery, 3.5 years for Junior KG, and 4.5 years for Senior KG." },
+                            { q: "What is the age criteria for admission?", a: "We welcome children from 2 years to 6 years for Playgroup, Nursery, Junior KG & Senior KG." },
                             { q: "What is the 'Seven Petals' philosophy?", a: "Our curriculum depends on 7 key areas: Culture & Patriotism, Play-Based Learning, Creativity, Social Growth, Intellectual Development, Physical Growth, and Parent Partnership." },
                             { q: "Is transport facility available?", a: "Currently, we do not provide school transport facilities. Although we can introduce you to several transportation personnel who are already serving students of our school from almost all locations." },
                             { q: "How do I schedule a campus visit?", a: "You can simply fill out the enquiry form by clicking the 'Enroll Now' button, or call our admissions office directly to book a slot." },
-                            { q: "What are the safety measures on campus?", a: "Safety is our priority. We have 24/7 CCTV surveillance, security personnel, soft-flooring in play areas, and background-verified staff." }
+                            { q: "What are the safety measures on campus?", a: "Safety is our priority. We have 24/7 CCTV surveillance, a private compound, soft-flooring in play areas, and background-verified staff." }
                         ].map((faq, i) => (
                             <FAQItem key={i} question={faq.q} answer={faq.a} />
                         ))}
@@ -762,12 +762,12 @@ const Home = () => {
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-luxury-pink opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-luxury-pink"></span>
                                 </span>
-                                Admissions Open 2025-26
+                                Admissions Open 2026 - 2027
                             </motion.div>
 
                             <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese dark:text-white mb-6 leading-tight">
                                 Ready to Shape <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-600">The Future?</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxury-pink to-purple-600 dark:from-pink-400 dark:to-purple-400">The Future?</span>
                             </h2>
 
                             <p className="text-xl text-gray-500 font-medium leading-relaxed mb-10 max-w-xl mx-auto md:mx-0">
