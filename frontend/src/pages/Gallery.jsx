@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, useLayoutEffect, Component } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect, Component, useMemo } from 'react';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, PlayCircle, Play, ArrowDown, ChevronRight, ChevronLeft } from 'lucide-react';
 import gsap from 'gsap';
@@ -189,6 +190,26 @@ const Gallery = () => {
 
     const mergedLearningAssets = [...activityAssets, ...communityAssets];
 
+    const videoSchema = useMemo(() => {
+        const allVideos = [
+            ...reelAssets.map(v => ({ ...v, type: 'video' })), // Force type for reels
+            ...campusAssets.filter(i => i.type === 'video'),
+            ...celebrationAssets.filter(i => i.type === 'video'),
+            ...activityAssets.filter(i => i.type === 'video'),
+        ];
+
+        return allVideos.map(video => ({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": video.title,
+            "description": `Watch ${video.title} at Renaissance Preschool.`,
+            "thumbnailUrl": "https://renaissancepreschool.in/logo.jpeg",
+            "uploadDate": "2024-01-01T08:00:00+08:00",
+            "contentUrl": `https://renaissancepreschool.in${video.src}`
+        }));
+    }, []);
+
+
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
             // Hero Parallax
@@ -269,6 +290,11 @@ const Gallery = () => {
 
     return (
         <div ref={containerRef} className="bg-slate-50 dark:bg-black min-h-screen text-slate-800 dark:text-gray-200 font-sans selection:bg-rose-500 selection:text-white pb-32 transition-colors duration-300">
+            <SEO
+                title="Gallery"
+                description="See our vibrant moments captured in frames. From daily activities to special events, witness the joy at Renaissance."
+                canonical="/gallery"
+            />
 
             {/* 1. Hero Section */}
             {/* 1. Hero Section */}

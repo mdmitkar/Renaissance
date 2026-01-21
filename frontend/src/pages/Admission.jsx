@@ -1,6 +1,9 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { MessageSquare, CheckCircle, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+
 
 const Admission = () => {
     const handleSubmit = (e) => {
@@ -10,6 +13,11 @@ const Admission = () => {
 
     return (
         <div className="min-h-screen bg-bg-cream dark:bg-bg-dark transition-colors duration-300 py-12 px-4 md:px-8">
+            <SEO
+                title="Admissions"
+                description="Join the Renaissance family. Admissions open for 2025-26. Simple enquiry process and direct WhatsApp support."
+                canonical="/admission"
+            />
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
                 {/* Left Side: Info & CTA */}

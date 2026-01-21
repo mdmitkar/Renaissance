@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, useLayoutEffect, Component } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect, Component, useMemo } from 'react';
+import SEO from '../components/SEO';
 import { useLocation } from 'react-router-dom';
 import Slider from "react-slick";
 import { motion, AnimatePresence } from 'framer-motion';
@@ -620,6 +621,21 @@ const GallerySection = () => {
     const location = useLocation();
     const [selectedMedia, setSelectedMedia] = useState(null);
 
+    const videoSchema = useMemo(() => {
+        const allMedia = [...GALLERY_DATA.events, ...GALLERY_DATA.celebrations].flatMap(album => album.media);
+        const videos = allMedia.filter(m => m.type === 'video');
+
+        return videos.map(video => ({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": video.src.split('/').pop().replace('.mp4', '').replace(/_/g, ' '), // Fallback title from filename if title missing in media item
+            "description": "Video from Renaissance Preschool gallery.",
+            "thumbnailUrl": "https://renaissancepreschool.in/logo.jpeg",
+            "uploadDate": "2024-01-01T08:00:00+08:00",
+            "contentUrl": `https://renaissancepreschool.in${video.src}`
+        }));
+    }, []);
+
     // Fix: Handle Hash Scrolling on Mount and Location Change
     useEffect(() => {
         if (location.hash) {
@@ -887,8 +903,29 @@ const GallerySection = () => {
 // ===================================
 
 const InsideRenaissance = () => {
+    const videoSchema = useMemo(() => {
+        const allMedia = [...GALLERY_DATA.events, ...GALLERY_DATA.celebrations].flatMap(album => album.media);
+        const videos = allMedia.filter(m => m.type === 'video');
+
+        return videos.map(video => ({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": video.src.split('/').pop().replace('.mp4', '').replace(/_/g, ' '),
+            "description": "Video from Renaissance Preschool gallery.",
+            "thumbnailUrl": "https://renaissancepreschool.in/logo.jpeg",
+            "uploadDate": "2024-01-01T08:00:00+08:00",
+            "contentUrl": `https://renaissancepreschool.in${video.src}`
+        }));
+    }, []);
+
     return (
         <div className="overflow-x-hidden">
+            <SEO
+                title="Inside Renaissance"
+                description="Explore our facilities, classrooms, and play areas at Renaissance Preschool. Take a virtual tour and see where the magic happens."
+                canonical="/inside-renaissance"
+                schema={videoSchema}
+            />
             <LifeSection />
             <GallerySection />
         </div>

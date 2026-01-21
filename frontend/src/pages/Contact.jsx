@@ -1,7 +1,28 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
+import SEO from '../components/SEO';
 import { MapPin, Phone, Mail, Clock, Send, User, Calendar, BookOpen, Star, Heart, Sun, Instagram, Facebook, Youtube, MessageCircle, ChevronsDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
+
+const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "description": "Contact Renaissance Preschool for admissions and inquiries.",
+    "mainEntity": {
+        "@type": "EducationalOrganization",
+        "name": "Renaissance Preschool",
+        "telephone": "+918483848486",
+        "email": "info.renaissanceschool@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "KUWARI COMPOUND, BUBERE HALL ROAD, BESIDE FOOD IN RESTAURANT",
+            "addressLocality": "NIZAMPUR BHIWANDI",
+            "addressRegion": "Maharashtra",
+            "addressCountry": "IN",
+            "postalCode": "421302"
+        }
+    }
+};
 
 const Contact = () => {
     const sceneRef = useRef(null);
@@ -74,6 +95,12 @@ const Contact = () => {
 
     return (
         <div className="min-h-screen bg-bg-cream dark:bg-[#111] overflow-x-hidden font-body transition-colors duration-300">
+            <SEO
+                title="Contact Us"
+                description="Get in touch with Renaissance Preschool. Visit our campus in Bhiwandi, call us, or submit an admission enquiry online."
+                canonical="/contact"
+                schema={contactSchema}
+            />
 
             {/* 1. HERO SECTION - 3D Campus Floating Scene */}
             {/* 1. HERO SECTION - 3D Campus Floating Scene */}

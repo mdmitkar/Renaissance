@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import SEO from '../components/SEO';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Target, Heart, Award, Users, Star, BrainCircuit, Sparkles, ArrowRight } from 'lucide-react';
 
@@ -13,6 +14,11 @@ const About = () => {
 
     return (
         <div ref={containerRef} className="min-h-screen bg-yellow-50/50 dark:bg-black font-body text-slate-800 dark:text-gray-200 selection:bg-rose-500 selection:text-white transition-colors duration-300">
+            <SEO
+                title="About Us"
+                description="Discover Renaissance Preschool's mission to blend modern academics with Islamic values. Meet our founders and learn about our holistic approach."
+                canonical="/about"
+            />
 
             {/* --- HERO SECTION --- */}
             <div className="relative h-screen flex items-center justify-center overflow-hidden">

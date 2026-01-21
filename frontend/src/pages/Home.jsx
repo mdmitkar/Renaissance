@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import SEO from '../components/SEO';
 import { NavLink } from 'react-router-dom';
 import { ArrowRight, Sparkles, Cloud, Quote, Rocket, Flower2, Star, Plus, Minus } from 'lucide-react';
 import { googleReviews } from '../data/reviews';
@@ -10,6 +11,18 @@ import Lenis from 'lenis';
 import AdmissionModal from '../components/AdmissionModal';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const homeSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Renaissance Preschool",
+    "url": "https://renaissancepreschool.in",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://renaissancepreschool.in/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+};
 
 const HERO_SLIDES = [
 
@@ -256,6 +269,12 @@ const Home = () => {
 
     return (
         <div ref={containerRef} className="bg-cream-velvet font-body min-h-screen selection:bg-luxury-pink selection:text-white overflow-x-hidden w-full relative">
+            <SEO
+                title="Home"
+                description="Renaissance Preschool: A holistic learning sanctuary in Bhiwandi. Nurturing future leaders with our Seven Petals philosophy."
+                canonical="/"
+                schema={homeSchema}
+            />
 
             {/* Grain Overlay for Cinematic Feel */}
             <div className="bg-grain fixed inset-0 z-[9999] pointer-events-none opacity-[0.03]"></div>
@@ -402,6 +421,7 @@ const Home = () => {
                             <img
                                 src="/otherimp/a.jpeg"
                                 alt="Modern Classroom"
+                                loading="lazy"
                                 className="relative z-10 w-full h-[400px] object-cover rounded-[2.5rem] shadow-2xl rotate-[-2deg] hover:rotate-0 transition-transform duration-500"
                             />
                         </div>
@@ -421,6 +441,7 @@ const Home = () => {
                                     <img
                                         src={item.img}
                                         alt={item.title}
+                                        loading="lazy"
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"
                                     />
 

@@ -1,9 +1,13 @@
 import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, Heart, Shield, Home, Play, Users, X, PlayCircle, Maximize2, ChevronRight, ChevronLeft } from 'lucide-react';
 import { googleReviews } from '../data/reviews';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP
+gsap.registerPlugin(ScrollTrigger);
 
 // Register GSAP
 gsap.registerPlugin(ScrollTrigger);
@@ -281,6 +285,13 @@ const ParentsPraise = () => {
 
     return (
         <div ref={containerRef} className="min-h-screen bg-rose-50/30 dark:bg-black font-body text-slate-800 dark:text-gray-200 transition-colors duration-500 pb-32">
+            <div className="absolute inset-0 bg-repeat opacity-[0.03]" style={{ backgroundImage: 'url("/assets/pattern.png")' }}></div>
+
+            <SEO
+                title="Parents Praise"
+                description="Read reviews and testimonials from parents who trust Renaissance Preschool with their child's future."
+                canonical="/reviews"
+            />
 
             {/* --- HERO SECTION: SOFT 3D CLOUD --- */}
             <section

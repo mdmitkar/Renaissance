@@ -1,9 +1,12 @@
 import React, { useRef, useEffect } from 'react';
+import SEO from '../components/SEO';
 import Slider from "react-slick";
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Calendar, MapPin, Clock, ArrowRight, Star, Heart, Trophy, Music, Shield, Sprout, GraduationCap, Palette } from 'lucide-react';
 import ImgWithFallback from '../components/ImgWithFallback';
 import Footer from '../components/Footer';
+
+// --- DATA & CONFIGURATION ---
 
 // --- DATA & CONFIGURATION ---
 
@@ -278,6 +281,13 @@ const LifeAtRenaissance = () => {
 
     return (
         <div className="bg-[#F3F0E8] dark:bg-[#111] min-h-screen font-body transition-colors duration-300">
+            <div className="absolute inset-0 bg-repeat opacity-[0.02]" style={{ backgroundImage: 'url("/assets/pattern.png")' }}></div>
+
+            <SEO
+                title="Life at Renaissance"
+                description="Experience the vibrant student life at Renaissance Preschool. From festivals to field trips, see how we learn through joy."
+                canonical="/life"
+            />
 
 
 
