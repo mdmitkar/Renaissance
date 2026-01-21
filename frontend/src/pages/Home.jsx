@@ -756,7 +756,7 @@ const Home = () => {
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-luxury-pink/10 text-luxury-pink font-bold text-xs tracking-widest uppercase mb-8"
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-luxury-pink/10 text-rose-600 dark:text-luxury-pink font-bold text-xs tracking-widest uppercase mb-8"
                             >
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-luxury-pink opacity-75"></span>
@@ -797,7 +797,7 @@ const Home = () => {
                             <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 group">
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
                                 <img
-                                    src="/otherimp/childturf.png"
+                                    src="/New/firstdayok.png"
                                     alt="Happy Students Outdoors"
                                     className="w-full h-[500px] object-cover"
                                 />
