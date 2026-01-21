@@ -62,7 +62,7 @@ const Footer = () => {
             </div>
 
             <div className="border-t border-gray-800 pt-4 text-center text-xs opacity-60">
-                <p>&copy; 2025 Renaissance Preschool. All rights reserved.</p>
+                <p>&copy; 2026 Renaissance Preschool. All rights reserved.</p>
             </div>
         </footer>
     );

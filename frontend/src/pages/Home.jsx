@@ -411,7 +411,7 @@ const Home = () => {
                         <div className="reveal-text grid grid-cols-2 gap-6 w-full">
                             {/* Feature Cards with Hover Animation */}
                             {[
-                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Spirit", img: "/assets/cards/holistic_growth_centered.png" },
+                                { icon: "🌱", title: "Holistic Growth", desc: "Mind, Body, Moral Values", img: "/assets/cards/holistic_growth_centered.png" },
                                 { icon: "🎨", title: "Express freely", desc: "Unleash Potential", img: "/New/expressfreely.png" },
                                 { icon: "🧩", title: "Fun & Learn", desc: "Joyful Learning", img: "/New/funandlearn.png" },
                                 { icon: "🚀", title: "Activity & creativity base learning", desc: "Hands-on Growth", img: "/New/activityandcreativ.png" }
@@ -805,7 +805,7 @@ const Home = () => {
                                 {/* Floating Badge */}
                                 <div className="absolute bottom-8 left-8 z-20 bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl text-white">
                                     <div className="text-3xl font-black mb-1">100%</div>
-                                    <div className="text-xs font-bold uppercase tracking-widest opacity-80">Results & Happiness</div>
+                                    <div className="text-xs font-bold uppercase tracking-widest opacity-80">Holistic Growth</div>
                                 </div>
                             </div>
                         </div>
