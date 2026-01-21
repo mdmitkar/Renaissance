@@ -841,7 +841,7 @@ const PETAL_DATA = [
     { title: "Play-Based", emoji: "🧸", desc: "Learning through exploration and curiosity to naturally develop skills while having fun.", img: "/SchoolPremises/classplay.jpeg", color: "text-white", bg: "bg-[#831843]" }, // Dark Pink
     { title: "Creativity", emoji: "🎨", desc: "Encouraging art, craft, storytelling, and imagination for confident self-expression.", img: "/otherimp/ChildrensDay_2_copy.jpeg", color: "text-white", bg: "bg-[#065F46]" }, // Dark Emerald
     { title: "Social Growth", emoji: "❤️", desc: "Building teamwork, empathy, and communication to help children feel valued.", img: "/ChildrensDay/ChildrensDay_1.jpeg", color: "text-white", bg: "bg-[#581C87]" }, // Dark Purple
-    { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/New/intellectual.png", color: "text-white", bg: "bg-[#7F1D1D]", imgPos: "object-[center_40%]", scale: "scale-135" }, // Dark Red
+    { title: "Intellectual", emoji: "🧠", desc: "Structured fun activities to strengthen logic, language, and problem-solving.", img: "/New/1.png", color: "text-white", bg: "bg-[#7F1D1D]", imgPos: "object-[center_40%]", scale: "scale-135" }, // Dark Red
     { title: "Physical", emoji: "🏃", desc: "Focus on movement, coordination, and healthy habits through active play.", img: "/Activities/motor.jpeg", color: "text-white", bg: "bg-[#0F766E]" }, // Dark Teal
     { title: "Parent Partnership", emoji: "🤝", desc: "Building a bridge between home and school, ensuring you are an active partner in your child's growth.", img: "/PTM/PTM_3.jpeg", color: "text-white", bg: "bg-[#C2410C]" }, // Dark Orange
 ];
