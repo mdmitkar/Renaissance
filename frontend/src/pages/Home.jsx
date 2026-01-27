@@ -887,18 +887,18 @@ const PROGRAMS = [
     {
         title: "Junior KG",
         age: "4 - 5 Years",
-        desc: "Curiosity takes flight. Science experiments, reading clubs, and logical reasoning.",
+        desc: "Curiosity takes flight. Fun activities, story sessions, and logical reasoning.",
         bg: "#D97706", // Amber 600 - Rich Orange/Gold
         img: "/otherimp/jrkg.png",
-        tags: ["Science", "Logic", "Math"]
+        tags: ["Activity", "Logic", "Math"]
     },
     {
         title: "Senior KG",
         age: "5 - 6 Years",
-        desc: "Ready for the big world. Advanced concepts, leadership, and school readiness.",
+        desc: "Ready for the big world. Advanced concepts, confidence building, and school readiness.",
         bg: "#4F46E5", // Indigo 600 - Vibrant Blue/Purple
         img: "/otherimp/srjkg.png",
-        tags: ["Writing", "Leadership", "Speaking"]
+        tags: ["Writing", "Confidence", "Speaking"]
     }
 ];
 
