@@ -874,7 +874,7 @@ const PROGRAMS = [
         desc: "A sensory wonderland for our tiniest tots. Montessori-inspired aids meet messy play.",
         bg: "#BE185D", // Pink 700 - Vibrant
         img: "/assets/generated/playgroup.png",
-        tags: ["Sensory Play", "Music", "Safety"]
+        tags: ["Discipline", "Etiquettes", "Class Decorum"]
     },
     {
         title: "Nursery",
