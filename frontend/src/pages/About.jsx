@@ -61,7 +61,7 @@ const About = () => {
                         </h1>
 
                         <p className="text-lg md:text-2xl font-light text-slate-100 max-w-2xl mx-auto leading-relaxed font-body tracking-wide drop-shadow-lg">
-                            Where little dreams grow into big futures.
+                            Where we thrive to put foundations of bright generations
                         </p>
                     </motion.div>
                 </div>

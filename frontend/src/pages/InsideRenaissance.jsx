@@ -45,7 +45,7 @@ const EVENTS = [
     },
     {
         id: 'islamic-day',
-        title: "Islamic Day",
+        title: "Jumuah Day",
         description: "Celebrating faith, values, and community. A day filled with reflection, joy, and spiritual growth for our students.",
         date: "Faith & Values",
         folder: "New/Islamic Day",
@@ -522,7 +522,7 @@ const GALLERY_DATA = {
         },
         {
             id: 'islamic_day',
-            title: "Islamic Day",
+            title: "Jumuah Day",
             cover: '/New/Islamic Day/ilamioc1.jpeg',
             media: [
                 { type: 'image', src: '/New/Islamic Day/ilamioc1.jpeg' },
