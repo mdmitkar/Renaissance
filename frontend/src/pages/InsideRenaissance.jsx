@@ -883,8 +883,8 @@ const GallerySection = () => {
                     className="inline-block px-6"
                 >
                     <h3 className="text-4xl md:text-6xl font-heading font-bold mb-6 text-slate-900 dark:text-white">See the Magic in Person</h3>
-                    <p className="text-lg md:text-xl text-slate-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto font-medium">
-                        These photos are just a glimpse. Experience the laughter, learning, and love firsthand.
+                    <p className="text-lg md:text-2xl text-slate-600 dark:text-gray-300 mb-10 max-w-2xl mx-auto font-medium">
+                        Visit us with your child & experience the atmosphere personally
                     </p>
                     <button
                         onClick={() => window.location.href = '/contact'}
