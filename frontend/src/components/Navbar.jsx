@@ -47,7 +47,7 @@ const Navbar = ({ onOpenAdmission }) => {
                     items: [
                         { name: "Children's Day", hash: 'childrens_day' },
                         { name: "Independence Day", hash: 'independence_day' },
-                        { name: "Islamic Day", hash: 'islamic_day' },
+                        { name: "Jumuah Day", hash: 'jumuah_day' },
                         { name: "Red Day", hash: 'red_day' },
                     ]
                 }

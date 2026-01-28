@@ -44,12 +44,12 @@ const EVENTS = [
         icon: <MapPin size={24} />
     },
     {
-        id: 'islamic-day',
+        id: 'jumuah-day',
         title: "Jumuah Day",
         description: "Celebrating faith, values, and community. A day filled with reflection, joy, and spiritual growth for our students.",
         date: "Faith & Values",
         folder: "New/Islamic Day",
-        galleryId: 'islamic_day',
+        galleryId: 'jumuah_day',
         images: [
             "ilamioc1.jpeg",
             "islamic2.jpeg",
@@ -521,7 +521,7 @@ const GALLERY_DATA = {
             ]
         },
         {
-            id: 'islamic_day',
+            id: 'jumuah_day',
             title: "Jumuah Day",
             cover: '/New/Islamic Day/ilamioc1.jpeg',
             media: [
