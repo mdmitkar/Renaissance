@@ -3,7 +3,7 @@ import SEO from '../components/SEO';
 import { useLocation } from 'react-router-dom';
 import Slider from "react-slick";
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, MapPin, Clock, ArrowRight, Star, Heart, Trophy, X, PlayCircle, Play, ArrowDown, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Calendar, MapPin, Clock, ArrowRight, Star, Heart, Trophy, X, PlayCircle, Play, ArrowDown, ChevronRight, ChevronLeft, PartyPopper, BookOpen } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ImgWithFallback from '../components/ImgWithFallback';
@@ -167,6 +167,50 @@ const EVENTS = [
             text: "#004e8a" // Deep Blue (matching the accent)
         },
         icon: <Trophy size={24} />
+    },
+    {
+        id: 'reniesta',
+        title: "RENIESTA - Fun Festival",
+        description: "A vibrant festival where fun meets creativity! A spectacular day filled with games, laughter, and talent showcases that bring our entire community together.",
+        date: "Festival of Joy",
+        folder: "reniesta",
+        galleryId: 'reniesta',
+        images: [
+            "reniesta1.png",
+            "renista2.jpeg",
+            "renista3.png",
+            "reniesta4.jpeg",
+            "reniesta5.png"
+        ],
+        theme: {
+            primary: "#8B5CF6", // Violet
+            secondary: "#FCD34D", // Gold
+            accent: "#FCD34D",
+            shadow: "rgba(139, 92, 246, 0.4)",
+            text: "#4C1D95" // Deep Violet
+        },
+        icon: <PartyPopper size={24} />
+    },
+    {
+        id: 'teachers-day',
+        title: "Teacher's Day",
+        description: "Honoring the guiding lights of Renaissance. Our students express their gratitude and love through heartwarming performances and gestures for their beloved teachers.",
+        date: "Gratitude & Growth",
+        folder: "teachersday",
+        galleryId: 'teachers_day',
+        images: [
+            "WhatsApp Image 2026-01-30 at 20.43.39 copy.jpeg",
+            "WhatsApp Image 2026-01-30 at 20.43.39.jpeg",
+            "WhatsApp Image 2026-01-30 at 20.43.41.jpeg"
+        ],
+        theme: {
+            primary: "#3B82F6", // Blue
+            secondary: "#10B981", // Emerald
+            accent: "#10B981",
+            shadow: "rgba(59, 130, 246, 0.4)",
+            text: "#1E3A8A" // Dark Blue
+        },
+        icon: <BookOpen size={24} />
     }
 ];
 
@@ -495,6 +539,18 @@ const GALLERY_DATA = {
                 { type: 'video', src: '/videos/Testimonial_3.mp4' },
                 { type: 'video', src: '/videos/testimonial_4.mp4' },
             ]
+        },
+        {
+            id: 'reniesta',
+            title: 'RENIESTA',
+            cover: '/reniesta/reniesta1.png',
+            media: [
+                { type: 'image', src: '/reniesta/reniesta1.png' },
+                { type: 'image', src: '/reniesta/renista2.jpeg' },
+                { type: 'image', src: '/reniesta/renista3.png' },
+                { type: 'image', src: '/reniesta/reniesta4.jpeg' },
+                { type: 'image', src: '/reniesta/reniesta5.png' },
+            ]
         }
     ],
     celebrations: [
@@ -505,6 +561,7 @@ const GALLERY_DATA = {
             media: [
                 { type: 'image', src: '/ChildrensDay/ChildrenDay_2.jpeg' },
                 { type: 'image', src: '/ChildrensDay/ChildrensDay_1.jpeg' },
+                { type: 'image', src: '/ChildrensDay/childrenday3.png' },
             ]
         },
         {
@@ -542,6 +599,18 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/RedDay/redday5.jpeg' },
                 { type: 'video', src: '/RedDay/reddayvideo.mp4' },
                 { type: 'video', src: '/videos/reddayreel.mp4' },
+            ]
+        },
+        {
+            id: 'teachers_day',
+            title: "Teacher's Day",
+            cover: '/teachersday/WhatsApp Image 2026-01-30 at 20.43.39.jpeg',
+            media: [
+                { type: 'image', src: '/teachersday/WhatsApp Image 2026-01-30 at 20.43.39.jpeg' },
+                { type: 'image', src: '/teachersday/WhatsApp Image 2026-01-30 at 20.43.41.jpeg' },
+                { type: 'video', src: '/teachersday/WhatsApp Video 2026-01-30 at 20.43.42 (1).mp4' },
+                { type: 'video', src: '/teachersday/WhatsApp Video 2026-01-30 at 20.43.42.mp4' },
+                { type: 'video', src: '/teachersday/WhatsApp Video 2026-01-30 at 20.43.43.mp4' },
             ]
         }
     ]
