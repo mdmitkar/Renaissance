@@ -5,8 +5,6 @@ import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import About from './pages/About';
-import Gallery from './pages/Gallery';
-import LifeAtRenaissance from './pages/LifeAtRenaissance';
 import ParentsPraise from './pages/ParentsPraise';
 import Contact from './pages/Contact';
 import InsideRenaissance from './pages/InsideRenaissance';
@@ -21,9 +19,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
-            <Route path="life" element={<LifeAtRenaissance />} />
             <Route path="reviews" element={<ParentsPraise />} />
-            <Route path="gallery" element={<Gallery />} />
             <Route path="inside-renaissance" element={<InsideRenaissance />} />
             <Route path="contact" element={<Contact />} />
           </Route>
