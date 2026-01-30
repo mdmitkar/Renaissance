@@ -399,6 +399,7 @@ const GALLERY_DATA = {
                 { type: 'video', src: '/Activities/groupequiliactivity.mp4' },
                 { type: 'video', src: '/Activities/psycomotorskullreels.mp4' },
                 { type: 'video', src: '/Activities/renaisanecefiestareel.mp4' },
+                { type: 'image', src: '/Activities/PTM_1.jpeg' }, // Moved from PTM
             ]
         },
         {
@@ -427,8 +428,6 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/PTM/ptm6.jpeg' },
                 { type: 'image', src: '/PTM/ptma.jpeg' },
                 { type: 'image', src: '/PTM/ptmb.jpeg' },
-                { type: 'image', src: '/Activities/PTM_1.jpeg' },
-                { type: 'image', src: '/Activities/PTM_4.jpeg' },
             ]
         },
         {
@@ -516,6 +515,7 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/IndependenceDay/IndependenceDay_1.jpeg' },
                 { type: 'image', src: '/IndependenceDay/IndependenceDay_2.jpeg' },
                 { type: 'image', src: '/IndependenceDay/IndependenceDay_4.jpeg' },
+                { type: 'image', src: '/Activities/PTM_4.jpeg' }, // Moved from PTM
                 { type: 'video', src: '/IndependenceDay/independence_day_reel.mp4' },
                 { type: 'video', src: '/IndependenceDay/independence_day_activity.mp4' },
             ]
@@ -739,17 +739,17 @@ const GallerySection = () => {
                                 </span>
                             </div>
 
-                            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                            <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
                                 {album.media.map((item, idx) => (
                                     <motion.div
-                                        initial={{ opacity: 0, y: 50 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: "100px" }}
-                                        transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.5) }}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true, margin: "50px" }}
+                                        transition={{ duration: 0.6, delay: idx * 0.05 }}
                                         key={idx}
-                                        className="break-inside-avoid"
+                                        className="break-inside-avoid mb-8"
                                     >
-                                        <MediaCard item={item} onClick={() => setSelectedMedia(item)} className={item.type === 'video' ? 'aspect-video' : ''} />
+                                        <MediaCard item={item} onClick={() => setSelectedMedia(item)} className={item.type === 'video' ? 'aspect-video shadow-2xl' : 'shadow-xl'} />
                                     </motion.div>
                                 ))}
                             </div>
@@ -780,17 +780,17 @@ const GallerySection = () => {
                                 </span>
                             </div>
 
-                            <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                            <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
                                 {album.media.map((item, idx) => (
                                     <motion.div
-                                        initial={{ opacity: 0, y: 50 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: "100px" }}
-                                        transition={{ duration: 0.5, delay: Math.min(idx * 0.05, 0.5) }}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true, margin: "50px" }}
+                                        transition={{ duration: 0.6, delay: idx * 0.05 }}
                                         key={idx}
-                                        className="break-inside-avoid"
+                                        className="break-inside-avoid mb-8"
                                     >
-                                        <MediaCard item={item} onClick={() => setSelectedMedia(item)} className={item.type === 'video' ? 'aspect-video' : ''} />
+                                        <MediaCard item={item} onClick={() => setSelectedMedia(item)} className={item.type === 'video' ? 'aspect-video shadow-2xl' : 'shadow-xl'} />
                                     </motion.div>
                                 ))}
                             </div>
