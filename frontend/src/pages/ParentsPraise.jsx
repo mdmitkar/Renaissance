@@ -1,8 +1,8 @@
 import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import SEO from '../components/SEO';
-import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, Heart, Shield, Home, Play, Users, X, PlayCircle, Maximize2, ChevronRight, ChevronLeft } from 'lucide-react';
+import AdmissionModal from '../components/AdmissionModal';
 import { googleReviews } from '../data/reviews';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -287,7 +287,7 @@ const ParentsPraise = () => {
 
     return (
         <div ref={containerRef} className="min-h-screen bg-rose-50/30 dark:bg-black font-body text-slate-800 dark:text-gray-200 transition-colors duration-500 pb-32">
-            <div className="absolute inset-0 bg-repeat opacity-[0.03]" style={{ backgroundImage: 'url("/assets/pattern.png")' }}></div>
+            <div className="absolute inset-0 bg-repeat opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("/assets/pattern.png")' }}></div>
 
             <SEO
                 title="Parents Praise"
@@ -482,13 +482,13 @@ const ParentsPraise = () => {
             </section>
 
             {/* CTA */}
-            <section className="pb-24 text-center">
-                <button
-                    onClick={() => navigate('/admission')}
+            <section className="pb-24 text-center relative z-10">
+                <Link
+                    to="/admission"
                     className="inline-block bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-12 py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-2xl hover:shadow-rose-500/50"
                 >
                     Be Part of Our Story
-                </button>
+                </Link>
             </section>
 
             {/* --- LIGHTBOX OVERLAY (Gallery Style) --- */}
