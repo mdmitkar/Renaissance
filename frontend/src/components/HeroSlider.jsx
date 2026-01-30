@@ -2,10 +2,11 @@ import React from 'react';
 import Slider from 'react-slick';
 import { motion } from 'framer-motion';
 import { ChevronRight, Play } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useOutletContext } from 'react-router-dom';
 import ImgWithFallback from './ImgWithFallback';
 
 const HeroSlider = () => {
+    const { openAdmission } = useOutletContext();
     const settings = {
         dots: true,
         infinite: true,
@@ -136,12 +137,12 @@ const HeroSlider = () => {
                                     </motion.p>
 
                                     <motion.div variants={letterVariants} className="flex flex-wrap gap-4">
-                                        <NavLink
-                                            to="/admission"
+                                        <button
+                                            onClick={openAdmission}
                                             className="inline-flex items-center gap-3 bg-gulf-dark text-white font-bold px-10 py-4 rounded-full text-lg hover:bg-gulf-blue transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 duration-300"
                                         >
                                             Apply Now <ChevronRight size={20} />
-                                        </NavLink>
+                                        </button>
                                         <button className="inline-flex items-center gap-3 px-8 py-4 rounded-full border-2 border-gulf-lebanese text-gulf-lebanese font-bold hover:bg-gulf-lebanese hover:text-white transition-all duration-300 group">
                                             <div className="w-10 h-10 rounded-full bg-gulf-lebanese text-white flex items-center justify-center group-hover:bg-white group-hover:text-gulf-lebanese transition-colors shadow-md">
                                                 <Play size={14} fill="currentColor" />

@@ -8,7 +8,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import Lenis from 'lenis';
-import AdmissionModal from '../components/AdmissionModal';
+import { useOutletContext } from 'react-router-dom';
 import HomeParentsPraiseSection from '../components/HomeParentsPraiseSection';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -100,7 +100,7 @@ const HoverVideo = ({ src }) => {
 };
 
 const Home = () => {
-    const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
+    const { openAdmission } = useOutletContext();
     const [currentSlide, setCurrentSlide] = useState(0);
     const [activePetal, setActivePetal] = useState(0);
     const activePetalRef = useRef(0);
@@ -362,7 +362,7 @@ const Home = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={() => setIsAdmissionOpen(true)}
+                                onClick={openAdmission}
                                 className="group bg-luxury-pink text-white font-bold px-12 py-6 rounded-full text-xl shadow-[0_20px_50px_rgba(220,169,202,0.5)] border-4 border-white/50 relative overflow-hidden"
                             >
                                 <span className="relative z-10 flex items-center gap-3">
@@ -651,7 +651,7 @@ const Home = () => {
                             Ready to<br />Start?
                         </h3>
                         <button
-                            onClick={() => setIsAdmissionOpen(true)}
+                            onClick={openAdmission}
                             className="bg-luxury-pink text-white px-12 py-6 rounded-full text-2xl font-bold hover:scale-110 transition-transform duration-300 shadow-xl"
                         >
                             Enroll Now
@@ -722,7 +722,7 @@ const Home = () => {
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    onClick={() => setIsAdmissionOpen(true)}
+                                    onClick={openAdmission}
                                     className="bg-gulf-lebanese text-white px-10 py-5 rounded-full text-lg font-bold shadow-lg shadow-gulf-lebanese/30 hover:bg-gulf-lebanese/90 transition-colors flex items-center justify-center gap-3"
                                 >
                                     Apply Now <ArrowRight size={20} />
@@ -760,7 +760,7 @@ const Home = () => {
                 </div>
             </section >
 
-            <AdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
+
         </div >
     );
 };

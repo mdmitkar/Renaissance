@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { MapPin, Phone, Mail, Instagram } from 'lucide-react';
 
-const Footer = () => {
+const Footer = ({ onOpenAdmission }) => {
     return (
         <footer className="bg-secondary-black text-white pt-16 pb-4 mt-auto">
             <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mb-8">
@@ -19,7 +19,14 @@ const Footer = () => {
                     <ul className="space-y-2">
                         <li><NavLink to="/" className="hover:text-primary-gold transition-colors block">Home</NavLink></li>
                         <li><NavLink to="/about" className="hover:text-primary-gold transition-colors block">About Us</NavLink></li>
-                        <li><NavLink to="/admission" className="hover:text-primary-gold transition-colors block">Admissions</NavLink></li>
+                        <li>
+                            <button
+                                onClick={onOpenAdmission}
+                                className="hover:text-primary-gold transition-colors block text-left"
+                            >
+                                Admissions
+                            </button>
+                        </li>
                         <li><NavLink to="/contact" className="hover:text-primary-gold transition-colors block">Contact Us</NavLink></li>
                     </ul>
                 </div>

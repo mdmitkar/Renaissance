@@ -6,7 +6,6 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
-import Admission from './pages/Admission';
 import LifeAtRenaissance from './pages/LifeAtRenaissance';
 import ParentsPraise from './pages/ParentsPraise';
 import Contact from './pages/Contact';
@@ -26,7 +25,6 @@ function App() {
             <Route path="reviews" element={<ParentsPraise />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="inside-renaissance" element={<InsideRenaissance />} />
-            <Route path="admission" element={<Admission />} />
             <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>

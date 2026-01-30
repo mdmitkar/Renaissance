@@ -13,10 +13,10 @@ const Layout = () => {
         <div className="min-h-screen bg-bg-cream text-secondary-black font-body dark:bg-bg-dark dark:text-gray-100 transition-colors duration-300">
             <Navbar onOpenAdmission={() => setIsAdmissionOpen(true)} />
             <main>
-                <Outlet />
+                <Outlet context={{ openAdmission: () => setIsAdmissionOpen(true) }} />
             </main>
             <div className="relative z-50">
-                <Footer />
+                <Footer onOpenAdmission={() => setIsAdmissionOpen(true)} />
             </div>
 
             {/* Renny Chatbot (Replaces Floating WhatsApp) */}
