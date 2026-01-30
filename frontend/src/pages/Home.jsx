@@ -9,6 +9,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import Lenis from 'lenis';
 import AdmissionModal from '../components/AdmissionModal';
+import HomeParentsPraiseSection from '../components/HomeParentsPraiseSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -660,86 +661,8 @@ const Home = () => {
                 </div >
             </section >
 
-            {/* --- SECTION 5: LIVE STATS & TESTIMONIALS --- */}
-            < section className="py-10 bg-white dark:bg-[#111] overflow-hidden rounded-t-[5rem] relative z-10 shadow-[0_-50px_100px_rgba(0,0,0,0.1)] transition-colors duration-300" >
-                <div className="max-w-7xl mx-auto px-6 mb-20 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
-                    {/* Left Video */}
-                    <HoverVideo src="/videos/Testimonial_1.mp4" />
-
-                    <div className="text-center">
-                        <p className="text-luxury-pink font-bold text-xl uppercase tracking-[0.3em] mb-4">The Voice of Parents</p>
-                        <h2 className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese dark:text-white">Community Love</h2>
-                    </div>
-
-                    {/* Right Video */}
-                    <HoverVideo src="/videos/Testimonial_2.mp4" />
-                </div>
-
-                {/* Marquee */}
-                <div className="relative flex whitespace-nowrap overflow-hidden py-10 group">
-                    <motion.div
-                        animate={{ x: [0, -2000] }}
-                        transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
-                        className="flex gap-8 px-4 group-hover:[animation-play-state:paused]"
-                    >
-                        {/* Repeat reviews to create seamless loop */}
-                        {[...googleReviews.filter(r => r.review.length > 5), ...googleReviews.filter(r => r.review.length > 5)].map((t, i) => {
-                            // "Dark Colourful Colours" from palette
-                            const cardColors = [
-                                "bg-[#0060AA]", // Little Dark Blue
-                                "bg-[#5C7E68]", // Como (Green)
-                                "bg-[#BA1054]", // Pictorial Carmine
-                                "bg-[#131720]", // Lebanese Blue
-                                "bg-[#7D5C7E]", // Added a purple variation for variety using mix
-                            ];
-                            const currColor = cardColors[i % cardColors.length];
-
-                            return (
-                                <div key={i} className={`w-[400px] md:w-[500px] ${currColor} p-8 md:p-10 rounded-[2rem] flex-shrink-0 whitespace-normal text-white transition-transform duration-500 cursor-default border border-white/10 flex flex-col justify-between shadow-xl`}>
-                                    <div>
-                                        <div className="flex gap-1 mb-6">
-                                            {[...Array(5)].map((_, idx) => (
-                                                <Star key={idx} size={20} className="fill-yellow-400 text-yellow-400" />
-                                            ))}
-                                        </div>
-                                        <p className="text-lg md:text-xl font-medium leading-relaxed mb-8 line-clamp-4 text-white/90">
-                                            "{t.review}"
-                                        </p>
-                                    </div>
-                                    <div className="flex items-center gap-4 mt-auto">
-                                        <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-2xl text-white font-bold shadow-md uppercase border border-white/20">
-                                            {t.name[0]}
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-lg text-white">{t.name}</h4>
-                                            <span className="text-xs text-white/60 uppercase tracking-widest font-bold">Verified Parent</span>
-                                        </div>
-                                        <Quote className="ml-auto text-4xl text-white opacity-20" />
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </motion.div>
-                </div>
-
-                {/* Big Numbers */}
-                <div className="max-w-7xl mx-auto px-6 mt-32">
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-12 text-center divide-x divide-gray-100">
-                        {[
-                            { num: "50+", label: "Happy Students" },
-                            { num: "5+", label: "Expert Mentors" }, // More premium term than teachers
-                            { num: "100%", label: "Safety Record" },
-                        ].map((stat, i) => (
-                            <div key={i} className="reveal-text px-4">
-                                <h3 className="text-4xl md:text-7xl font-black text-gulf-lebanese dark:text-white mb-4 bg-clip-text text-transparent bg-gradient-to-b from-gulf-lebanese to-gray-400 dark:from-white dark:to-gray-500">
-                                    {stat.num}
-                                </h3>
-                                <p className="text-gray-500 font-bold uppercase tracking-widest text-sm">{stat.label}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section >
+            {/* --- SECTION 5: LIVE STATS & TESTIMONIALS (Updated Rich Section) --- */}
+            <HomeParentsPraiseSection />
 
             {/* --- SECTION 6: FAQ --- */}
             < section className="py-24 bg-[#F9F7F2] dark:bg-black relative z-10 px-6 transition-colors duration-300" >
