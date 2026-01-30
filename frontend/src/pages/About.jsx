@@ -278,7 +278,7 @@ const About = () => {
                                     <div className="md:col-span-4 relative order-1 md:order-2">
                                         <div className="absolute inset-0 bg-purple-300 rounded-2xl transform -translate-x-3 translate-y-3"></div>
                                         <img
-                                            src="/New/newowner23.png"
+                                            src="/otherimp/owner2.jpeg"
                                             alt="Mr. Meraj Patel"
                                             className="w-full h-auto rounded-2xl shadow-lg relative z-10 aspect-[3/4] object-cover object-top"
                                         />
