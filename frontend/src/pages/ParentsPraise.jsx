@@ -2,6 +2,7 @@ import React, { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, Heart, Shield, Home, Play, Users, X, PlayCircle, Maximize2, ChevronRight, ChevronLeft } from 'lucide-react';
+import AdmissionModal from '../components/AdmissionModal';
 import { googleReviews } from '../data/reviews';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -177,6 +178,7 @@ const MediaCard = ({ item, onClick, className }) => {
 // --- 3. MAIN PAGE ---
 
 const ParentsPraise = () => {
+    const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const containerRef = useRef(null);
     const sceneRef = useRef(null);
@@ -481,9 +483,12 @@ const ParentsPraise = () => {
 
             {/* CTA */}
             <section className="pb-24 text-center">
-                <a href="/admission" className="inline-block bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-12 py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-2xl hover:shadow-rose-500/50">
+                <button
+                    onClick={() => setIsAdmissionOpen(true)}
+                    className="inline-block bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-12 py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-2xl hover:shadow-rose-500/50"
+                >
                     Be Part of Our Story
-                </a>
+                </button>
             </section>
 
             {/* --- LIGHTBOX OVERLAY (Gallery Style) --- */}
@@ -566,6 +571,8 @@ const ParentsPraise = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            <AdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
 
         </div>
     );

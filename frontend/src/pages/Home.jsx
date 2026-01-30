@@ -728,9 +728,11 @@ const Home = () => {
                                     Apply Now <ArrowRight size={20} />
                                 </motion.button>
 
-                                <button className="px-10 py-5 rounded-full text-lg font-bold text-gulf-lebanese dark:text-white border-2 border-gulf-lebanese/10 dark:border-white/20 hover:bg-gulf-lebanese/5 dark:hover:bg-white/5 transition-colors">
-                                    Book a Campus Visit
-                                </button>
+                                <NavLink to="/contact">
+                                    <button className="px-10 py-5 rounded-full text-lg font-bold text-gulf-lebanese dark:text-white border-2 border-gulf-lebanese/10 dark:border-white/20 hover:bg-gulf-lebanese/5 dark:hover:bg-white/5 transition-colors">
+                                        Book a Campus Visit
+                                    </button>
+                                </NavLink>
                             </div>
 
 

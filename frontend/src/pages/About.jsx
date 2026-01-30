@@ -1,9 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import SEO from '../components/SEO';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Target, Heart, Award, Users, Star, BrainCircuit, Sparkles, ArrowRight } from 'lucide-react';
+import AdmissionModal from '../components/AdmissionModal';
 
 const About = () => {
+    const [isAdmissionOpen, setIsAdmissionOpen] = useState(false);
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -360,6 +362,7 @@ const About = () => {
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
+                                onClick={() => setIsAdmissionOpen(true)}
                                 className="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-bold text-lg px-8 py-4 rounded-full transition-colors flex items-center gap-2 mx-auto"
                             >
                                 Apply for Admission
@@ -368,6 +371,8 @@ const About = () => {
                         </div>
                     </motion.div>
                 </section>
+
+                <AdmissionModal isOpen={isAdmissionOpen} onClose={() => setIsAdmissionOpen(false)} />
 
             </div>
         </div>
