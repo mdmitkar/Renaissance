@@ -220,8 +220,16 @@ const Contact = () => {
                                 <p className="opacity-70 text-sm mb-6">Loved by 500+ Parents on Google</p>
 
                                 <div className="flex gap-4">
-                                    <SocialButton icon={<Instagram size={24} />} color="hover:bg-pink-600" />
-                                    <SocialButton icon={<MessageCircle size={24} />} color="hover:bg-green-500" />
+                                    <SocialButton
+                                        icon={<Instagram size={24} />}
+                                        color="hover:bg-pink-600"
+                                        href="https://www.instagram.com/renaissancepreschool"
+                                    />
+                                    <SocialButton
+                                        icon={<MessageCircle size={24} />}
+                                        color="hover:bg-green-500"
+                                        href="https://api.whatsapp.com/send/?phone=918483848486&text=Hello+Renaissance+Preschool%2C%0A%0AI+am+interested+in+admission+for+my+child.+Kindly+share+details+about+programs%2C+fees%2C+and+admission+process.%0A%0AThank+you.&type=phone_number&app_absent=0"
+                                    />
                                 </div>
                             </div>
 
@@ -485,14 +493,17 @@ const ContactItem = ({ icon, title, lines, color, link, onClick }) => (
     </div>
 );
 
-const SocialButton = ({ icon, color }) => (
-    <motion.button
+const SocialButton = ({ icon, color, href }) => (
+    <motion.a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
         whileHover={{ scale: 1.2, rotate: 10 }}
         whileTap={{ scale: 0.9 }}
         className={`w-12 h-12 rounded-full bg-white/10 backdrop-blur flex items-center justify-center transition-all ${color}`}
     >
         {icon}
-    </motion.button>
+    </motion.a>
 )
 
 export default Contact;

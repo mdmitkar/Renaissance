@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom'; // Import ReactDOM
 import { X, Send, Calendar, MapPin, User, Phone, BookOpen } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -25,13 +24,13 @@ const AdmissionModal = ({ isOpen, onClose }) => {
         onClose();
     };
 
-    return ReactDOM.createPortal(
+    return (
         <AnimatePresence>
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/60 backdrop-blur-md z-[9999] flex items-center justify-center p-4"
+                className="fixed inset-0 bg-black/60 backdrop-blur-md z-[60] flex items-center justify-center p-4"
                 onClick={onClose}
             >
                 <motion.div
@@ -168,8 +167,7 @@ const AdmissionModal = ({ isOpen, onClose }) => {
                     </div>
                 </motion.div>
             </motion.div>
-        </AnimatePresence>,
-        document.body
+        </AnimatePresence>
     );
 };
 
