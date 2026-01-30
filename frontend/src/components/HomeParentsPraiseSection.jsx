@@ -217,9 +217,9 @@ const HomeParentsPraiseSection = () => {
 
                 {/* 5. CTA Button (No Marquee/Grid, just button) */}
                 <div className="text-center mt-12 pb-12">
-                    <p className="text-gray-500 mb-6 font-medium">Want to see what everyone is saying?</p>
-                    <Link to="/reviews" className="inline-block px-12 py-5 bg-gradient-to-r from-slate-900 to-slate-800 dark:from-white dark:to-gray-200 text-white dark:text-slate-900 rounded-full font-bold text-lg shadow-2xl hover:scale-105 hover:shadow-luxury-pink/20 transition-all flex items-center gap-3 mx-auto group">
-                        Read All Reviews <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                    <p className="text-gray-500 mb-4 font-medium">Want to see what everyone is saying?</p>
+                    <Link to="/reviews" className="inline-flex items-center gap-2 text-lg font-bold text-slate-900 dark:text-white hover:text-luxury-pink transition-colors border-b-2 border-transparent hover:border-luxury-pink pb-1">
+                        Read All Reviews <ChevronRight size={20} />
                     </Link>
                 </div>
 
