@@ -637,7 +637,7 @@ const Home = () => {
                                     <img
                                         src={prog.img}
                                         alt={prog.title}
-                                        className="journey-img w-full h-full object-cover"
+                                        className={`journey-img w-full h-full object-cover ${prog.imgPos || 'object-center'}`}
                                     />
                                     {/* Overlay Number Removed */}
                                 </div>
@@ -806,7 +806,8 @@ const PROGRAMS = [
         age: "3 - 4 Years",
         desc: "Stepping stones to early literacy. Letters and numbers become friends through stories.",
         bg: "#059669", // Emerald 600 - Vibrant Green
-        img: "/otherimp/nursery.png",
+        img: "/abnursery.png",
+        imgPos: "object-[75%_center]",
         tags: ["Phonics", "Nature", "Reading"]
     },
     {
