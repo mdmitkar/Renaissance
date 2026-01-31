@@ -798,7 +798,8 @@ const PROGRAMS = [
         age: "2 - 3 Years",
         desc: "A sensory wonderland for our tiniest tots. Montessori-inspired aids meet messy play.",
         bg: "#BE185D", // Pink 700 - Vibrant
-        img: "/assets/generated/playgroup.png",
+        img: "/abpreschool.png",
+        imgPos: "object-center",
         tags: ["Discipline", "Etiquettes", "Class Decorum"]
     },
     {
