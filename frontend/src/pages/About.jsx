@@ -306,7 +306,7 @@ const About = () => {
                                 <div className="md:col-span-4 relative">
                                     <div className="absolute inset-0 bg-indigo-300 rounded-2xl transform translate-x-3 translate-y-3"></div>
                                     <img
-                                        src="/assets/swimming_area.jpeg"
+                                        src="/otherimp/prinicmam.png"
                                         alt="Ms. Shagufta Madoo"
                                         className="w-full h-auto rounded-2xl shadow-lg relative z-10 aspect-[3/4] object-cover"
                                     />

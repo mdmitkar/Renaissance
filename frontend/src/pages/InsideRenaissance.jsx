@@ -611,6 +611,7 @@ const GALLERY_DATA = {
                 { type: 'video', src: '/teachersday/WhatsApp Video 2026-01-30 at 20.43.42 (1).mp4' },
                 { type: 'video', src: '/teachersday/WhatsApp Video 2026-01-30 at 20.43.42.mp4' },
                 { type: 'video', src: '/teachersday/WhatsApp Video 2026-01-30 at 20.43.43.mp4' },
+                { type: 'video', src: '/teachersday/t2.mp4' },
             ]
         }
     ]
