@@ -164,8 +164,8 @@ const Navbar = ({ onOpenAdmission }) => {
                 </div>
 
                 {/* Mobile Menu */}
-                <div className={`fixed top-[90px] left-0 w-full h-[calc(100vh-90px)] bg-cream-velvet dark:bg-black transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden z-40 overflow-y-auto`}>
-                    <ul className="flex flex-col items-center justify-start pt-12 h-full gap-8 p-4">
+                <div className={`fixed inset-0 top-[90px] bg-cream-velvet dark:bg-black transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden z-40 overflow-y-auto overscroll-contain`}>
+                    <ul className="flex flex-col items-center justify-start pt-12 min-h-full pb-20 gap-8 p-4">
                         {navLinks.map((link, index) => (
                             <li key={index} className="w-full text-center flex flex-col items-center">
                                 {/* Mobile Link Item Container */}
