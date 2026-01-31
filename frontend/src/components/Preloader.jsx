@@ -11,6 +11,16 @@ const Preloader = () => {
         return () => clearTimeout(timer);
     }, []);
 
+    // Generate random sparkles with professional positioning
+    const sparkles = Array.from({ length: 25 }).map((_, i) => ({
+        id: i,
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        size: Math.random() * 8 + 4, // Slightly smaller for more elegance
+        delay: Math.random() * 2,
+        duration: Math.random() * 1.5 + 1.5, // Slower, more graceful animation
+    }));
+
     return (
         <AnimatePresence>
             {isLoading && (
@@ -19,6 +29,37 @@ const Preloader = () => {
                     exit={{ opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
                     className="fixed inset-0 z-[100] flex items-center justify-center bg-secondary-black text-cream-velvet overflow-hidden"
                 >
+                    {/* Magical Sparkles Background */}
+                    {sparkles.map((sparkle) => (
+                        <motion.div
+                            key={sparkle.id}
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{
+                                scale: [0, 1, 0],
+                                opacity: [0, 0.8, 0], // Reduced max opacity for subtlety
+                                rotate: [0, 180]
+                            }}
+                            transition={{
+                                duration: sparkle.duration,
+                                repeat: Infinity,
+                                delay: sparkle.delay,
+                                ease: "easeInOut"
+                            }}
+                            style={{
+                                position: 'absolute',
+                                top: sparkle.top,
+                                left: sparkle.left,
+                                width: sparkle.size,
+                                height: sparkle.size,
+                            }}
+                            className="text-yellow-400"
+                        >
+                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
+                                <path d="M12 2L14.85 9.15L22 12L14.85 14.85L12 22L9.15 14.85L2 12L9.15 9.15L12 2Z" />
+                            </svg>
+                        </motion.div>
+                    ))}
+
                     <div className="text-center relative z-10">
                         <motion.div
                             initial={{ scale: 0.8, opacity: 0 }}
@@ -26,6 +67,13 @@ const Preloader = () => {
                             transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
                             className="w-64 h-64 mb-8 mx-auto rounded-full bg-gulf-blue/20 flex items-center justify-center relative"
                         >
+                            {/* Inner rotating glow for extra magic */}
+                            <motion.div
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 8, repeat: Infinity, ease: "linear" }} // Slower rotation
+                                className="absolute inset-0 rounded-full border-2 border-dashed border-yellow-400/30" // More subtle border
+                            />
+
                             <img src="/logo.jpeg" alt="Logo" className="w-48 h-48 object-contain rounded-full mix-blend-normal z-20" />
                         </motion.div>
 
