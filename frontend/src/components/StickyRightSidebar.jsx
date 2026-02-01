@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const StickyRightSidebar = ({ onOpenAdmission }) => {
     return (
-        <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 hidden md:flex flex-col gap-2">
+        <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 flex flex-col gap-2">
             <SidebarItem
                 icon={<FileText size={20} />}
                 label="Admissions"
