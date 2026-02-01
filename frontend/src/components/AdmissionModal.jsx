@@ -30,7 +30,7 @@ const AdmissionModal = ({ isOpen, onClose }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/60 backdrop-blur-md z-[60] flex items-center justify-center p-4"
+                className="fixed inset-0 bg-black/60 backdrop-blur-md z-[20000] flex items-center justify-center p-4"
                 onClick={onClose}
             >
                 <motion.div
