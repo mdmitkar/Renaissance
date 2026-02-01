@@ -7,12 +7,12 @@ const Preloader = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 2200); // 2.2 seconds show time
+        }, 2800); // Increased to 2.8 seconds for a more relaxing feel
         return () => clearTimeout(timer);
     }, []);
 
     // Generate random sparkles with professional positioning
-    const sparkles = Array.from({ length: 25 }).map((_, i) => ({
+    const sparkles = Array.from({ length: 50 }).map((_, i) => ({
         id: i,
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
@@ -36,7 +36,7 @@ const Preloader = () => {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{
                                 scale: [0, 1, 0],
-                                opacity: [0, 0.8, 0], // Reduced max opacity for subtlety
+                                opacity: [0, 1, 0], // Increased opacity for "enhanced" effect
                                 rotate: [0, 180]
                             }}
                             transition={{
@@ -52,7 +52,7 @@ const Preloader = () => {
                                 width: sparkle.size,
                                 height: sparkle.size,
                             }}
-                            className="text-yellow-400"
+                            className="text-[#FFD700]" // Gold sparkles
                         >
                             <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full">
                                 <path d="M12 2L14.85 9.15L22 12L14.85 14.85L12 22L9.15 14.85L2 12L9.15 9.15L12 2Z" />
@@ -65,25 +65,20 @@ const Preloader = () => {
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1.1, opacity: 1 }}
                             transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
-                            className="w-64 h-64 mb-8 mx-auto rounded-full bg-gulf-blue/20 flex items-center justify-center relative"
+                            className="w-64 h-64 mb-8 mx-auto flex items-center justify-center relative"
                         >
-                            {/* Inner rotating glow for extra magic */}
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 8, repeat: Infinity, ease: "linear" }} // Slower rotation
-                                className="absolute inset-0 rounded-full border-2 border-dashed border-yellow-400/30" // More subtle border
-                            />
+
 
                             <img src="/logo.jpeg" alt="Logo" className="w-48 h-48 object-contain rounded-full mix-blend-normal z-20" />
                         </motion.div>
 
                         {/* Loading Bar Container */}
-                        <div className="mt-8 w-64 h-2 bg-gray-200 rounded-full overflow-hidden mx-auto relative shadow-[0_0_10px_rgba(250,204,21,0.5)]">
+                        <div className="mt-8 w-64 h-2 bg-white/20 rounded-full overflow-hidden mx-auto relative shadow-[0_0_10px_rgba(255,215,0,0.3)]">
                             <motion.div
                                 initial={{ width: "0%" }}
                                 animate={{ width: "100%" }}
-                                transition={{ duration: 2, ease: "easeInOut" }}
-                                className="h-full bg-yellow-400 shadow-[0_0_15px_rgba(250,204,21,0.8)]"
+                                transition={{ duration: 2.6, ease: "easeInOut" }}
+                                className="h-full bg-[#FFD700] shadow-[0_0_15px_rgba(255,215,0,0.6)]"
                             />
                         </div>
                     </div>
