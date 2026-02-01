@@ -344,7 +344,7 @@ const Home = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1.2, duration: 1 }}
-                            className="text-3xl md:text-5xl font-baloo font-bold text-gentle-sweet uppercase tracking-[0.2em] mb-4 -mt-2 md:-mt-8"
+                            className="text-xl sm:text-2xl md:text-5xl font-baloo font-bold text-gentle-sweet uppercase tracking-[0.2em] mb-4 -mt-2 md:-mt-8"
                         >
                             Preschool
                         </motion.div>
