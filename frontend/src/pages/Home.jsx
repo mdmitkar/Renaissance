@@ -324,7 +324,7 @@ const Home = () => {
                             }}
                             initial="hidden"
                             animate="visible"
-                            className="text-[17vw] md:text-[14rem] font-english font-normal text-[#D4AF37] leading-none drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] mb-4 tracking-normal w-full text-center"
+                            className="text-[17vw] md:text-[14rem] font-english font-normal text-[#D4AF37] leading-none drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] mb-0 tracking-normal w-full text-center"
                         >
                             {"Renaissance".split("").map((char, index) => (
                                 <motion.span
@@ -344,7 +344,7 @@ const Home = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1.2, duration: 1 }}
-                            className="text-3xl md:text-5xl font-baloo font-bold text-gentle-sweet uppercase tracking-[0.2em] mb-8"
+                            className="text-3xl md:text-5xl font-baloo font-bold text-gentle-sweet uppercase tracking-[0.2em] mb-4 -mt-2 md:-mt-8"
                         >
                             Preschool
                         </motion.div>
@@ -353,9 +353,9 @@ const Home = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1.5, duration: 1 }}
-                            className="text-xl md:text-3xl font-body font-light text-gentle-sweet max-w-3xl mx-auto leading-relaxed drop-shadow-lg tracking-wide mb-12"
+                            className="text-2xl md:text-3xl font-baloo font-bold text-gentle-sweet max-w-3xl mx-auto leading-relaxed drop-shadow-lg tracking-wide mb-12 italic"
                         >
-                            LEARNING THROUGH LOVE AND LAUGHTER
+                            Learning through Love & Laughter
                         </motion.h2>
 
                         <div className="flex flex-col md:flex-row gap-8 justify-center items-center mt-8">
