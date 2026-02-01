@@ -324,7 +324,7 @@ const Home = () => {
                             }}
                             initial="hidden"
                             animate="visible"
-                            className="text-[17vw] md:text-[14rem] font-english font-normal text-[#D4AF37] leading-none drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] mb-0 tracking-normal w-full text-center"
+                            className="text-[14vw] md:text-[14rem] font-english font-normal text-[#D4AF37] leading-none drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] mb-0 tracking-normal w-full text-center whitespace-nowrap"
                         >
                             {"Renaissance".split("").map((char, index) => (
                                 <motion.span

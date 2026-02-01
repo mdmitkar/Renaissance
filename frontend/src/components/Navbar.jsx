@@ -65,7 +65,7 @@ const Navbar = ({ onOpenAdmission }) => {
     };
 
     return (
-        <nav className={`fixed top-0 z-50 w-full transition-all duration-300 h-[90px] flex items-center ${scrolled
+        <nav className={`fixed top-0 z-[10000] w-full transition-all duration-300 h-[90px] flex items-center ${scrolled
             ? 'bg-cream-velvet/90 dark:bg-black/80 backdrop-blur-md shadow-lg'
             : 'bg-transparent shadow-none'
             }`}>
@@ -164,7 +164,7 @@ const Navbar = ({ onOpenAdmission }) => {
                 </div>
 
                 {/* Mobile Menu */}
-                <div className={`fixed inset-0 top-[90px] bg-cream-velvet dark:bg-black transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden z-40 overflow-y-auto overscroll-contain`}>
+                <div className={`fixed inset-x-0 top-[90px] h-[calc(100vh-90px)] bg-cream-velvet dark:bg-black transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:hidden z-[9999] overflow-y-auto overscroll-contain`}>
                     <ul className="flex flex-col items-center justify-start pt-12 min-h-full pb-20 gap-8 p-4">
                         {navLinks.map((link, index) => (
                             <li key={index} className="w-full text-center flex flex-col items-center">
