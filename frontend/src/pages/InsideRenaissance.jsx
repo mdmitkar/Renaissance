@@ -552,6 +552,7 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/reniesta/reniesta4.jpeg' },
                 { type: 'image', src: '/reniesta/reniesta5.png' },
                 { type: 'image', src: '/reniesta/reniesta6.png' },
+                { type: 'video', src: '/videos/reniestavideo.mp4', muted: true },
             ]
         }
     ],
@@ -928,6 +929,7 @@ const GallerySection = () => {
                                             src={selectedMedia.src}
                                             controls
                                             autoPlay
+                                            muted={selectedMedia.muted}
                                             className="w-full h-full object-contain rounded-lg shadow-2xl"
                                         />
                                     </div>
