@@ -798,8 +798,8 @@ const PROGRAMS = [
         age: "2 - 3 Years",
         desc: "A sensory wonderland for our tiniest tots. Montessori-inspired aids meet messy play.",
         bg: "#BE185D", // Pink 700 - Vibrant
-        img: "/abpreschool.png",
-        imgPos: "object-center",
+        img: "/otherimp/playgroup.png",
+        imgPos: "object-[75%_center]",
         tags: ["Discipline", "Etiquettes", "Class Decorum"]
     },
     {
@@ -816,7 +816,7 @@ const PROGRAMS = [
         age: "4 - 5 Years",
         desc: "Curiosity takes flight. Fun activities, story sessions, and logical reasoning.",
         bg: "#D97706", // Amber 600 - Rich Orange/Gold
-        img: "/otherimp/jrkg.png",
+        img: "/otherimp/jrkgg.png",
         tags: ["Activity", "Logic", "Math"]
     },
     {
