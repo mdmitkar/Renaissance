@@ -18,7 +18,7 @@ const About = () => {
         <div ref={containerRef} className="min-h-screen bg-yellow-50/50 dark:bg-black font-body text-slate-800 dark:text-gray-200 selection:bg-rose-500 selection:text-white transition-colors duration-300">
             <SEO
                 title="About Us"
-                description="Discover Renaissance Preschool's mission to blend modern academics with Islamic values. Meet our founders and learn about our holistic approach."
+                description="Discover Renaissance Preschool's mission to blend modern academics with moral & ethical values. Meet our founders and learn about our holistic approach."
                 canonical="/about"
             />
 
@@ -109,7 +109,7 @@ const About = () => {
                         <ValueCard
                             icon={<Users size={32} />}
                             title="Our Approach"
-                            desc="We blend play-based learning with a structured curriculum to foster creativity, critical thinking, and social skills alongside Islamic values."
+                            desc="We blend play-based learning with a structured curriculum to foster creativity, critical thinking, and social skills alongside moral & ethical values."
                             color="text-white"
                             bg="bg-emerald-400"
                             shadow="shadow-emerald-200"
@@ -130,7 +130,7 @@ const About = () => {
                         <h2 className="text-4xl md:text-6xl font-heading font-black mb-8 text-slate-800 dark:text-white leading-tight">
                             Modern Academics & <br />
                             <span className="relative inline-block text-rose-500">
-                                Islamic Values
+                                Moral & Ethical Values
                                 <svg className="absolute w-full h-3 -bottom-1 left-0 text-yellow-300 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
                                     <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
                                 </svg>
@@ -138,7 +138,7 @@ const About = () => {
                         </h2>
                         <div className="space-y-6 text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                             <p>
-                                At <strong>Renaissance Preschool</strong>, we are dedicated to providing a nurturing and high-quality early childhood education that blends modern academics with Islamic values.
+                                At <strong>Renaissance Preschool</strong>, we are dedicated to providing a nurturing and high-quality early childhood education that blends modern academics with moral & ethical values.
                             </p>
                             <p>
                                 Our preschool follows a <span className="text-purple-600 font-bold">play-based learning approach</span>, alongside a well-structured curriculum that fosters creativity, critical thinking, and social skills. We aim to instill a love for learning through a curriculum that integrates faith, academics, social development, and righteousness.

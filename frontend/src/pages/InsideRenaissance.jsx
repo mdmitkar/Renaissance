@@ -180,7 +180,8 @@ const EVENTS = [
             "renista2.jpeg",
             "renista3.png",
             "reniesta4.jpeg",
-            "reniesta5.png"
+            "reniesta5.png",
+            "reniesta6.png"
         ],
         theme: {
             primary: "#8B5CF6", // Violet
@@ -550,6 +551,7 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/reniesta/renista3.png' },
                 { type: 'image', src: '/reniesta/reniesta4.jpeg' },
                 { type: 'image', src: '/reniesta/reniesta5.png' },
+                { type: 'image', src: '/reniesta/reniesta6.png' },
             ]
         }
     ],
