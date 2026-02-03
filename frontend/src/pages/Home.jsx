@@ -769,7 +769,7 @@ const Home = () => {
 
 const PETAL_DATA = [
     {
-        title: "Culture & Patriotism",
+        title: "Culture & Mutual Respect",
         emoji: (
             <div className="w-8 h-6 flex flex-col shadow-sm rounded-[1px] overflow-hidden" aria-label="India Flag">
                 <div className="h-1/3 w-full bg-[#FF9933]"></div>
@@ -779,7 +779,7 @@ const PETAL_DATA = [
                 <div className="h-1/3 w-full bg-[#138808]"></div>
             </div>
         ),
-        desc: "Instilling love for the nation, celebrating diverse festivals, and fostering a deep sense of unity and pride.",
+        desc: "Instilling love & mutual respect for each other, celebrating diverse festivals, and fostering a deep sense of unity and pride.",
         img: "/IndependenceDay/IndependenceDay_2.jpeg",
         color: "text-white",
         bg: "bg-[#1E3A8A]"
