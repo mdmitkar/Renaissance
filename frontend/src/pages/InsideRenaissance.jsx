@@ -364,7 +364,7 @@ const LifeSection = () => {
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="/assets/generated/life_at_renaissance_hero.png"
+                        src="/SchoolPremises/insiderenaisacene].jpeg"
                         alt="Life at Renaissance"
                         className="w-full h-full object-cover"
                     />
