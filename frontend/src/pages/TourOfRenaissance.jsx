@@ -377,7 +377,7 @@ const TourOfRenaissance = () => {
                     transition={{ duration: 0.8 }}
                     className="relative z-10 text-center px-4 w-full"
                 >
-                    <h1 className="text-[8vw] md:text-[7vw] font-heading font-normal text-white mb-4 tracking-tighter drop-shadow-2xl whitespace-nowrap leading-none">
+                    <h1 className="text-[12vw] md:text-[8vw] font-english font-normal text-[#D4AF37] mb-4 tracking-normal drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] whitespace-nowrap leading-none">
                         Tour of Renaissance
                     </h1>
 
