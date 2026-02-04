@@ -116,7 +116,7 @@ const Contact = () => {
                     {/* Top Left: School Building - HIDDEN ON MOBILE (Like Parents Praise) */}
                     <div className="contact-float-item absolute top-[8%] left-[5%] w-72 z-10 hidden md:block">
                         <div className="bg-white dark:bg-zinc-800 p-3 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
-                            <img src="/assets/school_building_enhanced.png" alt="Our Campus" className="rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
+                            <img src="/assets/cropschool_building_enhanced.png" alt="Our Campus" className="rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
                             <div className="text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
                         </div>
                     </div>
