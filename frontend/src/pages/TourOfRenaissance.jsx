@@ -356,7 +356,7 @@ const TimelineSection = ({ event, index }) => {
     );
 };
 
-const LifeSection = () => {
+const TourOfRenaissance = () => {
     return (
         <div className="bg-[#F3F0E8] dark:bg-[#111] font-body transition-colors duration-300">
             {/* HERO HEADER */}
@@ -378,7 +378,7 @@ const LifeSection = () => {
                     className="relative z-10 text-center px-4 w-full"
                 >
                     <h1 className="text-[8vw] md:text-[7vw] font-heading font-normal text-white mb-4 tracking-tighter drop-shadow-2xl whitespace-nowrap leading-none">
-                        Inside Renaissance
+                        Tour of Renaissance
                     </h1>
 
                     <p className="text-lg md:text-2xl font-light text-slate-100 max-w-4xl mx-auto leading-relaxed drop-shadow-lg font-body tracking-wide">
@@ -976,34 +976,36 @@ const GallerySection = () => {
 // MAIN: INSIDE RENAISSANCE
 // ===================================
 
-const InsideRenaissance = () => {
+
+const TourOfRenaissancePage = () => {
     const videoSchema = useMemo(() => {
         const allMedia = [...GALLERY_DATA.events, ...GALLERY_DATA.celebrations].flatMap(album => album.media);
         const videos = allMedia.filter(m => m.type === 'video');
 
         return videos.map(video => ({
-            "@context": "https://schema.org",
-            "@type": "VideoObject",
-            "name": video.src.split('/').pop().replace('.mp4', '').replace(/_/g, ' '),
-            "description": "Video from Renaissance Preschool gallery.",
-            "thumbnailUrl": "https://renaissancepreschool.in/logo.jpeg",
-            "uploadDate": "2024-01-01T08:00:00+08:00",
-            "contentUrl": `https://renaissancepreschool.in${video.src}`
+            '@context': 'https://schema.org',
+            '@type': 'VideoObject',
+            'name': video.src.split('/').pop().replace('.mp4', '').replace(/_/g, ' '),
+            'description': 'Video from Renaissance Preschool gallery.',
+            'thumbnailUrl': 'https://renaissancepreschool.in/logo.jpeg',
+            'uploadDate': '2024-01-01T08:00:00+08:00',
+            'contentUrl': `https://renaissancepreschool.in${video.src}`
         }));
     }, []);
 
     return (
-        <div className="overflow-x-hidden">
+        <div className='overflow-x-hidden'>
             <SEO
-                title="Inside Renaissance"
-                description="Explore our facilities, classrooms, and play areas at Renaissance Preschool. Take a virtual tour and see where the magic happens."
-                canonical="/inside-renaissance"
+                title='Tour of Renaissance - Gallery & Events'
+                description='Explore the vibrant life at Renaissance Preschool. From events and celebrations to daily learning activities.'
+                canonical='/tour-of-renaissance'
                 schema={videoSchema}
             />
-            <LifeSection />
+            <TourOfRenaissance />
             <GallerySection />
         </div>
     );
 };
 
-export default InsideRenaissance;
+export default TourOfRenaissancePage;
+

@@ -371,7 +371,7 @@ const Home = () => {
                                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                             </motion.button>
 
-                            <NavLink to="/inside-renaissance">
+                            <NavLink to="/tour-of-renaissance">
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}

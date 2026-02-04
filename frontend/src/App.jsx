@@ -7,8 +7,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import ParentsPraise from './pages/ParentsPraise';
 import Contact from './pages/Contact';
-import InsideRenaissance from './pages/InsideRenaissance';
-
+import TourOfRenaissance from './pages/TourOfRenaissance';
 function App() {
   return (
     <>
@@ -20,7 +19,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="reviews" element={<ParentsPraise />} />
-            <Route path="inside-renaissance" element={<InsideRenaissance />} />
+            <Route path="tour-of-renaissance" element={<TourOfRenaissance />} />
             <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>

@@ -61,7 +61,7 @@ const CHAT_FLOW = {
     p_gallery: {
         message: "Our children actively participate in:\n🎨 Art & craft\n🕺 Dance & movement\n📚 Classroom learning\n🎉 Events & celebrations",
         options: [
-            { label: "🖼️ Open Gallery Page", action: "navigate", path: "/inside-renaissance" },
+            { label: "🖼️ Open Gallery Page", action: "navigate", path: "/tour-of-renaissance" },
             { label: "🔙 Back", next: "parent_menu" }
         ]
     },
