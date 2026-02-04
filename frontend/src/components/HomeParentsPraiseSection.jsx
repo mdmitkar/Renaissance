@@ -150,27 +150,14 @@ const HomeParentsPraiseSection = () => {
                         transition={{ delay: 0.1 }}
                         className="text-5xl md:text-7xl font-heading font-black text-gulf-lebanese dark:text-white mb-6"
                     >
-                        Community Love
+                        Parent's Praise
                     </motion.h2>
                     <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto">
                         Real stories. Real smiles. See why families choose us.
                     </p>
                 </div>
 
-                {/* 2. Trust Stats Row */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 border-y border-gray-100 dark:border-white/10 py-8">
-                    {[
-                        { label: "Families", val: "150+" },
-                        { label: "Google Rating", val: "4.9/5" },
-                        { label: "Verfied Reviews", val: "100+" },
-                        { label: "Happy Smiles", val: "∞" }
-                    ].map((stat, i) => (
-                        <div key={i} className="text-center">
-                            <h3 className="text-3xl font-black text-slate-800 dark:text-white mb-1">{stat.val}</h3>
-                            <p className="text-xs font-bold uppercase tracking-widest text-luxury-pink opacity-80">{stat.label}</p>
-                        </div>
-                    ))}
-                </div>
+
 
                 {/* 3. EXPANDED Video Stories */}
                 <div className="mb-24">
