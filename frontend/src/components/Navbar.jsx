@@ -55,7 +55,7 @@ const Navbar = ({ onOpenAdmission }) => {
                 }
             ]
         },
-        { name: "Parents' Praise", path: '/reviews' },
+        { name: "Parent's Praise", path: '/reviews' },
         { name: 'Contact', path: '/contact' },
     ];
 

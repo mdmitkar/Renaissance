@@ -202,7 +202,8 @@ const EVENTS = [
         images: [
             "WhatsApp Image 2026-01-30 at 20.43.39 copy.jpeg",
             "WhatsApp Image 2026-01-30 at 20.43.39.jpeg",
-            "WhatsApp Image 2026-01-30 at 20.43.41.jpeg"
+            "WhatsApp Image 2026-01-30 at 20.43.41.jpeg",
+            "objimage1.png"
         ],
         theme: {
             primary: "#3B82F6", // Blue
@@ -609,7 +610,9 @@ const GALLERY_DATA = {
             title: "Teacher's Day",
             cover: '/teachersday/WhatsApp Image 2026-01-30 at 20.43.39.jpeg',
             media: [
+                { type: 'image', src: '/teachersday/objimage1.png' },
                 { type: 'image', src: '/teachersday/WhatsApp Image 2026-01-30 at 20.43.39.jpeg' },
+                { type: 'video', src: '/teachersday/WhatsApp Video 2026-01-30 at 20.43.43.mp4' },
                 { type: 'image', src: '/teachersday/WhatsApp Image 2026-01-30 at 20.43.41.jpeg' },
                 { type: 'video', src: '/teachersday/objren.mp4' },
             ]
