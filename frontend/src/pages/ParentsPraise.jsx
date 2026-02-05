@@ -346,11 +346,7 @@ const ParentsPraise = () => {
 
                     {/* --- CENTRAL CONTENT (Foreground) --- */}
                     <div className="relative z-30 text-center px-6 max-w-3xl [transform:translateZ(40px)]">
-                        <div className="hero-text-anim inline-block mb-6">
-                            <div className="px-6 py-2 rounded-full bg-rose-100/50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-300 font-bold tracking-widest uppercase text-xs md:text-sm backdrop-blur-sm border border-rose-200/50">
-                                ❤️ 150+ Happy Families
-                            </div>
-                        </div>
+
 
                         <h1 className="hero-text-anim text-5xl md:text-7xl lg:text-8xl font-heading font-black text-slate-900 dark:text-white mb-8 leading-tight drop-shadow-sm">
                             What Parents <br />
@@ -378,9 +374,8 @@ const ParentsPraise = () => {
 
             {/* --- TRUST STATS --- */}
             <section className="py-12 border-y border-rose-200/50 dark:border-white/5 bg-white/50 dark:bg-white/5 backdrop-blur-sm">
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-3 gap-8">
+                <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 gap-8">
                     {[
-                        { label: "Families", val: "150+" },
                         { label: "Rating", val: "4.9/5" },
                         { label: "Smiles", val: "∞" }
                     ].map((stat, i) => (
