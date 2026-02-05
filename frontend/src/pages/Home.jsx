@@ -725,7 +725,7 @@ const Home = () => {
                                     onClick={openAdmission}
                                     className="bg-gulf-lebanese text-white px-10 py-5 rounded-full text-lg font-bold shadow-lg shadow-gulf-lebanese/30 hover:bg-gulf-lebanese/90 transition-colors flex items-center justify-center gap-3"
                                 >
-                                    Apply Now <ArrowRight size={20} />
+                                    Enquire Now <ArrowRight size={20} />
                                 </motion.button>
 
                                 <NavLink to="/contact">

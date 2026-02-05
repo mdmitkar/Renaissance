@@ -149,7 +149,7 @@ const Navbar = ({ onOpenAdmission }) => {
                             onClick={onOpenAdmission}
                             className="bg-primary-gold text-secondary-black font-heading font-bold px-6 py-2 rounded-full hover:bg-yellow-500 transition-all transform hover:scale-105 shadow-md whitespace-nowrap cursor-pointer"
                         >
-                            Admission
+                            Enquire for Admission
                         </button>
                         <ThemeToggle />
                     </div>
@@ -233,7 +233,7 @@ const Navbar = ({ onOpenAdmission }) => {
                                 }}
                                 className="inline-block bg-primary-gold text-secondary-black font-heading font-bold px-8 py-3 rounded-full text-xl hover:bg-yellow-500 transition-all shadow-md cursor-pointer"
                             >
-                                Admission
+                                Enquire for Admission
                             </button>
                         </li>
                     </ul>

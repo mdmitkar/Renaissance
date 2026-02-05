@@ -25,7 +25,7 @@ const Footer = ({ onOpenAdmission }) => {
                                 onClick={onOpenAdmission}
                                 className="hover:text-primary-gold transition-colors block text-left"
                             >
-                                Admissions
+                                Admission Enquiry
                             </button>
                         </li>
                         <li><NavLink to="/contact" className="hover:text-primary-gold transition-colors block">Contact Us</NavLink></li>

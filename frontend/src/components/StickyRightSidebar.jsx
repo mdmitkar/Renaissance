@@ -7,7 +7,7 @@ const StickyRightSidebar = ({ onOpenAdmission }) => {
         <div className="fixed right-0 top-1/2 transform -translate-y-1/2 z-40 flex flex-col gap-2">
             <SidebarItem
                 icon={<FileText size={20} />}
-                label="Admissions"
+                label="Enquire"
                 color="bg-primary-gold"
                 textColor="text-secondary-black"
                 onClick={onOpenAdmission}

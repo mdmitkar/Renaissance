@@ -357,7 +357,7 @@ const About = () => {
                         <div className="relative z-10">
                             <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">Start Your Child's Journey</h2>
                             <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-                                Limited seats available for the upcoming academic year. Give your child the gift of Renaissance.
+                                Limited seats available for the upcoming academic year. Give your child the opportunity he deserves.
                             </p>
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
@@ -365,7 +365,7 @@ const About = () => {
                                 onClick={openAdmission}
                                 className="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-bold text-lg px-8 py-4 rounded-full transition-colors flex items-center gap-2 mx-auto"
                             >
-                                Apply for Admission
+                                Enquire for Admission
                                 <ArrowRight className="w-5 h-5" />
                             </motion.button>
                         </div>

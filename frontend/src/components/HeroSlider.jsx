@@ -141,7 +141,7 @@ const HeroSlider = () => {
                                             onClick={openAdmission}
                                             className="inline-flex items-center gap-3 bg-gulf-dark text-white font-bold px-10 py-4 rounded-full text-lg hover:bg-gulf-blue transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:scale-95 duration-300"
                                         >
-                                            Apply Now <ChevronRight size={20} />
+                                            Enquire Now <ChevronRight size={20} />
                                         </button>
                                         <button className="inline-flex items-center gap-3 px-8 py-4 rounded-full border-2 border-gulf-lebanese text-gulf-lebanese font-bold hover:bg-gulf-lebanese hover:text-white transition-all duration-300 group">
                                             <div className="w-10 h-10 rounded-full bg-gulf-lebanese text-white flex items-center justify-center group-hover:bg-white group-hover:text-gulf-lebanese transition-colors shadow-md">
