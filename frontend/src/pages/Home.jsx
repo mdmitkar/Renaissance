@@ -807,7 +807,7 @@ const PROGRAMS = [
         age: "3 - 4 Years",
         desc: "Stepping stones to early literacy. Letters and numbers become friends through stories.",
         bg: "#059669", // Emerald 600 - Vibrant Green
-        img: "/abnursery.png",
+        img: "/abnursery_updated.png",
         imgPos: "object-[75%_center]",
         tags: ["Phonics", "Nature", "Reading"]
     },
