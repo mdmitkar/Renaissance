@@ -7,11 +7,13 @@ const Footer = ({ onOpenAdmission }) => {
         <footer className="bg-secondary-black text-white pt-16 pb-4 mt-auto">
             <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-8 mb-8">
                 {/* Brand Section */}
-                <div className="flex flex-col items-center text-center">
-                    <img src="/logo.jpeg" alt="Renaissance Preschool" className="h-[70px] mb-3 bg-white p-1 rounded-full shadow-lg" />
-                    <h3 className="text-4xl font-english font-normal text-primary-gold mb-1 tracking-wide">Renaissance</h3>
-                    <p className="text-lg text-white/90 font-heading tracking-widest uppercase text-xs mb-2">Preschool</p>
-                    <p className="text-xs opacity-60 italic font-serif">Learning Through Love and Laughter</p>
+                <div className="flex flex-col items-start">
+                    <div className="flex flex-col items-center text-center">
+                        <img src="/logo.jpeg" alt="Renaissance Preschool" className="h-[70px] mb-3 bg-white p-1 rounded-full shadow-lg" />
+                        <h3 className="text-4xl font-english font-normal text-primary-gold mb-1 tracking-wide">Renaissance</h3>
+                        <p className="text-lg text-white/90 font-heading tracking-widest uppercase text-xs mb-2">Preschool</p>
+                        <p className="text-xs opacity-60 italic font-serif">Learning Through Love and Laughter</p>
+                    </div>
                 </div>
 
                 {/* Quick Links */}
