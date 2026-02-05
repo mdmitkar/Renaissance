@@ -482,7 +482,7 @@ const ParentsPraise = () => {
                     onClick={openAdmission}
                     className="inline-block bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-12 py-5 rounded-full font-bold text-xl transition-transform hover:scale-105 shadow-2xl hover:shadow-rose-500/50"
                 >
-                    Be Part of Our Story
+                    Come !!! be a part of our story
                 </button>
             </section>
 
