@@ -62,7 +62,7 @@ const ReviewImageCard = ({ src, index, onMaximize }) => {
         >
             {/* Header: Fancy Italic Serif */}
             <div className={`mb-4 flex flex-col items-center leading-tight ${contentColor} relative z-10`}>
-                <h3 className="font-heading italic text-xl md:text-2xl">Renaissance</h3>
+                <h3 className="font-english text-2xl md:text-3xl">Renaissance</h3>
                 <h3 className="font-heading italic text-xl md:text-2xl">Preschool</h3>
             </div>
 
