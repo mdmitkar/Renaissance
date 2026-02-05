@@ -346,7 +346,7 @@ const AdmissionForm = () => {
             <div className="relative z-10">
                 <div className="mb-8 border-l-8 border-gentle-yellow pl-4 md:pl-6">
                     <h2 className="text-3xl md:text-5xl font-heading font-black text-gulf-dark dark:text-white mb-2">Admission Open</h2>
-                    <h3 className="text-xl text-gray-500 font-medium tracking-wide">Academic Year 2025-26</h3>
+                    <h3 className="text-2xl text-gray-500 font-medium tracking-wide">Academic Year 2026 - 2027</h3>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8">

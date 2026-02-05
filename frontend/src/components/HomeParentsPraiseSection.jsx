@@ -83,7 +83,7 @@ const ReviewImageCard = ({ src, index, onMaximize }) => {
             </div>
 
             <div className={`mt-4 pt-2 ${contentColor} relative z-10`}>
-                <h4 className="font-body text-lg font-medium tracking-wide">Parents Praise</h4>
+                <h4 className="font-body text-lg font-medium tracking-wide">Parent's Praise</h4>
             </div>
         </div>
     );

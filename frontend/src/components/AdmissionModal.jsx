@@ -44,7 +44,7 @@ const AdmissionModal = ({ isOpen, onClose }) => {
                     <div className="bg-gradient-to-r from-gulf-dark to-gulf-blue p-6 flex justify-between items-center text-white relative overflow-hidden">
                         <div className="relative z-10">
                             <h2 className="text-2xl md:text-3xl font-heading font-bold">Admissions Open</h2>
-                            <p className="opacity-90 font-medium">Join the Renaissance Family</p>
+                            <h3 className="text-lg md:text-xl text-white/90 font-medium tracking-wide">Academic Year 2026 - 2027</h3>
                         </div>
                         <button onClick={onClose} className="bg-white/20 hover:bg-white/40 p-2 rounded-full transition-colors relative z-10">
                             <X size={24} />

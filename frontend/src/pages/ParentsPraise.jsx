@@ -122,7 +122,7 @@ const ReviewImageCard = ({ src, index, onMaximize }) => {
 
             {/* Footer: Simple Sans-Serif */}
             <div className={`mt-auto pt-6 ${contentColor} relative z-10`}>
-                <h4 className="font-body text-xl md:text-2xl font-medium tracking-wide">Parents Praise</h4>
+                <h4 className="font-body text-xl md:text-2xl font-medium tracking-wide">Parent's Praise</h4>
             </div>
         </div>
     );
