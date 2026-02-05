@@ -824,7 +824,7 @@ const PROGRAMS = [
         age: "5 - 6 Years",
         desc: "Ready for the big world. Advanced concepts, confidence building, and school readiness.",
         bg: "#4F46E5", // Indigo 600 - Vibrant Blue/Purple
-        img: "/otherimp/srjkg.png",
+        img: "/otherimp/srjkg_updated.png",
         tags: ["Writing", "Confidence", "Speaking"]
     }
 ];
