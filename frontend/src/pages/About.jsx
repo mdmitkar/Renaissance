@@ -29,7 +29,7 @@ const About = () => {
                     className="absolute inset-0 z-0"
                 >
                     <img
-                        src="/assets/school_building_enhanced.png"
+                        src="/assets/cropschool_building_enhanced.png"
                         alt="Renaissance Building"
                         className="w-full h-full object-cover"
                     />
@@ -469,7 +469,7 @@ const ValueCard = ({ icon, title, desc, color, bg, shadow }) => (
 
 const JOURNEY_DATA = [
     {
-        year: "2020",
+        year: "2023",
         title: "A Dreamer's Idea",
         desc: "The seed of Renaissance was planted to create a place that honors the child's spirit above all else.",
         icon: <Star size={24} />,
@@ -480,7 +480,7 @@ const JOURNEY_DATA = [
         iconColor: "text-yellow-500"
     },
     {
-        year: "2022",
+        year: "2024",
         title: "Crafting Joy",
         desc: "We designed our 'Seven Petals' curriculum not in a boardroom, but by listening to what helps children thrive.",
         icon: <BrainCircuit size={24} />,
