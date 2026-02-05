@@ -18,7 +18,7 @@ const EVENTS = [
         date: "Discover Our Campus",
         folder: "SchoolPremises",
         images: [
-            "schoolbuilding.avif",
+            "../assets/cropschool_building_enhanced.png",
             "classroom3.png",
             "playground3.png",
             "playground1.jpeg",

@@ -24,7 +24,7 @@ const EVENTS = [
         folder: "SchoolPremises",
         galleryId: 'campus',
         images: [
-            "schoolbuilding.avif",
+            "../assets/cropschool_building_enhanced.png",
             "classroom3.png",
             "playground3.png",
             "playground1.jpeg",
@@ -493,7 +493,7 @@ const GALLERY_DATA = {
         {
             id: 'campus',
             title: 'Campus',
-            cover: '/SchoolPremises/schoolbuilding.avif',
+            cover: '/assets/cropschool_building_enhanced.png',
             media: [
                 { type: 'image', src: '/SchoolPremises/classplay.jpeg' },
                 { type: 'image', src: '/SchoolPremises/classroom1.jpeg' },
@@ -505,7 +505,7 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/SchoolPremises/playground1.jpeg' },
                 { type: 'image', src: '/SchoolPremises/playground2.jpeg' },
                 { type: 'image', src: '/SchoolPremises/playground3.png' },
-                { type: 'image', src: '/SchoolPremises/schoolbuilding.avif' },
+                { type: 'image', src: '/assets/cropschool_building_enhanced.png' },
                 { type: 'image', src: '/SchoolPremises/schoolentry.jpeg' },
                 { type: 'image', src: '/SchoolPremises/teachers_day_classroom_decorations.jpeg' },
                 { type: 'video', src: '/videos/schooltour.mp4' },
