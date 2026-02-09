@@ -16,6 +16,7 @@ const TESTIMONIAL_VIDEOS = [
     { id: 'nt10', src: '/New/New Testimonials/newtest10.mp4', title: 'Confidence', type: 'video' },
     { id: 'nt11', src: '/New/New Testimonials/newtest11.mp4', title: 'Activities', type: 'video' },
     { id: 'nt12', src: '/New/New Testimonials/newtest12.mp4', title: 'Recommendations', type: 'video' },
+    { id: 'new_video_1', src: '/New/New Testimonials/testxx.mp4', title: 'Parent Testimonial', type: 'video' },
 ];
 
 const TESTIMONIAL_IMAGES = [

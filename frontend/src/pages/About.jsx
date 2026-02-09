@@ -493,7 +493,7 @@ const JOURNEY_DATA = [
     {
         year: "2025",
         title: "The Doors Open!",
-        desc: "The laughter of our first students filled the halls, marking the start of a beautiful journey in Bhiwandi.",
+        desc: "The laughter of our first students filled the halls, marking the start of a beautiful journey.",
         icon: <Award size={24} />,
         accent: "from-emerald-400 to-teal-500",
         dotColor: "bg-emerald-500",

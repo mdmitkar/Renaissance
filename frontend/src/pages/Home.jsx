@@ -700,11 +700,11 @@ const Home = () => {
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-luxury-pink/10 text-rose-600 dark:text-luxury-pink font-bold text-xs tracking-widest uppercase mb-8"
+                                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-luxury-pink/10 text-rose-600 dark:text-luxury-pink font-extrabold text-xl tracking-widest uppercase mb-8"
                             >
-                                <span className="relative flex h-2 w-2">
+                                <span className="relative flex h-3 w-3">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-luxury-pink opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-luxury-pink"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-luxury-pink"></span>
                                 </span>
                                 Admissions Open 2026 - 2027
                             </motion.div>

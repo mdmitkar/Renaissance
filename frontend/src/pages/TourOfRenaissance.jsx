@@ -540,6 +540,7 @@ const GALLERY_DATA = {
                 { type: 'video', src: '/videos/Testimonial_2.mp4' },
                 { type: 'video', src: '/videos/Testimonial_3.mp4' },
                 { type: 'video', src: '/videos/testimonial_4.mp4' },
+                { type: 'video', src: '/New/New Testimonials/testxx.mp4' },
             ]
         },
         {
