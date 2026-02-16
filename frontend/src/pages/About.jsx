@@ -128,7 +128,7 @@ const About = () => {
                     >
                         <h3 className="text-orange-500 font-bold tracking-widest uppercase text-sm mb-4">About Renaissance</h3>
                         <h2 className="text-4xl md:text-6xl font-heading font-black mb-8 text-slate-800 dark:text-white leading-tight">
-                            Modern Academics & <br />
+                            Modern Academics With <br />
                             <span className="relative inline-block text-rose-500">
                                 Moral & Ethical Values
                                 <svg className="absolute w-full h-3 -bottom-1 left-0 text-yellow-300 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
