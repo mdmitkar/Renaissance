@@ -430,6 +430,7 @@ const GALLERY_DATA = {
             title: 'Activities',
             cover: '/Activities/Activities_1.jpeg',
             media: [
+                { type: 'image', src: '/Activities/newac.jpeg' },
                 { type: 'image', src: '/Activities/0.1.jpeg' },
                 { type: 'image', src: '/Activities/Activities_4.jpeg' },
                 { type: 'image', src: '/Activities/motor.jpeg' },
