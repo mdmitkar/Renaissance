@@ -588,6 +588,7 @@ const GALLERY_DATA = {
             title: "Jummah Day",
             cover: '/New/Islamic Day/ilamioc1.jpeg',
             media: [
+                { type: 'video', src: '/New/Islamic Day/newjumah.mp4' },
                 { type: 'image', src: '/New/Islamic Day/ilamioc1.jpeg' },
                 { type: 'image', src: '/New/Islamic Day/islamic2.jpeg' },
                 { type: 'image', src: '/New/Islamic Day/islamic3.jpeg' },
