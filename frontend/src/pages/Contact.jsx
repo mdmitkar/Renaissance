@@ -103,43 +103,42 @@ const Contact = () => {
             />
 
             {/* 1. HERO SECTION - 3D Campus Floating Scene */}
-            {/* 1. HERO SECTION - 3D Campus Floating Scene */}
             <div
                 onMouseMove={handleMouseMove}
-                className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden [perspective:1000px] bg-gradient-to-br from-[#FDFBF7] via-white to-[#F0F4F8] dark:from-[#0a0a0a] dark:via-[#111] dark:to-[#0a0a0a]"
+                className="relative min-h-[75vh] md:min-h-screen flex flex-col items-center justify-center overflow-hidden [perspective:1000px] bg-gradient-to-br from-[#FDFBF7] via-white to-[#F0F4F8] dark:from-[#0a0a0a] dark:via-[#111] dark:to-[#0a0a0a]"
             >
                 {/* 3D Scene Wrapper */}
-                <div ref={sceneRef} className="relative w-full h-full max-w-[1600px] flex items-center justify-center [transform-style:preserve-3d] py-12 md:py-20">
+                <div ref={sceneRef} className="relative w-full h-full min-h-[75vh] md:min-h-screen max-w-[1600px] flex items-center justify-center [transform-style:preserve-3d] py-16 md:py-20 mt-12 md:mt-0">
 
                     {/* --- FLOATING CAMPUS IMAGES --- */}
 
-                    {/* Top Left: School Building - HIDDEN ON MOBILE (Like Parents Praise) */}
-                    <div className="contact-float-item absolute top-[8%] left-[5%] w-72 z-10 hidden md:block">
-                        <div className="bg-white dark:bg-zinc-800 p-3 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
-                            <img src="/assets/cropschool_building_enhanced.png" alt="Our Campus" className="rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
-                            <div className="text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
+                    {/* Top Left: School Building */}
+                    <div className="contact-float-item absolute top-[8%] left-[2%] md:left-[5%] w-32 md:w-72 z-10">
+                        <div className="bg-white dark:bg-zinc-800 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                            <img src="/assets/cropschool_building_enhanced.png" alt="Our Campus" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
+                            <div className="text-center mt-2 md:mt-3 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
                         </div>
                     </div>
 
-                    {/* Bottom Right: Classroom - HIDDEN ON MOBILE (Like Parents Praise) */}
-                    <div className="contact-float-item absolute bottom-[12%] right-[5%] w-72 z-10 hidden md:block">
-                        <div className="bg-white dark:bg-zinc-800 p-3 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[5deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
-                            <img src="/SchoolPremises/newclassw.png" alt="Classroom" className="rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
-                            <div className="text-center mt-3 text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Learning Spaces</div>
+                    {/* Bottom Right: Classroom */}
+                    <div className="contact-float-item absolute bottom-[18%] md:bottom-[12%] right-[2%] md:right-[5%] w-36 md:w-72 z-10">
+                        <div className="bg-white dark:bg-zinc-800 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[5deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
+                            <img src="/SchoolPremises/newclassw.png" alt="Classroom" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
+                            <div className="text-center mt-2 md:mt-3 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Learning Spaces</div>
                         </div>
                     </div>
 
-                    {/* Top Right: Playground - HIDDEN ON MOBILE */}
-                    <div className="contact-float-item absolute top-[12%] right-[5%] md:right-[8%] w-32 md:w-60 z-0 hidden md:block opacity-80 hover:opacity-100 transition-opacity">
-                        <div className="bg-white dark:bg-zinc-800 p-2 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[3deg] hover:scale-105 transition-transform duration-300">
-                            <img src="/SchoolPremises/playground3.png" alt="Play Area" className="rounded-xl w-full h-auto object-cover aspect-square" />
+                    {/* Top Right: Playground */}
+                    <div className="contact-float-item absolute top-[3%] md:top-[12%] right-[5%] md:right-[8%] w-20 md:w-60 z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
+                        <div className="bg-white dark:bg-zinc-800 p-1.5 md:p-2 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[12deg] hover:scale-105 transition-transform duration-300">
+                            <img src="/SchoolPremises/playground3.png" alt="Play Area" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-square" />
                         </div>
                     </div>
 
-                    {/* Bottom Left: Activity - HIDDEN ON MOBILE */}
-                    <div className="contact-float-item absolute bottom-[15%] left-[5%] md:left-[8%] w-36 md:w-60 z-0 hidden md:block opacity-80 hover:opacity-100 transition-opacity">
-                        <div className="bg-white dark:bg-zinc-800 p-2 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-4deg] hover:scale-105 transition-transform duration-300">
-                            <img src="/SchoolPremises/classplay.jpeg" alt="Activities" className="rounded-xl w-full h-auto object-cover aspect-square" />
+                    {/* Bottom Left: Activity */}
+                    <div className="contact-float-item absolute bottom-[10%] md:bottom-[15%] left-[8%] md:left-[8%] w-24 md:w-60 z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
+                        <div className="bg-white dark:bg-zinc-800 p-1.5 md:p-2 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-12deg] hover:scale-105 transition-transform duration-300">
+                            <img src="/SchoolPremises/classplay.jpeg" alt="Activities" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-square" />
                         </div>
                     </div>
 
@@ -150,7 +149,7 @@ const Contact = () => {
 
 
                     {/* --- CENTRAL HERO TEXT --- */}
-                    <div className="relative z-30 text-center px-6 max-w-3xl mx-auto [transform:translateZ(60px)]">
+                    <div className="relative z-30 text-center px-6 max-w-3xl mx-auto -mt-24 md:mt-0 [transform:translateZ(60px)]">
                         <motion.h1
                             className="hero-text-enter text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-6 md:mb-8 drop-shadow-sm leading-[1.1] md:leading-[0.9] break-words"
                         >
