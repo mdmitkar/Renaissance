@@ -1,9 +1,15 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "renaissance-pi.vercel.app"
+        }
+      ],
+      "destination": "https://www.renaissanceschools.in/$1",
+      "permanent": true
     }
   ]
 }
-  
