@@ -25,7 +25,7 @@ const Navbar = ({ onOpenAdmission }) => {
 
     const navLinks = [
         { name: 'Home', path: '/' },
-        { name: 'About', path: '/about' },
+        { name: 'About us', path: '/about' },
         {
             name: 'Tour of Renaissance',
             path: '/tour-of-renaissance',
