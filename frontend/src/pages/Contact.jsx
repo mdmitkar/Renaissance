@@ -155,7 +155,7 @@ const Contact = () => {
                             className="hero-text-enter text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-6 md:mb-8 drop-shadow-sm leading-[1.1] md:leading-[0.9] break-words"
                         >
                             Join the <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 dark:from-blue-400 dark:to-violet-400 relative inline-block px-2 md:px-4">
+                            <span className="text-[#D4AF37] font-english font-normal text-6xl sm:text-7xl md:text-9xl relative inline-block px-2 md:px-4 leading-tight py-2 drop-shadow-md">
                                 Renaissance
                                 {/* Subtle Underline Decoration */}
                                 <div className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 bg-yellow-300/30 -rotate-1 rounded-full -z-10"></div>
