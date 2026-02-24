@@ -217,7 +217,7 @@ const Contact = () => {
                                     {[1, 2, 3, 4, 5].map(i => <Star key={i} size={24} className="fill-gentle-yellow text-gentle-yellow animate-pulse" style={{ animationDelay: `${i * 100}ms` }} />)}
                                 </div>
                                 <h3 className="text-3xl font-heading font-bold mb-2">4.8/5 Rating</h3>
-                                <p className="opacity-70 text-sm mb-6">Loved by 500+ Parents on Google</p>
+                                <p className="opacity-70 text-sm mb-6">Loved by 100+ Parents on Google</p>
 
                                 <div className="flex gap-4">
                                     <SocialButton
