@@ -22,7 +22,7 @@ const Footer = ({ onOpenAdmission }) => {
                     <ul className="space-y-2">
                         <li><NavLink to="/" className="hover:text-primary-gold transition-colors block">Home</NavLink></li>
                         <li><NavLink to="/about" className="hover:text-primary-gold transition-colors block">About Us</NavLink></li>
-                        <li><NavLink to="/tour-of-renaissance" className="hover:text-primary-gold transition-colors block">Tour of Renaissance</NavLink></li>
+                        <li><NavLink to="/events-and-celebrations" className="hover:text-primary-gold transition-colors block">Events & Celebrations</NavLink></li>
                         <li>
                             <button
                                 onClick={onOpenAdmission}

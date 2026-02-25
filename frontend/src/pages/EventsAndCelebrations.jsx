@@ -357,7 +357,7 @@ const TimelineSection = ({ event, index }) => {
     );
 };
 
-const TourOfRenaissance = () => {
+const EventsAndCelebrations = () => {
     return (
         <div className="bg-[#F3F0E8] dark:bg-[#111] font-body transition-colors duration-300">
             {/* HERO HEADER */}
@@ -379,7 +379,7 @@ const TourOfRenaissance = () => {
                     className="relative z-10 text-center px-4 w-full"
                 >
                     <h1 className="text-[12vw] md:text-[8vw] font-english font-normal text-[#D4AF37] mb-4 tracking-normal drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] whitespace-nowrap leading-none">
-                        Tour of Renaissance
+                        Events & Celebrations
                     </h1>
 
                     <p className="text-lg md:text-2xl font-light text-slate-100 max-w-4xl mx-auto leading-relaxed drop-shadow-lg font-body tracking-wide">
@@ -980,7 +980,7 @@ const GallerySection = () => {
 // ===================================
 
 
-const TourOfRenaissancePage = () => {
+const EventsAndCelebrationsPage = () => {
     const videoSchema = useMemo(() => {
         const allMedia = [...GALLERY_DATA.events, ...GALLERY_DATA.celebrations].flatMap(album => album.media);
         const videos = allMedia.filter(m => m.type === 'video');
@@ -999,16 +999,16 @@ const TourOfRenaissancePage = () => {
     return (
         <div className='overflow-x-hidden'>
             <SEO
-                title='Tour of Renaissance - Gallery & Events'
+                title='Events & Celebrations - Gallery & Events'
                 description='Explore the vibrant life at Renaissance Preschool. From events and celebrations to daily learning activities.'
-                canonical='/tour-of-renaissance'
+                canonical='/events-and-celebrations'
                 schema={videoSchema}
             />
-            <TourOfRenaissance />
+            <EventsAndCelebrations />
             <GallerySection />
         </div>
     );
 };
 
-export default TourOfRenaissancePage;
+export default EventsAndCelebrationsPage;
 

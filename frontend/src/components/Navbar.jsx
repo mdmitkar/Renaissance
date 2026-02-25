@@ -28,7 +28,7 @@ const Navbar = ({ onOpenAdmission }) => {
         { name: 'About us', path: '/about' },
         {
             name: 'Events & Celebrations',
-            path: '/tour-of-renaissance',
+            path: '/events-and-celebrations',
             // Structure: Groups of links
             dropdownGroups: [
                 {

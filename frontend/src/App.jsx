@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import ParentsPraise from './pages/ParentsPraise';
 import Contact from './pages/Contact';
-import TourOfRenaissance from './pages/TourOfRenaissance';
+import EventsAndCelebrations from './pages/EventsAndCelebrations';
 function App() {
   return (
     <>
@@ -19,7 +19,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="reviews" element={<ParentsPraise />} />
-            <Route path="tour-of-renaissance" element={<TourOfRenaissance />} />
+            <Route path="events-and-celebrations" element={<EventsAndCelebrations />} />
             <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>
