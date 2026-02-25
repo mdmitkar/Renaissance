@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useOutletContext } from 'react-router-dom';
 import { Target, Heart, Award, Users, Star, BrainCircuit, Sparkles, ArrowRight } from 'lucide-react';
 
-const About = () => {
+const AboutUs = () => {
     const { openAdmission } = useOutletContext();
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
@@ -19,7 +19,7 @@ const About = () => {
             <SEO
                 title="About Us"
                 description="Discover Renaissance Preschool's mission to blend modern academics with moral & ethical values. Meet our founders and learn about our holistic approach."
-                canonical="/about"
+                canonical="/about-us"
             />
 
             {/* --- HERO SECTION --- */}
@@ -504,4 +504,4 @@ const JOURNEY_DATA = [
     }
 ];
 
-export default About;
+export default AboutUs;

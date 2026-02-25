@@ -21,7 +21,7 @@ const Footer = ({ onOpenAdmission }) => {
                     <h4 className="text-primary-gold text-lg font-semibold mb-4">Quick Links</h4>
                     <ul className="space-y-2">
                         <li><NavLink to="/" className="hover:text-primary-gold transition-colors block">Home</NavLink></li>
-                        <li><NavLink to="/about" className="hover:text-primary-gold transition-colors block">About Us</NavLink></li>
+                        <li><NavLink to="/about-us" className="hover:text-primary-gold transition-colors block">About Us</NavLink></li>
                         <li><NavLink to="/events-and-celebrations" className="hover:text-primary-gold transition-colors block">Events & Celebrations</NavLink></li>
                         <li>
                             <button

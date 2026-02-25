@@ -11,7 +11,7 @@ const Navbar = ({ onOpenAdmission }) => {
     const location = useLocation();
 
     // Pages that have a dark hero section (needs light text even when transparent)
-    const isDarkHeroPage = ['/', '/inside-renaissance', '/about'].includes(location.pathname);
+    const isDarkHeroPage = ['/', '/inside-renaissance', '/about-us'].includes(location.pathname);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,7 +25,7 @@ const Navbar = ({ onOpenAdmission }) => {
 
     const navLinks = [
         { name: 'Home', path: '/' },
-        { name: 'About us', path: '/about' },
+        { name: 'About us', path: '/about-us' },
         {
             name: 'Events & Celebrations',
             path: '/events-and-celebrations',
