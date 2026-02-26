@@ -113,7 +113,7 @@ const Contact = () => {
                     {/* --- FLOATING CAMPUS IMAGES --- */}
 
                     {/* Top Left: School Building */}
-                    <div className="contact-float-item absolute top-[8%] left-[2%] md:left-[5%] w-32 md:w-72 z-10">
+                    <div className="contact-float-item absolute top-[12%] left-[4%] md:top-[12%] md:left-[10%] w-[10rem] md:w-[22rem] z-10">
                         <div className="bg-white dark:bg-zinc-800 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
                             <img src="/assets/cropschool_building_enhanced.png" alt="Our Campus" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
                             <div className="text-center mt-2 md:mt-3 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
@@ -121,7 +121,7 @@ const Contact = () => {
                     </div>
 
                     {/* Bottom Right: Classroom */}
-                    <div className="contact-float-item absolute bottom-[18%] md:bottom-[12%] right-[2%] md:right-[5%] w-36 md:w-72 z-10">
+                    <div className="contact-float-item absolute bottom-[22%] right-[4%] md:bottom-[15%] md:right-[10%] w-[11.5rem] md:w-[22rem] z-10">
                         <div className="bg-white dark:bg-zinc-800 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[5deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
                             <img src="/SchoolPremises/newclassw.png" alt="Classroom" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
                             <div className="text-center mt-2 md:mt-3 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Learning Spaces</div>
@@ -129,14 +129,14 @@ const Contact = () => {
                     </div>
 
                     {/* Top Right: Playground */}
-                    <div className="contact-float-item absolute top-[3%] md:top-[12%] right-[5%] md:right-[8%] w-20 md:w-60 z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
+                    <div className="contact-float-item absolute top-[8%] right-[6%] md:top-[18%] md:right-[12%] w-[7rem] md:w-[18rem] z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
                         <div className="bg-white dark:bg-zinc-800 p-1.5 md:p-2 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[12deg] hover:scale-105 transition-transform duration-300">
                             <img src="/SchoolPremises/playground3.png" alt="Play Area" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-square" />
                         </div>
                     </div>
 
                     {/* Bottom Left: Activity */}
-                    <div className="contact-float-item absolute bottom-[10%] md:bottom-[15%] left-[8%] md:left-[8%] w-24 md:w-60 z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
+                    <div className="contact-float-item absolute bottom-[14%] left-[6%] md:bottom-[20%] md:left-[12%] w-[8rem] md:w-[18rem] z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
                         <div className="bg-white dark:bg-zinc-800 p-1.5 md:p-2 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-12deg] hover:scale-105 transition-transform duration-300">
                             <img src="/SchoolPremises/classplay.jpeg" alt="Activities" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-square" />
                         </div>
@@ -149,12 +149,12 @@ const Contact = () => {
 
 
                     {/* --- CENTRAL HERO TEXT --- */}
-                    <div className="relative z-30 text-center px-6 max-w-3xl mx-auto -mt-24 md:mt-0 [transform:translateZ(60px)]">
+                    <div className="relative z-50 text-center px-6 max-w-3xl mx-auto -mt-24 md:mt-0 [transform:translateZ(60px)]">
                         <motion.h1
-                            className="hero-text-enter text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-6 md:mb-8 drop-shadow-sm leading-[1.1] md:leading-[0.9] break-words"
+                            className="hero-text-enter text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-6 md:mb-8 drop-shadow-sm leading-[1.1] md:leading-[0.9] break-words"
                         >
                             Join the <br />
-                            <span className="text-[#D4AF37] font-english font-normal text-6xl sm:text-7xl md:text-9xl relative inline-block px-2 md:px-4 leading-tight py-2 drop-shadow-md">
+                            <span className="text-[#D4AF37] font-english font-normal text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] relative inline-block px-2 md:px-4 leading-tight py-2 drop-shadow-md">
                                 Renaissance
                                 {/* Subtle Underline Decoration */}
                                 <div className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 bg-yellow-300/30 -rotate-1 rounded-full -z-10"></div>
@@ -164,12 +164,12 @@ const Contact = () => {
 
                         <motion.div className="hero-text-enter flex flex-col items-center gap-4 md:gap-6">
                             <p
-                                className="text-lg md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-body font-medium tracking-wide"
+                                className="text-lg md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-body font-medium tracking-wide bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-full px-4 py-1"
                             >
                                 Visits, enquiries, or just a friendly hello.
                             </p>
 
-                            <div className="w-12 md:w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
+                            <div className="w-12 md:w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mt-2"></div>
                         </motion.div>
                     </div>
 
