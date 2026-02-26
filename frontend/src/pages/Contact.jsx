@@ -180,19 +180,20 @@ const Contact = () => {
                 </div>
 
                 {/* Soft Wave Divider at Bottom */}
-                <div className="absolute bottom-0 left-0 w-full leading-none z-20 text-bg-cream dark:text-[#111]">
+                <div className="absolute bottom-0 left-0 w-full leading-none z-20 text-bg-cream dark:text-[#111] pointer-events-none">
                     <svg className="block w-full h-16 md:h-32" viewBox="0 0 1440 320" preserveAspectRatio="none">
                         <path fill="currentColor" fillOpacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
                     </svg>
-                    {/* ADDED SCROLL INDICATOR */}
+
+                    {/* ADDED SCROLL INDICATOR - Properly horizontally and vertically centered at the bottom */}
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1, duration: 1, repeat: Infinity, repeatType: "reverse" }}
-                        className=" absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-20 text-slate-400 dark:text-slate-600 flex flex-col items-center gap-2"
+                        className="absolute bottom-8 md:bottom-12 left-0 right-0 mx-auto flex flex-col items-center justify-center gap-2 text-slate-400 dark:text-slate-600 w-fit pointer-events-auto"
                     >
-                        <span className=" text-[15px] uppercase tracking-widest font-bold opacity-70">Scroll</span>
-                        <ChevronsDown size={34} />
+                        <span className="text-[13px] md:text-[15px] uppercase tracking-widest font-bold opacity-70">Scroll</span>
+                        <ChevronsDown size={28} className="md:w-[34px] md:h-[34px]" />
                     </motion.div>
                 </div>
 
