@@ -307,21 +307,21 @@ const ParentsPraise = () => {
                     {/* Positioned absolutely around the center */}
 
                     {/* Top Left */}
-                    <div className="soft-float-item absolute -top-[5%] left-[0%] md:-top-[10%] md:left-[5%] xl:-left-[5%] w-40 md:w-64 z-10 hidden sm:block">
+                    <div className="soft-float-item absolute -top-[5%] left-[2%] md:-top-[10%] md:left-[6%] xl:left-[2%] w-40 md:w-64 z-10 hidden sm:block">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-rose-100 dark:border-white/10 rotate-[-6deg]">
                             <img src={TESTIMONIAL_IMAGES[0].src} className="rounded-xl w-full h-auto" alt="Happy" />
                         </div>
                     </div>
 
                     {/* Top Right */}
-                    <div className="soft-float-item absolute -top-[5%] right-[0%] md:-top-[15%] md:right-[5%] xl:-right-[5%] w-40 md:w-64 z-10 hidden sm:block">
+                    <div className="soft-float-item absolute -top-[5%] right-[2%] md:-top-[15%] md:right-[6%] xl:right-[2%] w-40 md:w-64 z-10 hidden sm:block">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-sky-100 dark:border-white/10 rotate-[4deg]">
                             <img src={TESTIMONIAL_IMAGES[1].src} className="rounded-xl w-full h-auto" alt="Joy" />
                         </div>
                     </div>
 
                     {/* Bottom Left */}
-                    <div className="soft-float-item absolute -bottom-[10%] left-[0%] md:-bottom-[15%] md:left-[8%] xl:-left-[2%] w-40 md:w-60 z-10 hidden sm:block">
+                    <div className="soft-float-item absolute -bottom-[10%] left-[2%] md:-bottom-[15%] md:left-[10%] xl:left-[4%] w-40 md:w-60 z-10 hidden sm:block">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-yellow-100 dark:border-white/10 rotate-[6deg]">
                             <div className="p-2 md:p-4 text-center">
                                 <p className="text-xs md:text-sm font-heading font-bold text-slate-700 dark:text-gray-300">"Simply amazing!"</p>
@@ -331,7 +331,7 @@ const ParentsPraise = () => {
                     </div>
 
                     {/* Bottom Right */}
-                    <div className="soft-float-item absolute -bottom-[20%] right-[0%] md:-bottom-[25%] md:right-[2%] xl:-right-[8%] w-44 md:w-72 z-10 hidden sm:block">
+                    <div className="soft-float-item absolute -bottom-[20%] right-[2%] md:-bottom-[25%] md:right-[5%] xl:right-[2%] w-44 md:w-72 z-10 hidden sm:block">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-rose-100 dark:border-white/10 rotate-[-3deg]">
                             <img src={TESTIMONIAL_IMAGES[2].src} className="rounded-xl w-full h-auto" alt="Smile" />
                         </div>
