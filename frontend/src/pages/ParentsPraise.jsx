@@ -307,41 +307,41 @@ const ParentsPraise = () => {
                     {/* Positioned absolutely around the center */}
 
                     {/* Top Left */}
-                    <div className="soft-float-item absolute top-[15%] left-[10%] md:left-[15%] w-40 md:w-56 z-10 hidden md:block">
+                    <div className="soft-float-item absolute -top-[5%] left-[0%] md:-top-[10%] md:left-[5%] xl:-left-[5%] w-40 md:w-64 z-10 hidden sm:block">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-rose-100 dark:border-white/10 rotate-[-6deg]">
                             <img src={TESTIMONIAL_IMAGES[0].src} className="rounded-xl w-full h-auto" alt="Happy" />
                         </div>
                     </div>
 
                     {/* Top Right */}
-                    <div className="soft-float-item absolute top-[20%] right-[5%] md:right-[15%] w-36 md:w-48 z-10 hidden md:block">
+                    <div className="soft-float-item absolute -top-[5%] right-[0%] md:-top-[15%] md:right-[5%] xl:-right-[5%] w-40 md:w-64 z-10 hidden sm:block">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-sky-100 dark:border-white/10 rotate-[4deg]">
                             <img src={TESTIMONIAL_IMAGES[1].src} className="rounded-xl w-full h-auto" alt="Joy" />
                         </div>
                     </div>
 
                     {/* Bottom Left */}
-                    <div className="soft-float-item absolute bottom-[20%] left-[5%] md:left-[12%] w-36 md:w-52 z-10 hidden md:block">
+                    <div className="soft-float-item absolute -bottom-[10%] left-[0%] md:-bottom-[15%] md:left-[8%] xl:-left-[2%] w-40 md:w-60 z-10 hidden sm:block">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-yellow-100 dark:border-white/10 rotate-[6deg]">
-                            <div className="p-4 text-center">
-                                <p className="text-sm font-heading font-bold text-slate-700 dark:text-gray-300">"Simply amazing!"</p>
-                                <div className="flex justify-center mt-2 gap-1"><Star size={12} className="fill-yellow-400 text-yellow-400" /><Star size={12} className="fill-yellow-400 text-yellow-400" /><Star size={12} className="fill-yellow-400 text-yellow-400" /></div>
+                            <div className="p-2 md:p-4 text-center">
+                                <p className="text-xs md:text-sm font-heading font-bold text-slate-700 dark:text-gray-300">"Simply amazing!"</p>
+                                <div className="flex justify-center mt-1 md:mt-2 gap-1"><Star size={10} className="fill-yellow-400 text-yellow-400 md:w-[12px] md:h-[12px]" /><Star size={10} className="fill-yellow-400 text-yellow-400 md:w-[12px] md:h-[12px]" /><Star size={10} className="fill-yellow-400 text-yellow-400 md:w-[12px] md:h-[12px]" /></div>
                             </div>
                         </div>
                     </div>
 
                     {/* Bottom Right */}
-                    <div className="soft-float-item absolute bottom-[15%] right-[10%] md:right-[12%] w-40 md:w-60 z-10 hidden md:block">
+                    <div className="soft-float-item absolute -bottom-[20%] right-[0%] md:-bottom-[25%] md:right-[2%] xl:-right-[8%] w-44 md:w-72 z-10 hidden sm:block">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-rose-100 dark:border-white/10 rotate-[-3deg]">
                             <img src={TESTIMONIAL_IMAGES[2].src} className="rounded-xl w-full h-auto" alt="Smile" />
                         </div>
                     </div>
 
                     {/* --- Floating Icons/Particles --- */}
-                    <div className="soft-float-item absolute top-[10%] right-[30%] text-rose-300 opacity-60"><Heart size={48} fill="currentColor" /></div>
-                    <div className="soft-float-item absolute bottom-[25%] left-[25%] text-sky-300 opacity-60"><Star size={32} fill="currentColor" /></div>
-                    <div className="soft-float-item absolute top-[40%] left-[8%] text-yellow-300 opacity-50"><div className="w-16 h-16 rounded-full bg-current blur-xl"></div></div>
-                    <div className="soft-float-item absolute bottom-[10%] right-[35%] text-rose-200 opacity-40"><Heart size={64} fill="currentColor" /></div>
+                    <div className="soft-float-item absolute top-[5%] right-[20%] md:top-[10%] md:right-[30%] text-rose-300 opacity-60"><Heart size={32} className="md:w-[48px] md:h-[48px]" fill="currentColor" /></div>
+                    <div className="soft-float-item absolute bottom-[30%] left-[10%] md:bottom-[25%] md:left-[25%] text-sky-300 opacity-60"><Star size={24} className="md:w-[32px] md:h-[32px]" fill="currentColor" /></div>
+                    <div className="soft-float-item absolute top-[30%] left-[2%] md:top-[40%] md:left-[8%] text-yellow-300 opacity-50"><div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-current blur-xl"></div></div>
+                    <div className="soft-float-item absolute bottom-[5%] right-[25%] md:bottom-[10%] md:right-[35%] text-rose-200 opacity-40"><Heart size={40} className="md:w-[64px] md:h-[64px]" fill="currentColor" /></div>
 
 
                     {/* --- CENTRAL CONTENT (Foreground) --- */}
