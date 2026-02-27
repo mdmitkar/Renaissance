@@ -362,7 +362,7 @@ const ParentsPraise = () => {
                                 onClick={() => document.getElementById('video-grid')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="px-10 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold shadow-2xl hover:scale-105 hover:shadow-rose-500/20 transition-all duration-300 flex items-center gap-3 mx-auto"
                             >
-                                <PlayCircle size={20} className="fill-current" /> Hear Their Stories
+                                <PlayCircle size={20} className="fill-current" /> Listen to their experiences
                             </button>
                         </div>
                     </div>
