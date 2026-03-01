@@ -355,7 +355,7 @@ const ParentsPraise = () => {
                         </h1>
 
                         <p className="hero-text-anim text-lg md:text-2xl text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-2xl mx-auto mb-10">
-                            A safe haven where confidence grows, smiles bloom, and every child feels at home.
+                            A safe place where confidence grows, smiles bloom, and every child feels at home.
                         </p>
 
                         <div className="hero-text-anim">
