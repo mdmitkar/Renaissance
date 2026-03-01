@@ -378,13 +378,22 @@ const EventsAndCelebrations = () => {
                     transition={{ duration: 0.8 }}
                     className="relative z-10 text-center px-4 w-full"
                 >
-                    <h1 className="text-[12vw] md:text-[8vw] font-english font-normal text-[#D4AF37] mb-4 tracking-normal drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] whitespace-nowrap leading-none">
-                        Events & Celebrations
+                    <h1 className="text-[10vw] md:text-[6vw] font-heading font-black text-white mb-6 tracking-tight drop-shadow-lg leading-none">
+                        Events & <span className="text-[#D4AF37]">Celebrations</span>
                     </h1>
 
-                    <p className="text-lg md:text-2xl font-light text-slate-100 max-w-4xl mx-auto leading-relaxed drop-shadow-lg font-body tracking-wide">
-                        A dynamic journey of joy, learning, and unforgettable moments.
+                    <p className="text-xl md:text-3xl font-medium text-slate-100 max-w-4xl mx-auto leading-relaxed drop-shadow-lg font-body tracking-wide mb-6">
+                        Learning through Love & Laughter
                     </p>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5, duration: 1 }}
+                        className="text-6xl md:text-9xl font-english font-normal text-[#D4AF37] tracking-normal drop-shadow-2xl"
+                    >
+                        Renaissance
+                    </motion.div>
                 </motion.div>
 
                 {/* Decorative Scroll Down Indicator */}
