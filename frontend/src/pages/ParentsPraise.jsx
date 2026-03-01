@@ -391,8 +391,8 @@ const ParentsPraise = () => {
             {/* --- VIDEO GALLERY (Wall of Fame) --- */}
             <section id="video-grid" className="py-24 px-6 max-w-[1920px] mx-auto">
                 <div className="text-center mb-16 px-4">
-                    <h2 className="text-4xl md:text-6xl font-heading font-black text-slate-900 dark:text-white mb-4">Voices of Renaissance</h2>
-                    <p className="text-slate-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">Click any video to hear their story.</p>
+                    <h2 className="text-4xl md:text-6xl font-heading font-black text-slate-900 dark:text-white mb-4 uppercase tracking-tight">Voices of Parents - RENAISSANCE</h2>
+                    <p className="text-slate-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">Click any video to listen to their experiences</p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

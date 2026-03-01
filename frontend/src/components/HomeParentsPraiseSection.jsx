@@ -143,7 +143,7 @@ const HomeParentsPraiseSection = () => {
                         viewport={{ once: true }}
                         className="inline-block px-4 py-1 rounded-full bg-luxury-pink/10 text-luxury-pink font-bold text-xs uppercase tracking-widest mb-4"
                     >
-                        Voices of Renaissance
+                        Voices of Parents - RENAISSANCE
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
