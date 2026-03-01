@@ -299,30 +299,35 @@ const ParentsPraise = () => {
             {/* --- HERO SECTION: SOFT 3D CLOUD --- */}
             <section
                 onMouseMove={handleMouseMove}
-                className="relative min-h-[85vh] md:min-h-[90vh] py-16 md:py-0 flex flex-col items-center justify-center overflow-hidden [perspective:1000px] bg-gradient-to-br from-rose-50 via-white to-sky-50 dark:from-slate-900 dark:via-black dark:to-slate-900 transition-colors duration-500"
+                className="relative min-h-[75vh] md:min-h-[90vh] py-12 md:py-0 flex flex-col items-center justify-center overflow-hidden [perspective:1000px] bg-gradient-to-br from-rose-50 via-white to-sky-50 dark:from-slate-900 dark:via-black dark:to-slate-900 transition-colors duration-500"
             >
+                {/* Background Glow Blobs (Mobile & Desktop) */}
+                <div className="absolute top-[10%] left-[10%] w-64 h-64 bg-rose-200/30 blur-[100px] rounded-full pointer-events-none animate-pulse"></div>
+                <div className="absolute bottom-[10%] right-[10%] w-72 h-72 bg-sky-200/30 blur-[100px] rounded-full pointer-events-none animate-pulse delay-700"></div>
+                <div className="absolute top-[40%] right-[5%] w-48 h-48 bg-yellow-100/40 blur-[80px] rounded-full pointer-events-none animate-pulse delay-1000"></div>
+
                 {/* 3D Scene Container */}
                 <div ref={sceneRef} className="relative w-full h-full max-w-[1400px] flex items-center justify-center [transform-style:preserve-3d]">
 
-                    {/* --- Floating Testimonial Cards (Cloud Ring) --- */}
+                    {/* --- Floating Testimonial Cards (Cloud Ring) - DESKTOP ONLY --- */}
                     {/* Positioned absolutely around the center */}
 
                     {/* Top Left */}
-                    <div className="soft-float-item absolute top-[8%] left-[4%] sm:-top-[5%] sm:left-[2%] md:-top-[10%] md:left-[6%] xl:left-[2%] w-28 sm:w-40 md:w-64 z-10">
+                    <div className="soft-float-item hidden md:block absolute top-[8%] left-[4%] sm:-top-[5%] sm:left-[2%] md:-top-[10%] md:left-[6%] xl:left-[2%] w-28 sm:w-40 md:w-64 z-10">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-rose-100 dark:border-white/10 rotate-[-6deg]">
                             <img src={TESTIMONIAL_IMAGES[0].src} className="rounded-xl w-full h-auto" alt="Happy" />
                         </div>
                     </div>
 
                     {/* Top Right */}
-                    <div className="soft-float-item absolute top-[2%] right-[4%] sm:-top-[5%] sm:right-[2%] md:-top-[15%] md:right-[6%] xl:right-[2%] w-24 sm:w-40 md:w-64 z-10">
+                    <div className="soft-float-item hidden md:block absolute top-[2%] right-[4%] sm:-top-[5%] sm:right-[2%] md:-top-[15%] md:right-[6%] xl:right-[2%] w-24 sm:w-40 md:w-64 z-10">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-sky-100 dark:border-white/10 rotate-[4deg]">
                             <img src={TESTIMONIAL_IMAGES[1].src} className="rounded-xl w-full h-auto" alt="Joy" />
                         </div>
                     </div>
 
                     {/* Bottom Left */}
-                    <div className="soft-float-item absolute bottom-[10%] left-[4%] sm:-bottom-[10%] sm:left-[2%] md:-bottom-[15%] md:left-[10%] xl:left-[4%] w-32 sm:w-40 md:w-60 z-10">
+                    <div className="soft-float-item hidden md:block absolute bottom-[10%] left-[4%] sm:-bottom-[10%] sm:left-[2%] md:-bottom-[15%] md:left-[10%] xl:left-[4%] w-32 sm:w-40 md:w-60 z-10">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-yellow-100 dark:border-white/10 rotate-[6deg]">
                             <div className="p-2 md:p-4 text-center">
                                 <p className="text-xs md:text-sm font-heading font-bold text-slate-700 dark:text-gray-300">"Simply amazing!"</p>
@@ -332,38 +337,43 @@ const ParentsPraise = () => {
                     </div>
 
                     {/* Bottom Right */}
-                    <div className="soft-float-item absolute bottom-[4%] right-[4%] sm:-bottom-[20%] sm:right-[2%] md:-bottom-[25%] md:right-[5%] xl:right-[2%] w-28 sm:w-44 md:w-72 z-10">
+                    <div className="soft-float-item hidden md:block absolute bottom-[4%] right-[4%] sm:-bottom-[20%] sm:right-[2%] md:-bottom-[25%] md:right-[5%] xl:right-[2%] w-28 sm:w-44 md:w-72 z-10">
                         <div className="bg-white dark:bg-zinc-900 p-2 rounded-2xl shadow-xl border border-rose-100 dark:border-white/10 rotate-[-3deg]">
                             <img src={TESTIMONIAL_IMAGES[2].src} className="rounded-xl w-full h-auto" alt="Smile" />
                         </div>
                     </div>
 
-                    {/* --- Floating Icons/Particles --- */}
-                    <div className="soft-float-item absolute top-[5%] right-[20%] md:top-[10%] md:right-[30%] text-rose-300 opacity-60"><Heart size={32} className="md:w-[48px] md:h-[48px]" fill="currentColor" /></div>
-                    <div className="soft-float-item absolute bottom-[30%] left-[10%] md:bottom-[25%] md:left-[25%] text-sky-300 opacity-60"><Star size={24} className="md:w-[32px] md:h-[32px]" fill="currentColor" /></div>
-                    <div className="soft-float-item absolute top-[30%] left-[2%] md:top-[40%] md:left-[8%] text-yellow-300 opacity-50"><div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-current blur-xl"></div></div>
-                    <div className="soft-float-item absolute bottom-[5%] right-[25%] md:bottom-[10%] md:right-[35%] text-rose-200 opacity-40"><Heart size={40} className="md:w-[64px] md:h-[64px]" fill="currentColor" /></div>
+                    {/* --- Decorative Elements (Visible on Mobile) --- */}
+                    <div className="soft-float-item absolute top-[15%] right-[10%] md:top-[10%] md:right-[30%] text-rose-400/40"><Heart size={48} className="md:w-[64px] md:h-[64px] animate-bounce" fill="currentColor" /></div>
+                    <div className="soft-float-item absolute bottom-[25%] left-[8%] md:bottom-[25%] md:left-[25%] text-sky-400/40"><Star size={40} className="md:w-[56px] md:h-[56px] animate-spin-slow" fill="currentColor" /></div>
+
+                    {/* Additional Desktop Icons */}
+                    <div className="soft-float-item hidden md:block absolute top-[30%] left-[2%] md:top-[40%] md:left-[8%] text-yellow-300 opacity-50"><div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-current blur-xl"></div></div>
+                    <div className="soft-float-item hidden md:block absolute bottom-[5%] right-[25%] md:bottom-[10%] md:right-[35%] text-rose-200 opacity-40"><Heart size={40} className="md:w-[64px] md:h-[64px]" fill="currentColor" /></div>
 
 
                     {/* --- CENTRAL CONTENT (Foreground) --- */}
-                    <div className="relative z-30 text-center px-6 max-w-3xl [transform:translateZ(40px)]">
+                    <div className="relative z-30 text-center px-6 max-w-4xl [transform:translateZ(40px)]">
 
 
-                        <h1 className="hero-text-anim text-5xl md:text-7xl lg:text-8xl font-heading font-black text-slate-900 dark:text-white mb-8 leading-tight drop-shadow-sm">
+                        <h1 className="hero-text-anim text-5xl md:text-7xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-6 md:mb-10 leading-[1.1] drop-shadow-sm">
                             What Parents <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-400">Love</span> About Us
                         </h1>
 
-                        <p className="hero-text-anim text-lg md:text-2xl text-slate-600 dark:text-slate-300 font-light leading-relaxed max-w-2xl mx-auto mb-10">
+                        <p className="hero-text-anim text-lg md:text-2xl text-slate-600 dark:text-slate-300 font-medium leading-relaxed max-w-2xl mx-auto mb-8 md:mb-14 px-4">
                             A safe place where confidence grows, smiles bloom, and every child feels at home.
                         </p>
 
                         <div className="hero-text-anim">
                             <button
                                 onClick={() => document.getElementById('video-grid')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="px-10 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold shadow-2xl hover:scale-105 hover:shadow-rose-500/20 transition-all duration-300 flex items-center gap-3 mx-auto"
+                                className="px-8 md:px-12 py-5 md:py-6 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold shadow-2xl hover:scale-105 hover:shadow-rose-500/20 transition-all duration-300 flex items-center gap-4 mx-auto text-lg md:text-xl group"
                             >
-                                <PlayCircle size={20} className="fill-current" /> Listen to their experiences
+                                <div className="w-8 h-8 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center">
+                                    <PlayCircle size={18} className="text-slate-900 dark:text-white fill-current" />
+                                </div>
+                                Listen to their experiences
                             </button>
                         </div>
                     </div>
