@@ -113,7 +113,7 @@ const Contact = () => {
                     {/* --- FLOATING CAMPUS IMAGES --- */}
 
                     {/* Top Left: School Building */}
-                    <div className="contact-float-item absolute top-[12%] left-[4%] md:top-[12%] md:left-[10%] w-[10rem] md:w-[22rem] z-10">
+                    <div className="contact-float-item hidden md:block absolute top-[12%] left-[4%] md:top-[12%] md:left-[10%] w-[10rem] md:w-[22rem] z-10">
                         <div className="bg-white dark:bg-zinc-800 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
                             <img src="/assets/cropschool_building_enhanced.png" alt="Our Campus" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
                             <div className="text-center mt-2 md:mt-3 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
@@ -121,7 +121,7 @@ const Contact = () => {
                     </div>
 
                     {/* Bottom Right: Classroom */}
-                    <div className="contact-float-item absolute bottom-[22%] right-[4%] md:bottom-[15%] md:right-[10%] w-[11.5rem] md:w-[22rem] z-10">
+                    <div className="contact-float-item hidden md:block absolute bottom-[22%] right-[4%] md:bottom-[15%] md:right-[10%] w-[11.5rem] md:w-[22rem] z-10">
                         <div className="bg-white dark:bg-zinc-800 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[5deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
                             <img src="/SchoolPremises/newclassw.png" alt="Classroom" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
                             <div className="text-center mt-2 md:mt-3 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Learning Spaces</div>
@@ -129,27 +129,27 @@ const Contact = () => {
                     </div>
 
                     {/* Top Right: Playground */}
-                    <div className="contact-float-item absolute top-[8%] right-[6%] md:top-[18%] md:right-[12%] w-[7rem] md:w-[18rem] z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
+                    <div className="contact-float-item hidden md:block absolute top-[8%] right-[6%] md:top-[18%] md:right-[12%] w-[7rem] md:w-[18rem] z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
                         <div className="bg-white dark:bg-zinc-800 p-1.5 md:p-2 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[12deg] hover:scale-105 transition-transform duration-300">
                             <img src="/SchoolPremises/playground3.png" alt="Play Area" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-square" />
                         </div>
                     </div>
 
                     {/* Bottom Left: Activity */}
-                    <div className="contact-float-item absolute bottom-[14%] left-[6%] md:bottom-[20%] md:left-[12%] w-[8rem] md:w-[18rem] z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
+                    <div className="contact-float-item hidden md:block absolute bottom-[14%] left-[6%] md:bottom-[20%] md:left-[12%] w-[8rem] md:w-[18rem] z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
                         <div className="bg-white dark:bg-zinc-800 p-1.5 md:p-2 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-12deg] hover:scale-105 transition-transform duration-300">
                             <img src="/SchoolPremises/classplay.jpeg" alt="Activities" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-square" />
                         </div>
                     </div>
 
                     {/* --- FLOATING ICONS - Adjust positions for mobile --- */}
-                    <div className="contact-float-item absolute top-[20%] left-[10%] md:left-[28%] text-blue-200 dark:text-blue-900/30 blur-[1px]"><MapPin size={32} md:size={48} className="fill-current" /></div>
-                    <div className="contact-float-item absolute bottom-[25%] right-[10%] md:right-[28%] text-rose-200 dark:text-rose-900/30 blur-[1px]"><Mail size={24} md:size={40} className="fill-current" /></div>
-                    <div className="contact-float-item absolute top-[15%] right-[15%] md:right-[32%] text-amber-200 dark:text-amber-900/30 blur-[1px]"><Sun size={40} md:size={56} className="animate-[spin_10s_linear_infinite]" /></div>
+                    <div className="contact-float-item hidden md:block absolute top-[20%] left-[10%] md:left-[28%] text-blue-200 dark:text-blue-900/30 blur-[1px]"><MapPin size={32} md:size={48} className="fill-current" /></div>
+                    <div className="contact-float-item hidden md:block absolute bottom-[25%] right-[10%] md:right-[28%] text-rose-200 dark:text-rose-900/30 blur-[1px]"><Mail size={24} md:size={40} className="fill-current" /></div>
+                    <div className="contact-float-item hidden md:block absolute top-[15%] right-[15%] md:right-[32%] text-amber-200 dark:text-amber-900/30 blur-[1px]"><Sun size={40} md:size={56} className="animate-[spin_10s_linear_infinite]" /></div>
 
 
                     {/* --- CENTRAL HERO TEXT --- */}
-                    <div className="relative z-50 text-center px-6 max-w-3xl mx-auto -mt-24 md:mt-0 [transform:translateZ(60px)]">
+                    <div className="relative z-50 text-center px-6 max-w-3xl mx-auto mt-0 [transform:translateZ(60px)]">
                         <motion.h1
                             className="hero-text-enter text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-6 md:mb-8 drop-shadow-sm leading-[1.1] md:leading-[0.9] break-words"
                         >
