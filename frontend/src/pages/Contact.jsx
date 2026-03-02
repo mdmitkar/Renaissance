@@ -105,47 +105,49 @@ const Contact = () => {
             {/* 1. HERO SECTION - 3D Campus Floating Scene */}
             <div
                 onMouseMove={handleMouseMove}
-                className="relative min-h-[75vh] md:min-h-screen flex flex-col items-center justify-center overflow-hidden [perspective:1000px] bg-gradient-to-br from-[#FDFBF7] via-white to-[#F0F4F8] dark:from-[#0a0a0a] dark:via-[#111] dark:to-[#0a0a0a]"
+                className="relative min-h-[85vh] md:min-h-screen flex flex-col items-center justify-center overflow-hidden [perspective:1000px] bg-gradient-to-br from-[#FDFBF7] via-white to-[#F0F4F8] dark:from-[#0a0a0a] dark:via-[#111] dark:to-[#0a0a0a]"
             >
+                {/* --- BACKGROUND DECORATIVE BLOBS (Mobile & Desktop) --- */}
+                <div className="absolute top-[10%] left-[5%] w-64 h-64 bg-rose-200/20 dark:bg-rose-900/10 blur-[100px] rounded-full pointer-events-none animate-pulse"></div>
+                <div className="absolute bottom-[15%] right-[5%] w-72 h-72 bg-blue-200/20 dark:bg-blue-900/10 blur-[100px] rounded-full pointer-events-none animate-pulse delay-700"></div>
+                <div className="absolute top-[40%] right-[10%] w-48 h-48 bg-amber-100/30 dark:bg-amber-900/10 blur-[80px] rounded-full pointer-events-none animate-pulse delay-1000"></div>
                 {/* 3D Scene Wrapper */}
                 <div ref={sceneRef} className="relative w-full h-full min-h-[75vh] md:min-h-screen max-w-[1600px] flex items-center justify-center [transform-style:preserve-3d] py-16 md:py-20 mt-12 md:mt-0">
 
                     {/* --- FLOATING CAMPUS IMAGES --- */}
 
-                    {/* Top Left: School Building */}
-                    <div className="contact-float-item hidden md:block absolute top-[12%] left-[4%] md:top-[12%] md:left-[10%] w-[10rem] md:w-[22rem] z-10">
-                        <div className="bg-white dark:bg-zinc-800 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-6deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
-                            <img src="/assets/cropschool_building_enhanced.png" alt="Our Campus" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
-                            <div className="text-center mt-2 md:mt-3 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Our Campus</div>
+                    {/* Top Left: School Building - Repositioned to prevent clipping */}
+                    <div className="contact-float-item absolute top-[10%] left-[2%] md:top-[12%] md:left-[10%] w-[8.5rem] md:w-[22rem] z-10 opacity-60 md:opacity-100">
+                        <div className="bg-white dark:bg-zinc-800 p-1.5 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-12deg] md:rotate-[-6deg]">
+                            <img src="/assets/cropschool_building_enhanced.png" alt="Our Campus" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3]" />
                         </div>
                     </div>
 
-                    {/* Bottom Right: Classroom */}
-                    <div className="contact-float-item hidden md:block absolute bottom-[22%] right-[4%] md:bottom-[15%] md:right-[10%] w-[11.5rem] md:w-[22rem] z-10">
-                        <div className="bg-white dark:bg-zinc-800 p-2 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[5deg] hover:scale-110 transition-transform duration-500 hover:rotate-0 hover:z-50">
-                            <img src="/SchoolPremises/newclassw.png" alt="Classroom" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3] shadow-inner" />
-                            <div className="text-center mt-2 md:mt-3 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest font-heading">Learning Spaces</div>
+                    {/* Bottom Right: Classroom - Repositioned to prevent clipping */}
+                    <div className="contact-float-item absolute bottom-[18%] right-[2%] md:bottom-[15%] md:right-[10%] w-[9.5rem] md:w-[22rem] z-10 opacity-60 md:opacity-100">
+                        <div className="bg-white dark:bg-zinc-800 p-1.5 md:p-3 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[12deg] md:rotate-[5deg]">
+                            <img src="/SchoolPremises/newclassw.png" alt="Classroom" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-[4/3]" />
                         </div>
                     </div>
 
-                    {/* Top Right: Playground */}
-                    <div className="contact-float-item hidden md:block absolute top-[8%] right-[6%] md:top-[18%] md:right-[12%] w-[7rem] md:w-[18rem] z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
-                        <div className="bg-white dark:bg-zinc-800 p-1.5 md:p-2 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[12deg] hover:scale-105 transition-transform duration-300">
+                    {/* Desktop Only Extra Images */}
+                    <div className="contact-float-item hidden md:block absolute top-[18%] md:right-[12%] w-[18rem] z-0 opacity-80 hover:opacity-100 transition-opacity">
+                        <div className="bg-white dark:bg-zinc-800 p-2 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[12deg] hover:scale-105 transition-transform duration-300">
                             <img src="/SchoolPremises/playground3.png" alt="Play Area" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-square" />
                         </div>
                     </div>
 
-                    {/* Bottom Left: Activity */}
-                    <div className="contact-float-item hidden md:block absolute bottom-[14%] left-[6%] md:bottom-[20%] md:left-[12%] w-[8rem] md:w-[18rem] z-0 opacity-80 md:opacity-80 hover:opacity-100 transition-opacity">
-                        <div className="bg-white dark:bg-zinc-800 p-1.5 md:p-2 rounded-xl md:rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-12deg] hover:scale-105 transition-transform duration-300">
+                    <div className="contact-float-item hidden md:block absolute bottom-[20%] md:left-[12%] w-[18rem] z-0 opacity-80 hover:opacity-100 transition-opacity">
+                        <div className="bg-white dark:bg-zinc-800 p-2 rounded-2xl shadow-xl border border-white/50 dark:border-white/10 rotate-[-12deg] hover:scale-105 transition-transform duration-300">
                             <img src="/SchoolPremises/classplay.jpeg" alt="Activities" className="rounded-lg md:rounded-xl w-full h-auto object-cover aspect-square" />
                         </div>
                     </div>
 
-                    {/* --- FLOATING ICONS - Adjust positions for mobile --- */}
-                    <div className="contact-float-item hidden md:block absolute top-[20%] left-[10%] md:left-[28%] text-blue-200 dark:text-blue-900/30 blur-[1px]"><MapPin size={32} md:size={48} className="fill-current" /></div>
-                    <div className="contact-float-item hidden md:block absolute bottom-[25%] right-[10%] md:right-[28%] text-rose-200 dark:text-rose-900/30 blur-[1px]"><Mail size={24} md:size={40} className="fill-current" /></div>
-                    <div className="contact-float-item hidden md:block absolute top-[15%] right-[15%] md:right-[32%] text-amber-200 dark:text-amber-900/30 blur-[1px]"><Sun size={40} md:size={56} className="animate-[spin_10s_linear_infinite]" /></div>
+                    {/* --- FLOATING DECORATIVE ICONS --- */}
+                    <div className="contact-float-item absolute top-[15%] left-[8%] md:left-[28%] text-blue-400/30 dark:text-blue-400/10"><MapPin size={32} md:size={48} className="fill-current animate-bounce" /></div>
+                    <div className="contact-float-item absolute bottom-[25%] right-[8%] md:right-[28%] text-rose-400/30 dark:text-rose-400/10"><Heart size={24} md:size={40} className="fill-current animate-pulse" /></div>
+                    <div className="contact-float-item absolute top-[10%] right-[10%] md:right-[32%] text-amber-400/30 dark:text-amber-400/10"><Star size={32} md:size={56} className="fill-current animate-[spin_8s_linear_infinite]" /></div>
+                    <div className="contact-float-item absolute bottom-[35%] left-[12%] md:left-[35%] text-indigo-400/20"><Mail size={24} md:size={36} className="fill-current" /></div>
 
 
                     {/* --- CENTRAL HERO TEXT --- */}
@@ -154,12 +156,12 @@ const Contact = () => {
                             className="hero-text-enter text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-heading font-black text-slate-900 dark:text-white mb-6 md:mb-8 drop-shadow-sm leading-[1.1] md:leading-[0.9] break-words"
                         >
                             Join the <br />
-                            <span className="text-[#D4AF37] font-english font-normal text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] relative inline-block px-2 md:px-4 leading-tight py-2 drop-shadow-md">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#f1c40f] to-[#D4AF37] font-english font-normal text-7xl sm:text-8xl md:text-[8rem] lg:text-[10rem] relative inline-block px-2 md:px-4 leading-tight py-2 drop-shadow-md">
                                 Renaissance
                                 {/* Subtle Underline Decoration */}
                                 <div className="absolute -bottom-1 md:-bottom-2 left-0 w-full h-2 md:h-3 bg-yellow-300/30 -rotate-1 rounded-full -z-10"></div>
                             </span> <br />
-                            Family
+                            <span className="text-slate-900 dark:text-white">Family</span>
                         </motion.h1>
 
                         <motion.div className="hero-text-enter flex flex-col items-center gap-4 md:gap-6">
