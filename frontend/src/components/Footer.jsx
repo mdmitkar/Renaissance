@@ -73,10 +73,10 @@ const Footer = ({ onOpenAdmission }) => {
             </div>
 
             <div className="border-t border-gray-800 pt-4 pb-2">
-                <div className="max-w-[1200px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60">
+                <div className="max-w-[1400px] mx-auto px-8 flex flex-col items-center text-center text-xs opacity-60 gap-1">
                     <p>&copy; 2026 Renaissance Preschool. All rights reserved.</p>
-                    <p className="mt-2 md:mt-0">
-                        Develop & Maintained by <a href="https://www.buildnest.world" target="_blank" rel="noopener noreferrer" className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-fuchsia-500 hover:from-purple-300 hover:to-fuchsia-400 font-bold tracking-wide transition-all ml-1">BuildNest</a>
+                    <p>
+                        Develop &amp; Maintained by <a href="https://www.buildnest.world" target="_blank" rel="noopener noreferrer" className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-fuchsia-500 hover:from-purple-300 hover:to-fuchsia-400 font-bold tracking-wide transition-all ml-1">BuildNest</a>
                     </p>
                 </div>
             </div>
