@@ -93,7 +93,7 @@ const AboutUs = () => {
                         <ValueCard
                             icon={<Target size={32} />}
                             title="Our Mission"
-                            desc="To provide a nurturing, safe, and interactive environment where young children can explore, learn, and grow through a balanced blend of Islamic teachings and modern education."
+                            desc="To provide a nurturing, safe, and interactive environment where young children can explore, learn, and grow through a balanced blend of moral values and modern education."
                             color="text-white"
                             bg="bg-sky-400"
                             shadow="shadow-sky-200"
