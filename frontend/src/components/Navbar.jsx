@@ -41,6 +41,7 @@ const Navbar = ({ onOpenAdmission }) => {
                         { name: 'Campus', hash: 'campus' },
                         { name: 'Testimonials', hash: 'testimonials' },
                         { name: 'RENIESTA', hash: 'reniesta' },
+                        { name: '360° EDUCATION WEEK', hash: '360_education' },
                     ]
                 },
                 {
@@ -51,6 +52,7 @@ const Navbar = ({ onOpenAdmission }) => {
                         { name: "Jummah Day", hash: 'jumuah_day' },
                         { name: "Red Day", hash: 'red_day' },
                         { name: "Teacher's Day", hash: 'teachers_day' },
+                        { name: "Eid Celebration", hash: 'eid_celebration' },
                     ]
                 }
             ]
