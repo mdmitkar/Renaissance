@@ -213,6 +213,50 @@ const EVENTS = [
             text: "#1E3A8A" // Dark Blue
         },
         icon: <BookOpen size={24} />
+    },
+    {
+        id: '360_education',
+        title: "360° EDUCATION WEEK",
+        description: "A holistic week dedicated to immersive learning, practical activities, and all-round development of our young minds.",
+        date: "Holistic Learning",
+        folder: "360days",
+        galleryId: '360_education',
+        images: [
+            "3603.jpeg",
+            "3605.jpeg",
+            "36010.jpeg",
+            "3608.jpeg",
+            "3609.jpeg"
+        ],
+        theme: {
+            primary: "#F59E0B", // Amber
+            secondary: "#B45309", // Dark Amber
+            accent: "#B45309",
+            shadow: "rgba(245, 158, 11, 0.4)",
+            text: "#78350F" // Dark Amber
+        },
+        icon: <BookOpen size={24} />
+    },
+    {
+        id: 'eid_celebration',
+        title: "Eid Celebration",
+        description: "A joyous celebration of Eid, filled with traditional dress, festive greetings, and the spirit of sharing and togetherness.",
+        date: "Joy & Togetherness",
+        folder: "Eid",
+        galleryId: 'eid_celebration',
+        images: [
+            "eid1.jpeg",
+            "eid2.jpeg",
+            "eid3.jpeg"
+        ],
+        theme: {
+            primary: "#14B8A6", // Teal
+            secondary: "#0F766E", // Dark Teal
+            accent: "#0F766E",
+            shadow: "rgba(20, 184, 166, 0.4)",
+            text: "#115E59" // Deep Teal
+        },
+        icon: <Star size={24} />
     }
 ];
 
@@ -566,6 +610,26 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/reniesta/reniesta6.png' },
                 { type: 'video', src: '/videos/reniestavideo.mp4', muted: true },
             ]
+        },
+        {
+            id: '360_education',
+            title: '360° EDUCATION WEEK',
+            cover: '/360days/3603.jpeg',
+            media: [
+                { type: 'image', src: '/360days/3601.jpeg' },
+                { type: 'image', src: '/360days/3602.jpeg' },
+                { type: 'image', src: '/360days/3603.jpeg' },
+                { type: 'image', src: '/360days/3604.jpeg' },
+                { type: 'image', src: '/360days/3605.jpeg' },
+                { type: 'image', src: '/360days/3606.jpeg' },
+                { type: 'image', src: '/360days/3607.jpeg' },
+                { type: 'image', src: '/360days/3608.jpeg' },
+                { type: 'image', src: '/360days/3609.jpeg' },
+                { type: 'image', src: '/360days/36010.jpeg' },
+                { type: 'image', src: '/360days/36011.jpeg' },
+                { type: 'image', src: '/360days/36012.jpeg' },
+                { type: 'video', src: '/360days/360dayvid1.mp4' },
+            ]
         }
     ],
     celebrations: [
@@ -627,6 +691,17 @@ const GALLERY_DATA = {
                 { type: 'video', src: '/teachersday/WhatsApp Video 2026-01-30 at 20.43.43.mp4' },
                 { type: 'image', src: '/teachersday/WhatsApp Image 2026-01-30 at 20.43.41.jpeg' },
                 { type: 'video', src: '/teachersday/objren.mp4' },
+            ]
+        },
+        {
+            id: 'eid_celebration',
+            title: "Eid Celebration",
+            cover: '/Eid/eid2.jpeg',
+            media: [
+                { type: 'image', src: '/Eid/eid1.jpeg' },
+                { type: 'image', src: '/Eid/eid2.jpeg' },
+                { type: 'image', src: '/Eid/eid3.jpeg' },
+                { type: 'video', src: '/Eid/eid1.mp4' },
             ]
         }
     ]
