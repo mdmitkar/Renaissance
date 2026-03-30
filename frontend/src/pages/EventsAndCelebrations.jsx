@@ -616,6 +616,7 @@ const GALLERY_DATA = {
             title: '360° EDUCATION WEEK',
             cover: '/360days/3603.jpeg',
             media: [
+                { type: 'video', src: '/360days/360dayvid1.mp4' },
                 { type: 'image', src: '/360days/3601.jpeg' },
                 { type: 'image', src: '/360days/3602.jpeg' },
                 { type: 'image', src: '/360days/3603.jpeg' },
@@ -628,7 +629,6 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/360days/36010.jpeg' },
                 { type: 'image', src: '/360days/36011.jpeg' },
                 { type: 'image', src: '/360days/36012.jpeg' },
-                { type: 'video', src: '/360days/360dayvid1.mp4' },
             ]
         }
     ],
