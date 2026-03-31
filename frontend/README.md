@@ -1,8 +1,6 @@
 # React + Vite
 ha aj k
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-aaj ka task nai strark
-aaj ka streak 
 Currently, two official plugins are available:
 ha dala ak ka
 ha dala na aj ka bhi mene 
