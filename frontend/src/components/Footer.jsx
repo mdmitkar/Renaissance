@@ -76,7 +76,7 @@ const Footer = ({ onOpenAdmission }) => {
                 <div className="max-w-[1400px] mx-auto px-8 flex flex-col items-center text-center text-xs opacity-60 gap-1">
                     <p>&copy; 2026 Renaissance Preschool. All rights reserved.</p>
                     <p>
-                        Developed &amp; Maintained by <a href="https://teknomindz.in/" target="_blank" rel="noopener noreferrer" className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-fuchsia-500 hover:from-purple-300 hover:to-fuchsia-400 font-bold tracking-wide transition-all ml-1">Teknomindz Systems and Services LLP</a>
+                        Developed &amp; Maintained by <a href="https://www.buildnest.world" target="_blank" rel="noopener noreferrer" className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-fuchsia-500 hover:from-purple-300 hover:to-fuchsia-400 font-bold tracking-wide transition-all ml-1">BuildNest</a>
                     </p>
                 </div>
             </div>
