@@ -905,7 +905,7 @@ const GallerySection = () => {
                     </div>
                 </div>
                 <div ref={reelsRef} className="pt-3 flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6 scroll-smooth">
-                    {GALLERY_DATA.events.flatMap(e => e.media).filter(m => m.type === 'video').slice(0, 8).map((item, i) => (
+                    {[...GALLERY_DATA.events, ...GALLERY_DATA.celebrations].flatMap(e => e.media).filter(m => m.type === 'video').reverse().map((item, i) => (
                         <div key={i} className="reel-card snap-center shrink-0">
                             <div className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px]">
                                 <MediaCard item={item} onClick={() => setSelectedMedia(item)} />
