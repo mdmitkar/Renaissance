@@ -133,6 +133,30 @@ const EVENTS = [
             text: "#004e8a" // Deep Blue (matching the accent)
         },
         icon: <Trophy size={24} />
+    },
+    {
+        id: 'annual-day',
+        title: "Annual Day",
+        description: "The grandest celebration of the year! Our students showcase their incredible talents through mesmerizing performances, bringing stories and culture to life on stage.",
+        date: "Grand Finale",
+        folder: "Annual Day",
+        images: [
+            "annualimg1.jpeg",
+            "annualimg2.jpeg",
+            "annualimg3.jpeg",
+            "annualimg4.jpeg",
+            "annualimg5.jpeg",
+            "annualimg6.jpeg",
+            "annualomg7.jpeg"
+        ],
+        theme: {
+            primary: "#EC4899", // Pink
+            secondary: "#BE185D", // Dark Pink
+            accent: "#BE185D",
+            shadow: "rgba(236, 72, 153, 0.4)",
+            text: "#831843"
+        },
+        icon: <Star size={24} />
     }
 ];
 
