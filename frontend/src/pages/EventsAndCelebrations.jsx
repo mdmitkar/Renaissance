@@ -257,6 +257,31 @@ const EVENTS = [
             text: "#115E59" // Deep Teal
         },
         icon: <Star size={24} />
+    },
+    {
+        id: 'annual-day',
+        title: "Annual Day",
+        description: "The grandest celebration of the year! Our students showcase their incredible talents through mesmerizing performances, bringing stories and culture to life on stage.",
+        date: "Grand Finale",
+        folder: "Annual Day",
+        galleryId: 'annual_day',
+        images: [
+            "annualimg1.jpeg",
+            "annualimg2.jpeg",
+            "annualimg3.jpeg",
+            "annualimg4.jpeg",
+            "annualimg5.jpeg",
+            "annualimg6.jpeg",
+            "annualomg7.jpeg"
+        ],
+        theme: {
+            primary: "#EC4899", // Pink
+            secondary: "#BE185D", // Dark Pink
+            accent: "#BE185D",
+            shadow: "rgba(236, 72, 153, 0.4)",
+            text: "#831843"
+        },
+        icon: <Star size={24} />
     }
 ];
 
@@ -703,6 +728,21 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/Eid/eid3.jpeg' },
                 { type: 'video', src: '/Eid/eid1.mp4' },
             ]
+        },
+        {
+            id: 'annual_day',
+            title: "Annual Day",
+            cover: '/Annual Day/annualimg1.jpeg',
+            media: [
+                { type: 'image', src: '/Annual Day/annualimg1.jpeg' },
+                { type: 'image', src: '/Annual Day/annualimg2.jpeg' },
+                { type: 'image', src: '/Annual Day/annualimg3.jpeg' },
+                { type: 'image', src: '/Annual Day/annualimg4.jpeg' },
+                { type: 'image', src: '/Annual Day/annualimg5.jpeg' },
+                { type: 'image', src: '/Annual Day/annualimg6.jpeg' },
+                { type: 'image', src: '/Annual Day/annualomg7.jpeg' },
+                { type: 'video', src: '/Annual Day/annualvid1.mp4' },
+            ]
         }
     ]
 };
@@ -865,7 +905,7 @@ const GallerySection = () => {
                     </div>
                 </div>
                 <div ref={reelsRef} className="pt-3 flex gap-4 sm:gap-6 overflow-x-auto pb-8 snap-x no-scrollbar pr-6 scroll-smooth">
-                    {GALLERY_DATA.events.flatMap(e => e.media).filter(m => m.type === 'video').slice(0, 8).map((item, i) => (
+                    {[...GALLERY_DATA.events, ...GALLERY_DATA.celebrations].flatMap(e => e.media).filter(m => m.type === 'video').reverse().map((item, i) => (
                         <div key={i} className="reel-card snap-center shrink-0">
                             <div className="w-[180px] h-[320px] sm:w-[240px] sm:h-[420px]">
                                 <MediaCard item={item} onClick={() => setSelectedMedia(item)} />
