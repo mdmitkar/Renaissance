@@ -655,6 +655,21 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/360days/36011.jpeg' },
                 { type: 'image', src: '/360days/36012.jpeg' },
             ]
+        },
+        {
+            id: 'annual_day',
+            title: "Annual Day",
+            cover: '/Annual Day/annualimg1.jpeg',
+            media: [
+                { type: 'image', src: '/Annual Day/annualimg1.jpeg' },
+                { type: 'image', src: '/Annual Day/annualimg2.jpeg' },
+                { type: 'image', src: '/Annual Day/annualimg3.jpeg' },
+                { type: 'image', src: '/Annual Day/annualimg4.jpeg' },
+                { type: 'image', src: '/Annual Day/annualimg5.jpeg' },
+                { type: 'image', src: '/Annual Day/annualimg6.jpeg' },
+                { type: 'image', src: '/Annual Day/annualomg7.jpeg' },
+                { type: 'video', src: '/Annual Day/annualvid1.mp4' },
+            ]
         }
     ],
     celebrations: [
@@ -727,21 +742,6 @@ const GALLERY_DATA = {
                 { type: 'image', src: '/Eid/eid2.jpeg' },
                 { type: 'image', src: '/Eid/eid3.jpeg' },
                 { type: 'video', src: '/Eid/eid1.mp4' },
-            ]
-        },
-        {
-            id: 'annual_day',
-            title: "Annual Day",
-            cover: '/Annual Day/annualimg1.jpeg',
-            media: [
-                { type: 'image', src: '/Annual Day/annualimg1.jpeg' },
-                { type: 'image', src: '/Annual Day/annualimg2.jpeg' },
-                { type: 'image', src: '/Annual Day/annualimg3.jpeg' },
-                { type: 'image', src: '/Annual Day/annualimg4.jpeg' },
-                { type: 'image', src: '/Annual Day/annualimg5.jpeg' },
-                { type: 'image', src: '/Annual Day/annualimg6.jpeg' },
-                { type: 'image', src: '/Annual Day/annualomg7.jpeg' },
-                { type: 'video', src: '/Annual Day/annualvid1.mp4' },
             ]
         }
     ]
